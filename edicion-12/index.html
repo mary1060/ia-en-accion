@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA en Acción · Edición #12 · Semana 14–20 Abril 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #F3F0FF;
+    color: #1F2937;
+    line-height: 1.7;
+  }
+
+  /* ── WRAPPER ── */
+  .wrapper { max-width: 680px; margin: 0 auto; background: #fff; }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #3B0764 0%, #7C3AED 60%, #A855F7 100%);
+    padding: 48px 40px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .brand {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #C4B5FD;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 46px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .header .tagline {
+    font-size: 15px;
+    color: #DDD6FE;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .edition-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #EDE9FE;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── INTRO STRIP ── */
+  .intro-strip {
+    background: #7C3AED;
+    padding: 20px 40px;
+    color: #EDE9FE;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 4px solid #C4B5FD;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    padding: 32px 40px 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: #7C3AED;
+    text-transform: uppercase;
+  }
+
+  /* ── IN THIS ISSUE ── */
+  .toc {
+    padding: 16px 40px 32px;
+    border-bottom: 2px solid #EDE9FE;
+  }
+  .toc h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: #3B0764;
+    margin-bottom: 16px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #F5F3FF;
+    border-radius: 8px;
+    border-left: 3px solid #7C3AED;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3B0764;
+    line-height: 1.4;
+  }
+  .toc-item .emoji { font-size: 16px; flex-shrink: 0; }
+
+  /* ── EDITORIAL ── */
+  .editorial {
+    padding: 36px 40px;
+    background: #FAFAFA;
+    border-bottom: 2px solid #EDE9FE;
+  }
+  .editorial .author-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .author-avatar {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3B0764, #7C3AED);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .author-info { font-size: 13px; color: #6B7280; }
+  .author-info strong { color: #3B0764; font-size: 14px; display: block; }
+  .editorial h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    color: #3B0764;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .editorial p {
+    font-size: 15px;
+    color: #374151;
+    margin-bottom: 14px;
+    line-height: 1.75;
+  }
+  .editorial p:last-child { margin-bottom: 0; }
+
+  /* ── NEWS CARDS ── */
+  .news-section { padding: 36px 40px; border-bottom: 2px solid #EDE9FE; }
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #7C3AED;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #EDE9FE;
+  }
+
+  .news-card {
+    background: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(124,58,237,0.06);
+  }
+  .news-card:last-child { margin-bottom: 0; }
+
+  .card-header {
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid #F3F0FF;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .card-emoji {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .card-header-text {}
+  .card-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #7C3AED;
+    margin-bottom: 4px;
+  }
+  .card-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1F2937;
+    line-height: 1.3;
+  }
+  .card-body { padding: 14px 20px 16px; }
+  .card-body p { font-size: 14px; color: #4B5563; line-height: 1.65; margin-bottom: 10px; }
+  .card-body p:last-child { margin-bottom: 0; }
+
+  /* ── BULLETS ── */
+  .card-bullets { padding: 0 20px 14px; }
+  .card-bullets li {
+    font-size: 13.5px;
+    color: #4B5563;
+    padding: 4px 0 4px 16px;
+    position: relative;
+    line-height: 1.5;
+    list-style: none;
+  }
+  .card-bullets li::before {
+    content: '▸';
+    color: #7C3AED;
+    position: absolute;
+    left: 0;
+    font-size: 11px;
+    top: 6px;
+  }
+
+  /* ── INSIGHT BOX ── */
+  .insight {
+    margin: 0 20px 16px;
+    padding: 12px 16px;
+    background: #F5F3FF;
+    border-left: 3px solid #7C3AED;
+    border-radius: 0 8px 8px 0;
+    font-size: 13.5px;
+    color: #3B0764;
+    line-height: 1.55;
+  }
+  .insight strong { display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #7C3AED; margin-bottom: 4px; }
+
+  /* ── SOURCE LINK ── */
+  .card-source {
+    padding: 8px 20px 14px;
+    font-size: 12px;
+    color: #9CA3AF;
+  }
+  .card-source a { color: #7C3AED; text-decoration: none; font-weight: 600; }
+  .card-source a:hover { text-decoration: underline; }
+
+  /* ── FEATURED STAT ── */
+  .stat-card {
+    background: linear-gradient(135deg, #3B0764, #7C3AED);
+    border-radius: 16px;
+    padding: 32px 28px;
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+  }
+  .stat-number {
+    font-size: 72px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #DDD6FE;
+    margin-bottom: 8px;
+  }
+  .stat-sub {
+    font-size: 13px;
+    color: #C4B5FD;
+    line-height: 1.5;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    background: #EDE9FE;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .pull-quote::before {
+    content: '"';
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 80px;
+    color: #7C3AED;
+    opacity: 0.3;
+    position: absolute;
+    top: -10px; left: 16px;
+    line-height: 1;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17px;
+    font-style: italic;
+    color: #3B0764;
+    line-height: 1.6;
+    padding-left: 24px;
+  }
+
+  /* ── TOP 5 ── */
+  .top5-grid { display: grid; gap: 12px; }
+  .top5-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 16px;
+    background: #F5F3FF;
+    border-radius: 10px;
+    border: 1px solid #EDE9FE;
+  }
+  .top5-rank {
+    font-size: 28px;
+    font-weight: 900;
+    color: #7C3AED;
+    opacity: 0.35;
+    flex-shrink: 0;
+    line-height: 1;
+    width: 36px;
+    text-align: center;
+  }
+  .top5-content {}
+  .top5-content strong { font-size: 14px; color: #3B0764; display: block; margin-bottom: 2px; }
+  .top5-content span { font-size: 13px; color: #6B7280; line-height: 1.4; }
+
+  /* ── TOOLS ── */
+  .tools-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .tool-card {
+    background: #F5F3FF;
+    border: 1px solid #EDE9FE;
+    border-radius: 10px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+  .tool-level {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .tool-level.easy { color: #059669; }
+  .tool-level.medium { color: #D97706; }
+  .tool-card h4 { font-size: 13px; font-weight: 800; color: #3B0764; margin-bottom: 8px; line-height: 1.3; }
+  .tool-card p { font-size: 12px; color: #6B7280; line-height: 1.5; margin-bottom: 10px; }
+  .tool-card a {
+    font-size: 12px;
+    font-weight: 700;
+    color: #7C3AED;
+    text-decoration: none;
+    display: block;
+  }
+
+  /* ── REFLECTION ── */
+  .reflection {
+    background: #3B0764;
+    padding: 40px;
+    color: white;
+  }
+  .reflection h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    color: #EDE9FE;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .reflection p {
+    font-size: 15px;
+    color: #DDD6FE;
+    line-height: 1.8;
+    margin-bottom: 14px;
+  }
+  .reflection p:last-child { margin-bottom: 0; }
+  .reflection .highlight {
+    background: rgba(255,255,255,0.08);
+    border-left: 3px solid #C4B5FD;
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 20px 0;
+    font-style: italic;
+    font-size: 16px;
+    color: #F5F3FF;
+  }
+
+  /* ── CTAs ── */
+  .cta-section {
+    padding: 40px;
+    background: #F5F3FF;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .cta-box {
+    border-radius: 14px;
+    padding: 28px 22px;
+    text-align: center;
+  }
+  .cta-box.community { background: linear-gradient(135deg, #3B0764, #6D28D9); }
+  .cta-box.session { background: linear-gradient(135deg, #7C3AED, #A855F7); }
+  .cta-box .icon { font-size: 32px; margin-bottom: 12px; display: block; }
+  .cta-box h3 { font-size: 16px; font-weight: 800; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+  .cta-box p { font-size: 13px; color: #DDD6FE; margin-bottom: 18px; line-height: 1.5; }
+  .cta-btn {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .cta-btn:hover { background: rgba(255,255,255,0.28); }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: #1F2937;
+    padding: 32px 40px;
+    text-align: center;
+  }
+  .footer .footer-brand { font-size: 15px; font-weight: 800; color: #C4B5FD; margin-bottom: 6px; }
+  .footer p { font-size: 12px; color: #6B7280; line-height: 1.7; }
+  .footer a { color: #A78BFA; text-decoration: none; }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: #EDE9FE; margin: 20px 0; }
+
+  /* ── HIGHLIGHT BADGE ── */
+  .badge {
+    display: inline-block;
+    background: #7C3AED;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .badge.hot { background: #DC2626; }
+  .badge.new { background: #059669; }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ═══════════════════════════════════════════════════ -->
+<div class="wrapper">
+<div class="header">
+  <div class="brand">Ateneo Empresarial &nbsp;·&nbsp; marycardenas.ai</div>
+  <h1>IA en Acción</h1>
+  <p class="tagline">El newsletter de inteligencia artificial que te importa</p>
+  <span class="edition-badge">Edición #12 &nbsp;·&nbsp; 14–20 de Abril, 2026</span>
+</div>
+
+<!-- ══ INTRO ══════════════════════════════════════════════════════ -->
+<div class="intro-strip">
+  Esta semana, la IA no pidió permiso: rediseñó el software de diseño, movió piezas en el ajedrez de OpenAI, convirtió a Salesforce en infraestructura para agentes… y confirmó que la mitad del mundo laboral ya usa IA, aunque sus empresas aún no lo vean en los resultados. Todo esto, en 7 minutos de lectura.
+</div>
+
+<!-- ══ EN ESTA EDICIÓN ═══════════════════════════════════════════ -->
+<div class="toc">
+  <p class="section-label" style="padding:0; margin-bottom:14px;">En esta edición</p>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="emoji">🎨</span>Claude Design hunde a Figma</div>
+    <div class="toc-item"><span class="emoji">🏢</span>3 salidas en OpenAI en un día</div>
+    <div class="toc-item"><span class="emoji">🤖</span>Salesforce + agentes de IA</div>
+    <div class="toc-item"><span class="emoji">📊</span>El paradox de la productividad</div>
+    <div class="toc-item"><span class="emoji">💼</span>Meta despide al 10% por IA</div>
+    <div class="toc-item"><span class="emoji">🔮</span>Dario: open source en 6 meses</div>
+    <div class="toc-item"><span class="emoji">💰</span>DeepSeek levanta $300M</div>
+    <div class="toc-item"><span class="emoji">⚙️</span>Google + 2M chips con Marvell</div>
+  </div>
+</div>
+
+<!-- ══ EDITORIAL ══════════════════════════════════════════════════ -->
+<div class="editorial">
+  <div class="author-line">
+    <div class="author-avatar">M</div>
+    <div class="author-info">
+      <strong>Mary Cárdenas de Gil</strong>
+      Consultora en IA aplicada · Ateneo Empresarial
+    </div>
+  </div>
+  <h2>La semana que la IA se volvió insolente</h2>
+  <p>Si hay una semana que resume este momento tecnológico, fue la del 14 al 20 de abril. No hubo una sola noticia —hubo un terremoto distribuido que sacudió el diseño, los CRMs, los equipos directivos y las finanzas corporativas.</p>
+  <p>Claude Design llegó el viernes 17 y, en menos de 24 horas, Figma perdió un 7% en bolsa. Salesforce abrió toda su plataforma a los agentes de IA. OpenAI perdió tres líderes en el mismo día. Y Gallup nos confirmó que el 50% de los trabajadores en EE.UU. ya usa IA… pero el 90% de sus empresas no mide ningún impacto real en productividad.</p>
+  <p>Ese último dato es el más importante. Y es el corazón de lo que construimos juntos aquí.</p>
+</div>
+
+<!-- ══ MODELOS Y EMPRESAS ═══════════════════════════════════════ -->
+<div class="news-section">
+  <div class="section-title">🤖 Modelos y Empresas</div>
+
+  <!-- Claude Design -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-emoji">🎨</div>
+      <div class="card-header-text">
+        <div class="card-tag"><span class="badge hot">Noticia de la semana</span></div>
+        <div class="card-title">Claude Design: Anthropic entra al ring del diseño</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>El 17 de abril, Anthropic lanzó Claude Design — una herramienta que convierte un prompt en un prototipo interactivo, una presentación o un one-pager de marketing. En 24 horas: <strong>80.000 bookmarks</strong> y <strong>Figma cayó 7%</strong> en bolsa.</p>
+    </div>
+    <ul class="card-bullets">
+      <li>Funciona con Claude Opus 4.7 — lee tu codebase y aplica tu sistema de diseño automáticamente.</li>
+      <li>Exporta a Canva, PPTX, PDF, HTML o Claude Code. Sin abrir Figma.</li>
+      <li>Mike Krieger (cofundador de Instagram) renunció a la junta de Figma 3 días antes del lanzamiento.</li>
+      <li>Disponible en research preview para usuarios Pro, Max, Team y Enterprise.</li>
+    </ul>
+    <div class="insight">
+      <strong>Lo que yo veo en esto</strong>
+      Si eres consultora, PM o fundador: puedes pasar de una idea a un prototipo visual en minutos, sin diseñador y sin licencia de Figma. La barrera acaba de desaparecer.
+    </div>
+    <div class="card-source">📎 <a href="https://www.anthropic.com/news/claude-design-anthropic-labs">Fuente: Anthropic Blog</a></div>
+  </div>
+
+  <!-- OpenAI exits -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-emoji">🏢</div>
+      <div class="card-header-text">
+        <div class="card-tag">Estrategia corporativa</div>
+        <div class="card-title">OpenAI pierde 3 ejecutivos clave en un solo día</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>El mismo viernes 17: salieron Kevin Weil (líder de OpenAI for Science), Bill Peebles (director de Sora, ya cancelado) y Srinivas Narayanan (CTO de enterprise, ex-Meta).</p>
+    </div>
+    <ul class="card-bullets">
+      <li>Sora fue cerrado por pérdidas de ~$1M/día en cómputo. Su equipo pasó a Codex.</li>
+      <li>El equipo de Ciencia fue disuelto y redistribuido en otros grupos.</li>
+      <li>Altman habló de OpenAI como "una plataforma madura que necesita operar más predeciblemente".</li>
+    </ul>
+    <div class="insight">
+      <strong>Mi lectura</strong>
+      OpenAI elimina "side quests" para enfocarse en competir con Anthropic. Señal de reorganización profunda — puede volverse más conservador en apuestas creativas a corto plazo.
+    </div>
+    <div class="card-source">📎 <a href="https://techcrunch.com/2026/04/17/kevin-weil-and-bill-peebles-exit-openai-as-company-continues-to-shed-side-quests/">Fuente: TechCrunch</a></div>
+  </div>
+
+  <!-- Dario forecast -->
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-emoji">🔮</div>
+      <div class="card-header-text">
+        <div class="card-tag">Capacidades · Seguridad</div>
+        <div class="card-title">Dario Amodei pone un reloj de 6–12 meses al modelo propietario</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>El CEO de Anthropic declaró al Financial Times que los modelos open source y chinos alcanzarán las capacidades de <strong>Mythos</strong> (su modelo más poderoso, restringido por seguridad) en 6 a 12 meses.</p>
+    </div>
+    <ul class="card-bullets">
+      <li>Mythos solo está disponible para AWS, Apple, Google, Microsoft y CrowdStrike.</li>
+      <li>La NSA lo usa en secreto, a pesar de haber catalogado a Anthropic como "riesgo de cadena de suministro" (Axios).</li>
+      <li>Qwen y DeepSeek han igualado rendimiento de modelos americanos en 2026, a menor costo.</li>
+    </ul>
+    <div class="insight">
+      <strong>Mi lectura</strong>
+      Si el propio Amodei da 12 meses de ventaja a los modelos propietarios, el análisis de "compro licencia o construyo con open source" cambia radicalmente. Hay que planificarlo ya.
+    </div>
+  </div>
+</div>
+
+<!-- ══ HERRAMIENTAS ════════════════════════════════════════════════ -->
+<div class="news-section">
+  <div class="section-title">🛠️ Plataformas y Herramientas</div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-emoji">🤖</div>
+      <div class="card-header-text">
+        <div class="card-tag">Enterprise · CRM · Agentes</div>
+        <div class="card-title">Salesforce Headless 360: toda la plataforma para los agentes</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>El 15 de abril en TDX 2026, Salesforce expuso <em>toda</em> su plataforma — Sales Cloud, Service Cloud, Marketing Cloud — como herramientas MCP, APIs y CLI para agentes de IA.</p>
+    </div>
+    <ul class="card-bullets">
+      <li>+60 nuevas herramientas MCP y +30 coding skills. Compatible con Claude Code, Cursor, Codex, Windsurf.</li>
+      <li>Los agentes leen y escriben en Salesforce con el mismo acceso que un representante humano.</li>
+      <li>Agentforce Vibes 2.0: soporte multi-modelo (Claude Sonnet + GPT-5).</li>
+    </ul>
+    <div class="insight">
+      <strong>Para consultores y PMs</strong>
+      La pregunta no es si habrá agentes en tu CRM. Es cuándo y cómo vas a gobernarlos. Empieza a diseñar las políticas de acceso ahora.
+    </div>
+    <div class="card-source">📎 <a href="https://venturebeat.com/technology/salesforce-launches-headless-360-to-turn-its-entire-platform-into-infrastructure-for-ai-agents">Fuente: VentureBeat</a></div>
+  </div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-emoji">⚙️</div>
+      <div class="card-header-text">
+        <div class="card-tag">Infraestructura · Chips</div>
+        <div class="card-title">Google + Marvell: ~2 millones de chips personalizados para IA</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Google diseña dos nuevos chips con Marvell: un MPU (Memory Processing Unit) que trabaja junto a sus TPUs y un nuevo TPU optimizado para inferencia. Plan: ~2 millones de unidades.</p>
+    </div>
+    <div class="insight">
+      <strong>¿Por qué te importa?</strong>
+      Menos dependencia de Nvidia y Broadcom = Google controla sus costos de inferencia = precios más competitivos en Google Cloud AI para ti.
+    </div>
+    <div class="card-source">📎 <a href="https://www.reuters.com/business/google-talks-with-marvell-build-new-ai-chips-inference-information-reports-2026-04-19/">Fuente: Reuters</a></div>
+  </div>
+</div>
+
+<!-- ══ EL DATO DE LA SEMANA ═════════════════════════════════════ -->
+<div class="news-section">
+  <div class="section-title">📊 El dato que no puedes ignorar</div>
+
+  <div class="stat-card">
+    <div class="stat-number">50%</div>
+    <div class="stat-label">de los trabajadores en EE.UU. ya usan IA en el trabajo</div>
+    <div class="stat-sub">Pero el 90% de las empresas reporta cero impacto medible en productividad<br><em>(Gallup Q1 2026 + NBER, 6.000 ejecutivos, 4 países)</em></div>
+  </div>
+
+  <div class="pull-quote">
+    <p>Las organizaciones están adoptando IA individualmente, pero no han rediseñado procesos ni workflows. La productividad personal no se convierte en resultados organizacionales sin gestión del cambio deliberada.</p>
+  </div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-emoji">📊</div>
+      <div class="card-header-text">
+        <div class="card-tag">Adopción · Productividad · Liderazgo</div>
+        <div class="card-title">El paradox de productividad de la IA</div>
+      </div>
+    </div>
+    <ul class="card-bullets">
+      <li>Adopción pasó de 21% (2023) al 50% en Q1 2026. El 13% la usa diariamente.</li>
+      <li>65% siente mayor productividad personal… pero solo 1 de cada 10 dice que cambió cómo opera su organización.</li>
+      <li>23% de empleados en empresas con IA teme que su trabajo desaparezca en 5 años.</li>
+      <li>Líderes y trabajadores del conocimiento capturan los mayores beneficios. Roles de admin y servicio: casi nada.</li>
+    </ul>
+    <div class="insight">
+      <strong>🔎 Mi lectura de estos datos</strong>
+      Este es exactamente el problema que resolvemos. Las organizaciones necesitan rediseñar el trabajo, no solo agregar herramientas. La productividad personal no escala sin gestión del cambio. Esa brecha es nuestra oportunidad.
+    </div>
+    <div class="card-source">📎 <a href="https://www.gallup.com/workplace/704225/rising-adoption-spurs-workforce-changes.aspx">Fuente: Gallup Workplace Report</a></div>
+  </div>
+</div>
+
+<!-- ══ NEGOCIOS ════════════════════════════════════════════════════ -->
+<div class="news-section">
+  <div class="section-title">💼 Negocios y Estrategia</div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-emoji">💼</div>
+      <div class="card-header-text">
+        <div class="card-tag">Mercado laboral · Inversión en IA</div>
+        <div class="card-title">Meta recorta 8.000 empleos para apostar $115–135B en IA</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>Meta recorta el 10% de su plantilla (mayo 20) y cancela 6.000 vacantes abiertas. Propósito: liberar capital para casi duplicar su inversión en IA respecto a 2025.</p>
+    </div>
+    <ul class="card-bullets">
+      <li>Capex 2026: $115B–$135B vs. $72B en 2025.</li>
+      <li>La fórmula se repite: headcount down, AI spend up.</li>
+    </ul>
+    <div class="insight">
+      <strong>Señal de mercado</strong>
+      Cuando una Big Tech despide al 10% para financiar IA, ya no es eficiencia marginal — es una apuesta existencial. El patrón se volverá la norma. ¿Está lista tu organización?
+    </div>
+    <div class="card-source">📎 <a href="https://www.cnbc.com/2026/04/23/meta-will-cut-10percent-of-workforce-as-it-pushes-more-into-ai.html">Fuente: CNBC</a></div>
+  </div>
+
+  <div class="news-card">
+    <div class="card-header">
+      <div class="card-emoji">💰</div>
+      <div class="card-header-text">
+        <div class="card-tag">Inversión · China · Open Source</div>
+        <div class="card-title">DeepSeek levanta capital por primera vez: $300M a $10B+</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p>El lab chino que demostró que no necesitas miles de millones para construir IA de frontera, ahora necesita miles de millones. Presión competitiva, poaching de talento y la carrera de chips Huawei.</p>
+    </div>
+    <ul class="card-bullets">
+      <li>Hasta ahora se financiaba con el hedge fund del fundador. Primera vez que abre a externos.</li>
+      <li>Perió talento clave a Xiaomi y ByteDance. El modelo V4 está retrasado.</li>
+      <li>ByteDance's Doubao ya los superó en usuarios activos mensuales.</li>
+    </ul>
+    <div class="card-source">📎 <a href="https://www.theinformation.com/articles/chinas-deepseek-raising-money-first-time-10-billion-plus-valuation">Fuente: The Information</a></div>
+  </div>
+</div>
+
+<!-- ══ TOP 5 ════════════════════════════════════════════════════════ -->
+<div class="news-section" style="background:#FAFAFA;">
+  <div class="section-title">🏆 El Top 5 de la Semana</div>
+  <div class="top5-grid">
+    <div class="top5-item">
+      <div class="top5-rank">1</div>
+      <div class="top5-content">
+        <strong>🎨 Claude Design</strong>
+        <span>El lanzamiento más impactante. Cambió un mercado en 24 horas y tiene implicaciones directas para cualquier profesional que cree contenido visual.</span>
+      </div>
+    </div>
+    <div class="top5-item">
+      <div class="top5-rank">2</div>
+      <div class="top5-content">
+        <strong>📊 El paradox de productividad</strong>
+        <span>50% de adopción, cero impacto organizacional medido. El dato más revelador — y el que más trabajo nos genera.</span>
+      </div>
+    </div>
+    <div class="top5-item">
+      <div class="top5-rank">3</div>
+      <div class="top5-content">
+        <strong>🤖 Salesforce Headless 360</strong>
+        <span>La plataforma enterprise más grande del mundo como infraestructura para agentes. Referente para todos los ERPs y CRMs.</span>
+      </div>
+    </div>
+    <div class="top5-item">
+      <div class="top5-rank">4</div>
+      <div class="top5-content">
+        <strong>🏢 OpenAI triple exit</strong>
+        <span>Tres ejecutivos en un día. Reorganización estratégica profunda que puede cambiar la hoja de ruta de productos de IA.</span>
+      </div>
+    </div>
+    <div class="top5-item">
+      <div class="top5-rank">5</div>
+      <div class="top5-content">
+        <strong>💼 Meta: 8.000 despidos + $135B en IA</strong>
+        <span>El movimiento más audaz: despedir al 10% para duplicar la apuesta por IA. La fórmula que veremos repetirse.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HERRAMIENTAS PARA PROBAR ════════════════════════════════ -->
+<div class="news-section">
+  <div class="section-title">🧪 Prueba esto esta semana</div>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-level easy">🟢 Fácil</div>
+      <h4>Claude Design</h4>
+      <p>De idea a prototipo visual sin diseñador. Ideal para propuestas, decks y one-pagers.</p>
+      <a href="https://www.anthropic.com/news/claude-design-anthropic-labs">→ Acceder</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-level easy">🟢 Fácil</div>
+      <h4>Nous Research Tool Gateway</h4>
+      <p>Un API key para todas tus herramientas de agente. Sin multi-registro.</p>
+      <a href="https://nousresearch.com">→ Acceder</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-level medium">🟡 Intermedio</div>
+      <h4>Vilma AI</h4>
+      <p>Crea cursos y secuencias de formación con IA. Ideal para educadores y consultores.</p>
+      <a href="https://vilma.ai">→ Acceder</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══ REFLEXIÓN ═══════════════════════════════════════════════════ -->
+<div class="reflection">
+  <h2>🔮 Reflexión estratégica: La brecha que importa</h2>
+  <div class="highlight">
+    "La IA no es un problema de tecnología. Es un problema de gestión del cambio."
+  </div>
+  <p>La velocidad de adopción de IA ya superó la velocidad de adaptación organizacional. Esa brecha que el estudio Gallup/NBER confirma con datos duros es exactamente donde se juega la competitividad de los próximos años.</p>
+  <p>Claude Design no le importa si tu empresa tiene una política de IA. Salesforce Headless 360 no espera a que tu PMO actualice sus plantillas de riesgos. Y Meta no preguntó a sus 8.000 empleados si estaban listos.</p>
+  <p>La pregunta no es si tu organización va a usar IA. Ya lo está haciendo. La pregunta es si lo hace de forma deliberada — con diseño de procesos, métricas y gestión del cambio. Eso es lo que construimos juntos, semana a semana.</p>
+</div>
+
+<!-- ══ CTAs ══════════════════════════════════════════════════════ -->
+<div class="cta-section">
+  <div class="cta-box community">
+    <span class="icon">🤝</span>
+    <h3>Únete a la Comunidad IA Entusiastas</h3>
+    <p>Conecta con profesionales que aplican IA de forma inteligente en su trabajo y empresas.</p>
+    <a class="cta-btn" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Unirme a la comunidad →</a>
+  </div>
+  <div class="cta-box session">
+    <span class="icon">📅</span>
+    <h3>Sesión Gratuita de Descubrimiento Estratégico</h3>
+    <p>30 minutos conmigo para explorar cómo implementar IA en tu equipo u organización.</p>
+    <a class="cta-btn" href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">Agendar mi sesión →</a>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════════════ -->
+<div class="footer">
+  <div class="footer-brand">IA en Acción · marycardenas.ai</div>
+  <p>
+    Curado y escrito por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · Ateneo Empresarial<br>
+    Seattle, WA · Edición #12 · Semana 14–20 de Abril, 2026<br><br>
+    © 2026 Ateneo Empresarial. Todos los derechos reservados.
+  </p>
+</div>
+
+</div><!-- /wrapper -->
+</body>
+</html>
