@@ -1,4 +1,4 @@
-# IA en Acción — Newsletter
+# IA para Entusiastas — Newsletter
 
 Newsletter semanal de inteligencia artificial aplicada por **Mary Cárdenas de Gil** · Ateneo Empresarial.
 
