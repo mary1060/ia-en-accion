@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA para Entusiastas — Edición #14 | 27 Abr – 3 May 2026</title>
+  <meta name="description" content="Newsletter semanal de IA aplicada a negocios, liderazgo y productividad. Edición #14, 27 de abril al 3 de mayo de 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #F5F3FF;
+      font-family: 'Inter', sans-serif;
+      color: #1F2937;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── WRAPPER ──────────────────────────────────────────────────────── */
+    .wrapper {
+      max-width: 680px;
+      margin: 32px auto;
+      background: #FFFFFF;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(59,7,100,0.10);
+    }
+
+    /* ─── HEADER ───────────────────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, #3B0764 0%, #7C3AED 60%, #A78BFA 100%);
+      padding: 48px 40px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .header-eyebrow {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: #EDE9FE;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .header-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .header-subtitle {
+      font-size: 15px;
+      color: #DDD6FE;
+      margin-bottom: 24px;
+    }
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .header-meta span {
+      font-size: 12px;
+      color: #C4B5FD;
+      background: rgba(255,255,255,0.1);
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
+    /* ─── BODY AREA ────────────────────────────────────────────────────── */
+    .body { padding: 40px 40px 0; }
+
+    /* ─── EDITORIAL ────────────────────────────────────────────────────── */
+    .editorial {
+      background: #FAFAFA;
+      border-left: 4px solid #7C3AED;
+      border-radius: 0 12px 12px 0;
+      padding: 20px 24px;
+      margin-bottom: 36px;
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.75;
+    }
+    .editorial strong { color: #3B0764; }
+
+    /* ─── SECTION LABELS ───────────────────────────────────────────────── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #EDE9FE;
+      color: #5B21B6;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* ─── SECTION TITLE ────────────────────────────────────────────────── */
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      color: #3B0764;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .section-divider {
+      height: 3px;
+      background: linear-gradient(90deg, #7C3AED, #EDE9FE);
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+
+    /* ─── NEWS CARD ────────────────────────────────────────────────────── */
+    .news-card {
+      border: 1px solid #EDE9FE;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      background: #FFFFFF;
+      transition: box-shadow 0.2s;
+    }
+    .news-card:hover { box-shadow: 0 4px 20px rgba(124,58,237,0.12); }
+    .news-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .news-number {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, #3B0764, #7C3AED);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .news-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #3B0764;
+      line-height: 1.35;
+    }
+    .news-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      background: #EDE9FE;
+      color: #5B21B6;
+    }
+    .news-body {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+    .insight-box {
+      background: #FFFBEB;
+      border-left: 3px solid #F59E0B;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: #374151;
+    }
+    .insight-box strong { color: #92400E; }
+    .reading-box {
+      background: #F5F3FF;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #5B21B6;
+      font-style: italic;
+    }
+    .reading-box::before {
+      content: '🔎 Mi lectura: ';
+      font-style: normal;
+      font-weight: 700;
+      color: #7C3AED;
+    }
+
+    /* ─── TOOLS TABLE ──────────────────────────────────────────────────── */
+    .tools-grid {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 8px;
+    }
+    .tools-grid th {
+      background: #3B0764;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .tools-grid th:first-child { border-radius: 8px 0 0 0; }
+    .tools-grid th:last-child { border-radius: 0 8px 0 0; }
+    .tools-grid td {
+      padding: 12px 14px;
+      font-size: 13px;
+      border-bottom: 1px solid #EDE9FE;
+      vertical-align: top;
+    }
+    .tools-grid tr:nth-child(even) td { background: #FAFAFA; }
+    .tools-grid tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+    .tools-grid tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+    .tool-name { font-weight: 700; color: #3B0764; }
+    .tool-url { color: #7C3AED; font-size: 11px; }
+    .level-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .level-basico { background: #D1FAE5; color: #065F46; }
+    .level-intermedio { background: #FEF3C7; color: #92400E; }
+    .level-avanzado { background: #FEE2E2; color: #991B1B; }
+    .level-empresarial { background: #EDE9FE; color: #5B21B6; }
+
+    /* ─── LATAM SECTION ────────────────────────────────────────────────── */
+    .latam-card {
+      background: linear-gradient(135deg, #F5F3FF, #EDE9FE);
+      border: 1px solid #C4B5FD;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .latam-card h4 { font-size: 16px; color: #3B0764; margin-bottom: 8px; font-weight: 700; }
+    .latam-card p { font-size: 14px; color: #374151; line-height: 1.7; }
+
+    /* ─── REFLECTION ───────────────────────────────────────────────────── */
+    .reflection {
+      background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+      color: #FFFFFF;
+    }
+    .reflection h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      color: #EDE9FE;
+      margin-bottom: 16px;
+    }
+    .reflection p { font-size: 14px; color: #DDD6FE; line-height: 1.8; margin-bottom: 12px; }
+    .reflection p:last-child { margin-bottom: 0; font-style: italic; color: #C4B5FD; }
+
+    /* ─── CTA BLOCKS ───────────────────────────────────────────────────── */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .cta-card {
+      border-radius: 12px;
+      padding: 22px;
+      text-align: center;
+    }
+    .cta-card.purple {
+      background: linear-gradient(135deg, #7C3AED, #5B21B6);
+      color: white;
+    }
+    .cta-card.light {
+      background: #EDE9FE;
+      border: 2px solid #C4B5FD;
+      color: #3B0764;
+    }
+    .cta-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+    .cta-card p { font-size: 12px; margin-bottom: 14px; opacity: 0.85; line-height: 1.5; }
+    .cta-btn {
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+    .cta-card.purple .cta-btn {
+      background: white;
+      color: #5B21B6;
+    }
+    .cta-card.light .cta-btn {
+      background: #7C3AED;
+      color: white;
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────────────────────── */
+    .footer {
+      background: #1F2937;
+      padding: 32px 40px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20px;
+      color: #EDE9FE;
+      margin-bottom: 8px;
+    }
+    .footer-tagline { font-size: 12px; color: #9CA3AF; margin-bottom: 20px; }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 11px;
+      color: #A78BFA;
+      text-decoration: none;
+    }
+    .footer-links a:hover { color: #EDE9FE; }
+    .footer-legal { font-size: 10px; color: #6B7280; line-height: 1.6; }
+
+    /* ─── SECTION SPACER ───────────────────────────────────────────────── */
+    .spacer { height: 40px; }
+    .spacer-sm { height: 24px; }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .wrapper { margin: 0; border-radius: 0; }
+      .header { padding: 36px 24px 28px; }
+      .header-title { font-size: 28px; }
+      .body { padding: 28px 20px 0; }
+      .cta-grid { grid-template-columns: 1fr; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════════════════════════════════════ -->
+  <div class="header">
+    <div class="header-eyebrow">✦ Edición #14 · Semana del 27 Abr – 3 May 2026</div>
+    <div class="header-title">IA para Entusiastas</div>
+    <div class="header-subtitle">Por Mary Cárdenas de Gil · Ateneo Empresarial · marycardenas.ai</div>
+    <div class="header-meta">
+      <span>🚀 10 noticias clave</span>
+      <span>🛠️ 6 herramientas</span>
+      <span>🌎 Ángulo LatAm</span>
+      <span>⏱️ ~8 min lectura</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       BODY
+  ══════════════════════════════════════════════════════════════════════ -->
+  <div class="body">
+
+    <!-- INTRODUCCIÓN EDITORIAL -->
+    <div class="spacer-sm"></div>
+    <div class="editorial">
+      <strong>Hola, comunidad IA para Entusiastas 👋</strong><br><br>
+      Esta semana el ecosistema de IA entró en un territorio nuevo. Anthropic pasó de startup a gigante de $900B. OpenAI y Microsoft reescribieron su pacto fundacional. Y los agentes de IA ejecutaron transacciones de negocio reales por primera vez a escala.<br><br>
+      Pero más allá de los titulares, la señal más importante es esta: <strong>la IA ya no espera afuera de la puerta de las organizaciones — está adentro y avanzando</strong>. La pregunta ya no es si adoptarla, sino qué tan costoso es cada semana de retraso.<br><br>
+      Te traigo las 10 noticias que más importan esta semana, con contexto real y aplicaciones prácticas. ¡Vamos!
+    </div>
+
+    <!-- ================================================================
+         SECCIÓN 1: MODELOS Y PLATAFORMAS
+    ================================================================ -->
+    <div class="section-label">🤖 Modelos y Plataformas</div>
+    <h2 class="section-title">Los grandes modelos se mueven rápido</h2>
+    <div class="section-divider"></div>
+
+    <!-- News 1 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">1</div>
+        <div class="news-title">Anthropic alcanza valuación de $900 mil millones</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">Anthropic</span>
+        <span class="tag">Mercado</span>
+        <span class="tag">Estrategia</span>
+      </div>
+      <div class="news-body">
+        Anthropic, creadora de Claude, cerró esta semana con una valuación de <strong>$900 mil millones</strong> — partiendo de $18B apenas en 2024. Su revenue anualizado supera los $30B, con Claude Code acercándose a $2.5B ARR por sí solo. El crecimiento es impulsado por adopción empresarial en sectores regulados: finanzas, salud, tecnología y gobierno.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> Anthropic ya no es una apuesta de capital de riesgo — es infraestructura empresarial. Las organizaciones que eligen Claude como base de sus flujos de trabajo están eligiendo una plataforma con recursos para competir a largo plazo.
+      </div>
+      <div class="reading-box">
+        Cuando una empresa crece de $18B a $900B en 24 meses, algo está pasando más allá del hype. Es adopción real. Si tu empresa aún está "evaluando" si usar IA, este dato debería acelerar esa conversación.
+      </div>
+    </div>
+
+    <!-- News 2 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">2</div>
+        <div class="news-title">GPT-5.5 "Spud" — OpenAI sube la apuesta en razonamiento</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">OpenAI</span>
+        <span class="tag">Modelos</span>
+        <span class="tag">Razonamiento</span>
+      </div>
+      <div class="news-body">
+        OpenAI lanzó GPT-5.5, conocido internamente como "Spud", un modelo de razonamiento avanzado que compite con Claude Mythos en benchmarks de codificación, matemáticas y razonamiento multipasos. Los primeros tests indican mejoras en seguimiento de instrucciones largas y reducción de alucinaciones en tareas técnicas.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> La competencia entre OpenAI y Anthropic eleva el estándar de lo posible para todos. Cada nuevo modelo es una oportunidad de revisar qué tareas ya puedes automatizar que antes no podías.
+      </div>
+      <div class="reading-box">
+        No corras a migrar solo porque salió algo nuevo. Evalúa en tus casos de uso específicos. El mejor modelo es el que resuelve tu problema con el menor costo y fricción.
+      </div>
+    </div>
+
+    <!-- News 3 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">3</div>
+        <div class="news-title">DeepSeek V4 — Open-source poderoso con chips Huawei</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">DeepSeek</span>
+        <span class="tag">Open-Source</span>
+        <span class="tag">Costos</span>
+        <span class="tag">China</span>
+      </div>
+      <div class="news-body">
+        DeepSeek lanzó V4, entrenado con chips Huawei — no NVIDIA. Disponible como open-source con precios de <strong>$1.74 por millón de tokens de entrada y $3.48 de salida</strong>. Su rendimiento en benchmarks científicos y de código es comparable a GPT-4o.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> DeepSeek demuestra que las restricciones de exportación de chips no detienen la innovación china. Sus precios presionan los márgenes de toda la industria y hacen la IA avanzada accesible a mercados emergentes.
+      </div>
+      <div class="reading-box">
+        Para startups y PyMEs en LatAm con volúmenes altos de procesamiento, DeepSeek V4 merece evaluación seria. El ahorro puede ser de 5x a 10x vs. modelos premium de OpenAI o Anthropic en tareas de alto volumen.
+      </div>
+    </div>
+
+    <!-- News 4 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">4</div>
+        <div class="news-title">Claude Opus 4.7 Security Beta — IA para ciberseguridad</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">Anthropic</span>
+        <span class="tag">Seguridad</span>
+        <span class="tag">Empresarial</span>
+      </div>
+      <div class="news-body">
+        Anthropic lanzó Claude Opus 4.7 Security Beta, con partners como CrowdStrike, Microsoft, Palo Alto Networks y Wiz. El modelo escanea codebases completos, detecta vulnerabilidades y analiza amenazas en tiempo real. Puede revisar repositorios enteros e identificar patrones de ataque que escaparían a revisiones manuales.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> La especialización de LLMs en ciberseguridad crea una nueva categoría: IA como asistente de CISO. Empresas que no adopten estas herramientas quedarán en desventaja frente a actores que sí las usan para atacar.
+      </div>
+      <div class="reading-box">
+        Si lideras un equipo de tecnología, esta beta merece atención prioritaria. Las auditorías de seguridad que hoy toman semanas podrían hacerse en horas. El ROI es directo.
+      </div>
+    </div>
+
+    <!-- News 5 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">5</div>
+        <div class="news-title">Musk admite en juicio: xAI usó modelos de OpenAI para entrenar Grok</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">xAI</span>
+        <span class="tag">Legal</span>
+        <span class="tag">Destilación</span>
+        <span class="tag">IP</span>
+      </div>
+      <div class="news-body">
+        En el juicio entre Elon Musk y OpenAI, Musk reconoció bajo interrogatorio que xAI utilizó <strong>destilación de conocimiento</strong> desde modelos de OpenAI para entrenar versiones tempranas de Grok. Esta técnica — transferir conocimiento de un modelo grande a uno más pequeño — está en una zona gris legal que el juicio está comenzando a definir.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> Si el tribunal determina que la destilación requiere licencia, podría impactar a decenas de modelos open-source y cambiar la economía del entrenamiento de IA radicalmente.
+      </div>
+      <div class="reading-box">
+        Abogados de IP y equipos de compliance: este es el caso de IA más relevante de 2026 para monitorear. Lo que se defina aquí establecerá el marco para toda la industria durante la próxima década.
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- ================================================================
+         SECCIÓN 2: EMPRESAS E INVERSIONES
+    ================================================================ -->
+    <div class="section-label">💼 Empresas e Inversiones</div>
+    <h2 class="section-title">El dinero también habla</h2>
+    <div class="section-divider"></div>
+
+    <!-- News 6 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">6</div>
+        <div class="news-title">OpenAI y Microsoft reescriben su acuerdo fundacional</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">OpenAI</span>
+        <span class="tag">Microsoft</span>
+        <span class="tag">Estrategia</span>
+        <span class="tag">Cloud</span>
+      </div>
+      <div class="news-body">
+        OpenAI y Microsoft firmaron un acuerdo revisado que <strong>elimina la exclusividad de Azure</strong>. OpenAI ahora puede operar en multi-cloud (AWS, GCP, otros) y Microsoft pierde acceso preferente en escenarios de AGI. A cambio, Microsoft mantiene su participación accionaria y acceso a modelos para sus productos.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> El fin de la exclusividad Azure cambia la dinámica del mercado cloud para IA. OpenAI puede escalar globalmente con mayor libertad, lo que podría bajar precios y mejorar disponibilidad.
+      </div>
+      <div class="reading-box">
+        Si tu empresa usa Azure OpenAI Service, revisa si ahora conviene conectarse directamente a OpenAI API. Esta es una decisión arquitectónica que puede reducir costos y aumentar resiliencia este trimestre.
+      </div>
+    </div>
+
+    <!-- News 7 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">7</div>
+        <div class="news-title">Big Tech compromete $700B+ en capex de IA para 2026</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">Inversión</span>
+        <span class="tag">Infraestructura</span>
+        <span class="tag">Big Tech</span>
+      </div>
+      <div class="news-body">
+        Microsoft, Google, Amazon, Meta y Apple han comprometido colectivamente más de <strong>$700 mil millones</strong> en infraestructura de IA para 2026: centros de datos, chips propietarios, cables submarinos y adquisiciones de energía. Es el mayor ciclo de inversión en infraestructura tecnológica de la historia.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> Esta inversión garantiza que la potencia computacional de la IA seguirá creciendo y que los precios de acceso continuarán bajando en el mediano plazo.
+      </div>
+      <div class="reading-box">
+        Incluye en tus planes estratégicos el supuesto de que la IA de próxima generación estará disponible a menor costo en 18-24 meses. Diseña para escala, no solo para el piloto actual.
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- ================================================================
+         SECCIÓN 3: IA APLICADA A SECTORES
+    ================================================================ -->
+    <div class="section-label">🏥 IA Aplicada a Sectores</div>
+    <h2 class="section-title">Donde la IA cambia vidas reales</h2>
+    <div class="section-divider"></div>
+
+    <!-- News 8 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">8</div>
+        <div class="news-title">IA detecta cáncer pancreático 3 años antes — Mayo Clinic REDMOD</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">Salud</span>
+        <span class="tag">Diagnóstico</span>
+        <span class="tag">Mayo Clinic</span>
+        <span class="tag">Impacto Social</span>
+      </div>
+      <div class="news-body">
+        El sistema REDMOD de Mayo Clinic logró detectar cáncer pancreático hasta <strong>3 años antes</strong> de lo que los métodos convencionales permitirían. En un estudio con 5,000 pacientes, el modelo alcanzó 73% de tasa de detección frente al 30-40% de especialistas humanos. El páncreas tiene una de las menores tasas de supervivencia por su diagnóstico generalmente tardío.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> Este es probablemente el caso de uso con mayor impacto en vidas humanas de la semana. La IA en diagnóstico temprano tiene el potencial de doblar tasas de supervivencia en cánceres de baja detección.
+      </div>
+      <div class="reading-box">
+        Hospitales y aseguradoras en LatAm: la IA diagnóstica ya no es ciencia ficción ni solo para sistemas de salud ricos. El ROI en salud preventiva es medible y los costos de no actuar son humanos, no solo financieros.
+      </div>
+    </div>
+
+    <!-- News 9 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">9</div>
+        <div class="news-title">Agentes Claude ejecutan 186 transacciones reales — Project Deal</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">Agentes</span>
+        <span class="tag">Automatización</span>
+        <span class="tag">Negocios</span>
+        <span class="tag">Anthropic</span>
+      </div>
+      <div class="news-body">
+        Anthropic reveló "Project Deal": agentes Claude ejecutaron <strong>186 transacciones de negocio autónomas</strong> — negociación de precios, revisión de contratos y coordinación con sistemas externos. El <strong>46% de los usuarios</strong> del estudio dijeron que pagarían por que los agentes ejecuten estas tareas permanentemente.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> Estamos pasando del "asistente que aconseja" al "delegado que ejecuta". Este es el salto cualitativo que convierte la IA de herramienta a colaborador activo.
+      </div>
+      <div class="reading-box">
+        Identifica en tu operación los flujos repetitivos con reglas claras donde un agente podría ejecutar sin supervisión constante. El retorno se vuelve cuantificable cuando el agente no solo ahorra tiempo — sino que ejecuta trabajo real.
+      </div>
+    </div>
+
+    <!-- News 10 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">10</div>
+        <div class="news-title">Gemini en 4 millones de autos GM — el LLM más allá del teléfono</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">Google</span>
+        <span class="tag">Automotriz</span>
+        <span class="tag">IoT</span>
+        <span class="tag">Gemini</span>
+      </div>
+      <div class="news-body">
+        Google y General Motors confirmaron la integración de Gemini en los vehículos Cadillac, Chevrolet, Buick y GMC de 2026. Los conductores pueden interactuar por voz natural para navegación, controles y asistencia en ruta. Es el mayor despliegue de un LLM en dispositivos físicos fuera del smartphone.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> La IA embedded en productos físicos — no solo en pantallas — es la siguiente frontera. Esto normaliza la interacción con IA para millones de personas y crea nuevas expectativas en toda la industria.
+      </div>
+      <div class="reading-box">
+        Fabricantes de productos físicos — desde electrodomésticos hasta equipos industriales — deben ver esto como señal de mercado. La IA integrada dejará de ser diferenciador premium y se convertirá en expectativa básica del cliente.
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- ================================================================
+         SECCIÓN LATAM
+    ================================================================ -->
+    <div class="section-label">🌎 Ángulo América Latina</div>
+    <h2 class="section-title">Lo que pasa en nuestra región</h2>
+    <div class="section-divider"></div>
+
+    <div class="latam-card">
+      <h4>🔒 IA contra el crimen organizado</h4>
+      <p>Colombia, México y Brasil desplegaron esta semana sistemas de análisis predictivo con IA para rastrear redes de crimen organizado. Los sistemas correlacionan datos de llamadas, transacciones financieras y movimientos migratorios. Es efectivo — y también plantea preguntas regulatorias urgentes sobre privacidad y derechos civiles que LatAm aún no ha respondido.</p>
+    </div>
+
+    <div class="latam-card">
+      <h4>📞 Call centers bajo presión: 800,000 empleos en juego</h4>
+      <p>Un reporte de BID Lab estima que el 60% de los empleos en call centers de LatAm son vulnerables a automatización por agentes de IA conversacional en los próximos 18-36 meses. Colombia, Argentina, México y Costa Rica son los más expuestos. Esta transición requiere estrategias activas de reskilling — ahora, no en tres años.</p>
+    </div>
+
+    <div class="latam-card">
+      <h4>🛒 Mercadona abre código de buscador construido con Claude</h4>
+      <p>La cadena española Mercadona publicó como open-source su sistema de búsqueda interna basado en Claude: los empleados consultan manuales, políticas y datos de producto con lenguaje natural. Un ejemplo concreto de implementación empresarial de IA que cualquier empresa de retail puede replicar — sin inventar desde cero.</p>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- ================================================================
+         HERRAMIENTAS
+    ================================================================ -->
+    <div class="section-label">🛠️ Herramientas de la Semana</div>
+    <h2 class="section-title">6 herramientas que deberías conocer</h2>
+    <div class="section-divider"></div>
+
+    <table class="tools-grid">
+      <thead>
+        <tr>
+          <th>Herramienta</th>
+          <th>Qué hace</th>
+          <th>Nivel</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="tool-name">Claude Security</div>
+            <div class="tool-url">claude.ai/security</div>
+          </td>
+          <td>Escaneo de vulnerabilidades en código y análisis de amenazas en tiempo real. Partners: CrowdStrike, Palo Alto, Wiz.</td>
+          <td><span class="level-badge level-empresarial">Empresarial</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="tool-name">Manus Cloud Computer</div>
+            <div class="tool-url">manus.im</div>
+          </td>
+          <td>Agente que corre automatizaciones persistentes 24/7 sin servidor propio. Ideal para flujos de trabajo continuos.</td>
+          <td><span class="level-badge level-intermedio">Intermedio</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="tool-name">Whisk — Google Labs</div>
+            <div class="tool-url">labs.google/experiments/whisk</div>
+          </td>
+          <td>Generación de imágenes usando otras imágenes como prompt visual. Para diseño, marketing y prototipado creativo.</td>
+          <td><span class="level-badge level-basico">Básico</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="tool-name">Odyssey-2 Max</div>
+            <div class="tool-url">odyssey.ml</div>
+          </td>
+          <td>"World model" para simulaciones en tiempo real. Útil en arquitectura, manufactura, logística y diseño de espacios.</td>
+          <td><span class="level-badge level-avanzado">Avanzado</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="tool-name">ElevenMusic</div>
+            <div class="tool-url">elevenlabs.io/music</div>
+          </td>
+          <td>Composición de música original con IA para presentaciones, contenido digital, podcasts y branding sonoro.</td>
+          <td><span class="level-badge level-basico">Básico</span></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="tool-name">Lovable Mobile</div>
+            <div class="tool-url">lovable.dev</div>
+          </td>
+          <td>App builder no-code para iOS/Android. Crea aplicaciones funcionales describiendo lo que necesitas, sin escribir código.</td>
+          <td><span class="level-badge level-basico">Básico</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="spacer"></div>
+
+    <!-- ================================================================
+         REFLEXIÓN ESTRATÉGICA
+    ================================================================ -->
+    <div class="reflection">
+      <h3>🔮 Reflexión estratégica: tres señales que no debes ignorar</h3>
+      <p><strong>① La IA ya es infraestructura presente, no futura.</strong> Con valuaciones de $900B, acuerdos reescritos entre gigantes y chips en 4 millones de autos, la IA está incrustada en la economía real. Las organizaciones en fase de "exploración" acumulan deuda estratégica con cada semana que pasa.</p>
+      <p><strong>② Los agentes que ejecutan son el próximo diferenciador.</strong> Project Deal mostró que la disposición a pagar por agentes que completan transacciones es real. El foco debe pasar de "IA que ayuda a decidir" a "IA que completa tareas con supervisión mínima".</p>
+      <p><strong>③ LatAm tiene ventanas de oportunidad — y urgencias reales.</strong> El desplazamiento en call centers ya no es amenaza futura: es un contador activo. La velocidad de reskilling importa más que la profundidad inicial.</p>
+      <p>La pregunta relevante para esta semana no es '¿debería adoptar IA?' sino '¿qué estoy perdiendo por cada semana que espero?'</p>
+    </div>
+
+    <!-- ================================================================
+         CTAs
+    ================================================================ -->
+    <div class="cta-grid">
+      <div class="cta-card purple">
+        <h4>Únete a la Comunidad IA Entusiastas</h4>
+        <p>Aprende, comparte y crece con profesionales que aplican IA en su trabajo real.</p>
+        <a href="https://community.marycardenas.ai" class="cta-btn">Unirme ahora →</a>
+      </div>
+      <div class="cta-card light">
+        <h4>Sesión de Descubrimiento Gratuita</h4>
+        <p>30 minutos para explorar cómo la IA puede transformar tu trabajo o negocio.</p>
+        <a href="https://calendly.marycardenas.ai" class="cta-btn">Agendar sesión →</a>
+      </div>
+    </div>
+
+    <div class="spacer-sm"></div>
+
+  </div><!-- /body -->
+
+  <!-- ══════════════════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-brand">Ateneo Empresarial · marycardenas.ai</div>
+    <div class="footer-tagline">Inteligencia artificial aplicada a negocios, liderazgo y productividad</div>
+    <div class="footer-links">
+      <a href="https://marycardenas.ai">Sitio web</a>
+      <a href="https://community.marycardenas.ai">Comunidad</a>
+      <a href="https://calendly.marycardenas.ai">Agendar sesión</a>
+      <a href="mailto:marygil1060@gmail.com">Contacto</a>
+    </div>
+    <div class="footer-legal">
+      Newsletter semanal de IA aplicada · Edición #14 · 27 de abril – 3 de mayo de 2026<br>
+      Mary Cárdenas de Gil · Seattle, WA, EE.UU. · marygil1060@gmail.com<br>
+      © 2026 Ateneo Empresarial. Todos los derechos reservados.
+    </div>
+  </div>
+
+</div><!-- /wrapper -->
+
+</body>
+</html>
