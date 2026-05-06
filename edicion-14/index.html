@@ -215,41 +215,45 @@
       color: #7C3AED;
     }
 
-    /* ─── TOOLS TABLE ──────────────────────────────────────────────────── */
-    .tools-grid {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 8px;
+    /* ─── TOOLS CARDS ──────────────────────────────────────────────────── */
+    .tools-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+    .tool-card {
+      border: 1px solid #EDE9FE;
+      border-radius: 10px;
+      padding: 16px 18px;
+      background: #FAFAFA;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
     }
-    .tools-grid th {
-      background: #3B0764;
-      color: #FFFFFF;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      padding: 10px 14px;
-      text-align: left;
+    .tool-card-icon {
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, #3B0764, #7C3AED);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
     }
-    .tools-grid th:first-child { border-radius: 8px 0 0 0; }
-    .tools-grid th:last-child { border-radius: 0 8px 0 0; }
-    .tools-grid td {
-      padding: 12px 14px;
-      font-size: 13px;
-      border-bottom: 1px solid #EDE9FE;
-      vertical-align: top;
+    .tool-card-body { flex: 1; min-width: 0; }
+    .tool-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
     }
-    .tools-grid tr:nth-child(even) td { background: #FAFAFA; }
-    .tools-grid tr:last-child td:first-child { border-radius: 0 0 0 8px; }
-    .tools-grid tr:last-child td:last-child { border-radius: 0 0 8px 0; }
-    .tool-name { font-weight: 700; color: #3B0764; }
-    .tool-url { color: #7C3AED; font-size: 11px; }
+    .tool-name { font-weight: 700; color: #3B0764; font-size: 14px; }
+    .tool-url { color: #7C3AED; font-size: 11px; display: block; margin-bottom: 6px; }
+    .tool-desc { font-size: 13px; color: #374151; line-height: 1.6; }
     .level-badge {
       display: inline-block;
       font-size: 10px;
-      font-weight: 600;
-      padding: 2px 8px;
+      font-weight: 700;
+      padding: 3px 10px;
       border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .level-basico { background: #D1FAE5; color: #065F46; }
     .level-intermedio { background: #FEF3C7; color: #92400E; }
@@ -685,65 +689,81 @@
     <h2 class="section-title">6 herramientas que deberías conocer</h2>
     <div class="section-divider"></div>
 
-    <table class="tools-grid">
-      <thead>
-        <tr>
-          <th>Herramienta</th>
-          <th>Qué hace</th>
-          <th>Nivel</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div class="tool-name">Claude Security</div>
-            <div class="tool-url">claude.ai/security</div>
-          </td>
-          <td>Escaneo de vulnerabilidades en código y análisis de amenazas en tiempo real. Partners: CrowdStrike, Palo Alto, Wiz.</td>
-          <td><span class="level-badge level-empresarial">Empresarial</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="tool-name">Manus Cloud Computer</div>
-            <div class="tool-url">manus.im</div>
-          </td>
-          <td>Agente que corre automatizaciones persistentes 24/7 sin servidor propio. Ideal para flujos de trabajo continuos.</td>
-          <td><span class="level-badge level-intermedio">Intermedio</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="tool-name">Whisk — Google Labs</div>
-            <div class="tool-url">labs.google/experiments/whisk</div>
-          </td>
-          <td>Generación de imágenes usando otras imágenes como prompt visual. Para diseño, marketing y prototipado creativo.</td>
-          <td><span class="level-badge level-basico">Básico</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="tool-name">Odyssey-2 Max</div>
-            <div class="tool-url">odyssey.ml</div>
-          </td>
-          <td>"World model" para simulaciones en tiempo real. Útil en arquitectura, manufactura, logística y diseño de espacios.</td>
-          <td><span class="level-badge level-avanzado">Avanzado</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="tool-name">ElevenMusic</div>
-            <div class="tool-url">elevenlabs.io/music</div>
-          </td>
-          <td>Composición de música original con IA para presentaciones, contenido digital, podcasts y branding sonoro.</td>
-          <td><span class="level-badge level-basico">Básico</span></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="tool-name">Lovable Mobile</div>
-            <div class="tool-url">lovable.dev</div>
-          </td>
-          <td>App builder no-code para iOS/Android. Crea aplicaciones funcionales describiendo lo que necesitas, sin escribir código.</td>
-          <td><span class="level-badge level-basico">Básico</span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="tools-list">
+
+      <div class="tool-card">
+        <div class="tool-card-icon">🔐</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">Claude Security</span>
+            <span class="level-badge level-empresarial">Empresarial</span>
+          </div>
+          <a href="https://claude.ai/security" class="tool-url">claude.ai/security</a>
+          <div class="tool-desc">Escaneo de vulnerabilidades en código y análisis de amenazas en tiempo real. Partners: CrowdStrike, Palo Alto, Wiz.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">☁️</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">Manus Cloud Computer</span>
+            <span class="level-badge level-intermedio">Intermedio</span>
+          </div>
+          <a href="https://manus.im" class="tool-url">manus.im</a>
+          <div class="tool-desc">Agente que corre automatizaciones persistentes 24/7 sin servidor propio. Ideal para flujos de trabajo continuos.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">🎨</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">Whisk — Google Labs</span>
+            <span class="level-badge level-basico">Básico</span>
+          </div>
+          <a href="https://labs.google/experiments/whisk" class="tool-url">labs.google/experiments/whisk</a>
+          <div class="tool-desc">Generación de imágenes usando otras imágenes como prompt visual. Para diseño, marketing y prototipado creativo.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">🌐</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">Odyssey-2 Max</span>
+            <span class="level-badge level-avanzado">Avanzado</span>
+          </div>
+          <a href="https://odyssey.ml" class="tool-url">odyssey.ml</a>
+          <div class="tool-desc">"World model" para simulaciones en tiempo real. Útil en arquitectura, manufactura, logística y diseño de espacios.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">🎵</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">ElevenMusic</span>
+            <span class="level-badge level-basico">Básico</span>
+          </div>
+          <a href="https://elevenlabs.io/music" class="tool-url">elevenlabs.io/music</a>
+          <div class="tool-desc">Composición de música original con IA para presentaciones, contenido digital, podcasts y branding sonoro.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">📱</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">Lovable Mobile</span>
+            <span class="level-badge level-basico">Básico</span>
+          </div>
+          <a href="https://lovable.dev" class="tool-url">lovable.dev</a>
+          <div class="tool-desc">App builder no-code para iOS/Android. Crea aplicaciones funcionales describiendo lo que necesitas, sin escribir código.</div>
+        </div>
+      </div>
+
+    </div>
 
     <div class="spacer"></div>
 
