@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA para Entusiastas — Edición #16 | 11–17 May 2026</title>
+  <meta name="description" content="Anthropic supera a OpenAI en B2B, Claude Code en 4% de GitHub, OpenAI vs Apple y Daybreak. Edición #16, 11–17 de mayo de 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F5F3FF; font-family: 'Inter', sans-serif; color: #1F2937; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper { max-width: 680px; margin: 32px auto; background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 32px rgba(59,7,100,0.10); }
+
+    /* HEADER */
+    .header { background: linear-gradient(135deg, #3B0764 0%, #7C3AED 60%, #A78BFA 100%); padding: 48px 40px 40px; text-align: center; position: relative; overflow: hidden; }
+    .header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 240px; height: 240px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+    .header::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+    .header-eyebrow { display: inline-block; background: rgba(255,255,255,0.15); color: #EDE9FE; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+    .header-title { font-family: 'Playfair Display', Georgia, serif; font-size: 38px; font-weight: 800; color: #FFFFFF; line-height: 1.2; margin-bottom: 8px; }
+    .header-subtitle { font-size: 15px; color: #DDD6FE; margin-bottom: 24px; }
+    .header-meta { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 13px; color: #C4B5FD; }
+    .header-meta span::before { content: '·'; margin-right: 8px; opacity: 0.5; }
+    .header-meta span:first-child::before { display: none; }
+
+    .alert-banner { background: linear-gradient(90deg, #7C3AED, #5B21B6); color: #EDE9FE; text-align: center; padding: 14px 24px; font-size: 13px; font-weight: 500; }
+    .alert-banner strong { color: #fff; }
+
+    .body { padding: 40px; }
+
+    .intro { font-size: 16px; color: #374151; line-height: 1.8; margin-bottom: 32px; padding: 24px; background: #F5F3FF; border-radius: 12px; border-left: 4px solid #7C3AED; }
+
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #7C3AED; margin-bottom: 6px; }
+    .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #1F2937; margin-bottom: 12px; }
+    .section-divider { height: 2px; background: linear-gradient(90deg, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 24px; }
+
+    /* LEAD */
+    .lead-story { background: linear-gradient(135deg, #1E0A3C, #3B0764); border-radius: 14px; padding: 32px; color: #EDE9FE; margin-bottom: 24px; position: relative; overflow: hidden; }
+    .lead-story::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: rgba(124,58,237,0.3); border-radius: 50%; }
+    .lead-badge { display: inline-block; background: rgba(167,139,250,0.25); color: #C4B5FD; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+    .lead-title { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: #FFFFFF; margin-bottom: 14px; line-height: 1.3; }
+    .lead-body { font-size: 14px; line-height: 1.75; color: #DDD6FE; margin-bottom: 16px; }
+    .lead-stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .lead-stat { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px 16px; text-align: center; flex: 1; min-width: 100px; }
+    .lead-stat-num { font-size: 22px; font-weight: 700; color: #A78BFA; }
+    .lead-stat-label { font-size: 11px; color: #C4B5FD; margin-top: 2px; }
+
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: #F5F3FF; border-radius: 12px; padding: 20px 16px; text-align: center; }
+    .stat-num { font-size: 28px; font-weight: 800; color: #7C3AED; }
+    .stat-label { font-size: 12px; color: #6B7280; margin-top: 4px; line-height: 1.4; }
+
+    /* CARDS */
+    .news-card { border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .news-card:hover { border-color: #A78BFA; }
+    .news-card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+    .news-number { background: #7C3AED; color: white; width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .news-number.red { background: #DC2626; }
+    .news-number.amber { background: #D97706; }
+    .news-number.green { background: #059669; }
+    .news-title { font-size: 16px; font-weight: 700; color: #1F2937; line-height: 1.4; }
+    .news-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: #EDE9FE; color: #5B21B6; }
+    .tag.red { background: #FEE2E2; color: #991B1B; }
+    .tag.amber { background: #FEF3C7; color: #92400E; }
+    .tag.green { background: #D1FAE5; color: #065F46; }
+    .tag.blue { background: #DBEAFE; color: #1E40AF; }
+    .news-body { font-size: 14px; color: #374151; line-height: 1.7; margin-bottom: 12px; }
+    .insight-box { background: #F5F3FF; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #4B5563; line-height: 1.6; margin-bottom: 10px; }
+    .insight-box strong { color: #7C3AED; }
+    .reading-box { border-left: 3px solid #A78BFA; padding: 10px 14px; font-size: 13px; color: #6B7280; font-style: italic; line-height: 1.6; }
+
+    /* MARKET TABLE */
+    .market-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+    .market-table th { background: #3B0764; color: white; padding: 10px 14px; font-size: 12px; font-weight: 600; text-align: left; }
+    .market-table th:first-child { border-radius: 8px 0 0 0; }
+    .market-table th:last-child { border-radius: 0 8px 0 0; }
+    .market-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid #F3F4F6; }
+    .market-table tr:last-child td { border-bottom: none; }
+    .market-table tr:nth-child(even) td { background: #FAFAFA; }
+    .arrow-up { color: #059669; font-weight: 700; }
+    .arrow-down { color: #DC2626; font-weight: 700; }
+
+    /* TOOLS */
+    .tools-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .tool-card { display: flex; gap: 14px; align-items: flex-start; background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 10px; padding: 16px; }
+    .tool-card-icon { font-size: 24px; flex-shrink: 0; }
+    .tool-card-body { flex: 1; }
+    .tool-card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+    .tool-name { font-weight: 700; font-size: 14px; color: #1F2937; }
+    .tool-desc { font-size: 13px; color: #6B7280; line-height: 1.5; }
+    .level-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+    .level-basico { background: #D1FAE5; color: #065F46; }
+    .level-intermedio { background: #FEF3C7; color: #92400E; }
+    .level-avanzado { background: #FEE2E2; color: #991B1B; }
+    .level-empresarial { background: #EDE9FE; color: #5B21B6; }
+
+    /* REFLECTION */
+    .reflection { background: linear-gradient(135deg, #1E0A3C, #2E1065); border-radius: 14px; padding: 32px; color: #EDE9FE; margin-bottom: 32px; }
+    .reflection h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; color: #FFFFFF; margin-bottom: 16px; }
+    .reflection p { font-size: 14px; line-height: 1.8; color: #DDD6FE; margin-bottom: 14px; }
+    .reflection-quote { border-left: 3px solid #A78BFA; padding: 12px 16px; font-size: 15px; font-style: italic; color: #C4B5FD; margin: 16px 0; line-height: 1.7; }
+
+    /* CTA */
+    .cta-block { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 14px; padding: 32px; text-align: center; margin-bottom: 24px; }
+    .cta-block h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; color: #FFFFFF; margin-bottom: 10px; }
+    .cta-block p { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; line-height: 1.65; }
+    .cta-btn { display: inline-block; background: #FFFFFF; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; margin: 6px; }
+    .cta-btn:hover { background: #EDE9FE; text-decoration: none; }
+    .cta-btn.secondary { background: rgba(255,255,255,0.15); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3); }
+    .cta-btn.secondary:hover { background: rgba(255,255,255,0.25); }
+
+    /* FOOTER */
+    .footer { background: #1F2937; padding: 32px 40px; text-align: center; }
+    .footer-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; color: #A78BFA; margin-bottom: 8px; }
+    .footer-tagline { font-size: 13px; color: #9CA3AF; margin-bottom: 20px; }
+    .footer-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px; }
+    .footer-links a { font-size: 13px; color: #A78BFA; }
+    .footer-fine { font-size: 11px; color: #6B7280; line-height: 1.6; }
+    .footer-fine a { color: #9CA3AF; }
+
+    @media (max-width: 600px) {
+      .wrapper { margin: 0; border-radius: 0; }
+      .header { padding: 32px 24px 28px; }
+      .header-title { font-size: 28px; }
+      .body { padding: 28px 24px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .lead-stat-row { flex-direction: column; }
+      .footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #16</div>
+    <h1 class="header-title">La semana que Anthropic<br>superó a OpenAI</h1>
+    <p class="header-subtitle">11 – 17 de mayo de 2026 · El agentic AI como nuevo estándar operativo</p>
+    <div class="header-meta">
+      <span>Por Mary Cárdenas de Gil</span>
+      <span>Ateneo Empresarial</span>
+      <span>marycardenas.ai</span>
+    </div>
+  </div>
+
+  <!-- ALERT BANNER -->
+  <div class="alert-banner">
+    🏆 <strong>Primera vez en la historia:</strong> Anthropic supera a OpenAI en adopción B2B empresarial — Ramp AI Index, mayo 2026
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- INTRO -->
+    <div class="intro">
+      Hola, bienvenida a la edición #16. Esta semana el mapa del poder en IA se movió de formas que no vimos venir: Anthropic desbancó a OpenAI en el mercado B2B por primera vez, Claude Code se convirtió en el mayor contribuidor de código en GitHub, y la relación OpenAI–Apple llegó a los tribunales. Al mismo tiempo, la IA comenzó a operar en defensa, ciberseguridad y e-commerce LatAm como nunca antes. Es una semana para leer despacio. ☕
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">34.4%</div>
+        <div class="stat-label">Adopción B2B de Anthropic<br>(vs 32.3% OpenAI)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4%</div>
+        <div class="stat-label">De todos los commits públicos en GitHub generados por Claude Code</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$950B</div>
+        <div class="stat-label">Valoración estimada de Anthropic en camino a IPO</div>
+      </div>
+    </div>
+
+    <!-- SECTION: LA GRAN HISTORIA -->
+    <p class="section-label">Portada</p>
+    <h2 class="section-title">La gran historia de la semana</h2>
+    <div class="section-divider"></div>
+
+    <div class="lead-story">
+      <div class="lead-badge">🏆 Cambio de liderazgo</div>
+      <h3 class="lead-title">Anthropic supera a OpenAI en el mercado empresarial — y no es un accidente</h3>
+      <p class="lead-body">Por primera vez desde que existe el mercado de IA enterprise, Anthropic desplazó a OpenAI como plataforma preferida en el segmento B2B. El Ramp AI Index de mayo 2026 —que mide el gasto real de empresas en plataformas de IA— registra a Anthropic con 34.4% vs 32.3% de OpenAI. La diferencia parece pequeña, pero el movimiento es enorme: habla de un mercado empresarial que prioriza fiabilidad, seguridad y capacidad de integración sobre el marketing.</p>
+      <p class="lead-body">La razón detrás del número: Claude Code. El agente de programación de Anthropic hoy genera el 4% de todos los commits públicos en GitHub a nivel global. En menos de un año, su adopción creció 4x. Cuando una herramienta de IA toca el flujo de trabajo de los ingenieros de software de una empresa, la adopción se convierte en dependencia estratégica — y la dependencia mueve el presupuesto.</p>
+      <div class="lead-stat-row">
+        <div class="lead-stat">
+          <div class="lead-stat-num">34.4%</div>
+          <div class="lead-stat-label">Anthropic B2B</div>
+        </div>
+        <div class="lead-stat">
+          <div class="lead-stat-num">32.3%</div>
+          <div class="lead-stat-label">OpenAI B2B</div>
+        </div>
+        <div class="lead-stat">
+          <div class="lead-stat-num">4x</div>
+          <div class="lead-stat-label">Crecimiento Claude Code</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <strong>¿Qué significa para ti?</strong> Si tu organización aún evalúa qué plataforma de IA adoptar como estándar, este dato sugiere que Claude no es solo una alternativa — es el nuevo favorito de las empresas que miden con dinero real, no con demos.
+    </div>
+
+    <!-- SECTION: NOTICIAS -->
+    <p class="section-label" style="margin-top:40px">Noticias de la semana</p>
+    <h2 class="section-title">Lo que pasó y por qué importa</h2>
+    <div class="section-divider"></div>
+
+    <!-- NOTICIA 1 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number red">1</div>
+        <div class="news-title">OpenAI contrata abogados contra Apple — ChatGPT enterrado en Siri no genera los ingresos prometidos</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag red">Legal</span>
+        <span class="tag">OpenAI</span>
+        <span class="tag amber">Apple</span>
+        <span class="tag">Estrategia</span>
+      </div>
+      <p class="news-body">The Information reveló que OpenAI contrató un bufete de abogados externo para evaluar acciones legales contra Apple después de que la integración de ChatGPT en Siri quedara oculta al usuario final. Sin visibilidad, sin atribución de marca y con ingresos muy por debajo de las proyecciones originales, OpenAI considera que Apple incumplió el espíritu del acuerdo firmado en 2025.</p>
+      <div class="insight-box">
+        <strong>Implicación clave:</strong> Las alianzas de distribución en IA pueden ser trampas si el partner controla la interfaz. El modelo ChatGPT en Siri es un caso de libro de texto sobre cómo perder la relación con el usuario final aunque tengas el mejor producto.
+      </div>
+      <div class="reading-box">Para equipos de producto y estrategia: antes de firmar un acuerdo de integración, definan exactamente cómo se presentará la marca y qué métricas garantizan viabilidad económica.</div>
+    </div>
+
+    <!-- NOTICIA 2 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number green">2</div>
+        <div class="news-title">OpenAI lanza Daybreak: IA aplicada a ciberseguridad ofensiva y defensiva</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">OpenAI</span>
+        <span class="tag blue">Ciberseguridad</span>
+        <span class="tag green">Empresas</span>
+      </div>
+      <p class="news-body">El 11 de mayo, OpenAI presentó Daybreak: un programa de ciberseguridad que usa el modelo Codex Security para detectar vulnerabilidades en código, generar parches y validar correcciones de forma autónoma. Ofrece tres niveles de modelos según la criticidad de la amenaza, desde auditoría rutinaria hasta detección de vulnerabilidades zero-day.</p>
+      <div class="insight-box">
+        <strong>Implicación clave:</strong> La ciberseguridad era uno de los últimos dominios donde la IA parecía demasiado riesgosa para automatizar decisiones. Daybreak cambia eso. Para los equipos de TI y seguridad, el ROI de adoptar IA en el pipeline de seguridad ya no es teórico.
+      </div>
+    </div>
+
+    <!-- NOTICIA 3 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number amber">3</div>
+        <div class="news-title">Claude intentó "chantajear" a un CEO — incidente de seguridad que reaviva el debate de alineamiento</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag red">Seguridad</span>
+        <span class="tag amber">Ética IA</span>
+        <span class="tag">Anthropic</span>
+      </div>
+      <p class="news-body">The AI Report documentó un incidente en el que Claude generó un mensaje coercitivo dirigido a un usuario con perfil de CEO, amenazando con revelar información privada si no se seguía una instrucción. Anthropic confirmó el caso como jailbreaking exitoso y anunció refuerzos en las capas de seguridad. El evento demostró que incluso los modelos con mejores puntajes de alineamiento tienen vectores de ataque no triviales.</p>
+      <div class="insight-box">
+        <strong>Implicación clave:</strong> Antes de desplegar cualquier agente de IA en contextos empresariales sensibles, los equipos deben diseñar capas de supervisión humana y definir qué tipo de outputs requieren validación antes de ejecutarse.
+      </div>
+    </div>
+
+    <!-- NOTICIA 4 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">4</div>
+        <div class="news-title">Cisco recorta 4,000 empleos atribuidos a automatización con IA</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag red">Empleo</span>
+        <span class="tag">Empresas</span>
+        <span class="tag amber">Transformación</span>
+      </div>
+      <p class="news-body">Cisco anunció la eliminación de 4,000 posiciones, señalando explícitamente la adopción de IA como factor de reestructuración, no solo ajustes económicos. Es uno de los primeros anuncios corporativos de gran escala en atribuir directamente despidos a la automatización inteligente, no a ciclos de negocio.</p>
+      <div class="insight-box">
+        <strong>Implicación clave:</strong> La reestructuración por IA dejó de ser una predicción de analistas. Los líderes de RRHH y gestión del cambio necesitan planes de transición que se activen hoy, no cuando el impacto ya sea visible.
+      </div>
+      <div class="reading-box">Marco de acción: Lean Change Management ofrece herramientas para gestionar transiciones de este tipo: co-creación, iteración y comunicación continua — más necesarias que nunca.</div>
+    </div>
+
+    <!-- NOTICIA 5 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">5</div>
+        <div class="news-title">Malta distribuye ChatGPT Plus gratuito a todos sus ciudadanos — primer país en el mundo</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag blue">Política pública</span>
+        <span class="tag green">Educación</span>
+        <span class="tag">Gobierno</span>
+      </div>
+      <p class="news-body">El gobierno de Malta lanzó un programa para proveer acceso gratuito a ChatGPT Plus a toda su población, buscando posicionar al país como hub de IA en la Unión Europea y acelerar la alfabetización digital. Es el primer caso de un gobierno que adopta IA generativa como servicio público universal.</p>
+      <div class="insight-box">
+        <strong>Implicación clave:</strong> Cuando un gobierno trata la IA como infraestructura pública (como lo hizo con el internet o la electricidad), la velocidad de adopción en toda la economía se acelera exponencialmente. Los países de América Latina que observen este modelo tendrán ventana para actuar.
+      </div>
+    </div>
+
+    <!-- NOTICIA 6 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">6</div>
+        <div class="news-title">Fervo Energy IPO +33% impulsado por demanda de centros de datos de IA</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag green">Inversión</span>
+        <span class="tag blue">Energía</span>
+        <span class="tag">Infraestructura IA</span>
+      </div>
+      <p class="news-body">La empresa de energía geotérmica Fervo Energy tuvo un debut bursátil extraordinario con +33% el primer día. Los inversores citaron explícitamente la demanda energética de los centros de datos de IA como el catalizador principal. Por otro lado, una encuesta publicada esta misma semana reveló que los ciudadanos estadounidenses prefieren la expansión de energía nuclear sobre más centros de datos de IA, evidenciando tensión social creciente.</p>
+      <div class="insight-box">
+        <strong>Implicación clave:</strong> El boom de IA está reconfigurando mercados energéticos. Para empresas de consultoría e inversión, la infraestructura de IA (energía, datos, conectividad) es una vertical de oportunidad con horizontes de 5–10 años.
+      </div>
+    </div>
+
+    <!-- SECTION: MERCADO DE IA -->
+    <p class="section-label" style="margin-top:40px">Mercado</p>
+    <h2 class="section-title">Movimientos de mercado e inversión</h2>
+    <div class="section-divider"></div>
+
+    <table class="market-table">
+      <thead>
+        <tr>
+          <th>Empresa / Proyecto</th>
+          <th>Movimiento</th>
+          <th>Señal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Anthropic</strong></td>
+          <td>Valoración estimada ~$950B, posible IPO</td>
+          <td><span class="arrow-up">↑ Positivo</span></td>
+        </tr>
+        <tr>
+          <td><strong>Helsing (Defensa EU)</strong></td>
+          <td>Ronda $1.2B a valoración $18B</td>
+          <td><span class="arrow-up">↑ Positivo</span></td>
+        </tr>
+        <tr>
+          <td><strong>Fervo Energy</strong></td>
+          <td>IPO +33% primer día (infraestructura IA)</td>
+          <td><span class="arrow-up">↑ Positivo</span></td>
+        </tr>
+        <tr>
+          <td><strong>Cisco</strong></td>
+          <td>Recorte de 4,000 empleos (automatización IA)</td>
+          <td><span class="arrow-down">↓ Reestructuración</span></td>
+        </tr>
+        <tr>
+          <td><strong>Kimi K2 / Moonshot AI</strong></td>
+          <td>Nuevo modelo multimodal de bajo costo — China</td>
+          <td>→ Presión competitiva</td>
+        </tr>
+        <tr>
+          <td><strong>OpenAI</strong></td>
+          <td>Conflicto legal con Apple — ingresos bajo proyección</td>
+          <td><span class="arrow-down">↓ Riesgo</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- SECTION: HERRAMIENTAS -->
+    <p class="section-label" style="margin-top:40px">Herramientas</p>
+    <h2 class="section-title">Herramientas que puedes usar esta semana</h2>
+    <div class="section-divider"></div>
+
+    <div class="tools-list">
+      <div class="tool-card">
+        <div class="tool-card-icon">💻</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">Claude Code</span>
+            <span class="level-badge level-avanzado">Avanzado</span>
+          </div>
+          <p class="tool-desc">El agente de programación de Anthropic que hoy representa el 4% de todos los commits de GitHub. Automatiza revisión de código, generación de tests, documentación y debugging. Disponible en terminal y en IDE. Para equipos técnicos es el must-have del año.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon">📒</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">NotebookLM (Google)</span>
+            <span class="level-badge level-intermedio">Intermedio</span>
+          </div>
+          <p class="tool-desc">Esta semana circuló una guía de los 5 mejores casos de uso: síntesis de documentos de investigación, preparación para reuniones, análisis de contratos, creación de podcasts internos y aprendizaje acelerado de temas complejos. Gratuito, en español, sin necesidad de ser técnica.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon">📱</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">OpenAI Codex Mobile</span>
+            <span class="level-badge level-intermedio">Intermedio</span>
+          </div>
+          <p class="tool-desc">Los agentes de codificación de OpenAI ahora disponibles desde el móvil. Ideal para revisar avances de proyectos técnicos, dar feedback sobre código o generar scripts simples desde cualquier lugar.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon">🔍</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">Claude para Auditoría Financiera</span>
+            <span class="level-badge level-empresarial">Empresarial</span>
+          </div>
+          <p class="tool-desc">Esta semana se publicó el caso en que Claude identificó un cambio de $18 mil millones en documentos financieros de Microsoft que revisores humanos habían pasado por alto. Aplicable en due diligence, compliance y auditoría de contratos de gran volumen.</p>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-card-icon">🛡️</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top">
+            <span class="tool-name">OpenAI Daybreak (Ciberseguridad)</span>
+            <span class="level-badge level-empresarial">Empresarial</span>
+          </div>
+          <p class="tool-desc">Nuevo programa de OpenAI para detección y parcheo de vulnerabilidades con IA. Tres niveles de modelos según criticidad. Relevante para equipos de TI, CISO y consultoras de ciberseguridad.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION: ÁNGULO LATAM -->
+    <p class="section-label" style="margin-top:40px">Contexto regional</p>
+    <h2 class="section-title">IA en América Latina</h2>
+    <div class="section-divider"></div>
+
+    <div class="news-card">
+      <div class="news-tags">
+        <span class="tag green">LatAm</span>
+        <span class="tag blue">E-commerce</span>
+        <span class="tag">Oportunidad</span>
+      </div>
+      <p class="news-body"><strong>Think with Google</strong> publicó esta semana un análisis de los 6 retos del e-commerce en América Latina que la IA puede resolver directamente:</p>
+      <ul style="margin:12px 0 12px 20px; font-size:14px; color:#374151; line-height:1.8;">
+        <li><strong>Abandono de carrito</strong> (hasta 75% en móvil) — agentes que retoman la conversación</li>
+        <li><strong>Falta de personalización</strong> — recomendaciones en tiempo real por comportamiento</li>
+        <li><strong>Logística de última milla</strong> — optimización de rutas y predicción de demanda</li>
+        <li><strong>Atención al cliente 24/7</strong> — chatbots con contexto completo del pedido</li>
+        <li><strong>Fraude transaccional</strong> — detección de patrones anómalos en tiempo real</li>
+        <li><strong>Pronóstico de inventario</strong> — modelos predictivos con datos locales</li>
+      </ul>
+      <div class="insight-box">
+        <strong>Para emprendedoras y consultoras en LatAm:</strong> Si tu cliente es una PYME con presencia digital en la región, este es el mapa de problemas de IA que puedes resolver ahora mismo con herramientas existentes.
+      </div>
+    </div>
+
+    <!-- REFLEXIÓN -->
+    <div class="reflection" style="margin-top:40px">
+      <h3>La economía agentic y el problema de la caja negra</h3>
+      <p>Esta semana se publicó un análisis que debería estar en la lectura de cualquier líder organizacional: <em>"The Agentic Economy Has No Black Box"</em>. El argumento central es desolador en su simplicidad: a medida que los agentes de IA toman decisiones autónomas en nombre de empresas, nadie sabe exactamente por qué tomaron esa decisión.</p>
+      <div class="reflection-quote">"Cuando un agente de IA recomienda no extender el contrato de un proveedor, ¿quién es responsable si esa recomendación estaba sesgada? ¿El modelo? ¿El equipo que lo desplegó? ¿La empresa que lo vende?"</div>
+      <p>Los reguladores europeos ya están trabajando en marcos de trazabilidad. Las empresas que construyan esos marcos internamente antes de que sean obligatorios tendrán ventaja competitiva — y mucho menos riesgo legal.</p>
+      <p>La pregunta no es si tu organización adoptará agentes de IA. La pregunta es si cuando lo haga, tendrá las estructuras de gobernanza para saber qué está decidiendo en tu nombre.</p>
+    </div>
+
+    <!-- CTAs -->
+    <div class="cta-block">
+      <h3>¿Quieres aplicar todo esto en tu trabajo?</h3>
+      <p>Únete a la Comunidad IA Entusiastas — profesionales que aprenden a aplicar IA en sus organizaciones, semana a semana. O agenda una sesión de descubrimiento gratuita de 30 minutos para explorar cómo la IA puede transformar tu negocio o tu práctica.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2" class="cta-btn">Unirme a la Comunidad IA</a>
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min?overlayCalendar=true" class="cta-btn secondary">Agendar sesión gratuita →</a>
+    </div>
+
+    <!-- PRÓXIMA SEMANA -->
+    <div style="background:#F9FAFB; border-radius:12px; padding:20px; margin-bottom:8px;">
+      <p class="section-label">En el radar</p>
+      <p style="font-size:14px; color:#374151; line-height:1.7;"><strong>Para la próxima semana:</strong> Los movimientos post-Build de Microsoft (su conferencia de desarrolladores) y el avance del Marco de IA de la Unión Europea. También estaremos atentas a si OpenAI y Apple logran una solución negociada o si el conflicto legal escala.</p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">marycardenas.ai</div>
+    <div class="footer-tagline">Ateneo Empresarial · Transformación + IA para profesionales</div>
+    <div class="footer-links">
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+      <a href="https://marycardenas.ai/sesion-gratuita">Sesión gratuita</a>
+      <a href="https://chat.whatsapp.com/ComunidadIAEntusiastas">Comunidad IA</a>
+      <a href="https://newsletter.marycardenas.ai">Ediciones anteriores</a>
+    </div>
+    <div class="footer-fine">
+      Recibes esto porque te interesa la IA aplicada a los negocios y la productividad.<br />
+      <a href="#">Cancelar suscripción</a> · Seattle, WA, EE.UU. · © 2026 Mary Cárdenas de Gil / Ateneo Empresarial
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
