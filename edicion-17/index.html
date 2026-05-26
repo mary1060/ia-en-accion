@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA para Entusiastas — Edición #17 | marycardenas.ai</title>
+  <meta name="description" content="Google I/O 2026 lo cambió todo: agentes, Gemini 3.5 y el mayor rediseño de Search en 25 años. Más: OpenAI gana a Musk, Karpathy llega a Anthropic y 113K despidos en tech." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #F5F3FF;
+      font-family: 'Inter', sans-serif;
+      color: #1F2937;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    .email-wrapper {
+      max-width: 680px;
+      margin: 40px auto;
+      background: #FFFFFF;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 32px rgba(59,7,100,0.10);
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      background: linear-gradient(135deg, #3B0764 0%, #6D28D9 60%, #7C3AED 100%);
+      padding: 48px 40px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 140px; height: 140px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+    .brand-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .edition-badge {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .header-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 24px;
+    }
+    .header-meta {
+      display: flex;
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .header-meta span {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header-meta span::before { content: attr(data-icon); }
+
+    /* ─── INTRO EDITORIAL ─── */
+    .intro {
+      padding: 36px 40px 28px;
+      border-bottom: 1px solid #EDE9FE;
+      background: #FDFCFF;
+    }
+    .intro-text {
+      font-size: 16px;
+      color: #374151;
+      line-height: 1.75;
+    }
+    .intro-text strong { color: #3B0764; }
+    .signature {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED, #3B0764);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: white;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .sig-name { font-weight: 700; font-size: 14px; color: #3B0764; }
+    .sig-role { font-size: 12px; color: #6B7280; }
+
+    /* ─── TEMAS DE LA SEMANA ─── */
+    .toc {
+      background: #EDE9FE;
+      padding: 28px 40px;
+    }
+    .toc-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7C3AED;
+      margin-bottom: 14px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .toc-item {
+      font-size: 13px;
+      color: #3B0764;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+    }
+    .toc-item span:first-child { flex-shrink: 0; font-size: 14px; }
+
+    /* ─── SECTION HEADER ─── */
+    .section-header {
+      padding: 32px 40px 4px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7C3AED;
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #1F2937;
+      line-height: 1.2;
+    }
+
+    /* ─── NEWS CARD ─── */
+    .news-card {
+      margin: 20px 40px;
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .news-card-header {
+      background: #F9FAFB;
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    .news-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #EDE9FE;
+      color: #7C3AED;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .news-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1F2937;
+      line-height: 1.3;
+    }
+    .news-body {
+      padding: 16px 22px;
+    }
+    .news-body p {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .news-body p:last-child { margin-bottom: 0; }
+    .lectura {
+      background: linear-gradient(135deg, #EDE9FE, #F5F3FF);
+      border-left: 4px solid #7C3AED;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin-top: 14px;
+    }
+    .lectura-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #7C3AED;
+      margin-bottom: 6px;
+    }
+    .lectura p {
+      font-size: 13px;
+      color: #3B0764;
+      line-height: 1.6;
+      margin-bottom: 0 !important;
+    }
+
+    /* ─── FEATURED CALLOUT ─── */
+    .featured-callout {
+      margin: 20px 40px;
+      background: linear-gradient(135deg, #3B0764 0%, #6D28D9 100%);
+      border-radius: 12px;
+      padding: 28px 28px;
+      color: white;
+    }
+    .featured-callout .news-tag {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+    .featured-callout .news-headline {
+      color: white;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+    .featured-callout p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .featured-callout .lectura {
+      background: rgba(255,255,255,0.1);
+      border-left-color: rgba(255,255,255,0.5);
+    }
+    .featured-callout .lectura-label { color: rgba(255,255,255,0.7); }
+    .featured-callout .lectura p { color: rgba(255,255,255,0.95); }
+
+    /* ─── TOOLS SECTION ─── */
+    .tools-section {
+      margin: 20px 40px;
+      background: #F9FAFB;
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .tools-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #EDE9FE;
+    }
+    .tool-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    .tool-item:last-child { border-bottom: none; }
+    .tool-icon {
+      width: 36px; height: 36px;
+      background: #EDE9FE;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .tool-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3B0764;
+      margin-bottom: 2px;
+    }
+    .tool-desc {
+      font-size: 13px;
+      color: #6B7280;
+      line-height: 1.4;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 1px;
+      background: #EDE9FE;
+      margin: 8px 40px;
+    }
+
+    /* ─── REFLEXION FINAL ─── */
+    .reflexion {
+      margin: 20px 40px;
+      background: linear-gradient(135deg, #1F2937, #3B0764);
+      border-radius: 12px;
+      padding: 32px 28px;
+      color: white;
+    }
+    .reflexion-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C4B5FD;
+      margin-bottom: 10px;
+    }
+    .reflexion-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .reflexion p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .reflexion-question {
+      background: rgba(255,255,255,0.1);
+      border-left: 4px solid #A78BFA;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 16px;
+    }
+    .reflexion-question p {
+      font-size: 14px;
+      font-weight: 600;
+      color: #DDD6FE;
+      margin-bottom: 0;
+      font-style: italic;
+    }
+
+    /* ─── CTAs ─── */
+    .cta-section {
+      padding: 32px 40px;
+      background: #FDFCFF;
+    }
+    .cta-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1F2937;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .cta-sub {
+      font-size: 13px;
+      color: #6B7280;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: opacity 0.15s;
+    }
+    .cta-primary {
+      background: linear-gradient(135deg, #7C3AED, #3B0764);
+      color: #FFFFFF;
+    }
+    .cta-secondary {
+      background: #EDE9FE;
+      color: #3B0764;
+      border: 2px solid #7C3AED;
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #1F2937;
+      padding: 32px 40px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+    }
+    .footer-tagline {
+      font-size: 13px;
+      color: #9CA3AF;
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: #C4B5FD;
+      text-decoration: none;
+    }
+    .footer-legal {
+      font-size: 11px;
+      color: #4B5563;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 640px) {
+      .email-wrapper { margin: 0; border-radius: 0; }
+      .header, .intro, .cta-section, .footer { padding-left: 24px; padding-right: 24px; }
+      .header-title { font-size: 28px; }
+      .toc { padding: 24px; }
+      .toc-grid { grid-template-columns: 1fr; }
+      .news-card, .featured-callout, .tools-section, .reflexion, .divider { margin-left: 24px; margin-right: 24px; }
+      .section-header { padding-left: 24px; padding-right: 24px; }
+      .cta-buttons { flex-direction: column; }
+      .cta-btn { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="email-wrapper">
+
+  <!-- ══════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════ -->
+  <div class="header">
+    <div class="header-top">
+      <div class="brand-name">IA para Entusiastas · marycardenas.ai</div>
+      <div class="edition-badge">Edición #17</div>
+    </div>
+    <h1 class="header-title">Google I/O 2026 cambió el mapa.<br/>¿Está tu empresa lista?</h1>
+    <p class="header-subtitle">La semana más intensa del año en IA: agentes autónomos, matemáticas históricas, 113K despidos y el mayor rediseño de Search en 25 años.</p>
+    <div class="header-meta">
+      <span data-icon="📅"> 25 de mayo de 2026</span>
+      <span data-icon="⏱"> 8 min de lectura</span>
+      <span data-icon="📌"> 9 historias clave</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       INTRO EDITORIAL
+  ══════════════════════════════════════ -->
+  <div class="intro">
+    <p class="intro-text">Esta semana no fue una semana cualquiera. <strong>Google I/O 2026</strong> no solo presentó productos — presentó una nueva visión de cómo trabajaremos con IA en los próximos 18-36 meses. Al mismo tiempo, <strong>más de 113,000 trabajadores tech perdieron su empleo</strong> mientras las grandes tecnológicas comprometían $725,000 millones en infraestructura de IA.</p>
+    <p class="intro-text" style="margin-top: 12px;">La paradoja es clara y no voy a suavizarla: <strong>la IA está destruyendo algunos roles y creando otros que aún no existen.</strong> Los profesionales que entienden esto hoy tendrán una ventaja enorme en el próximo ciclo de contratación. Empecemos.</p>
+    <div class="signature">
+      <div class="avatar">M</div>
+      <div>
+        <div class="sig-name">Mary Cárdenas de Gil</div>
+        <div class="sig-role">Fundadora · Ateneo Empresarial · Seattle, WA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TEMAS DE LA SEMANA
+  ══════════════════════════════════════ -->
+  <div class="toc">
+    <div class="toc-title">📋 En esta edición</div>
+    <div class="toc-grid">
+      <div class="toc-item"><span>🌐</span><span>Google I/O 2026: el evento que lo cambió todo</span></div>
+      <div class="toc-item"><span>⚖️</span><span>OpenAI gana a Elon Musk en juicio histórico</span></div>
+      <div class="toc-item"><span>🧮</span><span>IA resuelve problema matemático de 80 años</span></div>
+      <div class="toc-item"><span>🧠</span><span>Andrej Karpathy se une a Anthropic</span></div>
+      <div class="toc-item"><span>💸</span><span>Nvidia: $81.6B en un trimestre (nuevo récord)</span></div>
+      <div class="toc-item"><span>🏢</span><span>113,000 despidos tech mientras crece el capex en IA</span></div>
+      <div class="toc-item"><span>🎬</span><span>Película con IA en Cannes 2026: $500K, 2 semanas</span></div>
+      <div class="toc-item"><span>🛠</span><span>8 herramientas IA de la semana</span></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NOTICIA 1 — FEATURED (Google I/O)
+  ══════════════════════════════════════ -->
+  <div class="section-header" style="padding-top: 36px;">
+    <div class="section-label">🌐 El evento de la semana</div>
+  </div>
+
+  <div class="featured-callout">
+    <div class="news-tag">Google I/O 2026</div>
+    <div class="news-headline">Google presentó la era de los agentes. Y no es metáfora.</div>
+    <p>Esta semana fue el Google I/O 2026 y, sinceramente, fue uno de los I/Os más importantes en años. Sundar Pichai lo dijo sin rodeos: hemos entrado en la <strong style="color:white;">"era agentica de Gemini"</strong>. Ya no es IA que asiste. Es IA que actúa sola.</p>
+    <p>Lo más relevante del evento: <strong style="color:white;">Gemini 3.5 Flash</strong> (inteligencia de modelo flagship a velocidad Flash, ya el modelo por defecto de Search para todos), <strong style="color:white;">Google Antigravity</strong> (la plataforma de desarrollo agentico — el rival directo de Amazon Bedrock y Azure AI Studio), el mayor rediseño de Google Search en 25 años, y <strong style="color:white;">Veo 3</strong> con generación de video + audio nativo.</p>
+    <p>También: Smart Glasses con Warby Parker con Gemini integrado, Gemini para Ciencia conectado a 30+ bases de datos de ciencias de la vida, y Google AI superando a médicos en diagnóstico clínico.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Google Antigravity es la respuesta de Google a las plataformas de Amazon y Microsoft para construir agentes empresariales. Si tu empresa está evaluando dónde desplegar agentes de IA a escala, Google acaba de entrar con fuerza como tercera opción seria. Más competencia = mejores precios y más opciones para las empresas. Pero también más complejidad para decidir. ¿Mi recomendación? Empieza con casos de uso internos pequeños <em>ahora</em>, antes de que la presión de elegir plataforma se vuelva paralizante.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NOTICIA 2 — OpenAI vs Musk
+  ══════════════════════════════════════ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-label">⚖️ Legal & Negocios</div>
+  </div>
+
+  <div class="news-card">
+    <div class="news-card-header">
+      <div class="news-tag">OpenAI · $852B de valoración</div>
+      <div class="news-headline">Elon Musk pierde el juicio contra OpenAI. El camino al IPO está despejado.</div>
+    </div>
+    <div class="news-body">
+      <p>Un jurado federal de Oakland deliberó menos de <strong>dos horas</strong> y falló a favor de OpenAI. Musk acusaba a Sam Altman de "robar una organización sin fines de lucro" al convertirla en empresa con fines de lucro. El jurado determinó que Musk presentó la demanda fuera del plazo legal. OpenAI, valorada en $852,000 millones, queda libre para avanzar hacia lo que podría ser uno de los IPOs más grandes de la historia tech. Musk anunció que apelará y llamó a la jueza "una terrible jueza activista de Oakland".</p>
+      <div class="lectura">
+        <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+        <p>Más allá del drama personal entre dos figuras enormes del ecosistema tech, esto importa porque despeja la incertidumbre legal sobre la estructura corporativa de OpenAI. Un IPO de OpenAI generará un efecto riqueza que beneficiará a todo el ecosistema de startups de IA. Y Musk no sale bien parado — xAI tendrá que competir sin la ventaja de la incertidumbre legal sobre su principal rival.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NOTICIA 3 — Erdős math
+  ══════════════════════════════════════ -->
+  <div class="news-card">
+    <div class="news-card-header">
+      <div class="news-tag">OpenAI · Matemáticas</div>
+      <div class="news-headline">Una IA resolvió un problema abierto durante 80 años. Los matemáticos están asombrados.</div>
+    </div>
+    <div class="news-body">
+      <p>El 20 de mayo, OpenAI anunció que un modelo de razonamiento interno resolvió de forma <strong>completamente autónoma</strong> el problema de distancias unitarias planares de Paul Erdős — planteado en 1946 y abierto por 80 años. El modelo no fue guiado paso a paso: recibió el enunciado del problema y produjo la solución. Utilizó teoría algebraica de números (Teoría de Golod-Shafarevich) que nadie había aplicado a este problema antes. El matemático Fields Tim Gowers lo llamó <em>"un hito en las matemáticas de IA"</em>.</p>
+      <div class="lectura">
+        <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+        <p>Este no es un hito solo para matemáticos. Es evidencia de que la IA ya no solo acelera trabajo conocido — empieza a generar conocimiento nuevo. Para líderes y gestores de proyectos: si la IA puede resolver problemas abiertos de 80 años en ciencias duras, ¿qué problemas "sin solución" de tu industria podría abordar? El umbral de lo posible acaba de subir.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NOTICIA 4 — Karpathy + SpaceX deal
+  ══════════════════════════════════════ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-label">🧠 Anthropic</div>
+  </div>
+
+  <div class="news-card">
+    <div class="news-card-header">
+      <div class="news-tag">Anthropic · Talento e infraestructura</div>
+      <div class="news-headline">Andrej Karpathy llega a Anthropic. Y también un deal de $45,000 millones con SpaceX.</div>
+    </div>
+    <div class="news-body">
+      <p>El 19 de mayo fue un día histórico para Anthropic. Primero: <strong>Andrej Karpathy</strong> — cofundador de OpenAI y ex director de IA de Tesla — se incorporó al equipo de preentrenamiento de Claude. Liderará un grupo enfocado en usar Claude para acelerar su propio preentrenamiento. Mismo día: Ross Nordeen, miembro fundador de xAI y ex Tesla, también se unió.</p>
+      <p>Y si eso fuera poco, Bloomberg reveló que Anthropic firmó un contrato con <strong>SpaceX para alquilar compute en el data center Colossus 1 de xAI en Memphis</strong> por $45,000 millones en tres años ($1,250M/mes hasta mayo 2029). También: el ARR de Anthropic creció de $9B a $14B y KPMG desplegó Claude a sus 276,000 empleados globales.</p>
+      <div class="lectura">
+        <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+        <p>Karpathy no es solo un fichaje de talento — es una señal de que Anthropic está apostando a que los próximos saltos en capacidad de Claude vendrán de la investigación de preentrenamiento, no solo del RLHF y ajuste fino. El deal con SpaceX es paradójico (Musk como proveedor de compute de su principal competidor contra OpenAI), pero habla de que la infraestructura de IA es hoy más escasa y valiosa que el talento.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NOTICIA 5 — Nvidia
+  ══════════════════════════════════════ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-label">💸 Mercados e Inversión</div>
+  </div>
+
+  <div class="news-card">
+    <div class="news-card-header">
+      <div class="news-tag">Nvidia · Resultados Q1 FY2027</div>
+      <div class="news-headline">$81,600 millones en un trimestre. Nvidia sigue siendo el mayor beneficiario del boom de IA.</div>
+    </div>
+    <div class="news-body">
+      <p>Nvidia reportó ingresos récord de <strong>$81.6 mil millones</strong> para el trimestre que terminó el 26 de abril de 2026 — un alza del 85% frente al año anterior. Solo el segmento de Data Center generó $75.2B (92% de crecimiento YoY). La empresa superó las expectativas de Wall Street en casi $3,000 millones y anunció recompra de acciones adicional por $80,000 millones.</p>
+      <div class="lectura">
+        <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+        <p>Nvidia es la empresa que más claramente demuestra que, en la fiebre del oro de la IA, el negocio más robusto es el de las "palas y picos". Mientras los modelos se hacen más baratos (commoditización), la infraestructura sigue siendo el cuello de botella. Para líderes de negocio: si estás planeando inversiones en IA para tu empresa, el costo de compute va a seguir siendo tu principal variable a gestionar.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NOTICIA 6 — Layoffs
+  ══════════════════════════════════════ -->
+  <div class="news-card">
+    <div class="news-card-header">
+      <div class="news-tag">Mercado Laboral · Mayo 2026</div>
+      <div class="news-headline">113,000 despidos tech en 2026. Y $725,000 millones en inversión IA. La paradoja está aquí.</div>
+    </div>
+    <div class="news-body">
+      <p>En lo que va de 2026: <strong>más de 113,000 trabajadores tecnológicos han perdido su empleo</strong> en 179 empresas. Mayo está siendo uno de los peores meses. Meta recortó ~7,000 empleos, Cisco 4,000, Cloudflare el 20% de su plantilla, Coinbase el 14% de la suya. Las proyecciones apuntan a 370,000 despidos en todo 2026 en tech.</p>
+      <p>Al mismo tiempo: Meta, Amazon, Microsoft y Alphabet comprometieron <strong>$725,000 millones en capex</strong> este año — 75% más que 2025 — casi todo para infraestructura de IA.</p>
+      <div class="lectura">
+        <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+        <p>No entres en pánico, pero sí actúa. Los roles que desaparecen son los que no evolucionaron con la IA. Los que emergen requieren personas que sepan <em>qué pedirle</em> a la IA, <em>cómo supervisar</em> sus outputs y <em>dónde el juicio humano</em> sigue siendo irreemplazable. Project managers, consultores, líderes de cambio organizacional: están en una posición privilegiada si se capacitan ahora. El próximo ciclo de contratación buscará exactamente ese perfil.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NOTICIA 7 — Cannes + Creative AI
+  ══════════════════════════════════════ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-label">🎬 IA Creativa</div>
+  </div>
+
+  <div class="news-card">
+    <div class="news-card-header">
+      <div class="news-tag">Entretenimiento · Cine · Música</div>
+      <div class="news-headline">Película con IA en Cannes 2026: $500K, 2 semanas, calidad de festival.</div>
+    </div>
+    <div class="news-body">
+      <p><em>"Hell Grind"</em>, producida por Higgsfield usando herramientas de IA generativa, fue presentada en el Festival de Cannes 2026. Costo de producción: <strong>$500,000</strong>. Tiempo de producción: <strong>2 semanas</strong>. Para contexto: una producción tradicional de calidad similar costaría entre 10 y 50 veces más y tomaría meses. Además: Spotify anunció asociación con ElevenLabs y Universal Music Group para generar contenido de audio con IA licenciada.</p>
+      <div class="lectura">
+        <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+        <p>La democratización de la creatividad es real y ya está aquí. Para empresas de educación, consultoría y marketing: el costo de producir contenido audiovisual de calidad acaba de colapsar. Si aún estás usando solo PowerPoints y PDFs para tus programas de formación o propuestas, hay una brecha de percepción creciendo entre tu comunicación y la de quienes ya adoptaron estas herramientas.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NOTICIA 8 — Regulación
+  ══════════════════════════════════════ -->
+  <div class="news-card">
+    <div class="news-card-header">
+      <div class="news-tag">Regulación · Ética</div>
+      <div class="news-headline">Trump pausa regulación IA. El Vaticano forma su comisión de ética. arXiv restringe papers generados por IA.</div>
+    </div>
+    <div class="news-body">
+      <p>Esta semana, tres frentes regulatorios simultáneos. En EE.UU.: la administración Trump <strong>retrasó la implementación</strong> de regulaciones de seguridad para IA avanzada ante presión de la industria. En el Vaticano: se formó una <strong>comisión oficial de ética en IA</strong> desde una perspectiva de dignidad humana. En la academia: arXiv <strong>endureció su política</strong> sobre papers generados principalmente por IA sin supervisión humana declarada.</p>
+      <div class="lectura">
+        <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+        <p>La fragmentación regulatoria es el mayor riesgo para empresas con operaciones globales. EE.UU. frena, la UE avanza con el AI Act, el Vaticano se suma. Las organizaciones que esperen claridad regulatoria total antes de actuar se quedarán atrás. La estrategia inteligente: adoptar los marcos éticos más estrictos (UE) como estándar interno, y ya estás cubierta en todos los mercados.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       HERRAMIENTAS
+  ══════════════════════════════════════ -->
+  <div class="divider"></div>
+  <div class="section-header">
+    <div class="section-label">🛠 Herramientas de la semana</div>
+  </div>
+
+  <div class="tools-section">
+    <div class="tools-title">8 herramientas que vale la pena explorar</div>
+
+    <div class="tool-item">
+      <div class="tool-icon">🗣</div>
+      <div>
+        <div class="tool-name">ElevenLabs Speech Engine</div>
+        <div class="tool-desc">Voz para tus agentes de chat con un solo prompt. Ya adoptó SynthID de Google para marcar contenido IA.</div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon">📊</div>
+      <div>
+        <div class="tool-name">Napkin</div>
+        <div class="tool-desc">Convierte texto en diagramas, flowcharts e infografías. Exporta a PPT, PDF, SVG, PNG. Ideal para consultores y trainers.</div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon">🎓</div>
+      <div>
+        <div class="tool-name">Coursebox</div>
+        <div class="tool-desc">Convierte videos, documentos o webs en cursos completos con quizzes y avatares. 500+ avatares, 100+ idiomas.</div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon">🔊</div>
+      <div>
+        <div class="tool-name">Orion TTS</div>
+        <div class="tool-desc">TTS de 15M parámetros, menos de 25MB, corre en CPU sin nube. Sin costo por carácter. Para apps con privacidad crítica.</div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon">🔍</div>
+      <div>
+        <div class="tool-name">WatchMyCompetitor</div>
+        <div class="tool-desc">Agentes de IA para monitoreo de mercado en tiempo real. Para marketing, producto y estrategia competitiva.</div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon">🚀</div>
+      <div>
+        <div class="tool-name">AppDeploy</div>
+        <div class="tool-desc">Construye y despliega apps web desde ChatGPT, gratis. Para MVPs rápidos y demos sin código.</div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon">📈</div>
+      <div>
+        <div class="tool-name">GoAI</div>
+        <div class="tool-desc">Suite de agentes de inteligencia financiera. Análisis automatizado y programado para equipos de finanzas e inversores.</div>
+      </div>
+    </div>
+
+    <div class="tool-item">
+      <div class="tool-icon">🤖</div>
+      <div>
+        <div class="tool-name">Google Antigravity 2.0</div>
+        <div class="tool-desc">Plataforma agentica de Google, anunciada en I/O 2026. Conecta agentes a 30+ bases de datos científicas. Para empresas que construyen a escala.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       REFLEXIÓN FINAL
+  ══════════════════════════════════════ -->
+  <div class="reflexion">
+    <div class="reflexion-label">💡 Reflexión estratégica</div>
+    <div class="reflexion-title">La semana en que la IA dejó de ser el futuro</div>
+    <p>Esta semana lo dejó claro: la IA no es el futuro del trabajo. <strong style="color:white;">Es el presente que aún no terminamos de aceptar.</strong> Google presenta agentes que navegan el mundo solos. Una IA resuelve problemas matemáticos abiertos por 80 años. 113,000 personas pierden su trabajo mientras se invierten $725B en la tecnología que los desplaza.</p>
+    <p>Y en medio de todo eso, las organizaciones que ganan son las que actúan, no las que estudian. Las que despliegan, experimentan, ajustan. No las que esperan certeza.</p>
+    <div class="reflexion-question">
+      <p>Pregunta para esta semana: ¿Qué proceso en tu trabajo podrías delegar hoy a un agente de IA? No mañana. ¿Hoy?</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CTAs
+  ══════════════════════════════════════ -->
+  <div class="cta-section">
+    <div class="cta-title">¿Quieres ir más lejos?</div>
+    <div class="cta-sub">Dos caminos para aplicar lo de esta semana con acompañamiento.</div>
+    <div class="cta-buttons">
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2" class="cta-btn cta-primary">
+        🤝 Unirme a la Comunidad IA
+      </a>
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min?overlayCalendar=true" class="cta-btn cta-secondary">
+        📅 Agendar sesión gratuita →
+      </a>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <div class="footer">
+    <div class="footer-brand">IA para Entusiastas</div>
+    <div class="footer-tagline">by Mary Cárdenas de Gil · Ateneo Empresarial</div>
+    <div class="footer-links">
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+      <a href="https://newsletter.marycardenas.ai">Newsletter</a>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad</a>
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min?overlayCalendar=true">Sesión gratuita</a>
+    </div>
+    <div class="footer-legal">
+      Edición #17 · Semana 18-24 de mayo 2026 · Seattle, WA<br/>
+      Este newsletter se genera semanalmente para la comunidad de IA para Entusiastas.<br/>
+      © 2026 Mary Cárdenas de Gil · Ateneo Empresarial · marycardenas.ai
+    </div>
+  </div>
+
+</div><!-- .email-wrapper -->
+</body>
+</html>

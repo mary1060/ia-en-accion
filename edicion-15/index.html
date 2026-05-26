@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA para Entusiastas — Edición #15 | 4–10 May 2026</title>
+  <meta name="description" content="Juicio Musk vs OpenAI, Claude Mythos, GPT-5.5, NotebookLM en Gemini, 92K empleos eliminados. Edición #15, 4–10 de mayo de 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F5F3FF; font-family: 'Inter', sans-serif; color: #1F2937; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper { max-width: 680px; margin: 32px auto; background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 32px rgba(59,7,100,0.10); }
+
+    /* HEADER */
+    .header { background: linear-gradient(135deg, #3B0764 0%, #7C3AED 60%, #A78BFA 100%); padding: 48px 40px 40px; text-align: center; position: relative; overflow: hidden; }
+    .header::before { content: ''; position: absolute; top: -60px; right: -60px; width: 240px; height: 240px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+    .header::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 160px; height: 160px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+    .header-eyebrow { display: inline-block; background: rgba(255,255,255,0.15); color: #EDE9FE; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; }
+    .header-title { font-family: 'Playfair Display', Georgia, serif; font-size: 38px; font-weight: 800; color: #FFFFFF; line-height: 1.2; margin-bottom: 8px; }
+    .header-subtitle { font-size: 15px; color: #DDD6FE; margin-bottom: 24px; }
+    .header-meta { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 13px; color: #C4B5FD; }
+    .header-meta span::before { content: '·'; margin-right: 8px; opacity: 0.5; }
+    .header-meta span:first-child::before { display: none; }
+
+    .alert-banner { background: linear-gradient(90deg, #7C3AED, #5B21B6); color: #EDE9FE; text-align: center; padding: 14px 24px; font-size: 13px; font-weight: 500; }
+    .alert-banner strong { color: #fff; }
+
+    .body { padding: 40px; }
+
+    .intro { font-size: 16px; color: #374151; line-height: 1.8; margin-bottom: 32px; padding: 24px; background: #F5F3FF; border-radius: 12px; border-left: 4px solid #7C3AED; }
+
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #7C3AED; margin-bottom: 6px; }
+    .section-title { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 700; color: #1F2937; margin-bottom: 12px; }
+    .section-divider { height: 2px; background: linear-gradient(90deg, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 24px; }
+
+    /* LEAD */
+    .lead-story { background: linear-gradient(135deg, #1E0A3C, #3B0764); border-radius: 14px; padding: 32px; color: #EDE9FE; margin-bottom: 24px; position: relative; overflow: hidden; }
+    .lead-story::before { content: ''; position: absolute; top: -30px; right: -30px; width: 120px; height: 120px; background: rgba(124,58,237,0.3); border-radius: 50%; }
+    .lead-badge { display: inline-block; background: rgba(167,139,250,0.25); color: #C4B5FD; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+    .lead-title { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; color: #FFFFFF; margin-bottom: 14px; line-height: 1.3; }
+    .lead-body { font-size: 14px; line-height: 1.75; color: #DDD6FE; margin-bottom: 16px; }
+    .lead-stat-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+    .lead-stat { background: rgba(255,255,255,0.08); border-radius: 10px; padding: 10px 16px; text-align: center; flex: 1; min-width: 100px; }
+    .lead-stat-num { font-size: 22px; font-weight: 700; color: #A78BFA; }
+    .lead-stat-label { font-size: 11px; color: #C4B5FD; margin-top: 2px; }
+
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: #F5F3FF; border-radius: 12px; padding: 20px 16px; text-align: center; }
+    .stat-num { font-size: 28px; font-weight: 800; color: #7C3AED; }
+    .stat-label { font-size: 12px; color: #6B7280; margin-top: 4px; line-height: 1.4; }
+
+    /* CARDS */
+    .news-card { border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .news-card:hover { border-color: #A78BFA; }
+    .news-card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 12px; }
+    .news-number { background: #7C3AED; color: white; width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .news-number.red { background: #DC2626; }
+    .news-number.amber { background: #D97706; }
+    .news-number.green { background: #059669; }
+    .news-title { font-size: 16px; font-weight: 700; color: #1F2937; line-height: 1.4; }
+    .news-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: #EDE9FE; color: #5B21B6; }
+    .tag.red { background: #FEE2E2; color: #991B1B; }
+    .tag.amber { background: #FEF3C7; color: #92400E; }
+    .tag.green { background: #D1FAE5; color: #065F46; }
+    .tag.blue { background: #DBEAFE; color: #1E40AF; }
+    .news-body { font-size: 14px; color: #374151; line-height: 1.7; margin-bottom: 12px; }
+    .insight-box { background: #F5F3FF; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #4B5563; line-height: 1.6; margin-bottom: 10px; }
+    .insight-box strong { color: #7C3AED; }
+    .reading-box { border-left: 3px solid #A78BFA; padding: 10px 14px; font-size: 13px; color: #6B7280; font-style: italic; line-height: 1.6; }
+
+    /* TRIAL BOX */
+    .trial-box { background: linear-gradient(135deg, #FEF3C7, #FDE68A); border-radius: 12px; padding: 20px; margin-bottom: 12px; border-left: 4px solid #D97706; }
+    .trial-box h4 { font-size: 14px; font-weight: 700; color: #92400E; margin-bottom: 8px; }
+    .trial-box p { font-size: 13px; color: #78350F; line-height: 1.65; }
+
+    /* MARKET TABLE */
+    .market-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+    .market-table th { background: #3B0764; color: white; padding: 10px 14px; font-size: 12px; font-weight: 600; text-align: left; }
+    .market-table th:first-child { border-radius: 8px 0 0 0; }
+    .market-table th:last-child { border-radius: 0 8px 0 0; }
+    .market-table td { padding: 10px 14px; font-size: 13px; border-bottom: 1px solid #F3F4F6; }
+    .market-table tr:last-child td { border-bottom: none; }
+    .market-table tr:nth-child(even) td { background: #FAFAFA; }
+    .arrow-up { color: #059669; font-weight: 700; }
+    .arrow-down { color: #DC2626; font-weight: 700; }
+
+    /* NOTEBOOKLM */
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+    .feature-pill { background: #F5F3FF; border: 1px solid #DDD6FE; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #3B0764; font-weight: 500; }
+    .feature-pill span { display: block; font-size: 11px; color: #7C3AED; font-weight: 400; margin-top: 2px; }
+
+    /* TOOLS */
+    .tools-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px; }
+    .tool-card { display: flex; gap: 14px; align-items: flex-start; background: #FAFAFA; border: 1px solid #E5E7EB; border-radius: 10px; padding: 16px; }
+    .tool-card-icon { font-size: 24px; flex-shrink: 0; }
+    .tool-card-body { flex: 1; }
+    .tool-card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+    .tool-name { font-weight: 700; font-size: 14px; color: #1F2937; }
+    .tool-url { font-size: 12px; color: #7C3AED; margin-bottom: 6px; display: block; }
+    .tool-desc { font-size: 13px; color: #6B7280; line-height: 1.5; }
+    .level-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+    .level-basico { background: #D1FAE5; color: #065F46; }
+    .level-intermedio { background: #FEF3C7; color: #92400E; }
+    .level-avanzado { background: #FEE2E2; color: #991B1B; }
+    .level-empresarial { background: #EDE9FE; color: #5B21B6; }
+
+    /* LATAM */
+    .latam-card { background: linear-gradient(135deg, #F5F3FF, #EDE9FE); border-radius: 10px; padding: 18px 20px; margin-bottom: 12px; border-left: 4px solid #7C3AED; }
+    .latam-card h4 { font-size: 15px; font-weight: 700; color: #3B0764; margin-bottom: 8px; }
+    .latam-card p { font-size: 13px; color: #374151; line-height: 1.65; }
+
+    /* REFLEXIÓN */
+    .reflection { background: linear-gradient(135deg, #1E0A3C, #2E1065); border-radius: 14px; padding: 32px; color: #EDE9FE; margin-bottom: 32px; }
+    .reflection h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; color: #fff; margin-bottom: 16px; }
+    .reflection p { font-size: 14px; line-height: 1.75; color: #DDD6FE; margin-bottom: 14px; }
+    .reflection p:last-child { margin-bottom: 0; }
+
+    /* CTAs */
+    .cta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .cta-card { border-radius: 14px; padding: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+    .cta-card.purple { background: linear-gradient(135deg, #7C3AED, #5B21B6); color: white; }
+    .cta-card.light { background: #F5F3FF; color: #1F2937; border: 1px solid #DDD6FE; }
+    .cta-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+    .cta-card p { font-size: 13px; line-height: 1.5; opacity: 0.85; margin-bottom: 16px; flex: 1; }
+    .cta-btn { display: inline-block; padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; text-decoration: none !important; }
+    .cta-card.purple .cta-btn { background: rgba(255,255,255,0.2); color: white; }
+    .cta-card.light .cta-btn { background: #7C3AED; color: white; }
+
+    .spacer { height: 32px; }
+    .spacer-sm { height: 16px; }
+
+    .footer { background: linear-gradient(135deg, #1E0A3C, #3B0764); padding: 32px 40px; text-align: center; }
+    .footer-brand { font-size: 15px; font-weight: 700; color: #EDE9FE; margin-bottom: 6px; }
+    .footer-tagline { font-size: 12px; color: #A78BFA; margin-bottom: 20px; }
+    .footer-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+    .footer-links a { font-size: 12px; color: #C4B5FD; }
+    .footer-links a:hover { color: #EDE9FE; }
+    .footer-legal { font-size: 11px; color: #9061F9; opacity: 0.7; line-height: 1.6; }
+
+    @media (max-width: 600px) {
+      .wrapper { margin: 0; border-radius: 0; }
+      .header { padding: 32px 24px 28px; }
+      .header-title { font-size: 28px; }
+      .body { padding: 24px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .cta-grid { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="header-eyebrow">Newsletter Semanal</div>
+    <div class="header-title">IA para Entusiastas</div>
+    <div class="header-subtitle">Edición #15 · 4 – 10 de mayo de 2026</div>
+    <div class="header-meta">
+      <span>Mary Cárdenas de Gil</span>
+      <span>Ateneo Empresarial</span>
+      <span>Seattle, WA</span>
+    </div>
+  </div>
+
+  <div class="alert-banner">
+    ⚡ <strong>Esta semana:</strong> Juicio Musk vs. OpenAI · Mythos hackea solo · GPT-5.5 · NotebookLM en Gemini · 92K empleos eliminados
+  </div>
+
+  <div class="body">
+
+    <div class="intro">
+      Hay semanas en que la IA copa los titulares de tecnología, economía <em>y</em> los juzgados. Esta fue una de ellas. El juicio más importante en la historia de la IA entró en su tercera semana con Sam Altman y Satya Nadella en el estrado. Anthropic lanzó Mythos, el modelo que hackea solo. GPT-5.5 se convirtió en el nuevo default de ChatGPT con 52% menos alucinaciones. Google integró NotebookLM directamente en Gemini. Y Meta eliminó 8,000 empleos más. Todo esto, en los próximos minutos.
+    </div>
+
+    <!-- STATS -->
+    <div class="section-label">📊 Los Números de la Semana</div>
+    <h2 class="section-title">IA en cifras</h2>
+    <div class="section-divider"></div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">92K+</div><div class="stat-label">Empleos tech eliminados en 2026</div></div>
+      <div class="stat-card"><div class="stat-num">78%</div><div class="stat-label">Trabajadores con IA usan agentes autónomos semanalmente</div></div>
+      <div class="stat-card"><div class="stat-num">52.5%</div><div class="stat-label">Menos alucinaciones en GPT-5.5 Instant vs. su predecesor</div></div>
+      <div class="stat-card"><div class="stat-num">$852B</div><div class="stat-label">Valuación actual de OpenAI — en disputa en los tribunales</div></div>
+      <div class="stat-card"><div class="stat-num">+643%</div><div class="stat-label">Crecimiento de cuota de Gemini en 1 año</div></div>
+      <div class="stat-card"><div class="stat-num">~300</div><div class="stat-label">Vulnerabilidades Firefox encontradas por Mythos (solo)</div></div>
+    </div>
+
+    <!-- NOTICIAS -->
+    <div class="section-label">📰 Noticias de la Semana</div>
+    <h2 class="section-title">13 historias que definen la semana</h2>
+    <div class="section-divider"></div>
+
+    <!-- 1. JUICIO -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number amber">1</div>
+        <div class="news-title">Juicio Musk v. Altman — el futuro de OpenAI se decide en los tribunales</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag amber">⚖️ Juicio</span>
+        <span class="tag">OpenAI</span>
+        <span class="tag red">Regulación</span>
+        <span class="tag">Semana 3</span>
+      </div>
+      <div class="news-body">
+        El juicio civil más importante en la historia de la IA entró en su tercera semana. El contexto: Elon Musk demandó a Sam Altman en 2024 alegando que la conversión de OpenAI de nonprofit a entidad con fines de lucro traicionó la misión fundacional que él mismo cofinanció en 2015. El juicio se celebra en la corte federal de Oakland, California.
+      </div>
+      <div class="trial-box">
+        <h4>📍 Testimonios clave 4–10 mayo</h4>
+        <p>
+          <strong>Sam Altman testifica</strong> — Declaró que Amazon, Nvidia y SoftBank invirtieron individualmente más en OpenAI que Microsoft, complicando la narrativa de control corporativo.<br><br>
+          <strong>Satya Nadella (CEO Microsoft)</strong> — Afirmó que Musk nunca le contactó para expresar preocupaciones sobre la inversión de Microsoft en OpenAI.<br><br>
+          <strong>Intento de acuerdo fallido</strong> — Musk intentó llegar a un acuerdo dos días antes del inicio del juicio, según archivos judiciales presentados el 4 de mayo.
+        </p>
+      </div>
+      <div class="news-body">
+        <strong>Lo que Musk busca:</strong> revertir OpenAI a su estatus nonprofit, que Altman y Brockman pierdan sus posiciones en el consejo, y que más de $130 mil millones regresen al brazo nonprofit de OpenAI.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> Este no es un conflicto de egos billonarios — es la primera batalla legal a gran escala sobre quién controla la gobernanza de la IA más poderosa del mundo. El resultado sentará precedente para decenas de startups de IA que siguen el mismo modelo de conversión nonprofit → for-profit.
+      </div>
+      <div class="reading-box">
+        Para líderes y directivos: la pregunta de gobernanza de IA ya no es solo filosófica — es legal. Las organizaciones que implementan IA deben tener marcos claros de quién decide, quién controla y quién responde.
+      </div>
+    </div>
+
+    <!-- 2. MYTHOS -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number red">2</div>
+        <div class="news-title">Claude Mythos — La IA que hackea sola: Anthropic redefine la ciberseguridad</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag red">🔐 Ciberseguridad</span>
+        <span class="tag">Anthropic</span>
+        <span class="tag red">Acceso Restringido</span>
+      </div>
+
+      <div class="lead-story" style="margin-bottom:16px;">
+        <div class="lead-badge">Claude Mythos Preview — Anthropic</div>
+        <div class="lead-title">~300 vulnerabilidades en Firefox. Una explotación autónoma de 17 años en FreeBSD. Sin intervención humana.</div>
+        <div class="lead-body">Anthropic lanzó Claude Mythos Preview con capacidades sin precedente: 78% en SWE-bench Pro, 97% en la olimpiada de matemáticas de EE.UU. (USAMO), y ~300 vulnerabilidades encontradas en Firefox de forma completamente autónoma (vs. ~20 del modelo anterior). El CEO Dario Amodei declaró un "momento de peligro". Acceso restringido a Apple, Amazon, JPMorgan Chase y Palo Alto Networks.</div>
+        <div class="lead-stat-row">
+          <div class="lead-stat"><div class="lead-stat-num">~300</div><div class="lead-stat-label">Vulns Firefox encontradas</div></div>
+          <div class="lead-stat"><div class="lead-stat-num">97%</div><div class="lead-stat-label">USAMO (matemáticas)</div></div>
+          <div class="lead-stat"><div class="lead-stat-num">78%</div><div class="lead-stat-label">SWE-bench Pro</div></div>
+        </div>
+      </div>
+
+      <div class="insight-box">
+        <strong>Project Glasswing:</strong> Anthropic formó una coalición con AWS, Apple, Microsoft, Google, CrowdStrike y Palo Alto Networks para usar estas capacidades <em>defensivamente</em> — encontrar y parchear vulnerabilidades antes que los atacantes.
+      </div>
+      <div class="reading-box">
+        Para equipos de TI y líderes: la pregunta ya no es "¿debería preocuparme?" sino "¿cuánto tiempo llevo expuesto sin saberlo?" El AISI del Reino Unido realizó una evaluación independiente de las capacidades de Mythos.
+      </div>
+    </div>
+
+    <!-- 3. GPT-5.5 -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">3</div>
+        <div class="news-title">GPT-5.5 Instant: 52.5% menos alucinaciones — ahora el default de ChatGPT</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">OpenAI</span>
+        <span class="tag green">Lanzamiento</span>
+        <span class="tag blue">Modelo</span>
+      </div>
+      <div class="news-body">
+        OpenAI lanzó GPT-5.5 en dos fases: GPT-5.5 Thinking y GPT-5.5 Pro el 23 de abril para usuarios de pago, y GPT-5.5 Instant a todos los usuarios (incluyendo gratuitos) el 5 de mayo. GPT-5.5 Instant es ahora el modelo default de ChatGPT para la mayoría de usuarios.
+      </div>
+      <div class="news-body">
+        <strong>Lo que lo hace diferente:</strong>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+        <div class="stat-card" style="text-align:left;padding:14px;">
+          <div style="font-size:22px;font-weight:800;color:#7C3AED;">52.5%</div>
+          <div style="font-size:12px;color:#4B5563;margin-top:4px;">Menos alucinaciones vs. GPT-5.3 Instant en temas de alto riesgo (medicina, derecho, finanzas)</div>
+        </div>
+        <div class="stat-card" style="text-align:left;padding:14px;">
+          <div style="font-size:22px;font-weight:800;color:#7C3AED;">30%</div>
+          <div style="font-size:12px;color:#4B5563;margin-top:4px;">Menos palabras y líneas — respuestas más concisas y directas sin perder profundidad</div>
+        </div>
+      </div>
+      <div class="news-body">
+        GPT-5.5 es especialmente fuerte en: codificación agéntica, uso de computadora, trabajo de conocimiento e investigación científica. También potencia Codex en infraestructura NVIDIA. La descripción oficial: "entiende lo que intentas hacer más rápido y puede llevar más del trabajo él mismo".
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> La reducción de alucinaciones del 52.5% es el avance más relevante para uso empresarial en sectores regulados. GPT-5.5 no es solo un modelo más inteligente — es más confiable, que es lo que realmente importa para implementaciones de producción.
+      </div>
+      <div class="reading-box">
+        Si usas ChatGPT para trabajo en medicina, legal o finanzas: ya tienes acceso a GPT-5.5 Instant. Vale la pena reevaluar casos de uso donde antes limitabas el uso por riesgo de alucinaciones.
+      </div>
+    </div>
+
+    <!-- 4. NOTEBOOKLM -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number green">4</div>
+        <div class="news-title">NotebookLM entra al ecosistema Gemini — y se transforma en plataforma de producción</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag green">Google</span>
+        <span class="tag">NotebookLM</span>
+        <span class="tag blue">Educación</span>
+        <span class="tag">Productividad</span>
+      </div>
+      <div class="news-body">
+        Google lanzó "Notebooks en Gemini" — la integración directa de NotebookLM en el ecosistema Gemini para suscriptores AI Ultra, Pro y Plus (con expansión a móvil y usuarios gratuitos próximamente). Pero eso no es todo: esta semana llegó una ola de nuevas funcionalidades que transforman NotebookLM de "resumidor de PDFs" a plataforma completa de aprendizaje y producción de contenido:
+      </div>
+      <div class="feature-grid">
+        <div class="feature-pill">🎬 Video Overviews Cinematicos<span>Videos inmersivos generados por Gemini con animaciones fluidas</span></div>
+        <div class="feature-pill">🎨 10 Estilos de Infografía<span>Sketch Note, Kawaii, Professional, Scientific, Anime, Clay, Editorial, Bento…</span></div>
+        <div class="feature-pill">📚 Soporte EPUB<span>Nuevo tipo de fuente soportado además de PDF, web y docs</span></div>
+        <div class="feature-pill">📊 Exportación PPTX<span>Exporta diapositivas generadas como .pptx además de PDF</span></div>
+        <div class="feature-pill">🃏 Flashcards persistentes<span>Progreso guardado entre sesiones. "Got it / Missed it" con barajado</span></div>
+        <div class="feature-pill">🎓 Google Classroom<span>Estudiantes crean cuadernos personales de clase directamente en Classroom</span></div>
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> NotebookLM ya no es una herramienta experimental — es infraestructura de aprendizaje y producción integrada en el ecosistema más usado del mundo. Para consultores, educadores y profesionales del conocimiento, esto cambia radicalmente cómo se organiza y produce contenido.
+      </div>
+      <div class="reading-box">
+        Caso de uso inmediato: carga tus últimos 5 informes de proyecto, un manual de cliente y 3 documentos de contexto estratégico. Pide un Video Overview cinematográfico y 10 tarjetas de memoria de los puntos clave. Tiempo: 3 minutos.
+      </div>
+    </div>
+
+    <!-- 5. META LAYOFFS -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number red">5</div>
+        <div class="news-title">Meta elimina 8,000 empleos — nombra su primer Chief AI Officer</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag red">Empleo</span>
+        <span class="tag">Meta</span>
+        <span class="tag amber">Restructuración</span>
+      </div>
+      <div class="news-body">
+        Meta anunció la eliminación de 8,000 empleos (10% de su plantilla de 78,865 personas) con fecha efectiva del 20 de mayo, más la cancelación de 6,000 posiciones abiertas. El driver: $115-135 mil millones en gasto de infraestructura de IA durante 2026. Alexandr Wang fue nombrado Chief AI Officer y los equipos se reorganizaron en "pods" de IA bajo la nueva Superintelligence Labs.
+      </div>
+      <div class="news-body">
+        El panorama completo del desplazamiento tech en 2026: Meta (8K) + Amazon (30K) + Oracle (30K) + Microsoft (recortes) = <strong>más de 92,000 empleos tecnológicos eliminados</strong> en lo que va del año, mientras las mismas empresas reportan ingresos récord.
+      </div>
+      <div class="insight-box">
+        <strong>La paradoja que no debe ignorarse:</strong> Estas empresas no están en crisis — están en transformación. Capital humano → capacidad computacional, de forma deliberada y acelerada. El mercado está revelando su ecuación de valor actual.
+      </div>
+    </div>
+
+    <!-- 6. WORKSPACE AGENTS -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">6</div>
+        <div class="news-title">OpenAI Workspace Agents — el sucesor empresarial de los GPTs ya está aquí</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">OpenAI</span>
+        <span class="tag blue">Agentes</span>
+        <span class="tag">Enterprise</span>
+      </div>
+      <div class="news-body">
+        OpenAI lanzó Workspace Agents, el sucesor oficial de los GPTs customizados. La diferencia clave: estos agentes corren de forma autónoma en la nube (incluso cuando no estás conectado), se integran nativamente con Slack, Salesforce y herramientas corporativas, y vienen con controles de administración y monitoreo enterprise. Disponibles en ChatGPT Business, Enterprise y Edu.
+      </div>
+      <div class="insight-box">
+        <strong>Por qué importa:</strong> OpenAI está moviendo su propuesta de valor de "chatbot muy bueno" a "infraestructura de trabajo autónoma". La integración nativa con Slack y Salesforce elimina la fricción de adopción en la mayoría de empresas.
+      </div>
+      <div class="reading-box">
+        Si tu empresa ya tiene ChatGPT Enterprise o Business, tienes acceso hoy. Identifica un flujo repetitivo con reglas claras — reporting semanal, respuestas a FAQs, síntesis de actualizaciones — y configura tu primer Workspace Agent esta semana.
+      </div>
+    </div>
+
+    <!-- 7. MERCADO LLMs -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">7</div>
+        <div class="news-title">El nuevo mapa de LLMs: Claude 3x, Gemini +643%, ChatGPT pierde 20 puntos</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">Mercado</span>
+        <span class="tag">Claude</span>
+        <span class="tag">Gemini</span>
+        <span class="tag">ChatGPT</span>
+      </div>
+      <table class="market-table">
+        <thead><tr><th>Modelo</th><th>Mar 2025</th><th>Mar 2026</th><th>Δ</th></tr></thead>
+        <tbody>
+          <tr><td><strong>ChatGPT</strong></td><td>77.4%</td><td>56.7%</td><td class="arrow-down">▼ -20.7pp</td></tr>
+          <tr><td><strong>Gemini</strong></td><td>6.0%</td><td>25.5%</td><td class="arrow-up">▲ +643%</td></tr>
+          <tr><td><strong>Claude</strong></td><td>1.4%</td><td>6.0%</td><td class="arrow-up">▲ +329%</td></tr>
+        </tbody>
+      </table>
+      <div class="reading-box">
+        El crecimiento de Gemini es en parte estructural (integración en Android y ecosistema Google) y en parte de mérito de modelo. El crecimiento de Claude refleja su adopción en casos de uso empresariales de alta precisión.
+      </div>
+    </div>
+
+    <!-- 8. ANTHROPIC $200B -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">8</div>
+        <div class="news-title">Anthropic: $200B con Google Cloud + agentes para finanzas en preview</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">Anthropic</span>
+        <span class="tag amber">Inversión</span>
+        <span class="tag blue">Agentes</span>
+      </div>
+      <div class="news-body">
+        Anthropic comprometió $200 mil millones con Google Cloud a cinco años. Creó un vehículo de inversión con ~$1.5B para adquisiciones estratégicas. También lanzó en research preview sus "managed agents" autónomos para flujos de trabajo de larga duración en finanzas, derecho y codificación — con evaluación por rúbricas y coordinación de sub-agentes.
+      </div>
+    </div>
+
+    <!-- 9. REGULACIÓN -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">9</div>
+        <div class="news-title">EE.UU. establece supervisión pre-lanzamiento + alerta Five Eyes sobre IA</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag red">Regulación</span>
+        <span class="tag">Gobierno</span>
+        <span class="tag red">Ciberseguridad</span>
+      </div>
+      <div class="news-body">
+        El CAISI (Center for AI Standards and Innovation) estableció acuerdos con Google DeepMind, Microsoft y xAI para evaluar modelos de IA <em>antes</em> de su lanzamiento público. Primer marco sistemático de pre-evaluación en EE.UU.
+      </div>
+      <div class="news-body">
+        Paralelamente, la alianza Five Eyes emitió alerta formal sobre ataques de "invisible commands" — instrucciones ocultas en documentos o imágenes que los agentes de IA ejecutan sin que el usuario las detecte. Riesgo directo para sistemas empresariales con agentes que procesan documentos externos o correos de terceros.
+      </div>
+    </div>
+
+    <!-- 10. AGENTES AUTONOMOS -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">10</div>
+        <div class="news-title">78% de trabajadores con IA ya usa agentes autónomos semanalmente</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag green">Productividad</span>
+        <span class="tag blue">Agentes</span>
+        <span class="tag">Gartner</span>
+      </div>
+      <div class="news-body">
+        Los datos de adopción de agentes en 2026 son concluyentes: 78% uso semanal (vs. 12% en 2024), mercado en $45B, 74% de empresas planea deployarlos en 2 años (Gartner). ROI documentado en PYMEs: 30% más productividad, 50-70% menos trabajo manual repetitivo, 15-25 horas semanales ahorradas en administrativo. McKinsey estima $1B de oportunidad en retail solo.
+      </div>
+      <div class="reading-box">
+        Identifica en tu operación flujos repetitivos con reglas claras donde un agente pueda ejecutar sin supervisión constante. El ROI se vuelve cuantificable cuando el agente completa trabajo real, no solo sugiere.
+      </div>
+    </div>
+
+    <!-- 11. HARVARD / EDUCACIÓN -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">11</div>
+        <div class="news-title">Harvard: IA+médicos superan a médicos solos · El "productive struggle" en educación</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag green">Salud</span>
+        <span class="tag blue">Educación</span>
+        <span class="tag">Harvard</span>
+      </div>
+      <div class="news-body">
+        Un estudio de Harvard confirmó: médicos asistidos por IA superan en precisión diagnóstica a médicos sin asistencia, especialmente en casos complejos con múltiples comorbilidades. El modelo de augmentación (humano+IA) supera al de sustitución. Paralelamente, Priya Lakhani en TED articula el "productive struggle": la fricción cognitiva que los tutores de IA no deben eliminar — porque es lo que construye competencia real.
+      </div>
+      <div class="insight-box">
+        <strong>La síntesis:</strong> Humano + IA gana sobre ambos solos. Pero la IA que "hace todo" puede crear dependencia sin desarrollo de criterio. El diseño importa tanto como la tecnología.
+      </div>
+    </div>
+
+    <!-- 12. PANTHALASSA -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">12</div>
+        <div class="news-title">Panthalassa: data centers en el fondo del océano para enfriar la IA</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag green">Infraestructura</span>
+        <span class="tag green">Sostenibilidad</span>
+      </div>
+      <div class="news-body">
+        El proyecto Panthalassa avanzó con pruebas de concepto para centros de datos submarinos como solución al problema de calor de la infraestructura de IA. Los centros submarinos usan el océano como enfriamiento natural, potencialmente reduciendo un 40% el costo energético de enfriamiento. Una respuesta creativa a la demanda de cómputo que crece de forma exponencial.
+      </div>
+    </div>
+
+    <!-- 13. GOOGLE I/O -->
+    <div class="news-card">
+      <div class="news-card-header">
+        <div class="news-number">13</div>
+        <div class="news-title">Google I/O 2026 — 19 de mayo: Gemini en el centro de todo</div>
+      </div>
+      <div class="news-tags">
+        <span class="tag">Google</span>
+        <span class="tag blue">Próximo</span>
+        <span class="tag">Gemini</span>
+      </div>
+      <div class="news-body">
+        Google confirmó Google I/O 2026 para el 19 de mayo. Foco en Gemini, Android y el ecosistema de IA. Dado el crecimiento del 643% de cuota de Gemini y la integración de NotebookLM, este I/O puede ser el más relevante para profesionales en años. Transmisión en vivo desde io.google.
+      </div>
+      <div class="reading-box">
+        Agenda ya el 19 de mayo: es uno de los eventos de IA aplicada más importantes del año para entender la dirección del ecosistema Google que ya usa más del 25% del mercado de LLMs.
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- LATAM -->
+    <div class="section-label">🌎 Ángulo América Latina</div>
+    <h2 class="section-title">Lo que pasa en nuestra región</h2>
+    <div class="section-divider"></div>
+
+    <div class="latam-card">
+      <h4>📉 El desplazamiento que ya llegó a LatAm</h4>
+      <p>Los recortes masivos en Big Tech impactan directamente al sector BPO y call centers de Colombia, Argentina, México y Costa Rica — algunos de los mayores empleadores de la región. La sustitución por agentes de IA conversacional ya no es una amenaza futura: es un proceso activo medible en datos de empleo trimestrales.</p>
+    </div>
+
+    <div class="latam-card">
+      <h4>🚀 La ventana de oportunidad paradójica</h4>
+      <p>Las empresas latinoamericanas que estaban "detrás" en adopción tienen hoy una ventaja inesperada: pueden implementar directamente la capa de agentes autónomos, saltándose la fase de experimentación que las empresas maduras de EE.UU. tardaron 2 años en completar. Las que actúen en 2026 pueden lograr ventajas de 12-18 meses sobre competidores regionales.</p>
+    </div>
+
+    <div class="latam-card">
+      <h4>📚 NotebookLM + Classroom: oportunidad para educadores latinoamericanos</h4>
+      <p>La integración de NotebookLM con Google Classroom (ya muy usado en LatAm) abre una ventana inmediata para educadores. Crear cuadernos de clase personalizados, generar Video Overviews de módulos, y mantener flashcards persistentes — todo dentro del ecosistema que ya usan millones de estudiantes latinoamericanos.</p>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- HERRAMIENTAS -->
+    <div class="section-label">🛠️ Herramientas de la Semana</div>
+    <h2 class="section-title">7 herramientas que deberías conocer</h2>
+    <div class="section-divider"></div>
+
+    <div class="tools-list">
+      <div class="tool-card">
+        <div class="tool-card-icon">⚡</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top"><span class="tool-name">GPT-5.5 Instant</span><span class="level-badge level-basico">Básico</span></div>
+          <a href="https://chat.openai.com" class="tool-url">chat.openai.com — disponible en todos los planes</a>
+          <div class="tool-desc">Nuevo default de ChatGPT. 52.5% menos alucinaciones en temas de alto riesgo, 30% más conciso. Especialmente mejorado para codificación, trabajo de conocimiento e investigación. Ya está activado para todos.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">📓</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top"><span class="tool-name">NotebookLM / Notebooks en Gemini</span><span class="level-badge level-basico">Básico</span></div>
+          <a href="https://notebooklm.google.com" class="tool-url">notebooklm.google.com · gemini.google.com</a>
+          <div class="tool-desc">Video Overviews cinematográficos, 10 estilos de infografía, soporte EPUB, exportación PPTX, flashcards persistentes, integración con Google Classroom. Ya no es solo para PDFs.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">🤖</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top"><span class="tool-name">OpenAI Workspace Agents</span><span class="level-badge level-empresarial">Empresarial</span></div>
+          <a href="https://openai.com" class="tool-url">ChatGPT Business / Enterprise / Edu</a>
+          <div class="tool-desc">Sucesor de GPTs. Integración nativa con Slack y Salesforce. Corren autónomamente en la nube. Con monitoreo y controles enterprise.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">🎙️</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top"><span class="tool-name">GPT-Realtime-2 / Translate / Whisper</span><span class="level-badge level-avanzado">Avanzado</span></div>
+          <a href="https://platform.openai.com" class="tool-url">platform.openai.com/realtime — GA</a>
+          <div class="tool-desc">Suite de voz en tiempo real. GPT-Realtime-Translate en 70+ idiomas. Para atención al cliente, transcripción y reuniones multilingüe en disponibilidad general.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">💰</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top"><span class="tool-name">Claude Finance Agents</span><span class="level-badge level-empresarial">Empresarial</span></div>
+          <a href="https://anthropic.com" class="tool-url">anthropic.com — Research Preview</a>
+          <div class="tool-desc">Agentes de Anthropic para flujos de larga duración en finanzas y derecho. Evaluación por rúbricas, coordinación de sub-agentes. Acceso limitado por invitación.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">🛡️</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top"><span class="tool-name">Project Glasswing (Anthropic)</span><span class="level-badge level-empresarial">Empresarial</span></div>
+          <a href="https://anthropic.com/glasswing" class="tool-url">anthropic.com/glasswing</a>
+          <div class="tool-desc">Plataforma de ciberseguridad defensiva con Mythos. Coalición con AWS, Apple, Microsoft, Google, CrowdStrike, Palo Alto Networks para parchear vulnerabilidades antes que los atacantes.</div>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-card-icon">📊</div>
+        <div class="tool-card-body">
+          <div class="tool-card-top"><span class="tool-name">OpenAI B2B Signals</span><span class="level-badge level-intermedio">Intermedio</span></div>
+          <a href="https://openai.com" class="tool-url">openai.com/b2b-signals — Trimestral</a>
+          <div class="tool-desc">Investigación trimestral sobre adopción de IA empresarial con datos agregados y anónimos. Primer hallazgo: empresas "frontera" usan 3.5x más IA por empleado. Útil para benchmarking estratégico.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <!-- REFLEXIÓN -->
+    <div class="reflection">
+      <h3>🔮 Reflexión estratégica: tres historias, una sola lectura</h3>
+      <p><strong>① El juicio Musk v. Altman no es un conflicto de egos.</strong> Es la primera batalla legal a gran escala sobre quién controla la gobernanza de la IA más poderosa del mundo. El resultado — si OpenAI debe revertir a nonprofit o no — sentará precedente para decenas de startups que siguen el mismo modelo de conversión. La pregunta de gobernanza de IA ya no es filosófica: es legal y financiera.</p>
+      <p><strong>② GPT-5.5 + NotebookLM en Gemini = nueva normalidad de herramientas.</strong> En una sola semana, el modelo default de ChatGPT mejoró radicalmente su confiabilidad (52.5% menos alucinaciones) y NotebookLM se integró en el ecosistema más usado del planeta. Las herramientas de IA ya no evolucionan trimestralmente — evolucionan semanalmente. Los profesionales que no tienen rutinas de actualización activa acumulan deuda de herramientas semana a semana.</p>
+      <p><strong>③ 92,000 empleos eliminados en 2026 mientras los ingresos baten récords.</strong> La ecuación ya no requiere interpretación: el capital se mueve de headcount humano a capacidad computacional de forma deliberada. La respuesta individual correcta es la re-especialización activa hacia funciones que la IA amplifica — no las que sustituye. Y hay que moverse ahora, no cuando la presión sea ineludible.</p>
+      <p><em>La pregunta de esta semana: ¿Tienes una rutina semanal de 30 minutos para mantenerte al día con la evolución de herramientas de IA en tu campo? Si no, estás perdiendo terreno sin saberlo.</em></p>
+    </div>
+
+    <!-- CTAs -->
+    <div class="cta-grid">
+      <div class="cta-card purple">
+        <h4>Únete a la Comunidad IA Entusiastas</h4>
+        <p>Aprende, comparte y crece con profesionales que aplican IA en su trabajo real. Recursos exclusivos, sesiones en vivo y red de colegas que ya están transformando su práctica.</p>
+        <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2" class="cta-btn">Unirme ahora →</a>
+      </div>
+      <div class="cta-card light">
+        <h4>Sesión de Descubrimiento Gratuita</h4>
+        <p>30 minutos para explorar cómo la IA puede transformar tu trabajo o negocio. Sin venta, sin compromiso — solo claridad estratégica.</p>
+        <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min" class="cta-btn">Agendar sesión →</a>
+      </div>
+    </div>
+
+    <div class="spacer-sm"></div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">
+      <a href="https://ateneo-empresarial.com/" style="color:#EDE9FE;">Ateneo Empresarial</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.marycardenas.ai/" style="color:#EDE9FE;">marycardenas.ai</a>
+    </div>
+    <div class="footer-tagline">Inteligencia artificial aplicada a negocios, liderazgo y productividad</div>
+    <div class="footer-links">
+      <a href="https://www.marycardenas.ai/">Sitio web</a>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad</a>
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">Agendar sesión</a>
+      <a href="https://www.linkedin.com/in/marycardenas/" style="display:inline-flex;align-items:center;gap:5px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#A78BFA"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <div class="footer-legal">
+      Newsletter semanal de IA aplicada · Edición #15 · 4 – 10 de mayo de 2026<br>
+      Mary Cárdenas de Gil · Seattle, WA, EE.UU. · mary@ateneo-empresarial.com<br>
+      © 2026 Ateneo Empresarial. Todos los derechos reservados.
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
