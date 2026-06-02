@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #18 — La semana en que la IA retomó la corona</title>
+  <meta name="description" content="Claude Opus 4.8 domina, DeepSeek baja precios un 75%, ClickUp despide al 22% para contratar 3,000 agentes, y el Papa publica su encíclica sobre IA. Semana 26–31 mayo 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f3f0f8;
+      font-family: 'Inter', sans-serif;
+      color: #1f1535;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #ffffff;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%);
+      padding: 40px 40px 32px;
+      text-align: center;
+    }
+
+    .header-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #C4B5FD;
+      margin-bottom: 10px;
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .header-title span { color: #DDD6FE; }
+
+    .header-subtitle {
+      font-size: 14px;
+      color: #DDD6FE;
+      margin-bottom: 20px;
+    }
+
+    .header-meta {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 12px;
+      color: #EDE9FE;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* EDITORIAL INTRO */
+    .editorial {
+      background: #faf9ff;
+      border-left: 4px solid #7C3AED;
+      margin: 0;
+      padding: 28px 40px;
+    }
+
+    .editorial p {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.75;
+    }
+
+    .editorial .signature {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #7C3AED;
+      font-weight: 600;
+    }
+
+    /* SECTION DIVIDER */
+    .section-divider {
+      padding: 0 40px;
+      margin: 32px 0 0;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .section-label .emoji { font-size: 18px; }
+
+    .section-label .text {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7C3AED;
+    }
+
+    .section-line {
+      height: 2px;
+      background: linear-gradient(to right, #7C3AED, #EDE9FE);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* NEWS CARD */
+    .news-card {
+      margin: 0 40px 24px;
+      padding: 22px 24px;
+      border: 1px solid #EDE9FE;
+      border-radius: 12px;
+      background: #fdfcff;
+    }
+
+    .news-card:hover { border-color: #C4B5FD; }
+
+    .news-card .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #7C3AED;
+      background: #EDE9FE;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+    }
+
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+
+    .news-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f1535;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .news-card p {
+      font-size: 14px;
+      color: #4B5563;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .lectura {
+      background: #F5F3FF;
+      border-left: 3px solid #7C3AED;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 14px;
+      margin-top: 8px;
+    }
+
+    .lectura-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #7C3AED;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .lectura p {
+      font-size: 13px;
+      color: #5B21B6;
+      margin-bottom: 0;
+      font-style: italic;
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      margin: 0 40px 28px;
+      background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%);
+      border-radius: 16px;
+      padding: 28px 28px;
+      color: #EDE9FE;
+    }
+
+    .highlight-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .highlight-box p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #DDD6FE;
+    }
+
+    .highlight-box .stat {
+      display: inline-block;
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      margin: 12px 0 4px;
+    }
+
+    .highlight-box .stat-label {
+      font-size: 12px;
+      color: #C4B5FD;
+      font-weight: 500;
+    }
+
+    /* TOOLS GRID */
+    .tools-grid {
+      margin: 0 40px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .tool-card {
+      border: 1px solid #EDE9FE;
+      border-radius: 10px;
+      padding: 16px;
+      background: #fdfcff;
+    }
+
+    .tool-card .tool-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3B0764;
+      margin-bottom: 4px;
+    }
+
+    .tool-card .tool-desc {
+      font-size: 12px;
+      color: #6B7280;
+      line-height: 1.5;
+    }
+
+    /* REFLECTION */
+    .reflection {
+      margin: 0 40px 28px;
+      background: #faf9ff;
+      border: 1px solid #EDE9FE;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .reflection h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #3B0764;
+      margin-bottom: 12px;
+    }
+
+    .reflection p {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+
+    /* CTA BOXES */
+    .cta-block {
+      margin: 0 40px 24px;
+    }
+
+    .cta-primary {
+      background: linear-gradient(135deg, #3B0764, #7C3AED);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .cta-primary p {
+      color: #DDD6FE;
+      font-size: 13px;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .cta-primary a {
+      display: inline-block;
+      background: #ffffff;
+      color: #3B0764;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .cta-primary a:hover { background: #EDE9FE; }
+
+    .cta-secondary {
+      border: 2px solid #7C3AED;
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    .cta-secondary p {
+      color: #4B5563;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .cta-secondary a {
+      display: inline-block;
+      background: #7C3AED;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 8px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #1f1535;
+      padding: 32px 40px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: #9CA3AF;
+      line-height: 1.8;
+    }
+
+    .footer a { color: #A78BFA; }
+
+    .footer .brand {
+      font-size: 14px;
+      font-weight: 600;
+      color: #DDD6FE;
+      margin-bottom: 8px;
+    }
+
+    /* UTILITY */
+    .spacer-16 { height: 16px; }
+    .spacer-8 { height: 8px; }
+
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 26px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #18</div>
+    <h1 class="header-title">La semana en que la IA<br><span>retomó la corona</span></h1>
+    <div class="header-subtitle">Semana del 26 al 31 de mayo de 2026</div>
+    <div class="header-meta">📬 Tu dosis semanal de inteligencia artificial aplicada · por Mary Cárdenas de Gil</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Esta semana no fue de las que se olvidan. Claude Opus 4.8 llega con Dynamic Workflows y, de paso, Anthropic se convierte en la startup de IA más valiosa del planeta con $965B de valoración. Google lanza Gemini Spark, su asistente agéntico 24/7. DeepSeek hace permanente un descuento del 75%. ClickUp despide al 22% de su equipo y contrata 3,000 agentes de IA. Y el Papa León XIV publica una encíclica de 42,000 palabras sobre la humanidad y la inteligencia artificial.</p>
+    <p style="margin-top: 10px;">Todo esto en seis días. La IA no hace pausas. Yo tampoco. Este es mi análisis.</p>
+    <div class="signature">— Mary Cárdenas de Gil | marycardenas.ai</div>
+  </div>
+
+  <!-- SECCIÓN: MODELOS Y TECNOLOGÍA -->
+  <div class="spacer-16"></div>
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">🤖</span>
+      <span class="text">Modelos y Tecnología</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">LANZAMIENTO</div>
+    <h3>Claude Opus 4.8: Dynamic Workflows y hasta 1,000 subagentes paralelos</h3>
+    <p>Anthropic lanzó Claude Opus 4.8 el 28 de mayo, apenas 41 días después de Opus 4.7. La gran novedad: <strong>Dynamic Workflows</strong>, que permite al modelo planificar y ejecutar hasta 1,000 subagentes en paralelo, verificar resultados y reportar al usuario sin intervención humana. El Fast Mode es ahora 3× más barato. En benchmarks, supera a GPT-5.5 y muestra 4× más honestidad medible.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Un PM puede ahora delegar una migración completa de código, una auditoría de documentos o un análisis multi-fuente a Claude y volver a los resultados verificados. Esto no es mejora incremental — es un cambio de paradigma para quienes gestionamos proyectos complejos. La pregunta que me hago: ¿cuándo será normal que un manager supervise a un equipo de agentes en lugar de personas?</p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT: ANTHROPIC $965B -->
+  <div class="highlight-box">
+    <h3>Anthropic supera a OpenAI en valoración</h3>
+    <div>
+      <div class="stat">$965B</div>
+      <div class="stat-label">Valoración post-money — Serie H de $65B cerrada esta semana</div>
+    </div>
+    <p style="margin-top: 14px;">La tasa de ingresos anualizados de Anthropic cruzó los $47B en mayo 2026, superando a OpenAI. El IPO podría llegar tan pronto como octubre 2026. Para contexto: OpenAI se valoró en $852B en su última ronda. La carrera hacia el billón de dólares tiene dos finalistas claros.</p>
+    <div class="lectura" style="background: rgba(255,255,255,0.1); border-color: #C4B5FD; margin-top: 14px;">
+      <div class="lectura-label" style="color: #C4B5FD;">🔎 Mi lectura:</div>
+      <p style="color: #DDD6FE;">Que la empresa que construyó Claude valga más que OpenAI es un hito histórico. Y que ambas se preparen para IPO simultáneamente en 2026 va a generar la mayor conversación de capital de riesgo en tecnología de la que tengamos memoria.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">GOOGLE I/O 2026</div>
+    <h3>Gemini Spark: el asistente agéntico 24/7 ya existe</h3>
+    <p>Google presentó <strong>Gemini Spark</strong> en Google I/O 2026 — un asistente que trabaja en segundo plano, 24/7, sin necesidad de que tengas el ordenador abierto. Integrado con Gmail, Google Docs, Chrome, Canva, OpenTable e Instacart. Recibe tareas por correo, navega en Chrome y ejecuta en máquinas virtuales de Google Cloud. Disponible para suscriptores AI Ultra ($100/mes).</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Esto es la materialización del asistente personal de IA que llevamos años esperando. Google convierte Workspace en un sistema operativo de productividad. La pregunta no es si deberías usarlo — es si tu organización está lista para que un agente opere con acceso a tu Gmail las 24 horas.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">PRECIOS</div>
+    <h3>DeepSeek V4-Pro: el 75% de descuento ahora es permanente</h3>
+    <p>DeepSeek hizo permanente su descuento. <strong>Nuevos precios: $0.87/M tokens de salida</strong> — 34.5× más barato que GPT-5.5. La ventaja estructural viene de usar chips Huawei Ascend 950 en lugar de H100/H200. El descuento que "terminaba el 31 de mayo" se convierte en el precio de lista definitivo.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La guerra de precios en inferencia está ganando un cliente clarísimo: las empresas que estaban esperando para que la IA fuera "económicamente viable". Ese argumento ya no existe. La pregunta ahora es qué construcción de valor queda si los modelos son un commodity casi gratuito.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: NEGOCIOS Y MERCADO LABORAL -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">💼</span>
+      <span class="text">Negocios y Mercado Laboral</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">MERCADO LABORAL</div>
+    <h3>ClickUp despide al 22% y contrata 3,000 agentes IA</h3>
+    <p>ClickUp cortó 290 empleos (22% de su plantilla de 1,300) el 22 de mayo. El CEO Zeb Evans llamó al modelo resultante <strong>"100x Org"</strong>: 3,000 agentes IA por cada empleado humano restante. Los que se quedan pueden acceder a salarios de $1M/año si demuestran "100x impact". La misma semana, Meta eliminó 8,000 roles y Oracle hasta 30,000 para financiar infraestructura IA.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>ClickUp no es el canario en la mina — es la mina colapsada. Es la primera empresa que documenta públicamente la sustitución sistemática de roles con agentes como estrategia declarada, no como accidente. El debate sobre "el apocalipsis laboral" deja de ser teórico cuando tienes los números en un comunicado oficial.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">REFLEXIÓN</div>
+    <h3>Altman se retracta del "apocalipsis laboral" — ¿cinismo o evidencia?</h3>
+    <p>Sam Altman declaró estar "bastante equivocado" sobre el impacto de la IA en empleos: esperaba más eliminación de roles junior para ahora. Dario Amodei hizo declaraciones similares. El Yale Budget Lab respalda: no hay cambios significativos en desempleo en empleos de alta exposición a IA desde 2022. <strong>Detalle importante:</strong> ambas declaraciones llegan justo antes de los respectivos IPOs de OpenAI y Anthropic.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La paradoja Altman-ClickUp es fascinante: el CEO de OpenAI dice "me equivoqué, el apocalipsis no llegó", mientras ClickUp anuncia el apocalipsis como su estrategia de negocio. El mercado laboral agregado puede parecer estable mientras industrias específicas se transforman radicalmente. Las dos cosas son verdad al mismo tiempo.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">MONETIZACIÓN</div>
+    <h3>Meta lanza suscripciones de pago: Meta One Plus ($7.99) y Premium ($19.99)</h3>
+    <p>Meta lanzó oficialmente planes de pago en Instagram, Facebook y WhatsApp el 27 de mayo. <strong>Meta One Plus a $7.99/mes</strong> y <strong>Meta One Premium a $19.99/mes</strong> con más capacidad de razonamiento avanzado y generación de imagen y video. Meta AI permanece gratuita para uso casual. Testing inicial en Singapur, Guatemala y Bolivia.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Meta necesita demostrar a sus inversores que la IA genera ingresos directos, no solo reduce costos. La apuesta por subscripciones es coherente con la industria, pero el reto es convencer a usuarios que llevan 20 años usando Facebook gratis de que paguen. El testeo en LATAM (Guatemala, Bolivia) es significativo para nuestra región.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: REGULACIÓN Y ÉTICA -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">⚖️</span>
+      <span class="text">Regulación, Ética y Sociedad</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">VATICANO</div>
+    <h3>El Papa León XIV publica "Magnifica Humanitas": la IA debe ser "desarmada"</h3>
+    <p>El Papa León XIV firmó su primera encíclica, <strong>"Magnifica Humanitas"</strong>, el 15 de mayo y la publicó el 25 de mayo — 42,300 palabras sobre dignidad humana e inteligencia artificial. La frase más citada: <em>"La inteligencia artificial necesita ser desarmada. La palabra es fuerte, lo sé, pero deliberadamente elegida para despertar conciencias."</em> Condena el uso de IA en armamentos con control humano reducido. Chris Olah de Anthropic participó en el lanzamiento en el Vaticano.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La Iglesia Católica tiene 1,300 millones de miembros. Esta encíclica convierte la ética en IA en un asunto de fe para una fracción significativa de la humanidad. Que un experto en interpretabilidad de redes neuronales de Anthropic estuviera en el lanzamiento dice mucho sobre cómo las empresas de IA entienden que necesitan legitimidad institucional, no solo técnica.</p>
+    </div>
+  </div>
+
+  <!-- HERRAMIENTAS DESTACADAS -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">🛠️</span>
+      <span class="text">Herramientas de la semana</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name">🤖 Claude Opus 4.8</div>
+      <div class="tool-desc">Dynamic Workflows, 1,000 subagentes paralelos, Fast Mode 3× más barato. El modelo más capaz del mercado esta semana.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔵 Gemini Spark</div>
+      <div class="tool-desc">Asistente agéntico 24/7 de Google. Opera en background con Gmail, Chrome y Workspace. Disponible ya para AI Ultra.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🧠 Fabric</div>
+      <div class="tool-desc">Convierte PDFs, emails y videos en un segundo cerebro consultable con IA. fabric.so</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎬 Lumen5</div>
+      <div class="tool-desc">Transforma artículos de blog en videos automáticamente. Ideal para repurposing de contenido. lumen5.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🌐 Grok Build</div>
+      <div class="tool-desc">Crea sitios web completos sin código desde xAI. Alternativa generativa a Webflow.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔬 AlphaProof Nexus</div>
+      <div class="tool-desc">DeepMind lleva la IA matemática más allá de las Olimpiadas — resolvió un problema abierto de 80 años.</div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN ESTRATÉGICA -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">💡</span>
+      <span class="text">Reflexión estratégica</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reflection">
+    <h3>El año en que los agentes superaron a las personas</h3>
+    <p>Esta semana quedará en los libros. No por una noticia aislada, sino por la convergencia de señales que apuntan en la misma dirección: <strong>el modelo de trabajo está cambiando más rápido de lo que nuestras instituciones pueden procesar.</strong></p>
+    <p>ClickUp nos da el primer caso documentado de sustitución sistemática de empleos por agentes IA como estrategia corporativa declarada. Anthropic se convierte en la empresa privada de IA más valiosa del planeta. Google despliega un asistente que trabaja cuando tú duermes. Y el Papa dedica 42,000 palabras a decirle a la humanidad que necesita pensar antes de actuar.</p>
+    <p>Mi pregunta para esta semana: <strong>¿Qué habilidades de las que tienes hoy seguirán siendo relevantes en un mundo donde los agentes hacen el trabajo operativo?</strong> La respuesta me parece cada vez más clara: las habilidades de síntesis, juicio, relación humana y diseño estratégico. Todo lo que los agentes aún no pueden hacer bien.</p>
+    <p>El rol del profesional del futuro no es competir con los agentes — es saber dirigirlos, cuestionarlos y conectar su output con el mundo real donde viven las personas.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">🤝</span>
+      <span class="text">Únete a la comunidad</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff;">¿Quieres seguir la conversación en comunidad?</strong><br>Únete a la Comunidad IA Entusiastas — un espacio para profesionales que aplican IA en su trabajo, con acceso a recursos, discusiones y actualizaciones semanales.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la Comunidad IA Entusiastas</a>
+    </div>
+
+    <div class="cta-secondary">
+      <p>¿Quieres explorar cómo aplicar IA en tu empresa o consultoría? Agenda una sesión gratuita de descubrimiento de 30 minutos conmigo.</p>
+      <a href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión gratuita de 30 min</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #18</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · Ateneo Empresarial<br>
+      Semana del 26 al 31 de mayo de 2026<br><br>
+      Fuentes: Anthropic, TechCrunch, Bloomberg, CNBC, Fortune, Vatican News, Google Blog,<br>
+      Engadget, The Next Web, MarkTechPost, Yale Budget Lab y 20+ newsletters especializados en IA.<br><br>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a> ·
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
