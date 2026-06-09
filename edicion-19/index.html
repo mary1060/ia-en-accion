@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #19 — La semana en que la IA empezó a construirse a sí misma</title>
+  <meta name="description" content="Claude ya escribe el 80% del código de Anthropic, Google paga $920M/mes a SpaceX por cómputo, Meta lanza un agente que cierra ventas en WhatsApp y ChatGPT estrena memoria Dreaming. Semana 1–7 junio 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f3f0f8;
+      font-family: 'Inter', sans-serif;
+      color: #1f1535;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #ffffff;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%);
+      padding: 40px 40px 32px;
+      text-align: center;
+    }
+
+    .header-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #C4B5FD;
+      margin-bottom: 10px;
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .header-title span { color: #DDD6FE; }
+
+    .header-subtitle {
+      font-size: 14px;
+      color: #DDD6FE;
+      margin-bottom: 20px;
+    }
+
+    .header-meta {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 12px;
+      color: #EDE9FE;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* EDITORIAL INTRO */
+    .editorial {
+      background: #faf9ff;
+      border-left: 4px solid #7C3AED;
+      margin: 0;
+      padding: 28px 40px;
+    }
+
+    .editorial p {
+      font-size: 15px;
+      color: #374151;
+      line-height: 1.75;
+    }
+
+    .editorial .signature {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #7C3AED;
+      font-weight: 600;
+    }
+
+    /* SECTION DIVIDER */
+    .section-divider {
+      padding: 0 40px;
+      margin: 32px 0 0;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .section-label .emoji { font-size: 18px; }
+
+    .section-label .text {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7C3AED;
+    }
+
+    .section-line {
+      height: 2px;
+      background: linear-gradient(to right, #7C3AED, #EDE9FE);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    /* NEWS CARD */
+    .news-card {
+      margin: 0 40px 24px;
+      padding: 22px 24px;
+      border: 1px solid #EDE9FE;
+      border-radius: 12px;
+      background: #fdfcff;
+    }
+
+    .news-card:hover { border-color: #C4B5FD; }
+
+    .news-card .tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #7C3AED;
+      background: #EDE9FE;
+      border-radius: 4px;
+      padding: 3px 8px;
+      margin-bottom: 10px;
+    }
+
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+
+    .news-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f1535;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .news-card p {
+      font-size: 14px;
+      color: #4B5563;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .lectura {
+      background: #F5F3FF;
+      border-left: 3px solid #7C3AED;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 14px;
+      margin-top: 8px;
+    }
+
+    .lectura-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #7C3AED;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .lectura p {
+      font-size: 13px;
+      color: #5B21B6;
+      margin-bottom: 0;
+      font-style: italic;
+    }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box {
+      margin: 0 40px 28px;
+      background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%);
+      border-radius: 16px;
+      padding: 28px 28px;
+      color: #EDE9FE;
+    }
+
+    .highlight-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .highlight-box p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #DDD6FE;
+    }
+
+    .highlight-box .stat {
+      display: inline-block;
+      font-size: 36px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      margin: 12px 0 4px;
+    }
+
+    .highlight-box .stat-label {
+      font-size: 12px;
+      color: #C4B5FD;
+      font-weight: 500;
+    }
+
+    /* TOOLS GRID */
+    .tools-grid {
+      margin: 0 40px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .tool-card {
+      border: 1px solid #EDE9FE;
+      border-radius: 10px;
+      padding: 16px;
+      background: #fdfcff;
+    }
+
+    .tool-card .tool-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #3B0764;
+      margin-bottom: 4px;
+    }
+
+    .tool-card .tool-desc {
+      font-size: 12px;
+      color: #6B7280;
+      line-height: 1.5;
+    }
+
+    /* REFLECTION */
+    .reflection {
+      margin: 0 40px 28px;
+      background: #faf9ff;
+      border: 1px solid #EDE9FE;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .reflection h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #3B0764;
+      margin-bottom: 12px;
+    }
+
+    .reflection p {
+      font-size: 14px;
+      color: #374151;
+      line-height: 1.75;
+      margin-bottom: 10px;
+    }
+
+    /* CTA BOXES */
+    .cta-block {
+      margin: 0 40px 24px;
+    }
+
+    .cta-primary {
+      background: linear-gradient(135deg, #3B0764, #7C3AED);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .cta-primary p {
+      color: #DDD6FE;
+      font-size: 13px;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .cta-primary a {
+      display: inline-block;
+      background: #ffffff;
+      color: #3B0764;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .cta-primary a:hover { background: #EDE9FE; }
+
+    .cta-secondary {
+      border: 2px solid #7C3AED;
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    .cta-secondary p {
+      color: #4B5563;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .cta-secondary a {
+      display: inline-block;
+      background: #7C3AED;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px 24px;
+      border-radius: 8px;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #1f1535;
+      padding: 32px 40px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: #9CA3AF;
+      line-height: 1.8;
+    }
+
+    .footer a { color: #A78BFA; }
+
+    .footer .brand {
+      font-size: 14px;
+      font-weight: 600;
+      color: #DDD6FE;
+      margin-bottom: 8px;
+    }
+
+    /* UTILITY */
+    .spacer-16 { height: 16px; }
+    .spacer-8 { height: 8px; }
+
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 26px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #19</div>
+    <h1 class="header-title">La semana en que la IA<br><span>empezó a construirse a sí misma</span></h1>
+    <div class="header-subtitle">Semana del 1 al 7 de junio de 2026</div>
+    <div class="header-meta">📬 Tu dosis semanal de inteligencia artificial aplicada · por Mary Cárdenas de Gil</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Esta semana cruzamos una línea simbólica: Anthropic reveló que <strong>más del 80% del código de su propio sistema ya lo escribe Claude</strong>, y casi en paralelo presentó su salida a bolsa con una valoración de $965B. No es coincidencia. La IA dejó de ser solo algo que usamos y empezó a ser algo que se construye, se financia y se gobierna a sí misma.</p>
+    <p style="margin-top: 10px;">Mientras tanto, los agentes cruzaron de "conversar" a "actuar": Meta lanzó uno que cierra ventas y cobra en WhatsApp, Microsoft presentó Scout para gestionar tu calendario solo, y Google firmó $920M al mes solo por cómputo. Esto es lo que importa para quienes lideramos proyectos y negocios. Mi análisis:</p>
+    <div class="signature">— Mary Cárdenas de Gil | marycardenas.ai</div>
+  </div>
+
+  <!-- SECCIÓN: MODELOS Y TECNOLOGÍA -->
+  <div class="spacer-16"></div>
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">🤖</span>
+      <span class="text">Modelos y Tecnología</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">EL DATO DE LA SEMANA</div>
+    <h3>Anthropic: "Cuando la IA se construye a sí misma"</h3>
+    <p>El Anthropic Institute publicó (4 jun) su primer gran informe, firmado por Marina Favaro y el cofundador Jack Clark. El dato central: a mayo de 2026, <strong>más del 80% del código que se integra al sistema de Anthropic lo escribe Claude</strong> — frente a un dígito antes de Claude Code (feb 2025). El ingeniero promedio integra hoy <strong>8× más código por día</strong> que en 2024. La advertencia: la "automejora recursiva" podría llegar antes de lo que esperamos, y aún no existe un "pedal de freno".</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Si Claude escribe el 80% del código de la empresa que lo creó, la pregunta ya no es "¿adoptamos IA?" sino "¿qué tareas de mi equipo seguirán siendo humanas en 18 meses?". Nuestro valor como líderes se desplaza de ejecutar a orquestar, validar y decidir. Ese es el músculo que toca entrenar ya.</p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT: ANTHROPIC IPO -->
+  <div class="highlight-box">
+    <h3>Anthropic presenta su salida a bolsa</h3>
+    <div>
+      <div class="stat">$965B</div>
+      <div class="stat-label">Valoración tras su Serie H de $65B — IPO confidencial ante la SEC (1 jun)</div>
+    </div>
+    <p style="margin-top: 14px;">Su tasa de ingresos anualizados llegó a <strong>$47B en mayo 2026</strong>, frente a $10B el año anterior. Se adelanta a OpenAI, que prepara su propia presentación. Una valoración cercana al billón para una empresa de 4 años marca el apetito del mercado por la IA aplicada.</p>
+    <div class="lectura" style="background: rgba(255,255,255,0.1); border-color: #C4B5FD; margin-top: 14px;">
+      <div class="lectura-label" style="color: #C4B5FD;">🔎 Mi lectura:</div>
+      <p style="color: #DDD6FE;">Las grandes consultoras (Accenture, Deloitte, Cognizant) ya apuestan fuerte por el ecosistema Anthropic. Donde se mueve el dinero institucional se moverán pronto los presupuestos de tus clientes.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">CÓDIGO ABIERTO</div>
+    <h3>Nvidia regala Nemotron 3 Ultra: el mejor modelo abierto de EE.UU.</h3>
+    <p>En Computex, Nvidia liberó <strong>Nemotron 3 Ultra</strong> con pesos abiertos: ~550.000M de parámetros (MoE), 1M de tokens de contexto y +300 tokens/seg. Puntúa 48 en el Artificial Analysis Intelligence Index — el mejor modelo abierto estadounidense — aunque el chino Kimi K2.6 sigue líder con 54. Disponible gratis en Hugging Face, OpenRouter y build.nvidia.com.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Que un modelo de frontera sea gratis y abierto cambia la economía para las empresas: puedes correr agentes potentes en tu propia infraestructura, sin enviar datos sensibles a una API externa. Para consultoras y áreas reguladas (finanzas, salud, legal), esto es soberanía de datos real.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">MICROSOFT BUILD 2026</div>
+    <h3>Scout: un agente "siempre activo" que gestiona tu trabajo</h3>
+    <p>Microsoft presentó <strong>Scout</strong> (2 jun), un agente personal construido sobre OpenClaw e integrado en Outlook, Teams, OneDrive y SharePoint. Programa reuniones entre zonas horarias, marca entregables próximos, bloquea tiempo en tu calendario y detecta decisiones estancadas. Incluye un sistema de conformidad de políticas con registro de auditoría e identidad gobernada (Entra).</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Para una PMO, un agente que detecta "decisiones estancadas" y bloquea tiempo automáticamente ataca justo los puntos ciegos de la gestión. El detalle clave es el registro de auditoría: esa es la diferencia entre un juguete y algo que compliance permitiría usar en serio.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: NEGOCIOS Y ESTRATEGIA -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">💼</span>
+      <span class="text">Negocios y Estrategia</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">AGENTES QUE VENDEN</div>
+    <h3>Meta lanza un agente que cierra ventas y cobra en WhatsApp</h3>
+    <p>En su conferencia Conversations (Londres), Meta presentó el <strong>Business Agent</strong>: agenda citas, califica leads, cierra ventas y procesa pagos — sin humano al otro lado — en WhatsApp, Instagram y Messenger. Más de 1 millón de negocios ya usaban sus chatbots previos. Empezar es gratis; vendrán planes de pago. Se conecta a Shopify, Zendesk y Shopee.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Para Latinoamérica esto es enorme: WhatsApp es EL canal de ventas de la región. Un agente que cierra transacciones dentro de WhatsApp pone e-commerce avanzado al alcance de pymes que nunca tuvieron equipo de ventas. La oportunidad de consultoría: diseñar el guion, los límites y la supervisión de estos agentes antes de soltarlos.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">CASO REAL · ROI</div>
+    <h3>+22% en reservas con "AI decisioning"</h3>
+    <p>Una marca de fidelización del sector belleza (94% de ventas ligadas a miembros) no lograba seguir el ritmo con A/B testing tradicional. Usando agentes de decisión de Hightouch sobre Databricks (aprendizaje por refuerzo para enviar la oferta correcta a cada cliente), logró <strong>+22% en reservas y +13% en transacciones recurrentes</strong>.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El patrón que recomiendo a mis clientes: no "uses IA" en abstracto. Elige UNA campaña repetitiva, define un objetivo claro y 3-5 variantes, y deja que el sistema optimice por cliente, no por segmento. El ROI llega con gobernanza, no con magia.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: PRODUCTIVIDAD -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">📋</span>
+      <span class="text">Productividad y Gestión</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">OPENAI</div>
+    <h3>ChatGPT estrena memoria "Dreaming": de asistente con amnesia a colaborador</h3>
+    <p>OpenAI rediseñó la memoria de ChatGPT (4 jun) con un proceso de fondo llamado <strong>"dreaming"</strong> que revisa y actualiza lo que sabe de ti con el tiempo. La recuperación de contexto subió de 41,5% (2024) a <strong>82,8% (2026)</strong> en sus evaluaciones internas, con ~5× menos cómputo. Hay una página de resumen de memoria editable. Primero para Plus y Pro en EE.UU., luego más países y planes Free/Go.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La memoria persistente convierte a ChatGPT en un colaborador que conoce tus proyectos y tu estilo. Recomendación práctica: revisa y depura esa página de memoria — la calidad de lo que recuerda determina la calidad de lo que produce.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: INVERSIÓN E INFRAESTRUCTURA -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">💰</span>
+      <span class="text">Inversión e Infraestructura</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">EL CUELLO DE BOTELLA</div>
+    <h3>Google pagará $920M al mes a SpaceX por cómputo</h3>
+    <p>De octubre 2026 a junio 2029, Google pagará <strong>$920 millones mensuales</strong> a SpaceX por ~110.000 GPU de NVIDIA en el centro de datos Colossus (de xAI, ahora parte de SpaceX). Lo describió como "capacidad puente" para la demanda de su plataforma de agentes Gemini Enterprise. En paralelo, Anthropic paga a SpaceX $1.250M/mes por el Colossus 1 cerca de Memphis.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Cuando Google — que tiene sus propios chips TPU — paga casi mil millones al mes por cómputo prestado, el mensaje es claro: el cuello de botella de la IA ya no es el talento ni los modelos, es la energía y los GPU.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: EDUCACIÓN -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">📚</span>
+      <span class="text">IA en Educación</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">ESTUDIO STANFORD</div>
+    <h3>Los tutores de IA superan a profesores de derecho el 75% de las veces</h3>
+    <p>16 profesores de contratos de 14 universidades juzgaron respuestas anónimas en 2.918 enfrentamientos entre sus propias respuestas y las de Gemini 2.5 Pro y NotebookLM. El profesorado se inclinó por la IA el <strong>75% de las veces</strong>; solo un profesor top se mantuvo a la par. Eran preguntas de criterio, no de respuesta única.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La ventaja del educador ya no está en "saber la respuesta" sino en diseñar la experiencia, hacer las preguntas correctas y desarrollar el juicio del alumno. Eso, precisamente, es lo que la IA todavía no reemplaza.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: REGULACIÓN -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">⚖️</span>
+      <span class="text">Regulación y Gobernanza</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">LEGAL</div>
+    <h3>CNN demanda a Perplexity · Reino Unido frena la búsqueda con IA de Google</h3>
+    <p>CNN demandó a <strong>Perplexity</strong> por usar su contenido sin autorización en sus resúmenes de IA. En paralelo, la autoridad de competencia británica (CMA) ordenó a <strong>Google</strong> permitir que los editores se excluyan de las funciones de búsqueda con IA sin salir de la búsqueda tradicional. Y líderes de OpenAI, Anthropic, DeepMind y Microsoft pidieron de forma conjunta el escrutinio obligatorio del ADN sintético.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La gobernanza de la IA pasó de debate académico a pelea por el poder y el dinero. Para cualquier organización, la lección es anticiparse: las políticas internas de uso de IA y protección de datos ya no pueden esperar.</p>
+    </div>
+  </div>
+
+  <!-- HERRAMIENTAS -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">🛠️</span>
+      <span class="text">Herramientas de la semana</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name">📊 Copilot + diagrams.net</div>
+      <div class="tool-desc">Copilot genera la estructura (Mermaid/XML) y draw.io la vuelve un diagrama editable. Mapas de procesos para clases y proyectos en minutos. app.diagrams.net</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎙️ Wispr Flow</div>
+      <div class="tool-desc">Dictado por voz que convierte tu habla en texto pulido en cualquier app. Redacta 3-4× más rápido. wisprflow.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📚 NotebookLM</div>
+      <div class="tool-desc">El cuaderno de IA de Google ahora con motor Veo 3: crea resúmenes, guías y hasta documentales desde tus propias fuentes. notebooklm.google.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📈 Otterly.AI</div>
+      <div class="tool-desc">"Google Analytics para chats de IA": rastrea si ChatGPT, Gemini y Perplexity mencionan tu marca. Clave para tu autoridad (GEO). Desde $29/mes.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">⚡ Whacka</div>
+      <div class="tool-desc">Describes una idea y genera una web-app (PWA) funcional desde el móvil. Ideal para prototipar y validar con clientes. whacka.app</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🤝 DoMyWork</div>
+      <div class="tool-desc">Agente que ejecuta tareas en 1.500+ apps desde un chat (leads, CRM, operaciones). Automatiza flujos sin programar. domywork.ai</div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN ESTRATÉGICA -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">💡</span>
+      <span class="text">Reflexión estratégica</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reflection">
+    <h3>De usar la IA a dirigir la IA</h3>
+    <p>La tendencia que conecta todo esta semana es una sola: <strong>la IA está pasando de ser una herramienta que usamos a ser un sistema que se construye, se financia y se gobierna a sí mismo.</strong> El 80% del código de Anthropic, los agentes que cierran ventas solos, los asistentes que gestionan tu calendario sin pedir permiso — todo apunta en la misma dirección.</p>
+    <p>Para quienes lideramos proyectos, equipos y negocios, la competencia del momento es pasar de operar a orquestar. No se trata de saber más prompts, sino de diseñar objetivos claros, definir las barreras correctas y conservar el criterio que ninguna máquina reemplaza todavía.</p>
+    <p>Mi pregunta para esta semana: <strong>¿Cuál es la primera tarea repetitiva de tu trabajo que podrías delegar a un agente de IA esta misma semana — y qué barreras de supervisión le pondrías antes de soltarlo?</strong></p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="section-divider">
+    <div class="section-label">
+      <span class="emoji">🤝</span>
+      <span class="text">Únete a la comunidad</span>
+    </div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff;">¿Quieres seguir la conversación en comunidad?</strong><br>Únete a la Comunidad IA Entusiastas — un espacio para profesionales que aplican IA en su trabajo, con acceso a recursos, discusiones y actualizaciones semanales.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la Comunidad IA</a>
+    </div>
+
+    <div class="cta-secondary">
+      <p>¿Quieres explorar cómo aplicar IA en tu empresa o consultoría? Agenda una sesión gratuita de descubrimiento de 30 minutos conmigo.</p>
+      <a href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión gratuita →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #19</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · Ateneo Empresarial<br>
+      Semana del 1 al 7 de junio de 2026<br><br>
+      Fuentes: Anthropic, OpenAI, TechCrunch, CNBC, Bloomberg, Fortune, Reuters, Nvidia,<br>
+      Microsoft, Stanford y 25+ newsletters especializados en IA.<br><br>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a> ·
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
