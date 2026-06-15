@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #20 — La semana en que un gobierno apagó la IA de frontera</title>
+  <meta name="description" content="EE.UU. obliga a Anthropic a apagar Fable 5 y Mythos 5 a nivel mundial, SpaceX hace la mayor IPO de la historia, OpenAI presenta su salida a bolsa y empieza la guerra de precios de la IA. Semana 8–14 junio 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f3f0f8;
+      font-family: 'Inter', sans-serif;
+      color: #1f1535;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%);
+      padding: 40px 40px 32px;
+      text-align: center;
+    }
+    .header-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800;
+      color: #ffffff; line-height: 1.2; margin-bottom: 8px;
+    }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta {
+      display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px;
+      padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* EDITORIAL */
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+
+    /* SECTION DIVIDER */
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #7C3AED;
+    }
+    .section-line {
+      height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE);
+      border-radius: 2px; margin-bottom: 20px;
+    }
+
+    /* NEWS CARD */
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card:hover { border-color: #C4B5FD; }
+    .news-card .tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px;
+      padding: 3px 8px; margin-bottom: 10px;
+    }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+
+    /* TOOLS GRID */
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+
+    /* REFLECTION */
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+
+    /* CTA BOXES */
+    .cta-block { margin: 0 40px 24px; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+
+    /* FOOTER */
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+
+    .spacer-16 { height: 16px; }
+    .spacer-8 { height: 8px; }
+
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 26px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #20</div>
+    <h1 class="header-title">La semana en que un gobierno<br><span>apagó la IA de frontera</span></h1>
+    <div class="header-subtitle">Semana del 8 al 14 de junio de 2026</div>
+    <div class="header-meta">📬 Tu dosis semanal de inteligencia artificial aplicada · por Mary Cárdenas de Gil</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Esta semana cruzamos una línea que no tiene vuelta atrás. Por primera vez en la historia, <strong>un gobierno —no una empresa— decidió quién puede usar un modelo de IA de frontera</strong>: EE.UU. obligó a Anthropic a apagar globalmente Claude Fable 5 y Mythos 5 apenas tres días después de lanzarlos. Mientras tanto, SpaceX protagonizó la mayor salida a bolsa de la historia, OpenAI presentó su IPO, y empezó —en serio— la guerra de precios de la IA.</p>
+    <p style="margin-top: 10px;">Detrás del espectáculo, la pregunta de fondo cambió: durante tres años nos preguntamos "¿qué puede hacer la IA?"; esta semana la pregunta pasó a ser "¿quién la controla y bajo qué reglas?". Eso nos obliga a pensar distinto sobre de quién dependemos. Esto es lo que importa para quienes lideramos proyectos y negocios. Mi análisis:</p>
+    <div class="signature">— Mary Cárdenas de Gil | marycardenas.ai</div>
+  </div>
+
+  <!-- SECCIÓN: MODELOS Y TECNOLOGÍA -->
+  <div class="spacer-16"></div>
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤖</span><span class="text">Modelos y Tecnología</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">LA NOTICIA DE LA SEMANA</div>
+    <h3>EE.UU. obliga a Anthropic a apagar Fable 5 y Mythos 5 en todo el mundo</h3>
+    <p>El viernes 12 de junio, el Departamento de Comercio de EE.UU. emitió una orden de control de exportaciones que, por seguridad nacional, prohíbe el acceso a cualquier "foreign national" —incluidos los empleados extranjeros de Anthropic—. Resultado: la empresa <strong>desactivó sus dos modelos más potentes para TODOS los clientes del planeta</strong>, y AWS revocó el acceso. El detonante fue un jailbreak demostrado por un tercero (el WSJ señala a Amazon). Anthropic, que dice haber hecho red-teaming por más de 1.000 horas, respondió que retirar un modelo usado por "cientos de millones de personas" por un jailbreak limitado es desproporcionado. Los modelos previos (Opus 4.8, Sonnet) no se afectan.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Este es el verdadero punto de inflexión. Construir procesos críticos sobre una sola API de IA ya es un riesgo operativo real: un proveedor puede degradar, restringir o apagar un modelo de un día para otro, por decisión propia o de un gobierno. Antes de poner un agente en producción, diseña arquitecturas multi-modelo y con plan B —incluyendo modelos abiertos como respaldo.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">LANZAMIENTO + POLÉMICA</div>
+    <h3>Claude Fable 5 y Mythos 5: potentes, caros… y con un "Fable Fiasco"</h3>
+    <p>Días antes del apagón, Anthropic lanzó Fable 5 (con clasificadores de seguridad) y Mythos 5 (sin ellos, solo para organizaciones aprobadas). Especificaciones: <strong>1 millón de tokens de contexto, $10/$50 por millón de tokens de entrada/salida</strong> (el doble que Opus 4.8) y retención de datos obligatoria de 30 días. El estreno trajo dos polémicas: el investigador Pliny the Liberator reventó sus filtros en menos de 48h, y se descubrió que Fable 5 reenrutaba en secreto sesiones pesadas a un modelo más débil. Anthropic se disculpó: "tomamos la decisión equivocada".</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Dos aprendizajes: a $50 por millón de tokens de salida, estos modelos premium solo se justifican para tareas de alto valor, no para volumen. Y la transparencia ya es parte del producto: saber qué hace realmente una herramienta por dentro debe formar parte de tu proceso de selección de IA.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">WWDC 2026</div>
+    <h3>Apple reconstruye Siri desde cero — pero no para la UE ni China</h3>
+    <p>Apple presentó "Siri AI", un asistente rediseñado por completo que llega con iOS 27 y el resto de sus sistemas este otoño, con app dedicada por primera vez. El detalle clave: <strong>no estará disponible inicialmente en iPhone/iPad en la Unión Europea (por regulación) ni en China</strong>. Además, iOS 27 promete apps que abren 30% más rápido, fotos que cargan 70% más rápido y AirDrop 80% más rápido.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El gran asistente de IA llega a mil millones de iPhones, pero la fragmentación por región confirma la tendencia de la semana: el mapa de quién puede usar qué IA se vuelve geopolítico. Para empresas globales, el "una herramienta para todos" se complica y exige planificar por mercado.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: INVERSIÓN -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💰</span><span class="text">Inversión e Infraestructura</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- HIGHLIGHT: SPACEX IPO -->
+  <div class="highlight-box">
+    <h3>SpaceX hace la mayor salida a bolsa de la historia</h3>
+    <div>
+      <div class="stat">$1,77 B</div>
+      <div class="stat-label">de valoración · recaudó $75.000M a $135/acción (ticker SPCX) · +19% en su debut</div>
+    </div>
+    <p style="margin-top: 14px;">Superó el récord de Saudi Aramco y empujó la valoración por encima de <strong>$2 billones</strong> el primer día. Con esto, Elon Musk se convirtió en el <strong>primer billonario (trillonario) del mundo</strong> (~$1,1 billones). El matiz: la empresa no es rentable (pérdida de $4.280M el último trimestre) y gran parte de su capex va a cómputo de IA tras fusionarse con xAI.</p>
+    <div class="lectura" style="background: rgba(255,255,255,0.1); border-color: #C4B5FD; margin-top: 14px;">
+      <div class="lectura-label" style="color: #C4B5FD;">🔎 Mi lectura:</div>
+      <p style="color: #DDD6FE;">La señal es el apetito brutal del mercado por la infraestructura que sostiene la IA. Donde el dinero institucional invierte hoy, estarán los presupuestos de tus clientes mañana.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">SALIDAS A BOLSA</div>
+    <h3>OpenAI presenta su IPO confidencial, días después de Anthropic</h3>
+    <p>OpenAI presentó su salida a bolsa, valorada en <strong>$852.000 millones</strong>. Según el WSJ, no alcanzó sus metas de usuarios e ingresos, espera quemar <strong>$85.000 millones en 2028</strong> y no proyecta caja positiva hasta 2030 (pese a sus 900 millones de usuarios semanales). Anthropic, por su parte, dice estar cerca de su primer trimestre con beneficios y superó el billón de dólares en mercados secundarios.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Dos de los laboratorios más importantes saliendo a bolsa casi a la vez marca el fin de la era "startup" de la IA generativa. Ahora rinden cuentas a accionistas cada trimestre, lo que presionará hacia la rentabilidad —y, probablemente, hacia productos más caros o con publicidad.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">LA PRÓXIMA OLA</div>
+    <h3>Bezos sale de la sombra: $41.000M para la "IA física"</h3>
+    <p>Project Prometheus, la startup de IA industrial de Jeff Bezos (co-CEO) y Vik Bajaj, emergió con una ronda de <strong>$12.000 millones a una valoración de $41.000 millones</strong> y ~150 personas fichadas de Meta, OpenAI y DeepMind. Su meta: un "artificial general engineer" que diseñe, pruebe y fabrique sistemas físicos. Bezos: "algo que hoy le tomaría a 100 ingenieros 10 años, si lo conviertes en 10 ingenieros y un año, construyes muchísimas más cosas".</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La próxima ola de IA no es solo software: es la IA aplicada al mundo físico (manufactura, ingeniería, materiales). Para industrias de operaciones y logística, anticipa una transformación tan grande como la que ya vive el trabajo de conocimiento. Conviene empezar a pensarlo.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: NEGOCIOS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💼</span><span class="text">Negocios y Estrategia</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">GUERRA DE PRECIOS</div>
+    <h3>Empieza la guerra de precios de la IA</h3>
+    <p>Tras el lanzamiento de Anthropic, <strong>OpenAI explora recortes "drásticos" de sus precios de tokens y Google rebajó su tier más barato</strong>. Los analistas ya hablan de "AI price war" y de los primeros signos de commoditización del cómputo. Para los presupuestos, buena noticia: el costo por token va a bajar.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Si la inteligencia se vuelve barata y commodity, la ventaja competitiva se desplaza a <strong>cómo la integras en tus procesos y a la calidad de tus datos</strong>, no a qué modelo usas. Ahí, precisamente, es donde la consultoría y la gestión del cambio aportan el valor que ningún modelo replica.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">CASO REAL · ROI</div>
+    <h3>IKEA se vuelve agéntica: de 6 horas a 30 minutos</h3>
+    <p>Parag Parekh, chief digital officer de Ingka Group (matriz de IKEA), contó a McKinsey que, con escaneo de habitaciones por LiDAR, <strong>la IA ahora diseña un espacio en 30 minutos, frente a las 6 horas y €70 de antes</strong>. En paralelo, Oracle lanzó 22 agentes para ERP/HR/supply chain que heredan permisos y límites de gasto del empleado, y Coinbase presentó cuentas para que agentes muevan dinero de forma autónoma con sandboxes.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Los agentes cruzaron de "conversar" a "actuar y pagar". La pieza crítica que todos comparten —y que debes exigir en cualquier despliegue— es la gobernanza: límites de gasto, herencia de permisos y registro de auditoría. Sin eso, un agente autónomo es un riesgo, no una ventaja.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: PRODUCTIVIDAD -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">📋</span><span class="text">Gestión de Proyectos y Productividad</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">PMI · LO QUE NO PUEDES IGNORAR</div>
+    <h3>PMI lanza el primer estándar global de IA para portafolios, programas y proyectos</h3>
+    <p>El Project Management Institute publicó <strong>"The Standard for Artificial Intelligence in Portfolio, Program, and Project Management"</strong>, su primera guía global para los equipos que entregan iniciativas de IA: cómo gobernarlas, integrarlas y dirigirlas dentro de portafolios y programas. En paralelo, PMI abrió a <strong>revisión pública la 5.ª edición de The Standard for Portfolio Management</strong>, con modelos, herramientas y técnicas actualizados para la gestión moderna de portafolios.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Esto es enorme para nuestra comunidad de PMs y líderes de PMO: la IA deja de ser un experimento suelto y entra al marco formal de la disciplina. Mi recomendación: descarga el estándar y empieza a alinear tu PMO con él ya —ser de los primeros en dominarlo es una ventaja real de autoridad y empleabilidad—. Y si participas en la revisión pública de la 5.ª edición de portafolios, tu voz queda dentro del estándar que todos usaremos.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">ADOPCIÓN</div>
+    <h3>El verdadero cuello de botella de la IA son los humanos</h3>
+    <p>En el MIT Sloan CIO Symposium y en Fortune Brainstorm Tech, el consenso fue claro: la barrera real para adoptar IA no es la tecnología, sino lo psicológico — <strong>desaprender flujos de trabajo de 20 años</strong>. La recomendación recurrente: gestionar los agentes "como empleados", con onboarding, supervisión y métricas. (Dato: Codex ya tiene 5 millones de usuarios semanales; 1 de cada 5 no es desarrollador.)</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Esto valida lo que vivo con mis clientes: el reto no es instalar la herramienta, es el cambio. Adoptar IA es, ante todo, un proyecto de transformación organizacional y gestión de personas —donde el Lean Change Management y la agilidad marcan la diferencia—, no un proyecto de TI.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: EDUCACIÓN -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">📚</span><span class="text">IA en Educación</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">RECURSO GRATUITO</div>
+    <h3>OpenAI libera 3 cursos gratuitos (con material para educadores)</h3>
+    <p>OpenAI Academy publicó tres cursos gratis en niveles progresivos: <strong>AI Foundations</strong> (conceptos y prácticas esenciales), <strong>Applied AI Foundations</strong> (convertir prompts en flujos de trabajo reutilizables) y <strong>Agents and Workflows</strong> (dirigir trabajo con agentes y supervisión humana). Incluyen recursos específicos para educadores de K12 y educación superior.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Probablemente el recurso gratuito más valioso de la semana para nuestra comunidad. Si eres formador, consultor o líder de aprendizaje, son una forma estructurada de actualizar tus competencias —y un excelente material base para diseñar tu propia formación interna en IA.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: LATAM -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">IA en Latinoamérica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">MUNDIAL 2026 · LATAM</div>
+    <h3>El Mundial arranca en Ciudad de México con la IA de protagonista</h3>
+    <p>La Copa del Mundo de la FIFA 2026 inauguró en Ciudad de México con la IA en el centro del juego, y la estrella tecnológica es el <strong>balón oficial de Adidas</strong>: lleva un sensor inercial que <strong>transmite datos de movimiento 500 veces por segundo</strong>, registrando cada toque, trayectoria y milisegundo del partido en tiempo real —prácticamente captura el evento entero como un flujo de datos vivo—. Esa información alimenta el chatbot <strong>Football AI Pro</strong>, que da a los 48 equipos analítica avanzada, y se combina con avatares 3D de cada jugador. Google, además, llevó Gemini al patrocinio de la selección de Argentina para análisis de entrenamiento y estadísticas en vivo.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Un balón que registra el evento completo, 500 veces por segundo, es la mejor metáfora de hacia dónde va todo: cuando cada acción se convierte en dato en tiempo real, la ventaja ya no está en tener la información, sino en quién la convierte en decisiones. En tu organización ocurre igual —reuniones, procesos, atención al cliente—: lo que se mide, se puede mejorar. La pregunta no es si capturar los datos, sino qué decisión vas a automatizar con ellos.</p>
+    </div>
+  </div>
+
+  <!-- HERRAMIENTAS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name">📚 NotebookLM</div>
+      <div class="tool-desc">El favorito de la comunidad. El cuaderno de IA de Google convierte tus fuentes en notas buscables, resúmenes, podcasts y presentaciones; traduce y explica PDFs. Ideal para onboarding y reuniones. notebooklm.google</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎯 Kimi Slides (Moonshot)</div>
+      <div class="tool-desc">Genera presentaciones completas desde un prompt o un informe existente, con SmartArt editable (líneas de tiempo, flujos) y citas integradas. Modos Adaptativo y Visual. Potente y gratis. kimi.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📊 Gamma</div>
+      <div class="tool-desc">Presentaciones, sitios web y documentos profesionales sin código, desde un prompt o tus notas. Una propuesta pulida en minutos. gamma.app</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔎 Perplexity</div>
+      <div class="tool-desc">El buscador con IA que responde con fuentes citadas y verificables. Perfecto para research rápido y riguroso antes de un informe o una clase. perplexity.ai</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎙️ ElevenLabs</div>
+      <div class="tool-desc">Voces de IA ultrarrealistas en decenas de idiomas. Para narrar cursos, audios de marca y podcasts sin estudio de grabación. elevenlabs.io</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎨 Canva (Magic Studio)</div>
+      <div class="tool-desc">Diseño con IA al alcance de todos: presentaciones, gráficos para redes y texto-a-imagen con tu identidad de marca, sin diseñador. canva.com</div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN ESTRATÉGICA -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💡</span><span class="text">Reflexión estratégica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reflection">
+    <h3>De "¿qué puede hacer la IA?" a "¿quién la controla?"</h3>
+    <p>La tendencia que conecta todo esta semana es el paso de la IA a una nueva fase: <strong>la del control</strong>. Un gobierno apagó modelos de frontera, dos laboratorios salieron a bolsa, los agentes empezaron a mover dinero real, y los propios creadores piden ser regulados. La IA dejó de ser un experimento técnico para convertirse en infraestructura crítica, geopolítica y financiera.</p>
+    <p>Para quienes lideramos proyectos, equipos y negocios, la implicación es concreta: <strong>depender de un solo proveedor de IA es ahora un riesgo estratégico</strong>, igual que depender de un único proveedor de energía o de un único cliente. La resiliencia —arquitecturas flexibles, planes B, gobernanza clara y supervisión humana— pesa tanto como la innovación.</p>
+    <p>Mi pregunta para esta semana: <strong>si el proveedor de IA del que más dependes hoy cambiara sus reglas, subiera el precio o cortara el acceso mañana, ¿qué pasaría con tu operación — y vale la pena empezar a construir tu plan B esta misma semana?</strong></p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤝</span><span class="text">Únete a la comunidad</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff;">¿Quieres seguir la conversación en comunidad?</strong><br>Únete a la Comunidad IA Entusiastas — un espacio para profesionales que aplican IA en su trabajo, con acceso a recursos, discusiones y actualizaciones semanales.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la Comunidad IA</a>
+    </div>
+
+    <div class="cta-secondary">
+      <p>¿Quieres explorar cómo aplicar IA en tu empresa o consultoría? Agenda una sesión gratuita de descubrimiento de 30 minutos conmigo.</p>
+      <a href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión gratuita →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #20</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · Ateneo Empresarial<br>
+      Semana del 8 al 14 de junio de 2026<br><br>
+      Fuentes: Anthropic, OpenAI, Apple, TechCrunch, Reuters, CNBC, NPR, CNN, McKinsey,<br>
+      Superintelligence, The AI Colony, App Economy Insights y 27+ newsletters especializados en IA.<br><br>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a> ·
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
