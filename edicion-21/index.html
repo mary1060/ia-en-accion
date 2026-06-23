@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #21 — La semana en que la IA se sentó en la mesa del G7</title>
+  <meta name="description" content="El G7 negocia quién controla la IA de frontera, el modelo chino abierto GLM 5.2 programa a la altura de los Claude Opus, Microsoft abandona el chatbot por las SuperApps agénticas y Amazon cancela la película de Sam Altman. Semana 15–21 junio 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f3f0f8;
+      font-family: 'Inter', sans-serif;
+      color: #1f1535;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%);
+      padding: 40px 40px 32px;
+      text-align: center;
+    }
+    .header-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800;
+      color: #ffffff; line-height: 1.2; margin-bottom: 8px;
+    }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta {
+      display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px;
+      padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* EDITORIAL */
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+
+    /* SECTION DIVIDER */
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #7C3AED;
+    }
+    .section-line {
+      height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE);
+      border-radius: 2px; margin-bottom: 20px;
+    }
+
+    /* NEWS CARD */
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card:hover { border-color: #C4B5FD; }
+    .news-card .tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px;
+      padding: 3px 8px; margin-bottom: 10px;
+    }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+
+    /* TOOLS GRID */
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+
+    /* REFLECTION */
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+
+    /* CTA BOXES */
+    .cta-block { margin: 0 40px 24px; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+
+    /* FOOTER */
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+
+    .spacer-16 { height: 16px; }
+    .spacer-8 { height: 8px; }
+
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 26px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #21</div>
+    <h1 class="header-title">La semana en que la IA se sentó<br><span>en la mesa del G7</span></h1>
+    <div class="header-subtitle">Semana del 15 al 21 de junio de 2026</div>
+    <div class="header-meta">📬 Tu dosis semanal de inteligencia artificial aplicada · por Mary Cárdenas de Gil</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Si la semana pasada un gobierno apagó la IA de frontera, esta semana esa decisión llegó a la mesa de los presidentes. En la cumbre del <strong>G7 en Evian</strong>, jefes de Estado y los CEOs de las mayores empresas de IA negociaron, cara a cara, quién controla la tecnología y bajo qué reglas. Y mientras Occidente discute el acceso, un <strong>modelo chino abierto, GLM 5.2, escaló hasta programar a la altura de los Claude Opus</strong> a una fracción del precio.</p>
+    <p style="margin-top: 10px;">El hilo de la semana es claro: el poder ya no está solo en tener el modelo más inteligente, sino en <strong>poder usarlo</strong>. En paralelo, Microsoft abandonó el chatbot por las "SuperApps" agénticas, un Nobel cambió de bando y hasta Hollywood entró en escena. Esto es lo que importa para quienes lideramos proyectos y negocios. Mi análisis:</p>
+    <div class="signature">— Mary Cárdenas de Gil | marycardenas.ai</div>
+  </div>
+
+  <!-- SECCIÓN: MODELOS Y TECNOLOGÍA -->
+  <div class="spacer-16"></div>
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤖</span><span class="text">Modelos y Tecnología</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">LA NOTICIA DE LA SEMANA</div>
+    <h3>La IA se sienta en la mesa del G7: presidentes y CEOs negocian quién controla la frontera</h3>
+    <p>En la cumbre del G7 en <strong>Evian-les-Bains (17 de junio)</strong>, una sesión a puerta cerrada reunió a <strong>Trump, Macron, Modi y Mark Carney</strong> con los CEOs de las mayores empresas de IA: <strong>Sam Altman (OpenAI), Dario Amodei (Anthropic) y Demis Hassabis (Google DeepMind)</strong>, además de Arthur Mensch (Mistral), Marc Benioff (Salesforce) y Aidan Gomez (Cohere). Tras el apagón de Anthropic —que tuvo unos 90 minutos para cumplir la orden—, Amodei y Hassabis pidieron una "coalición liderada por EE.UU." para coordinar estándares globales, y Altman propuso un foro internacional de estándares de seguridad. Macron criticó la medida estadounidense como una "reacción estrictamente nacionalista". De ahí surgió el esquema <strong>"Trusted Partners"</strong>: una vía de acceso preferente a la mejor IA para aliados de confianza.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La IA dejó de ser un asunto técnico para convertirse en política de Estado. La consecuencia práctica es enorme: el acceso a la mejor IA dependerá cada vez más de la geografía y de las alianzas, no solo de tu presupuesto. Para empresas en LATAM y Europa, esto refuerza una sola estrategia: diversificar proveedores y no amarrar procesos críticos a una tecnología que una decisión política puede cerrar.</p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT: GLM 5.2 -->
+  <div class="highlight-box">
+    <h3>GLM 5.2: el modelo chino abierto que programa a la altura de los Claude Opus</h3>
+    <div>
+      <div class="stat">#2</div>
+      <div class="stat-label">en el ranking de programación de Arena (Elo 1.595) · solo detrás del suspendido Fable 5 · licencia MIT</div>
+    </div>
+    <p style="margin-top: 14px;">La empresa china <strong>Z.ai</strong> lanzó <strong>GLM 5.2</strong>, un modelo open source que superó a todas las variantes de Claude Opus, a Qwen-3.7 Max y a Gemini-3.5 Flash en coding, y le gana a GPT-5.5 en SWE-bench Pro (62,1 vs 58,6). Es un MoE de 744.000 millones de parámetros (40.000M activos) con 1 millón de tokens de contexto, y cuesta <strong>~$1,40 / $4,40 por millón de tokens: una sexta parte del precio de GPT-5.5</strong>.</p>
+    <div class="lectura" style="background: rgba(255,255,255,0.1); border-color: #C4B5FD; margin-top: 14px;">
+      <div class="lectura-label" style="color: #C4B5FD;">🔎 Mi lectura:</div>
+      <p style="color: #DDD6FE;">Mientras Washington mantiene sus mejores modelos offline, un modelo chino abierto y baratísimo escala el ranking de programación. Para consultoras y áreas técnicas, esto es soberanía de datos y ahorro brutal: puedes correr IA de primer nivel en tu propia infraestructura. El nuevo poder no es tener el modelo más listo, sino poder usarlo.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">MICROSOFT</div>
+    <h3>Microsoft abandona el chatbot: llegan las "SuperApps" agénticas</h3>
+    <p>Microsoft dio un giro decisivo de los chatbots simples hacia aplicaciones que <strong>operan de forma autónoma</strong>. El 16 de junio lanzó globalmente <strong>Copilot Cowork</strong>, un sistema agéntico que ejecuta tareas complejas multi-herramienta de principio a fin, con <strong>límites de gasto, reportes de uso y elección de modelo</strong>. Lo acompaña <strong>Scout</strong>, un "autopilot" al que se le delegan trabajos completos sin necesidad de supervisión constante. Es el paso del asistente que conversa al sistema que ejecuta.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El chatbot fue el juguete; el agente es el producto. Para líderes y PMOs, un sistema con límites de gasto, reportes y auditoría incorporados es justo lo que compliance necesita para soltar agentes en serio. La pregunta ya no es "¿qué prompt escribo?", sino "¿qué proceso completo puedo delegar —y con qué barreras de supervisión?".</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: NEGOCIOS Y CULTURA -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💼</span><span class="text">Negocios y Cultura</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">CULTURA POP</div>
+    <h3>Amazon cancela la película sobre Sam Altman</h3>
+    <p>Amazon/MGM decidió <strong>traspasar a otros estudios "Artificial"</strong>, la película de Luca Guadagnino con Andrew Garfield en el papel de Sam Altman, sobre el caótico despido del CEO de OpenAI en 2023. Que un estudio suelte su propia película de prestigio es inusual —lo que, paradójicamente, ha hecho que muchos sospechen que el contenido es más jugoso de lo esperado.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La IA ya es cultura pop y poder al mismo tiempo. Que un gigante tan entrelazado con el ecosistema prefiera no estrenar una película crítica sobre un actor central de la industria dice mucho de cuán unidos están negocio, narrativa e influencia. Lección de marca: en esta industria, lo que se decide NO contar también es estrategia.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">GUERRA DE TALENTO</div>
+    <h3>Un Nobel deja Google DeepMind por Anthropic</h3>
+    <p><strong>John Jumper</strong>, Premio Nobel de Química 2024 por AlphaFold (el modelo que predice la estructura de las proteínas), deja Google DeepMind tras casi nueve años para unirse a <strong>Anthropic</strong>. Ambas empresas lo confirmaron. El movimiento encaja con la apuesta creciente de Anthropic por las ciencias de la vida, tras comprar la biotech Coefficient Bio por $400 millones en abril.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La guerra por el talento de élite es tan feroz como la de los chips, y marca hacia dónde va la próxima frontera: la IA aplicada a la ciencia y la biología. Para tu sector, vale la pena preguntarte qué problema "imposible" de tu dominio podría volverse tratable cuando la IA entre de lleno en él.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: PRODUCTIVIDAD -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">📋</span><span class="text">Productividad y Gestión</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">AGENTES CON MEMORIA</div>
+    <h3>ChatGPT, Perplexity y Codex: los agentes ahora recuerdan y repiten</h3>
+    <p>Tres actualizaciones apuntan en la misma dirección. <strong>ChatGPT</strong> renovó sus "Scheduled Tasks" con página dedicada y edición más flexible. <strong>Perplexity</strong> lanzó <strong>"Brain"</strong>, una memoria para su agente que mejora la precisión <strong>un 25% en tareas recurrentes</strong> y reduce el costo de cómputo un 13%. Y <strong>Codex</strong> estrenó <strong>"Record and Replay"</strong>: grabas una tarea en tu Mac (rellenar un gasto, sacar un reporte) y la empaqueta como una skill reutilizable.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La novedad ya no es que la IA responda, sino que recuerde y repita. Para PMs y consultores, esto convierte tareas repetitivas (seguimientos, reportes de estado) en skills que se ejecutan solas. Mi recomendación: toma UNA tarea que hagas cada semana y conviértela en tu primer "skill" reutilizable.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: INNOVACIÓN / SALUD -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚕️</span><span class="text">Innovación y Salud</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">IA EN EL MUNDO FÍSICO</div>
+    <h3>Midjourney se mete… en tu cuerpo</h3>
+    <p>Midjourney, conocida por generar imágenes, dio uno de los giros más inesperados del año: presentó un <strong>escáner corporal de ultrasonido</strong>. Cientos de miles de sensores producen un mapa 3D del cuerpo; la meta es hacerlo en <strong>menos de 60 segundos</strong> (el prototipo actual tarda ~20 minutos) frente a los 60-90 minutos de una resonancia. Planea abrir un "Midjourney Spa" en San Francisco, sujeto a aprobación de la FDA.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El caso de la semana de "IA aplicada al mundo físico". Que una empresa de imágenes generativas salte al diagnóstico médico muestra cómo se borran las fronteras entre sectores. La oportunidad —y el reto regulatorio— de la IA en salud apenas empieza, y va a redefinir industrias enteras.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: EDUCACIÓN Y LATAM -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Educación e IA en Latinoamérica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">RECURSOS · LATAM</div>
+    <h3>10 recursos de IA para investigación + el modelo abierto llega a la región</h3>
+    <p>El newsletter <em>IA para Educación</em> compartió <strong>10 recursos potenciados con IA para fuentes bibliográficas</strong>: Semantic Scholar, OpenAlex, Consensus, Elicit, SciSpace, Litmaps, ResearchRabbit, Connected Papers, BASE y CORE. En paralelo, medios latinos destacan que <strong>GLM "ya aparece junto a los modelos más avanzados"</strong> y que SpaceX compró Cursor (la herramienta de programación con IA) por $60.000 millones.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Para formadores e investigadores, estas herramientas elevan el rigor sin reemplazar el criterio. Y la llegada de modelos abiertos potentes y baratos como GLM es una gran noticia para LATAM: democratiza el acceso a IA de primer nivel sin depender de APIs extranjeras que pueden cortarse o encarecerse de un día para otro.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: REGULACIÓN / GEOPOLÍTICA -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚖️</span><span class="text">Regulación y Geopolítica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">UNA SEMANA DESPUÉS</div>
+    <h3>El apagón de Anthropic: "caprichoso y caótico", y con factura</h3>
+    <p>La orden de EE.UU. que obligó a Anthropic a desactivar Mythos 5 y Fable 5 sigue vigente. Se supo que <strong>SK Telecom</strong> fue el operador coreano señalado en el centro de los controles de exportación de Mythos. <em>The Economist</em> calificó la decisión de Trump de <strong>"caprichosa y caótica"</strong>, y los analistas resumen el daño en una frase: "no puedes confiar en algo que pueden apagar" —lo que, dicen, es "una gran ventaja para los modelos abiertos". Tras el G7, Trump afirmó que ya no ve a Anthropic como una amenaza de seguridad nacional, pero las restricciones no se han levantado.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La lección de la semana pasada se confirma y se agranda: depender de un único proveedor de IA es un riesgo geopolítico real. Los modelos abiertos (como GLM 5.2) dejan de ser un "plan B" y se vuelven un seguro estratégico. Si tu operación corre sobre una sola API, esta semana es tu señal para diseñar el respaldo.</p>
+    </div>
+  </div>
+
+  <!-- HERRAMIENTAS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name">📚 NotebookLM</div>
+      <div class="tool-desc">El favorito de la comunidad, ahora más potente: con su "source discovery" investiga un tema desde cero y genera un brief con fuentes citadas y una tabla comparativa. Ideal para evaluar proveedores u oportunidades con criterio. notebooklm.google</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🧠 Perplexity (Brain)</div>
+      <div class="tool-desc">El buscador con IA estrenó memoria para su agente: +25% de precisión en tareas recurrentes y respuestas con fuentes verificables. Para research rápido y riguroso. perplexity.ai</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📅 ChatGPT Scheduled Tasks</div>
+      <div class="tool-desc">Programa tareas recurrentes (resúmenes, recordatorios, reportes) con una página dedicada y edición flexible. Tu asistente trabajando en automático. chatgpt.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎬 Codex Record &amp; Replay</div>
+      <div class="tool-desc">Grabas una tarea en tu computadora y Codex la empaqueta como una skill reutilizable. Convierte un proceso manual en una automatización en minutos. developers.openai.com/codex</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎯 Kimi Slides (Moonshot)</div>
+      <div class="tool-desc">Genera presentaciones completas desde un prompt o un informe existente, con SmartArt editable y citas. Potente y gratis. kimi.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📊 Gamma</div>
+      <div class="tool-desc">Presentaciones, sitios web y documentos profesionales sin código, desde un prompt o tus notas. Una propuesta pulida en minutos. gamma.app</div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN ESTRATÉGICA -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💡</span><span class="text">Reflexión estratégica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reflection">
+    <h3>Del modelo más inteligente al modelo que puedes usar</h3>
+    <p>La semana conecta un G7 negociando el acceso a la IA, un modelo chino abierto escalando el ranking de programación, y analistas repitiendo que "no puedes confiar en algo que pueden apagar". El mensaje es uno solo: <strong>la ventaja competitiva se está desplazando de tener el modelo más potente a tener acceso garantizado y flexible a uno lo bastante bueno.</strong></p>
+    <p>Para quienes lideramos proyectos, equipos y negocios, esto cambia las prioridades. La pregunta estratégica del semestre ya no es "¿cuál es el mejor modelo?", sino "¿qué tan resiliente es mi acceso a la IA?". Los modelos abiertos, las arquitecturas multi-proveedor y la gobernanza clara dejan de ser un lujo técnico para volverse una decisión de continuidad del negocio.</p>
+    <p>Mi pregunta para esta semana: <strong>si tu proveedor principal de IA desapareciera mañana —por precio, por política o por una orden de exportación—, ¿cuánto tardarías en seguir operando? Ese número es tu verdadero nivel de madurez en IA.</strong></p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤝</span><span class="text">Únete a la comunidad</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff;">¿Quieres seguir la conversación en comunidad?</strong><br>Únete a la Comunidad IA Entusiastas — un espacio para profesionales que aplican IA en su trabajo, con acceso a recursos, discusiones y actualizaciones semanales.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la Comunidad IA</a>
+    </div>
+
+    <div class="cta-secondary">
+      <p>¿Quieres explorar cómo aplicar IA en tu empresa o consultoría? Agenda una sesión gratuita de descubrimiento de 30 minutos conmigo.</p>
+      <a href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión gratuita →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #21</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · Ateneo Empresarial<br>
+      Semana del 15 al 21 de junio de 2026<br><br>
+      Fuentes: Reuters, CNBC, TechCrunch, The Economist, Variety, Z.ai, Microsoft,<br>
+      Superintelligence, The AI Report, The Batch (DeepLearning.AI) y 27+ newsletters especializados en IA.<br><br>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a> ·
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
