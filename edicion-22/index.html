@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #22 — La semana en que la IA se volvió asunto de Estado, silicio y empleo</title>
+  <meta name="description" content="OpenAI presenta su primer chip Jalapeño, la Casa Blanca frena el lanzamiento de GPT-5.6, Santander confirma más de €500M de ahorro con IA y Oracle recorta 21.000 empleos. Semana 22–28 junio 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f3f0f8;
+      font-family: 'Inter', sans-serif;
+      color: #1f1535;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%);
+      padding: 40px 40px 32px;
+      text-align: center;
+    }
+    .header-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800;
+      color: #ffffff; line-height: 1.2; margin-bottom: 8px;
+    }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta {
+      display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px;
+      padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* EDITORIAL */
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+
+    /* SECTION DIVIDER */
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #7C3AED;
+    }
+    .section-line {
+      height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE);
+      border-radius: 2px; margin-bottom: 20px;
+    }
+
+    /* NEWS CARD */
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card:hover { border-color: #C4B5FD; }
+    .news-card .tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px;
+      padding: 3px 8px; margin-bottom: 10px;
+    }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+
+    /* TOOLS GRID */
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+
+    /* REFLECTION */
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+
+    /* CTA BOXES */
+    .cta-block { margin: 0 40px 24px; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+
+    /* FOOTER */
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+
+    .spacer-16 { height: 16px; }
+    .spacer-8 { height: 8px; }
+
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 26px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #22</div>
+    <h1 class="header-title">La semana en que la IA se volvió<br><span>asunto de Estado, silicio y empleo</span></h1>
+    <div class="header-subtitle">Semana del 22 al 28 de junio de 2026</div>
+    <div class="header-meta">📬 Tu dosis semanal de inteligencia artificial aplicada · por Mary Cárdenas de Gil</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Esta semana la IA dejó de ser solo una carrera de modelos y se volvió una <strong>cuestión de Estado, de silicio y de empleo</strong>. Tres fuerzas se cruzaron al mismo tiempo: Washington intervino directamente en qué modelo puede lanzarse y a quién, OpenAI presentó su <strong>primer chip propio</strong> para romper su dependencia de Nvidia, y por fin vimos cifras concretas —no promesas— de cómo la IA recorta costes y plantillas en grandes empresas.</p>
+    <p style="margin-top: 10px;">Para quienes lideramos proyectos, equipos y negocios, el mensaje es claro: la conversación pasó de <strong>"¿qué puede hacer la IA?"</strong> a <strong>"¿quién la controla, cuánto cuesta operarla y qué pasa con el trabajo humano?"</strong>. Seleccioné lo más relevante y accionable de las 17 fuentes que revisé esta semana. Mi análisis:</p>
+    <div class="signature">— Mary Cárdenas de Gil | marycardenas.ai</div>
+  </div>
+
+  <!-- SECCIÓN: MODELOS Y TECNOLOGÍA -->
+  <div class="spacer-16"></div>
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤖</span><span class="text">Modelos y Tecnología</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">LA NOTICIA DE LA SEMANA</div>
+    <h3>OpenAI presenta "Jalapeño", su primer chip propio, co-diseñado con Broadcom</h3>
+    <p>El <strong>24 de junio</strong>, OpenAI y Broadcom revelaron el <strong>Jalapeño</strong>: el primer chip de OpenAI, un ASIC del tamaño de un retículo <strong>diseñado desde cero para inferencia de LLM</strong> (ejecutar modelos ya entrenados, como ChatGPT o Codex). Se co-desarrolló del diseño al tape-out en <strong>nueve meses</strong> —posiblemente el ciclo de ASIC más rápido jamás logrado— y los propios modelos de OpenAI ayudaron a acelerar el diseño. Promete un <strong>rendimiento por vatio sustancialmente mejor</strong> que lo state-of-the-art, con despliegue inicial a finales de 2026 junto a Microsoft. El pre-entrenamiento seguirá en hardware Nvidia.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Cuando un comprador del tamaño de OpenAI fabrica su propio silicio, ataca el mayor costo oculto de la IA: la inferencia. Esto anticipa una caída estructural del precio por token en los próximos 18 meses. Si hoy descartas un caso de uso "porque sale caro en API", vuelve a hacer los números a fin de año: la ecuación va a cambiar.</p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT: GPT-5.6 -->
+  <div class="highlight-box">
+    <h3>Por primera vez, la Casa Blanca frena el lanzamiento de un modelo: GPT-5.6</h3>
+    <div>
+      <div class="stat">1ª vez</div>
+      <div class="stat-label">que el gobierno de EE.UU. pide restringir el lanzamiento de un modelo ANTES de publicarlo</div>
+    </div>
+    <p style="margin-top: 14px;">La Oficina del Director Nacional Cibernético y la de Ciencia y Tecnología pidieron a OpenAI <strong>limitar GPT-5.6 a un grupo reducido de socios aprobados</strong>, por sus capacidades avanzadas en ciberseguridad (consideradas "a la par" de Mythos de Anthropic). El modelo estrena una nueva nomenclatura con tres niveles: <strong>Sol</strong> (el insignia), <strong>Terra</strong> (rinde como GPT-5.5 a la <strong>mitad de coste</strong>) y <strong>Luna</strong> (el más económico, para cuentas gratuitas). Mientras, el export ban sobre Anthropic sigue: <strong>Fable 5 continúa apagado</strong> para todo el mundo.</p>
+    <div class="lectura" style="background: rgba(255,255,255,0.1); border-color: #C4B5FD; margin-top: 14px;">
+      <div class="lectura-label" style="color: #C4B5FD;">🔎 Mi lectura:</div>
+      <p style="color: #DDD6FE;">La capacidad de un modelo ya no garantiza su disponibilidad. La gobernanza geopolítica se vuelve una variable de planificación. Si tu estrategia depende de "el modelo más potente", necesitas un plan B con modelos abiertos o regionales: un viernes a las 17:21 te lo pueden apagar por decreto.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">PRODUCTIVIDAD</div>
+    <h3>Claude Tag llega a Slack: la IA pasa de herramienta a "compañero de equipo"</h3>
+    <p>Anthropic lanzó <strong>Claude Tag</strong>: un Claude siempre activo dentro de Slack al que etiquetas como a un colega. Cada mención crea una <strong>instancia aislada en sandbox</strong> (clona repos, escribe, prueba y se destruye), con controles de admin, <strong>topes de gasto por canal y registro de auditoría de cada solicitud</strong>. Vigila canales, redacta Pull Requests, gestiona tickets y da seguimiento a hilos olvidados. Dato revelador: Anthropic ya genera el <strong>65% de su propio código</strong> con su Claude interno. La vieja app "Claude in Slack" se retira el 3 de agosto.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Para PMOs y líderes: el patrón ganador no es "un chatbot al lado", sino agentes integrados donde ya vive el trabajo —Slack, Teams, el tracker—. El nuevo entregable del Project Manager es diseñar el flujo y los guardarraíles: permisos, topes de gasto y auditoría. Justo lo que compliance necesita para soltar agentes en serio.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: NEGOCIOS Y ESTRATEGIA -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💼</span><span class="text">Negocios y Estrategia</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">EL DATO EN EUROS</div>
+    <h3>Santander: más de €500M de ahorro con IA (y la prueba de que ya genera valor medible)</h3>
+    <p>Banco Santander apunta a recortar <strong>más de €500 millones (£433M)</strong> acelerando IA globalmente, con la meta de <strong>más de €1.000M</strong> en valor —ingresos más ahorros— entre 2026 y 2028, de los cuales más de la mitad vendrá de reducción de costes. Despliega IA a sus <strong>185.000 empleados</strong>. Solo en UK, la IA de voz atenderá hasta 240.000 llamadas (el 40% del volumen anual), liberando 45.000 horas. Referencia previa: Lloyds reportó £50M de beneficio por IA en 2025.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Esta es la cifra que debes llevar a tu comité o a tus clientes: la IA dejó de medirse en "pilotos" y empezó a medirse en euros ahorrados y horas liberadas. El marco "valor = ingresos + ahorro de costes, a 3 años" es perfectamente replicable en una PYME o una consultoría. Empieza por un proceso, mide las horas, y multiplica.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">REORDENAMIENTO</div>
+    <h3>Notion se vuelve "agent-first" y la fiebre de adquisiciones llega a los $86.000M</h3>
+    <p>SpaceX, Salesforce y Fox anunciaron <strong>~$86.000M en adquisiciones en una sola semana</strong> —comprando "puntos de control", no ingresos—; SpaceX adquiriría Anysphere (matriz de Cursor) por $60.000M. En paralelo, Notion se redefine como <strong>"espacio de trabajo agent-first"</strong>: sus equipos crearon <strong>más de 1 millón de agentes personalizados</strong> desde febrero, y su COO resume la tesis del momento como "pasar de comprar software a comprar trabajo". Adobe, por su parte, adquirió Topaz Labs (mejora de imagen y vídeo).</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>"De comprar software a comprar trabajo" es la frase que define el semestre. El valor se desplaza de las funciones a los resultados. Pregúntate qué tareas de tu negocio comprarías "ya hechas" si pudieras —ahí están tus primeros candidatos a agente.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: EMPLEO -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">👥</span><span class="text">Empleo e Impacto Humano</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">MERCADO LABORAL</div>
+    <h3>Oracle recorta ~21.000 empleos mientras invierte $50.000M en infraestructura de IA</h3>
+    <p>Oracle eliminó <strong>~21.000 empleos en un año</strong> (13% de la plantilla, de 162.000 a ~141.000) mientras destina <strong>≥$50.000M</strong> a data centers para clientes como OpenAI y Meta. La reasignación de capital —de personas a cómputo— se vuelve explícita. En el otro extremo del termómetro, datos de Anthropic muestran que <strong>~33% de los usuarios dice que la IA ya maneja entre el 30% y el 60% de sus tareas</strong>, y un 26% espera que asuma la mayoría de su trabajo en 12 meses. Además, el <strong>77% de las PYMES de EE.UU.</strong> ya usa IA regularmente (subió desde el 48% a mediados de 2024).</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El dato accionable: la IA no está "viniendo", ya hace entre el 30% y el 60% de muchas tareas. La pregunta de carrera ya no es "¿me reemplaza?", sino <strong>"¿qué 40% de mi trabajo es irreemplaziblemente humano —criterio, relación, contexto— y cómo lo amplifico con IA?"</strong>. Esa es la conversación que debes tener con tu equipo esta semana.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: REGULACIÓN Y SOCIEDAD -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚖️</span><span class="text">Regulación y Sociedad</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">CUMPLIMIENTO · EUROPA</div>
+    <h3>Desde el 2 de agosto, Europa exige etiquetar todo contenido generado por IA</h3>
+    <p>Entran en vigor las obligaciones de transparencia (Artículo 50) de la <strong>Ley de IA de la UE</strong>: quien genere contenido sintético —<strong>texto, imagen, audio o vídeo</strong>— deberá marcarlo en formato legible por máquina (marca de agua/metadatos) y avisar al usuario. No se limita a sistemas de alto riesgo: aplica a <strong>toda empresa que use IA generativa</strong>. Las multas llegan a <strong>€15 millones o el 3% de la facturación anual mundial</strong>. Los sistemas ya en el mercado tienen hasta el 2 de diciembre de 2026 para cumplir.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Esto te toca aunque no seas una tecnológica. Si tu empresa o tu marketing usan imágenes, textos o vídeos hechos con IA y operan en la UE, necesitas un protocolo de etiquetado ya. Inclúyelo como un punto concreto de cumplimiento en cualquier proyecto de adopción de IA este semestre.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">SECTOR LEGAL</div>
+    <h3>Una IA gana un juicio frente a abogados humanos en Reino Unido (por £400 vs miles)</h3>
+    <p><strong>Garfield AI</strong>, el primer despacho con IA regulado del país, preparó íntegramente un caso de impago (escritos, declaraciones, documentos de juicio) y <strong>ganó en el Wandsworth County Court</strong>, recuperando <strong>£7.000</strong> para su clienta. Ella pagó ~£400 en honorarios de IA frente al solicitor + barrister de la parte contraria. La firma ya procesó <strong>+600 reclamaciones</strong> y recuperó ~£500.000. Un humano presentó el caso en sala; la IA hizo el resto. Algunos despachos ya migran de "cobro por horas" a "cobro por proyecto".</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Cuando una IA litiga un caso de £7.000 por £400, el modelo de "facturar por horas" se tambalea. No reemplaza al profesional, pero redefine qué parte del trabajo es facturable. La misma pregunta vale para tu consultoría: ¿qué cobras por horas que el cliente pronto esperará "ya resuelto"?</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">EDUCACIÓN</div>
+    <h3>Noruega prohíbe la IA generativa en primaria desde septiembre</h3>
+    <p>El gobierno noruego prohibirá la IA generativa a los alumnos de <strong>primaria (grados 1-7, menores de 13)</strong> para proteger el desarrollo de habilidades cognitivas básicas; entre 14-16 años solo bajo estricta supervisión, y a partir de los 17 habrá enseñanza dirigida de competencias de IA. El gobierno aumentará el presupuesto para volver a los libros frente a las tabletas.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Hay un debate legítimo entre proteger el pensamiento propio y preparar para un futuro con IA. Mi postura para la formación de adultos: prohibir no enseña criterio. El reto no es vetar la herramienta, sino enseñar el "cuándo sí, cuándo no y cómo verificar". Eso es justo lo que las empresas tendrán que enseñar a sus equipos.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: HERRAMIENTAS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name">🏷️ Claude Tag (Slack)</div>
+      <div class="tool-desc">Etiqueta a Claude como a un colega en Slack: vigila canales, redacta PRs y da seguimiento a hilos, con topes de gasto y auditoría. claude.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">✏️ Excalidraw + IA</div>
+      <div class="tool-desc">Lienzo open-source estilo boceto. Genera diagramas desde texto o Mermaid: ideal para clases, procesos y mapas de proyecto. excalidraw.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">⚙️ Gumloop</div>
+      <div class="tool-desc">Automatiza flujos con nodos de IA (scrapea → resume con Claude → publica en Slack). De 3 h/semana a automático el domingo. gumloop.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📄 Mistral OCR 4</div>
+      <div class="tool-desc">Lee documentos en 170 idiomas con puntuación de confianza palabra por palabra. Auto-hospedable o ~$4 por mil páginas. mistral.ai</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎬 Seedance 2.5 (ByteDance)</div>
+      <div class="tool-desc">Vídeo IA 4K nativo de 30s con audio en una sola pasada; acepta 50 referencias. Anuncios y piezas sociales bilingües. seed.bytedance.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📊 Gamma</div>
+      <div class="tool-desc">Presentaciones, sitios web y documentos profesionales desde un prompt o tus notas. Una propuesta pulida en minutos. gamma.app</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎨 HubSpot AI Prompts (gratis)</div>
+      <div class="tool-desc">+1.000 prompts de marketing y el sistema "One Brief, 100 Assets": de un brief a 100+ piezas visuales coherentes con tu marca, sin sesiones de foto. offers.hubspot.com/ai-prompts</div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN ESTRATÉGICA -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💡</span><span class="text">Reflexión estratégica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reflection">
+    <h3>La IA maduró de promesa tecnológica a infraestructura crítica</h3>
+    <p>Si tuviera que resumir la semana en una frase: <strong>la IA dejó de ser una promesa para convertirse en infraestructura crítica</strong> —y todo lo que es crítico atrae al Estado, al capital y al debate sobre el empleo. Eso cambia nuestra agenda como líderes.</p>
+    <p>La ventaja competitiva ya no será "tener acceso al mejor modelo" (puede apagarse por decreto un viernes), sino <strong>diseñar flujos de trabajo resilientes</strong>: agentes integrados donde vive el trabajo, con guardarraíles claros, y la flexibilidad de cambiar de modelo sin rehacer todo.</p>
+    <p>Mi pregunta para esta semana: <strong>¿qué proceso repetitivo de tu equipo podrías convertir en un agente con permisos y auditoría —y qué parte irreemplaziblemente humana quieres proteger y amplificar?</strong> Esa respuesta es tu verdadero plan de IA.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤝</span><span class="text">Únete a la comunidad</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff;">¿Quieres seguir la conversación en comunidad?</strong><br>Únete a la Comunidad IA Entusiastas — un espacio para profesionales que aplican IA en su trabajo, con acceso a recursos, discusiones y actualizaciones semanales.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la Comunidad IA</a>
+    </div>
+
+    <div class="cta-secondary">
+      <p>¿Quieres explorar cómo aplicar IA en tu empresa o consultoría? Agenda una sesión gratuita de descubrimiento de 30 minutos conmigo.</p>
+      <a href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión gratuita →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #22</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · Ateneo Empresarial<br>
+      Semana del 22 al 28 de junio de 2026<br><br>
+      Fuentes: OpenAI, Broadcom, TechCrunch, CNBC, CNN, Reuters, Yahoo Finance, App Economy Insights,<br>
+      Superintelligence, The AI Report, Smarter with AI y 17+ newsletters especializados en IA.<br><br>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a> ·
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
