@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #23 — La semana en que la gobernanza se volvió el cuello de botella</title>
+  <meta name="description" content="Vuelve Claude Fable 5, llega Sonnet 5 a mitad de precio, OpenAI ofrece el 5% al gobierno de EE.UU., Microsoft y AWS lanzan ejércitos de implementación y Grupo Bimbo muestra el ROI agéntico desde Latinoamérica. Semana 29 junio – 5 julio 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f3f0f8;
+      font-family: 'Inter', sans-serif;
+      color: #1f1535;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%);
+      padding: 40px 40px 32px;
+      text-align: center;
+    }
+    .header-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800;
+      color: #ffffff; line-height: 1.2; margin-bottom: 8px;
+    }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta {
+      display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px;
+      padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* EDITORIAL */
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+
+    /* SECTION DIVIDER */
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #7C3AED;
+    }
+    .section-line {
+      height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE);
+      border-radius: 2px; margin-bottom: 20px;
+    }
+
+    /* NEWS CARD */
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card .tag {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px;
+      padding: 3px 8px; margin-bottom: 10px;
+    }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+
+    /* HIGHLIGHT BOX */
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+
+    /* TOOLS GRID */
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+
+    /* REFLECTION */
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+
+    /* CTA BOXES */
+    .cta-block { margin: 0 40px 24px; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+
+    /* FOOTER */
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+
+    .spacer-16 { height: 16px; }
+    .spacer-8 { height: 8px; }
+
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 26px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #23</div>
+    <div class="header-title">La semana en que la <span>gobernanza</span> se volvió el cuello de botella</div>
+    <div class="header-subtitle">Vuelve Fable 5, los agentes se abaratan y el Estado entra al capital de la IA</div>
+    <div class="header-meta">Semana del 29 de junio al 5 de julio de 2026 · Por Mary Cárdenas de Gil</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola, soy Mary. Esta semana deja una conclusión que me parece histórica: <strong>el cuello de botella de la IA ya no es la ingeniería, es la gobernanza</strong>. El modelo más potente del mercado estuvo 18 días apagado por decreto y volvió con condiciones; el nuevo flagship de OpenAI se lanzó "para casi nadie"; y Sam Altman propuso entregarle el 5% de su empresa al gobierno de Estados Unidos.</p>
+    <p>Mientras tanto, la señal que más me importa para ti: <strong>el dinero grande ya no compra modelos, compra implementación</strong>. Microsoft y Amazon acaban de destinar $3.500 millones a ingenieros que se sientan dentro de las empresas a rediseñar procesos. Eso — adopción, gobernanza, gestión del cambio — es exactamente el trabajo que viene para líderes como nosotros. Vamos a los datos.</p>
+    <p class="signature">— Mary</p>
+  </div>
+
+  <!-- SECCIÓN: MODELOS Y PODER -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤖</span><span class="text">Modelos y Poder</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">PORTADA</div>
+    <h3>Fable 5 vuelve tras 18 días de veto — y estrena la era del "acceso condicionado"</h3>
+    <p>El Departamento de Comercio de EE.UU. <strong>levantó los controles de exportación sobre Claude Fable 5 y Mythos 5</strong>. Los modelos habían sido retirados globalmente el 12 de junio, después de que investigadores de Amazon hallaran un jailbreak que los convertía en generadores de exploits. La solución: un clasificador que bloquea la técnica en <strong>más del 99% de los casos</strong>, y un acuerdo por el cual Anthropic dará al gobierno <strong>acceso pre-lanzamiento a sus modelos</strong> e inteligencia sobre vulnerabilidades. Fable 5 ya está de nuevo en Claude, la API, Claude Code y Cowork.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Un modelo frontera puede apagarse un viernes por decreto y volver tres semanas después con condiciones. Si tu operación depende de un único modelo, ese es tu nuevo riesgo operativo. Diseña flujos multi-modelo con rutas de respaldo — la resiliencia ya es parte del plan de IA, no un lujo.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">AGENTES MÁS BARATOS</div>
+    <h3>Claude Sonnet 5: capacidad casi-Opus a $2 por millón de tokens</h3>
+    <p>Anthropic lanzó <strong>Claude Sonnet 5</strong>, su modelo intermedio más agéntico: planifica, usa navegadores y terminales, y rinde cerca de Opus 4.8 en código y razonamiento, con menos alucinaciones que su antecesor. <strong>Precio introductorio: $2/$10 por millón de tokens hasta el 31 de agosto</strong> (luego $3/$15). Ya es el modelo por defecto en los planes Free y Pro. La misma semana llegó <strong>Claude Science</strong> (workbench de investigación con 60+ conectores científicos) y Anthropic anunció que desarrollará sus propios fármacos.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La economía de los agentes acaba de cambiar: lo que hace seis meses exigía el modelo más caro hoy corre a una fracción del precio. Si descartaste un caso de uso por costos en 2025, recalcula ahora — y aprovecha la ventana de precios de julio y agosto para pilotar.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">PODER Y CAPITAL</div>
+    <h3>OpenAI ofrece el 5% al gobierno de EE.UU. y presenta GPT-5.6… con acceso restringido</h3>
+    <p>Sam Altman negocia entregar <strong>~5% del equity de OpenAI (~$42.600M sobre una valoración de $852.000M)</strong> a un fondo soberano estilo Alaska, y propone que Anthropic, Google y Meta hagan lo mismo. En paralelo presentó la familia <strong>GPT-5.6 (Sol, Terra y Luna)</strong> — Terra promete rendimiento de GPT-5.5 a la mitad de costo — pero solo para socios verificados por el gobierno. OpenAI y Anthropic preparan IPOs que superarían el billón de dólares cada una.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Cuando una industria ofrece capital al Estado antes de salir a bolsa, está comprando certidumbre regulatoria. Para nosotros el mensaje es que <strong>la distribución ya es parte del producto</strong>: al evaluar proveedores de IA, pregunta no solo qué puede hacer el modelo, sino quién garantiza que mañana seguirás teniendo acceso.</p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight-box">
+    <h3>El dato de la semana</h3>
+    <p>Microsoft creó una unidad de despliegue de IA con 6.000 ingenieros y AWS comprometió $1.000M en su propio "ejército de implementación", tras los movimientos de OpenAI y Anthropic.</p>
+    <span class="stat">$3.500M</span>
+    <div class="stat-label">comprometidos esta semana en "forward-deployed engineers" — el valor migró de los modelos a la implementación</div>
+  </div>
+
+  <!-- SECCIÓN: NEGOCIOS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💼</span><span class="text">Negocios y Adopción</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">ESTRATEGIA</div>
+    <h3>Microsoft ($2.500M) y AWS ($1.000M): la fiebre de los ingenieros desplegados</h3>
+    <p><strong>Microsoft lanzó "Frontier Company"</strong>, una unidad con 6.000 ingenieros embebidos en clientes Fortune 500, dos días después de que <strong>AWS comprometiera $1.000M</strong> en su propia organización de "forward-deployed engineers" — siguiendo los $4.000M de OpenAI y $1.500M de Anthropic. La tesis compartida: "las capacidades de modelo son un commodity; la integración real es la nueva fiebre del oro". Señal complementaria: Walmart, Uber y Microsoft ya imponen <strong>topes de tokens</strong> tras agotar presupuestos anuales de IA en meses.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Los gigantes acaban de validar el negocio de la consultoría de implementación de IA. Si te dedicas a transformación, agilidad o formación, estás en el lado correcto de la ola — el diferencial será combinar lo técnico con gestión del cambio, que es justo lo que los 6.000 ingenieros no traen de fábrica.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">CASOS DE USO · LATAM</div>
+    <h3>Grupo Bimbo, Nestlé y West Monroe: el ROI agéntico ya se mide en horas y millones</h3>
+    <p>Tres casos verificables esta semana: <strong>Grupo Bimbo (México)</strong> construyó dos agentes de auditoría con Microsoft Copilot Studio que redujeron 20% la planeación y llevaron la creación de matrices de riesgo <strong>de 2 días a segundos</strong>, para 100+ auditores en 39 países. <strong>Nestlé</strong> auto-agendó 25.000+ entrevistas con la IA "Olivia" (~8.000 horas de reclutadores liberadas). <strong>West Monroe</strong> ahorró <strong>$1,4M anuales</strong> resolviendo tickets de TI con agentes en Teams y Slack.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Me encanta que el caso estrella de la semana venga de una multinacional mexicana: la ola agéntica ya produce ROI medible desde Latinoamérica. El patrón común de los tres casos: un proceso repetitivo y de alto volumen, un agente integrado donde vive el trabajo (Teams/Slack) y una métrica clara antes de empezar. Replicable en cualquier PYME.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">ADOPCIÓN</div>
+    <h3>"Fase 3": las empresas dejan atrás las licencias y los pilotos</h3>
+    <p>Pep Martorell describió el patrón que muchos vivimos: <strong>Fase 1, el "sarampión de las licencias"</strong> (miles de asientos de Copilot sin plan); <strong>Fase 2, la locura de los pilotos</strong> (el famoso ~95% sin retorno del informe MIT); y la <strong>Fase 3 actual: adopción global al negocio, liderada desde arriba, con gobernanza y gestión del cambio en el centro</strong>, preparando "la agentización masiva del puesto de trabajo". Dato que lo confirma: <strong>76% de los trabajadores lleva sus propias herramientas de IA al trabajo</strong> y 41% no recibe ni capacitación ni guías de su empleador.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Esta es mi tesis de trabajo hecha noticia: comprar licencias no transforma nada; la transformación es liderazgo + gobernanza + gestión del cambio. Y ese 41% sin capacitación es la brecha exacta que las áreas de talento deben cerrar este semestre — antes de que el "Bring Your Own AI" se convierta en riesgo de datos.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: EMPLEO -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">👥</span><span class="text">Empleo e Impacto Humano</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">MERCADO LABORAL</div>
+    <h3>Oracle −21.000, Meta −8.000… y Ford recontratando veteranos</h3>
+    <p><strong>Oracle recortó 21.000 empleos</strong> (13% de su plantilla) atribuyéndolo explícitamente a la IA, con $1.840M en indemnizaciones. <strong>Meta eliminó 8.000 puestos</strong> y reubicó 7.000 a su división Applied AI, admitiendo que sus agentes van retrasados. Según GMAC (600+ reclutadores), <strong>1 de cada 3 empleadores ya reemplaza roles de entrada con IA</strong> (40% en tecnología). Pero el péndulo también regresa: <strong>Ford recontrató a sus ingenieros veteranos</strong> tras quedarse corta la IA, y crece el fenómeno de empresas recontratando al personal que habían sustituido.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Las dos historias son ciertas a la vez: la IA elimina tareas rutinarias Y las empresas descubren que el juicio experto no se sustituye. Mi consejo práctico: audita tu propio rol — separa lo rutinario (automatizable) de lo que requiere criterio, relación y contexto, y construye tu semana alrededor de lo segundo.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: GEOPOLÍTICA -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌏</span><span class="text">Geopolítica y Precios</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">COMMODITIZACIÓN</div>
+    <h3>China presiona: modelos hasta 107 veces más baratos y chips 100% locales</h3>
+    <p><strong>DeepSeek V4-Flash cuesta hasta 107 veces menos</strong> por token de salida que los flagships americanos; GLM-5.2 ya es 2.º del mundo en front-end coding a un sexto del costo. Meituan lanzó <strong>LongCat-2.0, el primer modelo de 1,6 billones de parámetros entrenado 100% con chips chinos</strong> (open source). Hace un año los labs americanos servían ~70% de los tokens en marketplaces de enrutamiento; hoy, ~30%. En la sombra: Anthropic denunció un "distillation attack" de ~25.000 cuentas ligadas a Alibaba, y Alibaba prohibió internamente Claude Code.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La inteligencia se abarata hacia el costo marginal — y eso es una oportunidad enorme para Latinoamérica: pymes que facturan en moneda local ya pueden costear flujos agénticos serios. La ventaja competitiva no durará; el momento de montar tus automatizaciones es ahora, no cuando "madure la tecnología".</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">PRODUCTO</div>
+    <h3>Google inunda la zona media: imágenes a $0,03, video a $0,10/segundo y un agente en tu Mac</h3>
+    <p><strong>Nano Banana 2 Lite</strong> genera imágenes en ~4 segundos a ~$0,034 por imagen; <strong>Gemini Omni Flash</strong> crea y edita video conversacionalmente a $0,10/segundo; <strong>Gemini Spark llegó a Mac</strong> (beta AI Ultra) — trabaja con tus archivos locales y convierte carpetas de facturas en hojas de cálculo; y <strong>NotebookLM</strong> ahora genera mapas mentales automáticos de tus fuentes. El costo de producir contenido visual profesional, en la práctica, se redondea a cero.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Para marketing, formación y consultoría, la barrera ya no es presupuesto sino criterio editorial: saber qué producir y con qué estándar de marca. Un equipo pequeño con estos precios produce material de nivel estudio — la diferenciación pasa a ser tu voz y tu estrategia, no tus herramientas.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: HERRAMIENTAS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name">🧠 NotebookLM Mind Maps</div>
+      <div class="tool-desc">Sube PDFs, docs o enlaces y genera mapas mentales automáticos de ideas y conexiones. Ideal para consultores y docentes. notebooklm.google.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📓 Cuadernos de Gemini</div>
+      <div class="tool-desc">Configura tu "profesor particular": un cuaderno por proyecto, tus documentos como fuentes y un prompt base de aprendizaje activo. gemini.google.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">⚡ Claude Sonnet 5</div>
+      <div class="tool-desc">Agentes de calidad casi-Opus a $2/$10 por millón de tokens (hasta el 31/8). El momento de recalcular casos de uso descartados por costo. anthropic.com</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔀 ChatPlayground</div>
+      <div class="tool-desc">Un solo prompt corre en ChatGPT, Claude y Gemini a la vez; los modelos se desafían y combinan la mejor respuesta. taaft.co/chatplaygroundai-r</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📡 Meev</div>
+      <div class="tool-desc">Rastrea cómo aparece tu marca en ChatGPT, Claude y Gemini y entrega un plan para cerrar brechas (GEO). Clave para marca personal. taaft.co/meev-r</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎓 Unfurl</div>
+      <div class="tool-desc">Convierte cualquier video de YouTube en guía estructurada, tutor de chat y plan de acción. Oro para formación corporativa. taaft.co/unfurl-r</div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN ESTRATÉGICA -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💡</span><span class="text">Reflexión estratégica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reflection">
+    <h3>Gobernanza, precios a la baja e implementación: tu nueva agenda de IA</h3>
+    <p>Tres hilos se trenzaron esta semana: <strong>la gobernanza como cuello de botella</strong> (modelos que se apagan y reactivan por decreto), <strong>la inteligencia abaratándose hacia el costo marginal</strong>, y <strong>el capital migrando de los modelos a la implementación</strong>.</p>
+    <p>La conclusión para líderes, consultores y PMOs es la de la "Fase 3": el diferencial competitivo no está en acceder al mejor modelo — que puede cambiar un viernes por la tarde — sino en <strong>flujos de trabajo resilientes, gobernanza clara y equipos capacitados</strong> capaces de cambiar de modelo sin rehacerlo todo.</p>
+    <p>Mi pregunta para ti esta semana: <strong>si mañana tu modelo principal quedara inaccesible 18 días — como le pasó al mundo con Fable 5 — ¿qué procesos críticos de tu operación se detendrían, y cuál es tu plan B?</strong> Esa respuesta vale más que cualquier benchmark.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤝</span><span class="text">Únete a la comunidad</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff;">¿Quieres seguir la conversación en comunidad?</strong><br>Únete a la Comunidad IA Entusiastas — un espacio para profesionales que aplican IA en su trabajo, con acceso a recursos, discusiones y actualizaciones semanales.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la Comunidad IA</a>
+    </div>
+
+    <div class="cta-secondary">
+      <p>¿Quieres explorar cómo aplicar IA en tu empresa o consultoría? Agenda una sesión gratuita de descubrimiento de 30 minutos conmigo.</p>
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">📅 Agendar sesión gratuita →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #23</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a href="https://ateneo-empresarial.com">Ateneo Empresarial</a><br>
+      Semana del 29 de junio al 5 de julio de 2026<br><br>
+      Fuentes: Anthropic, TechCrunch, CNBC, Forbes, Al Jazeera, Bloomberg, Superintelligence, The AI Report,<br>
+      Techpresso, GenAI Works, IA Secrets, Jon Hernández, Pep Martorell y otros newsletters especializados en IA.<br><br>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">Sesión gratuita</a> ·
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
