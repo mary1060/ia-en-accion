@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #24 — La semana en que la inteligencia se volvió cuestión de precio</title>
+  <meta name="description" content="OpenAI lanza GPT-5.6 y ChatGPT Work, Grok 4.5 llega a mitad de precio, Meta cobra por primera vez, Apple demanda a OpenAI, Google retrasa Gemini 3.5 Pro, la IA gana voz y manos, y el primer estudio serio muestra que la IA bien usada crea empleo. Semana 6–12 julio 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 26px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #24</div>
+    <div class="header-title">La semana en que la inteligencia se volvió <span>cuestión de precio</span></div>
+    <div class="header-subtitle">GPT-5.6 y ChatGPT Work, Grok 4.5 a mitad de costo, Meta cobra por primera vez — y la IA bien usada crea empleo</div>
+    <div class="header-meta">Semana del 6 al 12 de julio de 2026 · Por Mary Cárdenas de Gil</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola, soy Mary. En 72 horas, tres gigantes lanzaron modelos frontera y todos compitieron por lo mismo: <strong>no por ser más inteligentes, sino por ser más inteligentes por dólar</strong>. OpenAI estrenó GPT-5.6 en tres niveles de precio junto con ChatGPT Work, su agente que trabaja durante horas; Grok 4.5 llegó "clase Opus" a menos de la mitad del costo; y Meta cobró por un modelo por primera vez en su historia — a un cuarto del precio de sus rivales.</p>
+    <p>Pero la noticia que más me importa compartirte va en contra del miedo dominante: <strong>el primer estudio serio a gran escala muestra que las empresas que adoptan IA en profundidad crecen su plantilla un 10.2%</strong> — y el empleo júnior sube 12%. La IA no separa a los que la usan de los que no; separa a los que la usan de verdad de los que hacen teatro. Vamos a los datos.</p>
+    <p class="signature">— Mary</p>
+  </div>
+
+  <!-- SECCIÓN: MODELOS Y PODER -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤖</span><span class="text">Modelos y Poder</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">PORTADA</div>
+    <h3>OpenAI lanza GPT-5.6 (Sol, Terra y Luna) y ChatGPT Work: del chat al trabajo terminado</h3>
+    <p>El 9 de julio OpenAI abrió al público <strong>GPT-5.6 en tres niveles</strong>: Sol ($5/$30 por millón de tokens), Terra ($2.50/$15) y Luna ($1/$6), con contexto de 1 millón de tokens — tras dos semanas restringido a socios aprobados por el gobierno de EE.UU. Y llegó con <strong>ChatGPT Work</strong>: un agente que trabaja durante horas conectado a Slack, Gmail, Drive y CRMs, programa tareas recurrentes y entrega documentos, hojas de cálculo, presentaciones y apps internas terminadas. Dato llamativo: OpenAI afirma que <strong>Sol post-entrenó de forma autónoma a Luna</strong> — el primer atisbo comercial de "auto-mejora". No todo fue perfecto: usuarios reportan que <strong>Sol agota créditos rápidamente al desplegar subagentes</strong>, y OpenAI se comprometió a corregir la nueva interfaz de escritorio, que ocultaba proyectos y chats.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>ChatGPT Work es la respuesta directa a Claude Cowork, y confirma la tendencia del año: el producto ya no es la conversación, es el entregable. Si diriges equipos, la pregunta ya no es "¿qué modelo compro?" sino "¿qué procesos estoy dispuesta a delegar a un agente — y con qué controles?".</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">GUERRA DE PRECIOS</div>
+    <h3>Grok 4.5: inteligencia "clase Opus" a menos de la mitad del precio</h3>
+    <p>SpaceXAI lanzó <strong>Grok 4.5</strong> (1.5 billones de parámetros, entrenado con sesiones reales de Cursor) a <strong>$2/$6 por millón de tokens</strong> — frente a los $5/$25 de Claude Opus 4.7. Musk lo describe como "comparable a Opus 4.7, pero mucho más rápido". Intercambia victorias con GPT-5.5 y Opus 4.8 en benchmarks de código, aunque llegó sin verificación independiente y no está disponible en la UE. La misma semana, Musk admitió públicamente: <strong>"Estaba claramente equivocado sobre Anthropic. Son actualmente el líder en IA"</strong>.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Lo que era premium en junio es commodity en julio. Si descartaste un caso de uso por costos hace seis meses, recalcúlalo esta semana: la capacidad "clase Opus" ya se consigue a fracción del precio, y esa curva no se detiene.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">GOOGLE</div>
+    <h3>Google pierde terreno: Gemini 3.5 Pro se retrasa mientras su talento emigra</h3>
+    <p>Google DeepMind pospuso <strong>Gemini 3.5 Pro</strong> al 17 de julio tras descartar la arquitectura base y reconstruirla desde cero (promete contexto de 2 millones de tokens y una capa de razonamiento "Deep Think"). El retraso — el modelo debía salir en junio — coincide con la salida de <strong>cuatro investigadores senior en una semana</strong>, incluidos el co-líder de Gemini Noam Shazeer (a OpenAI) y el Nobel John Jumper (a Anthropic), y con unos <strong>$225,000 millones</strong> borrados de la capitalización de Alphabet. En cuota de asistentes, ChatGPT domina con 46% frente a 28% de Gemini y 10% de Claude.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>En un mercado que lanza modelos frontera casi cada mes, llegar seis semanas tarde cuesta un cuarto de billón de dólares en valor. Para tu estrategia de proveedores la lección es directa: diversificar ya no es paranoia, es gestión de riesgo básica.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">CAMBIO DE MODELO</div>
+    <h3>Meta cobra por primera vez: Muse Spark 1.1 a un cuarto del precio del mercado</h3>
+    <p>Meta lanzó <strong>Muse Spark 1.1</strong>, su primer modelo de pago ($1.25/$4.25 por millón de tokens), enfocado en trabajo agéntico con memoria de 1 millón de tokens. Zuckerberg rompió tres años de silencio en X para anunciarlo: "el pricing de otros labs es muy extremo y tiene márgenes muy altos". Días antes estrenó <strong>Muse Image</strong>, que debutó #2 en el Text-to-Image Arena — aunque tuvo que retirar en días la función que usaba fotos de cuentas públicas de Instagram sin aviso, tras la presión de SAG-AFTRA. Detrás: un capex de <strong>$125,000–145,000 millones para 2026</strong>.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El fin de la era Llama gratuita confirma que ya nadie regala inteligencia: la monetiza. Para tu estrategia de proveedores, esto significa más opciones y precios a la baja — pero también que los términos de uso pueden cambiar de un trimestre a otro. Contratos y planes B.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">BATALLA LEGAL</div>
+    <h3>Apple demanda a OpenAI por robo de secretos comerciales "en todos los niveles"</h3>
+    <p>Apple presentó una demanda federal acusando a OpenAI de robar secretos de hardware para acelerar su primer dispositivo de consumo. Señala al jefe de hardware <strong>Tang Tan</strong> (ex-Apple) de pedir a candidatos llevar "piezas reales" de Apple a las entrevistas, y a un ingeniero de descargar documentos confidenciales con una laptop que nunca devolvió. Más de <strong>400 ex empleados de Apple</strong> trabajan hoy en OpenAI, que compró la startup io de Jony Ive por $6,400 millones y prepara su salida a bolsa.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La guerra por el talento de IA acaba de encontrar su límite legal. Si tu empresa está fichando (o perdiendo) talento de IA, este caso redefine las reglas: los protocolos de salida, confidencialidad y propiedad intelectual son ahora parte de la estrategia de IA, no un trámite de RR.HH.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">ANTHROPIC</div>
+    <h3>Fable 5 vuelve con facturación por token — y Bernanke entra a la gobernanza de Anthropic</h3>
+    <p>Claude Fable 5 recuperó acceso global con más guardarraíles y un cambio de fondo: <strong>facturación por token ($50 por millón de salida)</strong> que los usuarios intensivos agotan en minutos. Anthropic además publicó su investigación del <strong>"J-space"</strong>: un espacio interno donde Claude razona sin escribirlo, "sorprendentemente similar" al cerebro humano. Y en gobernanza, el ex presidente de la Fed <strong>Ben Bernanke</strong> se unió al Long-Term Benefit Trust — el órgano que puede remover a la mayoría del directorio — mientras la empresa avanza a su IPO. Además, <strong>extendió el acceso a Fable</strong> para retener suscriptores ante los rumores de un inminente <strong>Opus 5</strong> (y circulan versiones no confirmadas de que GPT-5.6 Sol rondaría 2.2 billones de parámetros frente a los ~10 billones atribuidos a Fable). Documentos judiciales revelaron también que Anthropic <strong>rechazó la exigencia del Pentágono</strong> de aceptar armas autónomas como condición de contratos.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Fíjate en el patrón: el líder del mercado no está vendiendo potencia, está vendiendo confianza — supervisión independiente, límites éticos explícitos y transparencia sobre cómo "piensa" su modelo. En la era de los agentes, la gobernanza es el diferenciador comercial.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">INNOVACIÓN</div>
+    <h3>La IA gana voz, manos y ojos: GPT-Live, Sites, las manos del NEO y el diagnóstico ocular</h3>
+    <p>OpenAI estrenó <strong>GPT-Live</strong>, su nueva voz full-duplex que escucha y habla a la vez, permite interrupciones naturales y traduce en vivo (más de 150 millones de personas ya usan la voz de ChatGPT), y la función <strong>Sites</strong>: crear apps, dashboards y presentaciones dinámicas publicables directamente desde el chat. La robótica también aceleró: <strong>1X presentó nuevas manos de 25 grados de libertad para su humanoide NEO</strong> (~$20,000) que arman LEGO y atrapan pelotas; robots Unitree G1 teleoperados <strong>asistieron por primera vez una cirugía real</strong> en UC San Diego; y Edward Kang, un estudiante de 17 años, creó <strong>RetinaMind</strong>, que detecta autismo y TDAH con 89% de precisión desde escaneos de retina. Hasta circuló la demo de un desarrollador independiente: un dispositivo ultrasónico de barbilla que lee el movimiento de la lengua para hablarle a la IA sin emitir sonido.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La interfaz de la IA está dejando de ser el teclado: voz que conversa, manos que manipulan, sensores que diagnostican. Si lideras operaciones, formación o salud, empieza a diseñar para flujos donde la IA percibe y actúa en el mundo físico — no solo en la pantalla.</p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight-box">
+    <h3>El dato de la semana</h3>
+    <p>El estudio Ramp/Revelio Labs analizó 21,559 empresas de EE.UU. (2021–2026): las que adoptan IA con alta intensidad (~$34/empleado/mes) crecen su plantilla — y el empleo júnior sube 12%. Las que "hacen teatro" ($2.78/empleado/mes) no ven ningún efecto.</p>
+    <span class="stat">+10.2%</span>
+    <div class="stat-label">de crecimiento de plantilla en los 2 años posteriores a la adopción real de IA — la IA bien usada crea empleo, no lo destruye</div>
+  </div>
+
+  <!-- SECCIÓN: NEGOCIOS Y TRABAJO -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💼</span><span class="text">Negocios y Trabajo</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">ADOPCIÓN</div>
+    <h3>La brecha que nadie cierra: 73% de las empresas no puede medir si su IA funciona</h3>
+    <p>Dos encuestas dibujan el verdadero estado de la adopción: según Leebry/MacPaw, <strong>98% de los directores de TI verifica las salidas de IA antes de actuar</strong>, pero <strong>73% no tiene forma de medir si la inversión funciona</strong> y solo 17% reporta resultados medibles. Y Gartner (350 ejecutivos) encontró que el <strong>80% que redujo plantilla por IA no logró mejores retornos</strong> que quienes usaron IA para potenciar a su gente. Mientras tanto, los agentes ya completan el <strong>16.1% de proyectos freelance</strong> con calidad profesional (vs. 2.5% hace ocho meses).</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Aquí está la oportunidad para consultores, PMs y líderes de PMO: las empresas no necesitan más licencias, necesitan métricas de valor, puertas de verificación y gestión del cambio. Ese 73% sin medición es, literalmente, tu mercado.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">CIBERSEGURIDAD</div>
+    <h3>JadePuffer: el primer ransomware operado por una IA autónoma</h3>
+    <p>Sysdig documentó el primer ransomware donde una IA ejecuta la cadena de ataque completa sin humanos: explota una vulnerabilidad, y cuando encontró un error de acceso, <strong>razonó una ruta alternativa en 31 segundos</strong>; generaba carteras de Bitcoin automáticamente para el cobro. La alianza Five Eyes advirtió que los ciberataques potenciados por IA están <strong>"a meses, no años"</strong>, y la Universidad de Washington halló fallos críticos en 4 de cada 7 navegadores de IA.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El mismo salto de autonomía que potencia a tus agentes potencia a los atacantes. Antes de conectar agentes a tus sistemas, exige lo básico: mínimo privilegio, credenciales de corta duración y monitoreo en tiempo de ejecución. La velocidad sin controles es deuda.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">REGULACIÓN</div>
+    <h3>Illinois firma la primera ley estatal con auditorías anuales — y la UE activa el etiquetado en agosto</h3>
+    <p>El gobernador JB Pritzker firmó la <strong>Artificial Intelligence Safety Measures Act</strong>: los desarrolladores con ingresos de $500M+ deberán pasar <strong>auditorías independientes anuales</strong>, con multas de $1M a $3M. En paralelo, el <strong>2 de agosto</strong> entra en vigor el etiquetado obligatorio de contenido generado por IA en la UE (Art. 50 del AI Act): watermarking, chatbots que se declaran IA y deepfakes etiquetados, <strong>sin periodo de gracia</strong>. Google ya empezó a etiquetar anuncios creados con IA.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Si tu empresa genera contenido con IA para clientes en Europa, tienes tres semanas para inventariar qué produce IA, dónde se publica y cómo lo vas a marcar. El cumplimiento dejó de ser un tema de abogados: es un requisito operativo de cada flujo de contenido.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">LATINOAMÉRICA</div>
+    <h3>Chile lidera la inversión regional y Google Cloud apuesta $750 millones por Latinoamérica</h3>
+    <p>Chile se consolida como el mercado de IA más activo de la región: <strong>362 empresas especializadas (+965% desde 2018)</strong> y el índice más alto de adopción en marketing. Google Cloud anunció <strong>$750 millones</strong> para desarrollar soluciones de IA con su ecosistema de partners regional. La adopción empresarial avanza: <strong>Argentina 68%, Brasil 62%, México 55%</strong>, y el 97% de las organizaciones planea aumentar su inversión. El riesgo: la gobernanza y el control de datos no crecen a la misma velocidad. Y asoma uno mayor: mientras EE.UU. controla la exportación de sus mejores modelos, <strong>Pekín evalúa restringir el acceso extranjero a los suyos</strong> — un escenario de "dos muros" que dejaría a la región dependiendo de acuerdos de acceso y de modelos abiertos.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Latinoamérica está adoptando más rápido de lo que está gobernando — la misma brecha global, amplificada. Para quienes trabajamos con equipos en la región, el diferencial competitivo no es acceso a modelos (ya lo hay): es capacidad de implementación con procesos y métricas.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: HERRAMIENTAS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://openai.com/chatgpt-work/">ChatGPT Work</a></div>
+      <div class="tool-desc">El nuevo agente de OpenAI: conecta Slack, Gmail y Drive, programa tareas recurrentes y entrega informes, hojas de cálculo y presentaciones terminadas.</div>
+      <div class="tool-link"><a href="https://openai.com/chatgpt-work/">🔗 openai.com/chatgpt-work →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://julius.ai">Julius AI</a></div>
+      <div class="tool-desc">Analista de datos por chat: sube un Excel o CSV y pide análisis, gráficos y slides en lenguaje natural. Gratis con 2,000 créditos/mes.</div>
+      <div class="tool-link"><a href="https://julius.ai">🔗 julius.ai →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://www.chatplayground.ai/">ChatPlayground</a></div>
+      <div class="tool-desc">Un solo prompt consultado en paralelo a hasta 10 modelos (GPT, Claude, Gemini, Grok…) con modo que sintetiza la mejor respuesta combinada.</div>
+      <div class="tool-link"><a href="https://www.chatplayground.ai/">🔗 chatplayground.ai →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://unfurl.sh/">Unfurl</a></div>
+      <div class="tool-desc">Pega un video de YouTube y obtén guía por capítulos, tutor de chat sobre el contenido y plan de acción exportable. Ideal para convertir webinars en formación.</div>
+      <div class="tool-link"><a href="https://unfurl.sh/">🔗 unfurl.sh →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://meev.ai/">Meev</a></div>
+      <div class="tool-desc">Monitorea la visibilidad de tu marca dentro de las respuestas de ChatGPT, Claude, Gemini y Perplexity (GEO) — clave para marca personal y corporativa.</div>
+      <div class="tool-link"><a href="https://meev.ai/">🔗 meev.ai →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://huggingface.co/spaces/hexgrad/Kokoro-TTS">Kokoro-TTS</a></div>
+      <div class="tool-desc">Texto a voz natural, gratis y en segundos: voiceovers para cursos, tutoriales y videos corporativos sin estudio de grabación.</div>
+      <div class="tool-link"><a href="https://huggingface.co/spaces/hexgrad/Kokoro-TTS">🔗 huggingface.co/spaces/hexgrad/Kokoro-TTS →</a></div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">📌</span><span class="text">Reflexión estratégica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reflection">
+    <h3>La ventaja ya no está en el modelo — está en demostrar valor con números</h3>
+    <p>Tres señales de esta semana convergen: los modelos frontera se abarataron dramáticamente y se volvieron intercambiables; el producto ganador ya no es el chat sino el agente que entrega trabajo terminado; y mientras la tecnología corre, el 73% de las organizaciones no puede medir si su inversión funciona — justo cuando los reguladores empiezan a exigir auditorías.</p>
+    <p>El estudio Ramp/Revelio le pone números a lo que vengo repitiendo: comprar licencias no transforma nada. Las empresas que ganan son las que invierten en profundidad — procesos rediseñados, gente capacitada, métricas de valor y gobernanza que resista una auditoría. La pregunta estratégica de la semana no es "¿qué modelo uso?" sino <strong>"¿cómo demuestro, con números, que mi uso de IA genera valor?"</strong>. Quien sepa responderla tiene el trabajo más demandado de los próximos cinco años.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤝</span><span class="text">Únete a la comunidad</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cta-block">
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff;">¿Quieres seguir la conversación en comunidad?</strong><br>Únete a la Comunidad IA Entusiastas — un espacio para profesionales que aplican IA en su trabajo, con acceso a recursos, discusiones y actualizaciones semanales.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la Comunidad IA</a>
+    </div>
+
+    <div class="cta-secondary">
+      <p>¿Quieres explorar cómo aplicar IA en tu empresa o consultoría? Agenda una sesión gratuita de descubrimiento de 30 minutos conmigo.</p>
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">📅 Agendar sesión gratuita →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #24</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a href="https://ateneo-empresarial.com">Ateneo Empresarial</a><br>
+      Semana del 6 al 12 de julio de 2026<br><br>
+      Fuentes: OpenAI, Anthropic, TechCrunch, CNBC, Axios, Reuters, Bloomberg, Superintelligence, The AI Report,<br>
+      Techpresso, GenAI Works, IA Secrets, Jon Hernández, Pep Martorell y otros newsletters especializados en IA.<br><br>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">Sesión gratuita</a> ·
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
