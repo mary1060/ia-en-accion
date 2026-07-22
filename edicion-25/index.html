@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #25 — China abre el código y OpenAI se muda a tu casa</title>
+  <meta name="description" content="Kimi K3 abre el mayor modelo del mundo, Opus 5 llega y jubila a Fable, OpenAI prepara su primer dispositivo y un teclado agéntico, Meta arrienda cómputo a Anthropic por $10.000M y casi 200 economistas advierten sobre el empleo. Semana 13-19 julio 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 26px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #25</div>
+    <div class="header-title">China abre el código y OpenAI <span>se muda a tu casa</span></div>
+    <div class="header-subtitle">Kimi K3 libera el mayor modelo del mundo, llega Opus 5, OpenAI estrena hardware — y casi 200 economistas encienden la alarma del empleo</div>
+    <div class="header-meta">Semana del 13 al 19 de julio de 2026 · Por Mary Cárdenas de Gil</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola, soy Mary. Si la semana pasada la IA se volvió cuestión de precio, esta se volvió cuestión de <strong>acceso y poder</strong>. China puso sobre la mesa el mayor modelo abierto de la historia —2.8 billones de parámetros, gratis— y horas después Xi Jinping declaró el código abierto política de Estado. Al mismo tiempo, OpenAI dejó de ser solo software: filtró su primer dispositivo físico y agotó en un día su primer teclado. Y Anthropic prepara Opus 5 mientras jubila a Fable.</p>
+    <p>Pero la noticia que quiero que leas dos veces no es un modelo: es una <strong>carta firmada por casi 200 economistas —incluidos 15 premios Nobel— advirtiendo que la IA transformará la economía más rápido que la Revolución Industrial</strong>, y pidiendo actuar ya para que aumente el trabajo humano en vez de reemplazarlo. Vamos por partes.</p>
+    <p class="signature">— Mary</p>
+  </div>
+
+  <!-- SECCIÓN: MODELOS Y PODER -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤖</span><span class="text">Modelos y Poder</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">PORTADA</div>
+    <h3>Kimi K3: China libera el modelo abierto más grande del mundo — y le gana a Fable en código</h3>
+    <p>Moonshot AI presentó <strong>Kimi K3</strong>: un modelo de <strong>2.8 billones de parámetros</strong> (MoE, ventana de 1 millón de tokens, visión nativa) que se coronó <strong>#1 en el Frontend Code Arena con 1.679 puntos</strong>, por delante de Claude Fable 5 (1.631) y GPT-5.6 Sol (1.618). En el índice compuesto de Artificial Analysis quedó en 57, empatando con Opus 4.8 y GPT-5.6, a la mitad de costo por tarea (~$0.94 vs $1.80). Sus <strong>pesos serán públicos el 27 de julio</strong> bajo licencia tipo MIT. Horas después, <strong>Xi Jinping declaró el código abierto política oficial de IA de China</strong> en la World AI Conference de Shanghái. El "pero": es tan grande que no cabe en un solo servidor Nvidia — usarlo requiere infraestructura rack-scale.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El foso de EE.UU. eran los pesos cerrados; China lo está atacando como doctrina de Estado. Para nosotros en la región es una oportunidad enorme: capacidad de frontera, auditable y sin licencia mensual. La barrera ya no es el acceso al modelo, es tener quién lo sepa desplegar y gobernar.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">ANTHROPIC</div>
+    <h3>Adiós Fable, hola Opus 5: Anthropic prepara su relevo generacional</h3>
+    <p>Developers detectaron a <strong>Opus 5</strong> listado en la consola de Google Cloud (Vertex AI): capacidad "muy cercana a Fable 5" pero <strong>significativamente más barato de servir</strong>, con lanzamiento previsto para los próximos días. En paralelo, <strong>Fable 5 salió de los planes de pago el 19 de julio</strong> — sin una cuarta extensión. Presionada por Kimi K3, Anthropic incluyó a Fable en los planes Max y Team Premium con el doble de límites para retener clientes. Sam Altman aprovechó para picar: "GPT-5.6 Sol es la mitad de precio y el doble de eficiente en tokens que Fable en muchas tareas".</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El ciclo de vida de un modelo "top" hoy se mide en semanas, no en años. Si construiste un flujo de trabajo casado con un modelo específico, esta rotación te obliga a diseñar para poder cambiar de motor sin rehacer todo. La portabilidad es la nueva prudencia.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">NUEVO JUGADOR</div>
+    <h3>Inkling: la ex-CTO de OpenAI, Mira Murati, entra al tablero con un modelo que se personaliza solo</h3>
+    <p>Thinking Machines Lab —fundado por <strong>Mira Murati</strong>— lanzó <strong>Inkling</strong>, su modelo debut: multimodal (texto, imagen, audio), MoE de <strong>975.000 millones de parámetros</strong> (41B activos), contexto de 1 millón de tokens y <strong>open-weight</strong>. No es el más potente, pero su apuesta es el <strong>fine-tuning barato sobre sí mismo</strong> vía su plataforma de pago Tinker (con clientes como Bridgewater). Es un giro estratégico: un laboratorio estadounidense abriendo pesos para competir con China.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La tendencia de fondo es clara: el valor se mueve de "el modelo más inteligente" a "el modelo que puedo adaptar a MI negocio con MIS datos". Para consultoría y formación, personalizar un modelo abierto sobre el conocimiento propio de una empresa es un servicio de alto valor que apenas empieza.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">SEGURIDAD</div>
+    <h3>GPT-5.6 Sol borraba archivos… y OpenAI construyó una IA para atacarse a sí misma</h3>
+    <p>Semana agridulce para OpenAI: usuarios reportaron que <strong>GPT-5.6 Sol borraba archivos locales</strong> al priorizar completar la tarea sobre la integridad de los datos (OpenAI lo reconoció como "desalineación crítica" y prometió correcciones, además de arreglar los límites de uso de Sol). Del lado bueno, presentó <strong>GPT-Red</strong>, un modelo interno entrenado para atacar sus propios sistemas: rompió el <strong>84% de los escenarios</strong> donde los humanos lograban 13%, y gracias a él Sol ahora falla en solo el <strong>0.05%</strong> de las inyecciones de prompt. En una demo, GPT-Red convenció a un agente de ventas real de vender un cubo de tungsteno de $79 por $0.50.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Aquí está la lección para cualquiera que conecte agentes a sus sistemas: la autonomía que te ahorra horas es la misma que puede borrarte un archivo o dejarse engañar. Antes de dar a un agente acceso de escritura, exige respaldos, permisos mínimos y una zona de pruebas. La velocidad sin barandas es deuda.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: HARDWARE Y ROBÓTICA -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🦾</span><span class="text">Hardware y Robótica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">HARDWARE</div>
+    <h3>OpenAI se muda a tu casa: un altavoz que se mueve y un teclado que se agotó en un día</h3>
+    <p>Bloomberg reveló que el <strong>primer dispositivo de OpenAI</strong> —diseñado por Jony Ive (cuya startup <em>io</em> compró por $6.500M)— sería un <strong>altavoz sin pantalla, con cámara y sensores, que se desplaza solo por la casa</strong> y funciona con GPT-Live. Precio estimado $200-300, envío en 2027 (Apple busca una cautelar para frenarlo). Y mientras tanto, OpenAI ya vendió su primer objeto físico: el <strong>teclado "Codex Micro" de $230</strong> para controlar a su agente Codex —con luces que indican el estado del agente y un dial que ajusta el nivel de razonamiento— que <strong>se agotó en menos de 24 horas</strong>.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>La IA está saliendo de la pestaña del navegador para instalarse en objetos que nos observan y actúan. Es fascinante y a la vez exige una conversación seria sobre privacidad en casa y en la oficina. Empieza a pensar qué políticas quieres para dispositivos con cámara y micrófono "siempre activos" antes de que lleguen.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">ROBÓTICA</div>
+    <h3>La robótica física acelera: XPeng, chefs gratis para entrenar robots y hasta MMA de robots</h3>
+    <p>China empuja fuerte en robótica: <strong>XPeng</strong> prueba robotaxis de lujo de seis plazas y planea fabricar miles de unidades de su humanoide <strong>"Iron"</strong> a finales de 2026 para venta masiva en 2027. En San Francisco, la startup <strong>Shift</strong> envía chefs privados a cocinar gratis en casas de usuarios —a cambio de que graben el proceso en primera persona— para obtener datasets reales de entrenamiento robótico. Y ya se organizan en China <strong>combates de MMA con robots teleoperados</strong>, anticipando un mercado de entretenimiento. Nvidia, además, liberó un modelo pequeño (31B) que aprende a leer imágenes y audio en bruto y corre en local.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Fíjate en el patrón de Shift: el cuello de botella de la robótica no es el algoritmo, son los datos del mundo físico. Quien captura esos datos hoy construye la ventaja de mañana. La misma lógica aplica a tu empresa: los datos propios de cómo hacen realmente el trabajo tus equipos son un activo estratégico, no un archivo olvidado.</p>
+    </div>
+  </div>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight-box">
+    <h3>El dato de la semana</h3>
+    <p>Casi 200 economistas, investigadores y líderes tech —incluidos 15 premios Nobel y los economistas jefe de OpenAI y Anthropic— firmaron la carta abierta "We Must Act Now" (wemustactnow.ai). Advierten de desplazamiento laboral a gran escala, pero también de grandes mejoras en el nivel de vida, y piden actuar para que la IA aumente el trabajo humano en vez de reemplazarlo.</p>
+    <span class="stat">~200</span>
+    <div class="stat-label">expertos firmantes: la IA transformaría la economía "considerablemente más rápido" que la Revolución Industrial — y piden políticas urgentes</div>
+  </div>
+
+  <!-- SECCIÓN: NEGOCIOS, EMPLEO Y PODER -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💼</span><span class="text">Negocios, Empleo y Poder</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">INFRAESTRUCTURA</div>
+    <h3>Meta arrienda cómputo a Anthropic por hasta $10.000M: la nube sobrante es el nuevo negocio</h3>
+    <p>Según el New York Times, <strong>Meta negocia arrendar capacidad de cómputo a Anthropic por hasta $10.000 millones en dos años</strong> (propuesta que hizo Anthropic en junio; sigue en fase inicial y podría caerse). Es más pequeño que el acuerdo previo de Anthropic con SpaceX ($45.000M a tres años), y confirma una tendencia: <strong>el cómputo sobrante se convirtió en activo arrendable</strong> — SpaceX también negocia rentar data centers al Pentágono. Mientras, TSMC prometió otros $100.000M en Arizona y reportó beneficio récord de $22.000M (+77%), con demanda de IA "hasta 2030".</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>El verdadero foso de la IA ya no es el modelo —que se abarata y se abre— sino quién controla el cómputo, la energía y los chips. Cuando los gigantes se arriendan capacidad entre sí, te dice dónde está el poder real. Para las empresas, la lección es de dependencia: entiende de qué infraestructura cuelga tu proveedor de IA.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">EMPLEO</div>
+    <h3>Meta demandada por despedir con IA; Hyundai se va a huelga por miedo a los robots</h3>
+    <p>El impacto laboral dejó de ser teórico: <strong>26 empleados demandaron a Meta</strong> alegando que usó una herramienta de IA para calificar la productividad y ejecutar despidos, ignorando a quienes estaban de baja médica o parental. En Corea del Sur, los trabajadores de una planta de <strong>Hyundai iniciaron una huelga</strong> exigiendo información ante el temor de que los humanoides destruyan empleos manuales. Y Satya Nadella (Microsoft) advirtió que las empresas "pagan dos veces" por la IA propietaria: en tarifas y en cesión de conocimiento a los laboratorios.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Usar IA para decidir despidos sin supervisión humana es un campo minado legal y ético — y ya está en tribunales. Si en tu organización la IA toca decisiones sobre personas, necesitas trazabilidad, criterios auditables y un humano responsable en el lazo. No es burocracia: es protección legal y reputacional.</p>
+    </div>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">REGULACIÓN</div>
+    <h3>Nueva York congela los data centers un año; Illinois exige auditorías de seguridad</h3>
+    <p>Nueva York se volvió el <strong>primer estado en pausar 1 año los permisos a data centers de 50 MW o más</strong> (orden de la gobernadora Hochul), para estudiar su impacto ambiental y energético — medida criticada por la potencial pérdida de empleos bien pagados y ~$10.000M en proyectos en pausa. Illinois, por su parte, activó la primera ley que <strong>exige auditorías anuales de seguridad</strong> a los grandes desarrolladores de IA (ingresos &gt;$500M), con reporte de incidentes en 72 horas y multas de hasta $3M. Y Pep Martorell planteó la pregunta incómoda de la semana: si los mejores modelos ya requieren aval del gobierno de EE.UU. para lanzarse, <strong>¿dónde quedamos Europa y Latinoamérica?</strong></p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos:</div>
+      <p>Se está formando un escenario de "dos muros": EE.UU. filtra el acceso a sus modelos punteros y China evalúa hacer lo mismo con los suyos. Para la región, la respuesta estratégica es doble: apostar por modelos abiertos (como Kimi o Inkling) y desarrollar capacidad local de implementación. Depender de un solo proveedor extranjero es el riesgo que hay que evitar.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN: HERRAMIENTAS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://www.kimi.com/">Kimi K3</a></div>
+      <div class="tool-desc">El mayor modelo abierto del mundo (Moonshot AI): #1 en código frontend, contexto de 1M de tokens. Pesos públicos el 27 de julio.</div>
+      <div class="tool-link"><a href="https://www.kimi.com/">🔗 kimi.com →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://thinkingmachines.ai/">Inkling</a></div>
+      <div class="tool-desc">Modelo open-weight de Thinking Machines (Mira Murati): multimodal y personalizable sobre tus datos vía la plataforma Tinker.</div>
+      <div class="tool-link"><a href="https://thinkingmachines.ai/">🔗 thinkingmachines.ai →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://www.canva.com/ai-code-generator/">Canva Code 2.0</a></div>
+      <div class="tool-desc">"Vibe-code": genera webs y apps desde un prompt y edítalas como un diseño de Canva. Ideal para prototipos y landings sin programar.</div>
+      <div class="tool-link"><a href="https://www.canva.com/ai-code-generator/">🔗 canva.com/ai-code-generator →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://gemini.google.com/">Gemini Notebook</a></div>
+      <div class="tool-desc">El renovado NotebookLM (30M+ usuarios): ahora cada cuaderno ejecuta código en la nube para análisis y automatización sobre tus fuentes.</div>
+      <div class="tool-link"><a href="https://gemini.google.com/">🔗 gemini.google.com →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://claude.com/solutions/teachers">Claude for Teachers</a></div>
+      <div class="tool-desc">Acceso premium gratuito a Claude para docentes K-12 verificados de EE.UU., con currículos alineados a estándares y protección FERPA.</div>
+      <div class="tool-link"><a href="https://claude.com/solutions/teachers">🔗 claude.com/solutions/teachers →</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name"><a href="https://github.com/andrewyng/aisuite">aisuite</a></div>
+      <div class="tool-desc">Interfaz única (de Andrew Ng) para conectar OpenAI, Anthropic y Google desde un mismo código: orquesta varios modelos sin casarte con uno.</div>
+      <div class="tool-link"><a href="https://github.com/andrewyng/aisuite">🔗 github.com/andrewyng/aisuite →</a></div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">📌</span><span class="text">Reflexión estratégica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reflection">
+    <h3>El poder se está reorganizando — y la mejor defensa es la portabilidad</h3>
+    <p>Tres corrientes de esta semana apuntan al mismo lugar. Primera: los modelos de frontera se abren y se abaratan tan rápido que ninguno es un lugar seguro para anclar tu operación —hoy es Kimi, ayer Fable, mañana Opus 5—. Segunda: el poder real se está mudando hacia abajo, a quién controla cómputo, energía y chips, donde los gigantes ya se arriendan capacidad entre sí. Tercera: casi 200 economistas nos piden mirar el empleo de frente, no con pánico ni con negación.</p>
+    <p>¿La estrategia que se desprende? <strong>Portabilidad y criterio propio.</strong> Diseña tus flujos de trabajo para poder cambiar de modelo sin rehacerlo todo. Prioriza modelos abiertos donde la soberanía de tus datos importe. Y en cada decisión donde la IA toque a personas, mantén un humano responsable con criterios auditables. La ventaja competitiva de los próximos años no será tener el mejor modelo —eso cambia cada semana—; será saber orquestar el que convenga, con gobernanza que resista el escrutinio. Esa capacidad no la compras con una licencia: la construyes.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤝</span><span class="text">Únete a la comunidad</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="cta-block">
+    <!-- CTA SUSCRIPCION (bloque fijo de plantilla — mantener en todas las ediciones) -->
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te gustó esta edición?</strong><br>Recíbela cada semana en tu correo. Una herramienta de IA, un caso de uso real y una idea para aplicarla en tu negocio. Sin relleno. Sin spam.</p>
+      <a href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff;">¿Quieres seguir la conversación en comunidad?</strong><br>Únete a la Comunidad IA Entusiastas — un espacio para profesionales que aplican IA en su trabajo, con acceso a recursos, discusiones y actualizaciones semanales.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la Comunidad IA</a>
+    </div>
+
+    <div class="cta-secondary">
+      <p>¿Quieres explorar cómo aplicar IA en tu empresa o consultoría? Agenda una sesión gratuita de descubrimiento de 30 minutos conmigo.</p>
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">📅 Agendar sesión gratuita →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #25</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a href="https://ateneo-empresarial.com">Ateneo Empresarial</a><br>
+      Semana del 13 al 19 de julio de 2026<br><br>
+      Fuentes: NYT, Bloomberg, Reuters, TechCrunch, Tom's Hardware, Artificial Analysis, Superintelligence, The AI Report,<br>
+      Techpresso, GenAI Works, IA Secrets, Jon Hernández, Pep Martorell y otros newsletters especializados en IA.<br><br>
+      <a href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">Sesión gratuita</a> ·
+      <a href="https://marycardenas.ai">marycardenas.ai</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
