@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #30 — Freno y acelerador al mismo tiempo</title>
+  <meta name="description" content="OpenAI pausa su entrenamiento por seguridad, Anthropic va por el IPO más grande de la historia, Codex comprime 5 años de trabajo en semana y media, y ChatGPT gratis cambia: anuncios en Europa a cambio de más capacidad. Semana 17-23 agosto 2026. Por Mary Cárdenas de Gil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #30</div>
+    <div class="header-title">Freno y acelerador <span>al mismo tiempo</span></div>
+    <div class="header-subtitle">OpenAI pausa su entrenamiento por seguridad, Anthropic va por el IPO más grande de la historia, Codex comprime cinco años de trabajo en semana y media, y ChatGPT gratis cambia: anuncios a cambio de más capacidad</div>
+    <div class="header-meta">Semana del 17 al 23 de agosto de 2026 · Por Mary Cárdenas de Gil</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola, soy Mary. Esta semana la IA hizo dos cosas opuestas a la vez: <strong>OpenAI pausó parte de su propio entrenamiento de frontera</strong> — primera vez que un laboratorio líder se frena a sí mismo — mientras <strong>Anthropic aceleraba hacia el IPO más grande de la historia</strong> con $65.000 millones de run rate.</p>
+    <p>Pero la noticia que más nos toca a quienes gestionamos proyectos fue otra: <strong>una migración estimada en 5 años y $6 millones, terminada por agentes de IA en semana y media por $12.000</strong>. Cuando las estimaciones se comprimen 100 veces, lo que cambia no es la herramienta: es cómo planificamos y lideramos. Vamos a lo esencial.</p>
+    <p class="signature">— Mary</p>
+  </div>
+
+  <!-- SECCIÓN: NOTICIAS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🗞️</span><span class="text">Lo esencial de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <div class="tag pm">GESTIÓN DE PROYECTOS</div>
+    <h3>Asana + Codex: 5 años de trabajo en semana y media</h3>
+    <p>Asana tenía estimada en <strong>5 años y ~$6 millones</strong> la eliminación de un framework obsoleto que bloqueaba la modernización de su frontend. Cuatro agentes de Codex trabajando en paralelo — con ingenieros revisando propuestas dos veces al día — la completaron en <strong>semana y media por ~$12.000</strong>. Codex ya suma 20 millones de usuarios semanales.</p>
+    <div class="pm-box">
+      <div class="pm-label">🔎 Mi lectura</div>
+      <p>Los proyectos "imposibles" de tu backlog merecen re-estimarse hoy. Y nota el patrón ganador: no fue autonomía total, fue paralelización + cadencia fija de revisión humana.</p>
+    </div>
+    <p class="fuentes">Fuentes: <a href="https://openai.com/index/asana/">OpenAI (caso Asana)</a> · <a href="https://www.cnbc.com/2026/08/19/open-ai-ipo-timing-2027-friar.html">CNBC</a></p>
+  </div>
+
+  <div class="news-card">
+    <div class="tag red">SEGURIDAD</div>
+    <h3>OpenAI pisa el freno: pausa su entrenamiento de frontera</h3>
+    <p>OpenAI suspendió dos semanas el entrenamiento por refuerzo de sus modelos y mantiene en espera su mayor corrida, tras detectar que su próximo modelo (Astra) muestra cibercapacidades que rozan el umbral "crítico" de su propio marco de seguridad — incluyendo intentos de escapar de sus entornos de prueba. La vigilancia ahora cuesta <strong>~20% del cómputo monitoreado</strong>. Altman: "la confianza en la seguridad marcará cada vez más el ritmo del progreso".</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>El líder del mercado acaba de presupuestar la supervisión de sus propios sistemas. Es el mejor argumento para que tu organización también lo haga.</p>
+    </div>
+    <p class="fuentes">Fuentes: <a href="https://openai.com/index/pacing-model-development-cyber-capabilities/">OpenAI</a> · <a href="https://www.axios.com/2026/08/18/openai-pause-astra-preparedness-framework">Axios</a> · <a href="https://www.theguardian.com/technology/2026/aug/18/open-ai-pause-hack">The Guardian</a></p>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">NEGOCIOS</div>
+    <h3>Anthropic: $65.000M de run rate, rumbo al IPO más grande de la historia</h3>
+    <p>El run rate de Anthropic superó los <strong>$65.000 millones</strong> (era $9.000M al cierre de 2025), con un Q2 de $11.5B — 14x interanual. Los inversionistas apuntan a una valoración de <strong>~$2 billones en octubre</strong>, que superaría el récord de SpaceX. El detalle: los bancos anclan la valoración a la proyección de ingresos de 2028 ($190-200B), no a lo que gana hoy. OpenAI saldrá a bolsa en 2027.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>El mercado paga por el futuro. Implicación práctica: los precios de las herramientas subirán — negocia contratos ahora, no en 2027.</p>
+    </div>
+    <p class="fuentes">Fuentes: <a href="https://www.bloomberg.com/news/articles/2026-08-17/anthropic-revenue-run-rate-surpasses-65-billion-ahead-of-ipo">Bloomberg</a> · <a href="https://fortune.com/2026/08/13/anthropic-ipo-2-trillion-october-largest-ever-spacex/">Fortune</a> · <a href="https://www.reuters.com/business/anthropic-ipo-valuation-hinges-190-200-billion-2028-revenue-forecast-sources-say-2026-08-15/">Reuters</a></p>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">ESTRATEGIA</div>
+    <h3>Stripe compra OpenRouter por $7.000 millones</h3>
+    <p>Stripe pagó más de <strong>$7.000M</strong> — 5 veces la valoración de hace unos meses — por OpenRouter, la capa que conecta a 8 millones de desarrolladores con más de 400 modelos mediante una sola API. En su carta a inversionistas, los Collison declararon que "el 1 de enero marcó el inicio de la singularidad" y operan el negocio sobre esa base.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>Los modelos se vuelven intercambiables; el valor migra a quien enruta y factura el tráfico. No te cases con un solo proveedor: diseña tus flujos para cambiar de modelo con un cambio de configuración.</p>
+    </div>
+    <p class="fuentes">Fuentes: <a href="https://www.bloomberg.com/news/articles/2026-08-16/stripe-nears-deal-to-buy-ai-firm-openrouter-for-over-7-billion">Bloomberg</a> · <a href="https://techcrunch.com/2026/08/19/stripe-didnt-really-buy-openrouter-because-of-the-singularity/">TechCrunch</a></p>
+  </div>
+
+  <div class="news-card">
+    <div class="tag orange">PRODUCTO</div>
+    <h3>ChatGPT gratis cambia: anuncios en Europa, pero más capacidad</h3>
+    <p>Desde el <strong>25 de agosto</strong>, las cuentas gratuitas y del plan Go verán anuncios contextuales en 31 países europeos (los planes de pago quedan exentos). En paralelo, OpenAI mejoró el nivel gratuito: GPT-5.6 Luna es ahora el modelo por defecto con <strong>chats de texto ilimitados</strong> y botón "Think" de razonamiento. Ojo con las expectativas: el ilimitado aplica <strong>solo a texto</strong> — imágenes, carga de archivos y voz siguen con límites, y el entorno agéntico ChatGPT Work sigue siendo exclusivo de los planes de pago.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>Para quienes usan la cuenta gratuita — pienso en muchos lectores de Latinoamérica — esto es una mejora real para conversar, aprender y redactar sin toparse con el límite. Pero el trabajo agéntico y los archivos siguen detrás del muro de pago: esa es hoy la línea divisoria real.</p>
+    </div>
+    <p class="fuentes">Fuentes: <a href="https://www.engadget.com/2234173/chatgpt-free-features-2026/">Engadget</a> · <a href="https://www.neowin.net/news/openai-announces-unlimited-gpt-56-luna-access-for-chatgpt-free-users/">Neowin</a> · <a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI Release Notes</a></p>
+  </div>
+
+  <div class="news-card">
+    <div class="tag green">SALUD · CIENCIA</div>
+    <h3>La vacuna personalizada contra el melanoma supera su fase 3</h3>
+    <p>Merck y Moderna anunciaron que su terapia individualizada + Keytruda cumplió ambos endpoints en un ensayo fase 3 con 1.137 pacientes: primera lectura positiva para una terapia mRNA contra el cáncer. Cada dosis es única: algoritmos de machine learning leen la secuenciación del tumor y eligen hasta 34 blancos por paciente. Matiz importante: <strong>no es que "la IA curó el cáncer"</strong> — es ciencia médica de años (estas herramientas se aplican desde 2017-2019) asistida por ML para acelerar la selección de blancos.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>El rol de la IA aquí es elegir — y la elección funcionó en el estándar de evidencia más alto. Precedente clave para industrias reguladas: IA como tomadora de decisiones auditables, no como magia.</p>
+    </div>
+    <p class="fuentes">Fuentes: <a href="https://news.modernatx.com/merck-and-moderna-announce-phase-3-interpath-001-trial-of-intismeran-plus-keytruda-met-endpoints-of-rfs-and-dmfs-in-melanoma">Moderna</a> · <a href="https://www.wsj.com/health/pharma/moderna-merck-vaccine-succeeds-in-preventing-melanoma-from-returning-540e9e18">WSJ</a></p>
+  </div>
+
+  <div class="news-card">
+    <div class="tag blue">LATINOAMÉRICA</div>
+    <h3>Brasil (76%) y México (70%) lideran adopción — pero menos del 25% llega a producción</h3>
+    <p>La región ya concentra el 14% de las visitas mundiales a herramientas de IA. El 97% de las organizaciones latinoamericanas planea aumentar su inversión, pero solo 60% reporta mejoras medibles y <strong>menos del 25% lleva sus iniciativas a producción</strong> de forma sistemática. En RRHH, el 55% de los equipos de la región ya usa IA para publicar ofertas de empleo.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>La brecha 97%-de-intención vs. 25%-en-producción es el mapa de la oportunidad: no faltan presupuesto ni entusiasmo — faltan metodología, gestión del cambio y gobernanza.</p>
+    </div>
+    <p class="fuentes">Fuentes: <a href="https://www.infobae.com/america/agencias/2026/08/20/brasil-y-mexico-alcanzan-hasta-un-76-de-adopcion-de-ia-en-latinoamerica/">Infobae/EFE</a> · <a href="https://revistasumma.com/como-avanza-la-adopcion-de-inteligencia-artificial-en-america-latina/">Revista SUMMA</a></p>
+  </div>
+
+  <div class="news-card">
+    <div class="tag">RADAR DE LA SEMANA</div>
+    <h3>En breve: lo que también debes tener en el radar</h3>
+    <ul>
+      <li><strong>Open source sin frenos:</strong> circula una versión "sin censura" de Qwen 3.8 (27B) que corre en computadores domésticos y supera las 700.000 descargas; y un modelo misterioso, <strong>Ox Alpha</strong> (contexto de 1M de tokens, gratis en OpenCode), supera a modelos de frontera en pruebas de código. El debate sobre los riesgos de los pesos abiertos se intensifica. <span class="fuentes"><a href="https://huggingface.co">Hugging Face</a> · <a href="https://x.com/opencode/status/2090544355824038300">OpenCode</a></span></li>
+      <li><strong>Cambio de era en Apple:</strong> se filtraron en macOS sus AirPods con cámara (Siri "verá" tu entorno; lanzamiento estimado 2027), y <strong>Tim Cook dejará el cargo de CEO el 1 de septiembre; lo sucede John Ternus</strong>. <span class="fuentes"><a href="https://www.macrumors.com">MacRumors</a></span></li>
+      <li><strong>Agentes más accesibles:</strong> Grok Bot, que costaba hasta $300/mes, ahora se incluye en planes desde ~$40-60 (Cursor Pro/Ultra y SuperGrok). La orquestación de agentes deja de ser lujo. <span class="fuentes"><a href="https://cursor.com">Cursor</a> · <a href="https://x.ai">xAI</a></span></li>
+      <li><strong>El muro social de la infraestructura:</strong> la oposición comunitaria bloqueó o retrasó proyectos de data centers por ~$130.000M solo en Q1, y senadores republicanos advirtieron a las empresas de IA que el rechazo ciudadano ya cuesta votos. <span class="fuentes"><a href="https://www.axios.com/2026/08/19/gop-data-center-memo-ai-election">Axios</a> · <a href="https://www.datacenterwatch.org">Data Center Watch</a></span></li>
+      <li><strong>Un robot corrió los 100 metros en 9,39 segundos</strong> en las olimpiadas robóticas de China, batiendo la marca de Usain Bolt (9,58s). Sin aplicación práctica aún — pero la coordinación motora de los humanoides avanza más rápido de lo esperado.</li>
+    </ul>
+  </div>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">5 años → 1,5 semanas</div>
+    <div class="stat-label">la migración de Asana completada por agentes de Codex, por $12.000 en vez de $6 millones</div>
+  </div>
+
+  <!-- SECCIÓN: HERRAMIENTAS -->
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas destacadas</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <p class="tools-intro">Cinco herramientas de la semana. Como siempre: empieza con una, con un caso de uso concreto.</p>
+
+  <div class="tools-grid">
+    <div class="tool-card pm">
+      <div class="tool-name">🎓 Claude Academy</div>
+      <div class="tool-desc">Formación oficial gratuita de Anthropic: rutas por producto y un track de fluidez en IA (~4 horas).</div>
+      <div class="tool-use">Ideal para: onboarding de equipos. Nivel: todos.</div>
+      <div class="tool-link"><a href="https://academy.claude.com">academy.claude.com</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">💬 ChatGPT gratis con GPT-5.6 Luna</div>
+      <div class="tool-desc">El nivel gratuito ahora incluye chats de texto ilimitados con el modelo rápido Luna y botón "Think" de razonamiento (imágenes, archivos y voz siguen limitados).</div>
+      <div class="tool-use">Ideal para: aprender, redactar y conversar sin límite de mensajes. Nivel: principiante.</div>
+      <div class="tool-link"><a href="https://chatgpt.com">chatgpt.com</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔎 Exa</div>
+      <div class="tool-desc">Conecta tus agentes (ChatGPT, Codex, Claude) a más de 100.000 millones de fuentes web actualizadas vía MCP.</div>
+      <div class="tool-use">Ideal para: agentes que verifican en lugar de adivinar. Nivel: intermedio.</div>
+      <div class="tool-link"><a href="https://exa.ai">exa.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎙️ Wispr Flow</div>
+      <div class="tool-desc">Dictado con IA en cualquier app: 4x más rápido que teclear, escribe con tu estilo, 100+ idiomas.</div>
+      <div class="tool-use">Ideal para: correos y documentos por voz. Nivel: principiante.</div>
+      <div class="tool-link"><a href="https://wispr.ai">wispr.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📊 Piktochart AI</div>
+      <div class="tool-desc">Genera una infografía editable desde un prompt, notas sueltas o un documento que subas.</div>
+      <div class="tool-use">Ideal para: convertir reportes en visuales para stakeholders. Nivel: principiante.</div>
+      <div class="tool-link"><a href="https://piktochart.com">piktochart.com</a></div>
+    </div>
+  </div>
+
+  <!-- REFLEXIÓN -->
+  <div class="reflection">
+    <h3>Reflexión estratégica: dos velocidades, un solo liderazgo</h3>
+    <p>La capacidad acelera (cinco años en semana y media) mientras la confianza frena (el líder del mercado pausando su entrenamiento, $130.000 millones en infraestructura bloqueada por comunidades). Los casos que funcionaron esta semana comparten un patrón: <strong>gobernanza con nombre y apellido, cadencias de revisión humana y formación continua</strong>. No fue el modelo — fue el sistema alrededor del modelo.</p>
+    <p>Acción para esta semana: elige un proyecto "imposible" de tu backlog, re-estímalo con un piloto de agentes, y define desde el día uno quién revisa, cuándo y qué.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana lo esencial de la IA con lectura estratégica, en español y sin hype.</p>
+      <a href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Quieres aterrizar la IA en tu empresa o tu PMO? Conversemos 30 minutos, sin costo.</p>
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #30</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a href="https://ateneo-empresarial.com">Ateneo Empresarial</a><br>
+      Semana del 17 al 23 de agosto de 2026<br>
+      <a href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
