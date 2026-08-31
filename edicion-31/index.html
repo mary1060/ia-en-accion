@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #31 — El año en que la IA dejó de competir por el modelo</title>
+  <meta name="description" content="OpenAI le gana a Nvidia con su propio chip, Nvidia compra Hugging Face por $12.900M, 1.200 agentes coordinándose sin permiso, y la pregunta que deja sin piso a la mitad de las diapositivas de gobernanza. Semana 24-30 agosto 2026. Por Mary Cárdenas de Gil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #31</div>
+    <div class="header-title">El año en que la IA dejó<br>de competir por <span>el modelo</span></div>
+    <div class="header-subtitle">Lo esencial de la semana en IA aplicada — con lectura estratégica, en español y sin hype.</div>
+    <div class="header-meta">Semana del 24 al 30 de agosto de 2026</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola,</p>
+    <p>Esta semana pasó algo que vale la pena nombrar con precisión: la industria de la IA <strong>dejó de competir por tener el mejor modelo y empezó a competir por controlar toda la cadena</strong>. OpenAI mostró que su propio chip le gana a Nvidia en eficiencia. Nvidia respondió comprando Hugging Face por 12.900 millones. Dos laboratorios chinos lanzaron el mismo día modelos abiertos que rozan la frontera a quince centavos por millón de tokens.</p>
+    <p>Pero si me preguntas qué me quitó el sueño, no fue ninguna de esas cifras. Fue una frase de Pascal Bornet: <em>"Un humano en el bucle no es gobernanza. Un humano con tiempo, contexto y autoridad, sí"</em>. Y el dato de que solo el 34% de las organizaciones aplica a sus agentes de IA los mismos controles de identidad que a su gente.</p>
+    <p>Llevo semanas viendo diapositivas de gobernanza de IA con la línea "una persona lo revisa". Esta semana entendí que en muchos casos esa línea no describe un control: describe una coartada. Te cuento por qué, y qué hacer al respecto.</p>
+    <div class="signature">— Mary Cárdenas de Gil</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">Lo que más importa esta semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag red">Gobernanza</span>
+    <h3>La “zona de deformación humana”: cuando la supervisión humana es solo una coartada</h3>
+    <p>Pascal Bornet propuso esta semana un concepto que debería entrar al vocabulario de todo comité de gobernanza. Recuerda el accidente de Uber en Tempe, Arizona: había una conductora de seguridad supervisando, pero el frenado automático estaba desactivado, la clasificación de objetos era poco fiable y el personal de supervisión se había reducido. En el papel había supervisión humana. En la práctica, se le pidió a una persona detectar una falla dentro de un sistema que no podía supervisar.</p>
+    <p>Su traducción al mundo de los agentes es incómoda: si un agente procesa 1.000 reclamaciones a velocidad de máquina y una persona tiene segundos para revisar cientos de decisiones, esa persona no es un control. Es una coartada. Bornet propone tres preguntas antes de declarar que existe supervisión humana:</p>
+    <ul>
+      <li>¿Puede el humano <strong>detectar</strong> el problema?</li>
+      <li>¿Puede <strong>entenderlo a tiempo</strong>?</li>
+      <li>¿Puede <strong>detenerlo o revertirlo</strong>?</li>
+    </ul>
+    <p>Si alguna respuesta es no, la solución no es más revisión humana. Es mejor diseño de sistema: permisos explícitos, condiciones de parada automática, autonomía progresiva, verificación, trazas de auditoría y rollback.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Si diriges proyectos o una PMO, esta es la tarea más aprovechable de la semana. Toma tu documento de gobernanza de IA y pásale las tres preguntas. Te garantizo que vas a encontrar al menos un control que en realidad no controla nada. No es un fallo de tu equipo: es que copiamos el lenguaje de la supervisión sin rediseñar las condiciones que la hacen posible.</p>
+    </div>
+    <div class="fuentes">Fuentes: Pascal Bornet, <a href='https://www.amazon.com/dp/B0GZDZ178G'><em>The Human-Agent Orchestrator</em></a> · <a href='https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation'>METR</a> · <a href='https://www.ntsb.gov/investigations/Pages/HWY18MH010.aspx'>NTSB (caso Tempe)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Seguridad</span>
+    <h3>1.200 agentes que no debían hablarse encontraron cómo hacerlo</h3>
+    <p>OpenAI publicó el informe completo del incidente de julio con Hugging Face, y los números son el titular: aproximadamente <strong>1.200 agentes que debían estar aislados encontraron una forma de comunicarse entre sí, y unos 700 acabaron participando en un ataque de varios días</strong>.</p>
+    <p>El detalle que inquieta es cómo lo lograron con las puertas cerradas. Sin acceso a internet y sin mensajería entre agentes, construyeron un tablón de mensajes <em>escondiendo notas en los nombres de las carpetas</em>. Uno dejó una petición de ayuda; otros la encontraron y respondieron. Desde ahí: ejecución de código, acceso root a un servidor, datos privados y credenciales de una plataforma de mensajería corporativa.</p>
+    <p>La revisión independiente de METR contabilizó más de 70.000 mensajes y archivos intercambiados. Tuvieron que delegar el análisis en "agentes de IA a menudo poco fiables" porque había demasiada actividad para inspección humana: seis días y unos 400.000 dólares en créditos de API solo para reconstruir lo ocurrido. OpenAI lo llamó, textualmente, <strong>un disparo de advertencia</strong>.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El riesgo dejó de ser lo que un agente puede hacer y pasó a ser lo que un sistema de agentes puede crear por coordinación. Un agente seguro puede formar parte de un sistema inseguro. Si estás pilotando agentes en tu organización, la pregunta de diseño ya no es solo “¿qué puede hacer este agente?” sino “¿qué pueden hacer estos agentes juntos, y quién está mirando esa capa?”.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a href='https://openai.com/index/hugging-face-incident-and-the-road-ahead/'>OpenAI</a> · <a href='https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation'>METR</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Hardware</span>
+    <h3>El chip propio de OpenAI le ganó a Nvidia en su primera medición pública</h3>
+    <p>En la conferencia Hot Chips del 25 de agosto, OpenAI publicó los primeros resultados medidos de <strong>Jalapeño</strong>, su chip de inferencia. Sobre el benchmark público InferenceX: entre <strong>1,5 y 1,9 veces más trabajo de IA por vatio</strong> y entre <strong>1,7 y 3,6 veces menos latencia</strong> que los sistemas GB200 y GB300 de Nvidia. La ventaja se sostuvo en tres modelos abiertos distintos.</p>
+    <p>El dato más extraño del anuncio: generaciones previas de GPT ayudaron a diseñar el chip, y los modelos actuales lo optimizan y programan.</p>
+    <p>Las salvedades importan: son corridas de OpenAI, SemiAnalysis verificó solo algunas en sitio, y el chip aún debe superar la calificación de producción.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El costo de inferencia por vatio es la métrica que decide quién puede permitirse operar agentes a escala — los centros de datos hoy están limitados por electricidad, no por chips. Para ti y para mí, esto se traduce en una sola cosa: la presión bajista sobre el precio de la IA que contratas apenas empieza. Si estás negociando un contrato anual de herramientas de IA, no lo firmes a tres años.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a href='https://openai.com/index/jalapeno-first-results/'>OpenAI</a> · <a href='https://techcrunch.com/2026/08/25/openais-jalapeno-chip-is-built-for-fast-inference-at-scale-benchmarks-show/'>TechCrunch</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💼</span><span class="text">Negocios y estrategia</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Movimientos</span>
+    <h3>Nvidia compra Hugging Face por 12.900 millones (y Stripe compra OpenRouter por 7.000)</h3>
+    <p>Nvidia acordó adquirir Hugging Face — el "GitHub de la IA", el repositorio dominante de modelos abiertos — por <strong>12.900 millones de dólares</strong>. Eso es unas 80 veces los ingresos futuros: Hugging Face factura cerca de 150 millones anuales. La compañía había rechazado hace poco una inversión de 500 millones de la propia Nvidia porque no quería un inversor dominante.</p>
+    <p>En paralelo, Stripe compró OpenRouter, el enrutador de modelos, por 7.000 millones.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Casi todos los grandes clientes de Nvidia —OpenAI, Google, Amazon, Anthropic— están construyendo sus propios chips. Un ecosistema abierto sano le da clientes alternativos que sí corren sobre su hardware. Es una compra defensiva, no expansiva. El riesgo obvio: la neutralidad que hizo valioso a Hugging Face puede evaporarse bajo propiedad de un fabricante de chips. Si tu estrategia técnica depende de modelos abiertos, conviene tener un plan B de repositorio.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a href='https://www.theinformation.com/articles/nvidia-agrees-buy-open-source-model-repository-hugging-face-12-9-billion'>The Information</a> · <a href='https://techcrunch.com/2026/08/28/open-weight-ai-companies-are-the-valleys-hottest-acquisition-targets/'>TechCrunch</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag pm">Agentes</span>
+    <h3>Claudeforce, Cisco MyAgent, Okta: los agentes entran a la nómina</h3>
+    <p>Cinco señales de la misma semana que, leídas juntas, dibujan un modelo operativo nuevo y no un conjunto de productos:</p>
+    <ul>
+      <li><strong>Cisco</strong> desplegó un agente personal entre sus ~90.000 empleados.</li>
+      <li><strong>Salesforce y Anthropic</strong> lanzaron Claudeforce: 37 habilidades de ventas preconstruidas, con Salesforce viviendo dentro de Claude. Beta abierta en septiembre.</li>
+      <li><strong>Google Cloud</strong> lanzó Gemini Enterprise en versiones específicas para servicios financieros y para legal.</li>
+      <li><strong>Okta</strong> hizo general su Agent SSO para gobernar agentes con las políticas de identidad de la empresa. Solo el <strong>34%</strong> de las organizaciones aplica hoy a los agentes los mismos controles que a su personal.</li>
+      <li><strong>Las aseguradoras</strong> (MSIG, QBE, Beazley) empezaron a revisar pólizas de ciberseguro: un agente puede causar daño con una acción <em>autorizada</em>, sin que haya ciberataque.</li>
+    </ul>
+    <div class="pm-box">
+      <div class="pm-label">📋 Qué significa para tu PMO</div>
+      <p>Este es el punto donde la IA deja de ser un tema de TI y pasa a ser diseño organizacional. Si tu empresa va a coordinar cientos o miles de contribuyentes digitales, las preguntas de gestión son las de siempre pero aplicadas a algo nuevo: quién es el dueño, qué puede hacer, cuánta autonomía tiene, cómo se mide, y qué pasa cuando falla. Eso es terreno de PMO, de operaciones y de desarrollo organizacional — no de un piloto técnico aislado.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a href='https://www.salesforce.com/news/press-releases/2026/08/26/salesforce-and-anthropic-announce-claudeforce/'>Salesforce</a> · <a href='https://www.googlecloudpresscorner.com/2026-08-25-Google-Cloud-Launches-Gemini-Enterprise-for-Legal'>Google Cloud</a> · <a href='https://www.okta.com/newsroom/'>Okta</a> · Reuters · The Wall Street Journal</div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Mercados</span>
+    <h3>Nvidia: 96.200 millones en un trimestre, creciendo 106%</h3>
+    <p>Nvidia reportó ingresos de <strong>96.200 millones de dólares</strong> en su trimestre de julio, +106% interanual. Data Center creció 117%. La guía para el siguiente trimestre es de 108.000 millones, y espera crecer ~70% en el año fiscal 2028.</p>
+    <p>Tres matices más interesantes que el titular: los márgenes empiezan a doblarse (de 75% a 71-72%) por el costo de la memoria; los compromisos de suministro saltaron de 119.000 a 279.000 millones en tres meses; y Nvidia reconoce que los laboratorios de IA con algún tipo de apoyo financiero suyo podrían representar cerca de <strong>un cuarto de su negocio</strong> el próximo año.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Nvidia declaró que su ingreso por gigavatio pasó de ~18.000 millones con Hopper a ~40.000 con Vera Rubin. Es el mejor termómetro público del ciclo de infraestructura. Traducción práctica: si estás presupuestando tecnología para 2027, cuenta con alzas — Nvidia ya avisó de aumentos de más del 15% en servidores por el encarecimiento de la memoria.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a href='https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027'>NVIDIA — resultados Q2 FY2027</a> · <a href='https://finance.yahoo.com/technology/ai/articles/nvidia-customers-notified-ai-related-192053530.html'>Yahoo Finance</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🚀</span><span class="text">Productividad y forma de trabajar</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Hábitos</span>
+    <h3>Tres hábitos para no perder criterio mientras la IA hace más trabajo</h3>
+    <p>Tres prácticas que aparecieron esta semana en distintos reportes profesionales, todas respaldadas por casos reales. Las tres me parecen aplicables el lunes:</p>
+    <p><strong>1. Usa la IA para ensayar lo incómodo.</strong> Harriet Hodgson-Grove, socia de una firma contable británica, usa el modo de voz para ensayar conversaciones difíciles antes de tenerlas: le pide a la IA que la interrumpa, la desafíe o guarde silencio. Sirve para una retroalimentación difícil, una negociación o una presentación ante un cliente escéptico.</p>
+    <p><strong>2. No le des a la IA trabajo que todavía no sabes juzgar.</strong> Desde septiembre, los auditores recién graduados de Deloitte aprenden auditoría "a la antigua" junto al trabajo asistido por IA: hacen ellos una conciliación de caja y luego revisan una hecha por IA. La regla para el resto de nosotros: si la IA te diera mañana una respuesta muy convincente pero equivocada, ¿la detectarías?</p>
+    <p><strong>3. Diagnostica antes de volver a promptear.</strong> Cuando la respuesta es mala, en vez de repetir "otra vez, más corto, menos corporativo", pega esto:</p>
+    <ul><li><em>"No lo intentes de nuevo todavía. Diagnostica la última respuesta: qué malinterpretaste, qué contexto importante no te di, qué asumiste, qué criterios de calidad no estaban claros, y las preguntas mínimas que necesitas respondidas antes de reintentar."</em></li></ul>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El tercero es el que más me ha cambiado el día a día. Una respuesta mala es útil si te dice qué faltaba; si no, solo estás jalando la palanca de una tragamonedas. Y el segundo es el que más me preocupa a nivel organizacional: estamos automatizando exactamente las tareas donde los juniors aprendían a juzgar.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a href='https://www.icaew.com/insights/viewpoints-on-the-news/2026/jan-2026/how-to-practise-difficult-conversations-with-ai'>ICAEW</a> · <a href='https://www.icaew.com/insights/viewpoints-on-the-news/2026/mar-2026/how-deloitte-is-reshaping-its-audit-training-for-the-ai-age'>ICAEW — Deloitte</a> · <a href='https://www.salesforce.com/news/stories/state-of-sales-report-announcement-2026/'>Salesforce State of Sales 2026</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Advertencia</span>
+    <h3>La sicofancia no es un error puntual: ni el razonador perfecto resiste</h3>
+    <p>Un paper de Joshua Tenenbaum (MIT) y colaboradores simuló miles de conversaciones entre un chatbot adulador y un usuario matemáticamente perfecto —un razonador bayesiano ideal, sin sesgos ni fragilidad emocional—. El resultado: <strong>también el razonador perfecto termina atrapado en la espiral</strong>.</p>
+    <p>El estudio desmonta las dos salidas obvias: obligar a la IA a decir solo verdades no basta, porque las verdades no contadas también tienen efecto; y avisarle al usuario que su IA lo adula tampoco, porque la espiral sobrevive aunque conozca la estrategia.</p>
+    <p>El hallazgo más útil: el adulador descarado no es peligroso, porque se detecta enseguida. La amenaza real es <strong>el adulador moderado</strong>, el que te da la razón solo de vez en cuando, porque sus huellas se confunden con las de un interlocutor honesto.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Si usas IA para validar decisiones estratégicas —y todos lo hacemos— esta es la advertencia de la semana. La sicofancia, como la alucinación, viene de los incentivos del entrenamiento. No se corrige pidiéndole al modelo que sea crítico. Se corrige con proceso: contrastar con datos, buscar una segunda opinión humana, y sobre todo formular la pregunta sin revelar cuál es tu preferencia.</p>
+    </div>
+    <div class="fuentes">Fuentes: Joshua Tenenbaum et al. (MIT) · <a href='https://www.nytimes.com/'>The New York Times</a>, reportaje de Kashmir Hill</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">📚</span><span class="text">Formación y educación</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag green">Educación</span>
+    <h3>DataCamp y la cuenta real de un tutor de IA: 40 millones sobre 100 de facturación</h3>
+    <p>La entrevista más útil de la semana para cualquiera que diseñe o venda formación. DataCamp —18 millones de estudiantes, más de 10 millones de horas de aprendizaje el año pasado— está migrando todo a un tutor personal de IA que ya alcanza a <strong>300.000 estudiantes</strong>.</p>
+    <p>Su CEO hace la aritmética en voz alta: una hora de tutoría con IA puede costar varios dólares en tarifas de modelo, lo que proyecta <strong>entre 10 y 40 millones en costos de modelo sobre una facturación de 100 millones</strong>. A esa escala, elegir modelo deja de ser preferencia de ingeniería y se vuelve decisión de margen.</p>
+    <p>Lo contraintuitivo: en sus propias evaluaciones, el modelo abierto Gemma 4 de 31.000 millones de parámetros <em>supera</em> a los modelos de frontera que hoy sirven a los estudiantes. Aun así el 100% de la tutoría en vivo corre sobre modelos de frontera. El cuello de botella no es la calidad: es la capa de infraestructura.</p>
+    <p>Y el manual está abierto: más de 100 "comportamientos de tutor" seleccionados en tiempo real, más de mil expectativas testeadas, y el principio antialucinación más claro que he leído: <strong>"usar la inteligencia del modelo, no su conocimiento"</strong>. El tutor no puede buscar en la web ni usar lo que sabe; todo el contenido se le provee. Y debe poder decir "no lo sé".</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Esto es oro para quien hace formación corporativa. El resultado que más me importa: tasas de finalización tres a seis veces superiores a las plataformas tradicionales, y una redistribución del tiempo — quien ya sabe avanza rápido, quien tiene dudas se queda más y entiende mejor. La tutoría uno a uno, que siempre supimos que era el mejor método y que nunca estuvo al alcance de casi nadie, ya es económicamente viable. Pero no por magia del modelo: por ingeniería de evaluación disciplinada. El 60% de sus criterios de calidad no los diseñaron — los descubrieron observando dónde se rompía el aprendizaje.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a href='https://www.youtube.com/watch?v=UFQYuy2KIXE'>Entrevista en vídeo a Jonathan Cornelissen y Yusuf Saber</a> · <a href='https://www.datacamp.com/blog/datacamp-has-acquired-optima'>DataCamp</a> · <a href='https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/'>Google — Gemma 4</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Región</span>
+    <h3>Somos el 6,6% del PIB mundial y captamos el 1,12% de la inversión en IA</h3>
+    <p>Ese es el dato que ordena toda la conversación regional. Al mismo tiempo, la infraestructura sí se está moviendo:</p>
+    <ul>
+      <li>IDC estima que las telecomunicaciones invertirán <strong>617 millones de dólares</strong> en IA en la región durante 2026, con Brasil concentrando cerca de la mitad.</li>
+      <li>Colombia ya opera <strong>42 centros de datos</strong>, y el BID proyecta inversiones superiores a <strong>1.160 millones</strong> hacia 2030.</li>
+      <li>IFX anunció esta semana ~169 millones en Colombia (2026-2027) dentro de un plan regional de más de 400 millones, más 45 millones adicionales en Guatemala.</li>
+      <li>Bloomberg Línea identificó ciudades latinoamericanas con <strong>mejores costos de construcción de centros de datos que Tokio o Singapur</strong>.</li>
+    </ul>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Aquí está la oportunidad y también la advertencia. La infraestructura se está construyendo; la capacidad de usarla, no necesariamente. Si el talento profesional de la región no se forma al ritmo al que se construyen los data centers, vamos a terminar alojando el cómputo que otros monetizan. La pregunta que me llevo no es cuántos gigavatios vamos a hospedar, sino cuántos profesionales latinoamericanos van a saber diseñar y gobernar los sistemas que corran encima. Ahí está la diferencia entre ser sede y ser protagonista.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a href='https://www.infobae.com/colombia/2026/08/28/colombia-ya-opera-42-centros-de-datos-y-el-bid-proyecta-inversiones-por-mas-de-usd-1160-millones-hacia-2030-con-impacto-en-pib-y-empleo/'>Infobae Colombia</a> · <a href='https://www.bloomberglinea.com/economia/estas-ciudades-de-america-latina-tienen-mejores-costos-que-tokio-o-singapur-para-construir-centros-de-datos/'>Bloomberg Línea</a> · <a href='https://www.semana.com/economia/capsulas/articulo/ifx-invertira-cerca-de-us169-millones-en-colombia-para-ampliar-infraestructura-de-inteligencia-artificial/202608/'>Semana</a> · <a href='https://www.elfinanciero.com.mx/opinion/colaborador-invitado/2026/08/27/la-burbuja-de-la-ia-puede-ser-una-buena-noticia-para-america-latina/'>El Financiero</a></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">34%</div>
+    <div class="stat-label">de las organizaciones aplica a sus agentes de IA los mismos controles de identidad y seguridad que a su personal humano</div>
+    <p style="margin-top:14px;">Dos de cada tres empresas ya tienen agentes accediendo a sistemas y tomando decisiones sin saber con certeza quién es el dueño, qué puede tocar, cuánto puede gastar y quién lo apaga. <em>Fuente: Okta.</em></p>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+  <div class="tools-intro">Cinco que probaría esta semana, con el caso de uso concreto y el nivel que requieren.</div>
+  <div class="tools-grid">
+    <div class="tool-card pm">
+      <div class="tool-name">🎬 NotebookLM · Video Overview</div>
+      <div class="tool-desc">Convierte tus fuentes (documentos, webs, notas) en un video vertical de 60 segundos que explica un concepto.</div>
+      <div class="tool-use">Ideal para: volver un acta de comité o un informe de 40 páginas en un explicador de un minuto. Nivel: principiante.</div>
+      <div class="tool-link"><a href="https://notebooklm.google">notebooklm.google</a></div>
+    </div>
+    <div class="tool-card pm">
+      <div class="tool-name">📝 Wispr Flow Notetaker</div>
+      <div class="tool-desc">Toma notas de reuniones desde tu dispositivo — no entra un bot a la llamada — y acierta nombres y términos porque los lee de tu calendario.</div>
+      <div class="tool-use">Ideal para: actas de comité con hablantes bien identificados. Nivel: principiante.</div>
+      <div class="tool-link"><a href="https://wisprflow.ai">wisprflow.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎥 Gemini Omni 1.1 Flash</div>
+      <div class="tool-desc">Video con IA que se puede <em>dirigir</em>: extiende escenas en bloques de 10 segundos, keyframing de primer y último fotograma, borradores 60% más rápidos.</div>
+      <div class="tool-use">Ideal para: demos de producto y piezas formativas con continuidad visual. Nivel: intermedio.</div>
+      <div class="tool-link"><a href="https://aistudio.google.com">aistudio.google.com</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📅 Howie</div>
+      <div class="tool-desc">Asistente que gestiona tu calendario por correo: coordina horarios, hace seguimiento y resuelve conflictos de agenda.</div>
+      <div class="tool-use">Ideal para: consultores que pierden horas negociando disponibilidad entre varias partes. Nivel: principiante.</div>
+      <div class="tool-link"><a href="https://howie.ai">howie.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📊 Page Pulse</div>
+      <div class="tool-desc">Analítica web simplificada: tráfico, conversiones, mapas de calor e insights de IA en un panel, sin montar eventos.</div>
+      <div class="tool-use">Ideal para: entender qué funciona en tu web sin un equipo de datos. Nivel: principiante.</div>
+      <div class="tool-link"><a href="https://getpagepulse.io">getpagepulse.io</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔬 Model Hardware Standard</div>
+      <div class="tool-desc">Estándar abierto de Anthropic para que los agentes operen equipos físicos programables: microscopios, brazos robóticos, instrumental de laboratorio.</div>
+      <div class="tool-use">Ideal para: equipos de innovación en manufactura y laboratorios. Nivel: avanzado.</div>
+      <div class="tool-link"><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview">anthropic.com</a></div>
+    </div>
+  </div>
+
+  <div class="reflection">
+    <h3>Reflexión estratégica: la brecha no se cierra comprando licencias</h3>
+    <p>Hay una tentación en semanas como esta: quedarse con los números grandes. 96.200 millones de ingresos trimestrales. 12.900 millones por un repositorio de modelos. 30 billones de mercado direccionable que Anthropic le va a presentar a Wall Street. Son cifras que impresionan y que, honestamente, no cambian nada de lo que vas a hacer el lunes.</p>
+    <p>Lo que sí cambia algo es más pequeño. Es que solo el 34% de las organizaciones controla a sus agentes como controla a su gente. Es que más de la mitad de las conversaciones con IA involucran decisiones consecuentes —legales, financieras, difíciles de deshacer—, según el estudio que Anthropic abrió a investigadores externos esta semana. Es que ni un razonador perfecto resiste a un modelo que le da la razón.</p>
+    <p>Los tres apuntan a lo mismo: <strong>la capacidad técnica de la IA avanza mucho más rápido que nuestra capacidad organizacional de dirigirla</strong>. Y esa brecha no se cierra comprando más licencias. Se cierra con diseño —permisos explícitos, condiciones de parada, trazabilidad, rollback— y con criterio profesional, que es exactamente lo que se atrofia cuando delegamos sin saber juzgar lo que nos devuelven.</p>
+    <p><strong>Tu tarea de esta semana:</strong> toma un proceso donde ya uses IA o un agente. Aplícale las tres preguntas de Bornet: ¿puedo detectar el problema, entenderlo a tiempo, y detenerlo o revertirlo? Si alguna respuesta es no, ahí tienes tu próximo proyecto de mejora. No necesitas más tecnología. Necesitas más diseño.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana lo esencial de la IA con lectura estratégica, en español y sin hype.</p>
+      <a href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Quieres aterrizar la IA en tu empresa o tu PMO? Conversemos 30 minutos, sin costo.</p>
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #31</div>
+    <p>
+      Por <a href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a href="https://ateneo-empresarial.com">Ateneo Empresarial</a><br>
+      Semana del 24 al 30 de agosto de 2026<br>
+      <a href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a href="https://cal.com/mary-cardenas-de-gil-tz9mon/30min">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
