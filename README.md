@@ -27,5 +27,5 @@ ia-en-accion/
 ## Links importantes
 
 - [Comunidad IA Entusiastas](https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2)
-- [Sesión gratuita](https://cal.com/mary-cardenas-de-gil-tz9mon/30min)
+- [Sesión gratuita](https://cal.com/marycardenas/reunion-estrategica)
 - [marycardenas.ai](https://marycardenas.ai)

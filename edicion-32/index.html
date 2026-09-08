@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #32 — Nunca fue tan barato. Nunca fue tan difícil demostrar que sirve</title>
+  <meta name="description" content="OpenAI declara la era de la AGI, el precio de la IA cae 43% en tres meses y una de cada tres empresas dejó de comprar software. Herramientas nuevas y qué hacer con ellas. Semana del 31 de agosto al 6 de septiembre de 2026. Por Mary Cárdenas de Gil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #32</div>
+    <div class="header-title">Nunca fue tan barato.<br>Nunca fue tan difícil<br><span>demostrar que sirve</span></div>
+    <div class="header-subtitle">Lo esencial de la semana en IA aplicada — con lectura estratégica, en español y sin hype.</div>
+    <div class="header-meta">Semana del 31 de agosto al 6 de septiembre de 2026</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola,</p>
+    <p>OpenAI lanzó GPT-6 Astra el jueves y su presidente cerró la presentación con un <em>"bienvenidos a la era de la AGI"</em>. Es el titular de la semana. Pero el dato que de verdad te sirve el lunes es otro: <strong>el costo de usar IA cayó 43% desde finales de mayo</strong>. Hoy ronda 1,17 dólares por millón de tokens, unas 280 veces menos que a principios de 2023.</p>
+    <p>Eso significa que automatizaciones que no daban los números hace tres meses ahora sí los dan.</p>
+    <p>Y sin embargo McKinsey encontró esta semana que solo el 6% de las organizaciones califica como alto desempeño en IA, y que el porcentaje que puede atribuirle impacto real en resultados no se movió en un año. Nunca fue tan barato usar esto. Nunca fue tan difícil demostrar que sirve.</p>
+    <div class="signature">— Mary Cárdenas de Gil</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">Lo que más importa</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag green">Costos</span>
+    <h3>El precio de la inteligencia cayó 43% en tres meses</h3>
+    <p>El costo promedio de ejecutar un modelo bajó a <strong>1,16–1,18 dólares por millón de tokens</strong> a principios de agosto: 43% menos que a finales de mayo. OpenAI recortó 80% el precio de su modelo económico y competidores chinos han llegado a recortes del 99%.</p>
+    <p>Capacidades comparables cuestan hoy <strong>más de 280 veces menos que a principios de 2023</strong>.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Este es el dato más accionable de la semana y casi nadie lo puso en portada. Si el año pasado evaluaste una automatización y no daba los números, vuelve a hacer el cálculo — es probable que ahora sí dé. Los flujos con agentes que encadenan cientos de llamadas por interacción se volvieron viables este trimestre. Esperar ya cuesta más que probar.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://cryptobriefing.com/ai-token-prices-record-lows/">Crypto Briefing</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Negocios</span>
+    <h3>Una de cada tres empresas dejó de comprar software</h3>
+    <p>La encuesta State of AI de McKinsey, con 1.719 directivos, encontró que <strong>una de cada tres organizaciones se saltó al menos una compra de software</strong> porque los agentes de programación se la construyeron por dentro. En tecnología es el 41%; en salud, 39%.</p>
+    <p>Entre empresas de más de 1.000 millones de facturación, la proporción que escala agentes pasó de 27% a 40% en un año. Las pequeñas se quedaron planas en 22%.</p>
+    <p>El contrapunto es de la propia McKinsey: solo el <strong>6%</strong> califica como alto desempeño en IA, y el porcentaje que atribuye impacto en resultados sigue en 37%, igual que el año pasado.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Yo soy parte de ese tercio. Esta semana cancelé mi suscripción a Gamma y la de Mentimeter, porque ChatGPT Work me resolvió lo que pagaba en cada una. Te cuento el detalle más abajo. No fue una decisión estratégica: fue darme cuenta de que ya tenía esas funciones incluidas en algo que ya pagaba. Dos preguntas para tu próxima reunión de presupuesto. Si vendes software por licencia: ¿qué pasa con tu modelo cuando un tercio de tus clientes puede pedirle a un agente que lo construya? Y si compras: ¿cuál de tus suscripciones podría estar duplicando algo que ya tienes? La brecha entre grandes y pequeñas —40% contra 22%— es la que más me preocupa para nuestra región.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai">McKinsey</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.theregister.com/ai-and-ml/2026/08/25/mckinsey-says-enterprise-ai-is-finally-on-the-road-to-roi/5292388">The Register</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Modelos</span>
+    <h3>GPT-6 Astra: potente, caro y racionado</h3>
+    <p>OpenAI lanzó GPT-6 Astra el 3 de septiembre. Lo relevante para trabajo real no son los benchmarks sino esto: <strong>72,6% en la prueba de manejar un computador</strong> frente al 65,7% del modelo anterior, resolviendo cada tarea en unos 40 minutos donde antes hacían falta 75.</p>
+    <p>Cuesta 10 dólares por millón de tokens de entrada y 50 de salida, 2,5 veces más que el modelo que reemplaza. Y los límites aprietan: en un plan Plus da <strong>entre 3 y 30 mensajes por ventana de cinco horas</strong>, frente a los 250 a 2.000 del modelo económico.</p>
+    <p>Un detalle que sí me parece un avance: en una prueba creada después del incidente de Hugging Face, el modelo anterior sobrepasó su objetivo autorizado el 48% de las veces. Astra lo hizo el 0%.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Es un modelo para una tarea difícil al día, no para dejarlo corriendo. Con ese precio y esos límites, lo sensato es reservarlo para el problema que de verdad lo justifica y resolver el resto con modelos económicos. Que la industria empiece a medir si un modelo se queda donde le dijiste, y no solo cuánto sabe, me parece más importante que cualquier récord de benchmark.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/gpt-6-astra/">OpenAI</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.axios.com/2026/09/03/openai-astra-gpt-6-agi-brockman">Axios</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Criterio</span>
+    <h3>El mismo modelo, dos notas verificadas: 62,7% y 98,6%</h3>
+    <p>La ARC Prize Foundation publicó dos resultados del mismo modelo en la misma prueba. Con su arnés estándar, Astra sacó <strong>62,7%</strong>. Con un adaptador construido sobre la API de OpenAI, <strong>98,6%</strong>.</p>
+    <p>No cambió el modelo. Cambió el software alrededor. Y esa segunda corrida costó 19.000 dólares.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Las dos cifras son verdaderas y están verificadas. Ese es justamente el punto. Cuando quien vende el modelo elige el arnés, el tiempo límite y las columnas de comparación, el resultado describe unas condiciones tanto como una capacidad. Guárdate este ejemplo para la próxima vez que un proveedor te enseñe su demo perfecta: la pregunta no es cuánto sacó, es en qué condiciones.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://arcprize.org/blog/astra">ARC Prize</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/gpt-6-astra/">OpenAI</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas: qué probé y qué vale la pena</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag pm">Probado</span>
+    <h3>ChatGPT Work: lo probé esta semana y cancelé dos suscripciones</h3>
+    <p>Vengo usando Claude Work desde hace tiempo y lo que más me gusta es su precisión. Esta semana estuve probando <strong>ChatGPT Work</strong> y, aunque la lógica es la misma, me llamó la atención otra cosa: <strong>hace preguntas muy certeras</strong>. No sé si tendrá que ver con lo que se está discutiendo estos días sobre la capacidad de estos modelos para resolver problemas a los que no se han enfrentado antes.</p>
+    <p>Lo probé con varios casos de uso. Diseñé un taller completo, incluyendo las láminas de PowerPoint, y <strong>generó imágenes realistas sin que yo se lo indicara</strong>, respetando la plantilla específica que le di. Eso me llevó a cancelar mi suscripción a Gamma.</p>
+    <p>También generé una app con la función <strong>Sites</strong>: un juego tipo Kahoot. Eso me llevó a cancelar mi suscripción a Mentimeter.</p>
+    <p>Para quien no lo ha probado: ahora mantiene abiertos tus Google Docs, Sheets y Slides junto a la conversación, trabaja sobre una carpeta completa y puede actualizar el archivo original cuando le das permiso. Sites está disponible en Plus, Pro y cuentas Work.</p>
+    <div class="pm-box">
+      <div class="pm-label">📋 Mi experiencia usándolo</div>
+      <p>Lo que me hizo cambiar de herramienta no fue la potencia del modelo sino la calidad de sus preguntas. Una herramienta que pregunta bien antes de producir te ahorra toda la ronda de correcciones, y en formación ese es el trabajo que de verdad consume tiempo: no generar el contenido, sino ajustarlo al grupo concreto que tienes enfrente. Si diseñas talleres o presentaciones, empieza por ahí esta semana y revisa qué estás pagando por separado.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">Notas de versión de OpenAI</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.joinhorizon.ai/p/build-and-publish-a-website-in-minutes-with-chatgpt-sites">Tutorial de Sites</a></div>
+  </div>
+  <div class="tools-intro">Otras cinco que probaría esta semana, con el caso de uso concreto.</div>
+  <div class="tools-grid">
+    <div class="tool-card pm">
+      <div class="tool-name">📄 PageIndex</div>
+      <div class="tool-desc">Responde sobre tu conjunto de documentos con citas a nivel de línea: haces clic y se abre el original resaltado en la línea exacta. 98,7% de acierto en FinanceBench.</div>
+      <div class="tool-use">Ideal para: contratos, informes o normativa donde la respuesta tiene que ser verificable. Nivel: intermedio.</div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://pageindex.ai/everyone">pageindex.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎨 Google Pics</div>
+      <div class="tool-desc">Diseño con IA integrado en Docs y Slides, construido sobre el modelo Nano Banana. La respuesta de Google a Canva.</div>
+      <div class="tool-use">Ideal para: generar los visuales de una presentación sin salir del documento. Nivel: principiante.</div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://workspace.google.com">workspace.google.com</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🏗️ Enter Pro</div>
+      <div class="tool-desc">Describes lo que necesitas y construye una app lista para producción: base de datos, accesos, hosting, pagos y analítica desde el primer prompt.</div>
+      <div class="tool-use">Ideal para: un portal de clientes montado en una tarde sin equipo técnico. Nivel: intermedio.</div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://enter.converge.ai/">enter.converge.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔀 Cuey</div>
+      <div class="tool-desc">Un prompt, tres respuestas de modelos distintos lado a lado. Ves dónde discrepan antes de fiarte de la primera.</div>
+      <div class="tool-use">Ideal para: decisiones donde una alucinación te cuesta caro. Nivel: principiante, extensión gratuita.</div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://cuey.io/compare">cuey.io</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🖥️ Claude con uso del computador</div>
+      <div class="tool-desc">Ajustes → General → activar "uso del computador". Claude opera aplicaciones de tu equipo pidiendo permiso para cada una.</div>
+      <div class="tool-use">Ideal para: comparar documentación de varios competidores y producir el informe. Nivel: intermedio.</div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://claude.com/download">claude.com/download</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔍 Memoria</div>
+      <div class="tool-desc">Buscador para tu carrete de fotos que corre en el dispositivo, sin nube. Encuentra por texto hablado en un video, texto en una captura, objetos o caras.</div>
+      <div class="tool-use">Ideal para: recuperar ese clip que sabes que grabaste. Pago único. Nivel: principiante.</div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://memoria.anasouh.fr/">memoria.anasouh.fr</a></div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🚀</span><span class="text">Cómo lo están aplicando</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Caso real</span>
+    <h3>Buffer paró cuatro días y salieron 56 herramientas internas</h3>
+    <p>Buffer detuvo el trabajo normal durante cuatro días y le pidió a toda la empresa construir algo útil con IA. Resultado: <strong>71 personas entregaron 56 herramientas internas</strong>. Su responsable de comunicación, que se describía como no técnica, salió con seis herramientas propias y arreglando cosas de la web ella misma.</p>
+    <p>En paralelo, Microsoft preguntó a 20.000 personas que ya usan IA en el trabajo: <strong>65% teme quedarse atrás</strong>, 45% dice que se siente más seguro cumpliendo sus metas actuales que rediseñando cómo trabaja, y solo <strong>13%</strong> se siente recompensado por experimentar cuando el experimento no rinde de inmediato.</p>
+    <p>El contraejemplo: en Meta alguien armó una tabla de posiciones con el uso de IA de 85.000 empleados, rankeando a los 250 que más tokens consumían. Días después la empresa aclaró que el desempeño se mide por impacto, no por cuánta IA usas.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Lo de Meta es la caricatura perfecta de confundir actividad con resultado. Y ese 13% explica por qué tanta iniciativa de IA se queda en piloto: le pedimos a la gente que reinvente su trabajo mientras la premiamos por entregar exactamente lo de siempre. Lo que funcionó en Buffer no fue una licencia nueva. Fue tiempo protegido, permiso para experimentar y problemas propios que resolver.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization">Microsoft Work Trend Index</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.wired.com/story/meta-pushes-its-new-ai-agent-on-employees-but-eases-off-on-tokenmaxxing/">WIRED</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag pm">Gestión</span>
+    <h3>El problema del permiso: la autonomía es una decisión de delegación</h3>
+    <p>Un agente no puede pagar a un proveedor, cambiar un registro de cliente ni aprobar un reembolso salvo que alguien le haya dado acceso. En el momento en que actúa, ya se tomó una decisión de gestión.</p>
+    <p>La analogía que mejor lo explica: a un empleado nuevo no le entregas una tarjeta corporativa sin límite pidiéndole que sea responsable. Defines topes, categorías, umbrales de aprobación y traza de auditoría.</p>
+    <p>Señales de la semana en esa dirección: India prepara un marco para que agentes hagan pagos pequeños sin aprobación transacción por transacción; Broadcom presentó un sistema que evalúa cada acción contra la misión y el riesgo antes de dejarla pasar; y <strong>Japón convirtió el "humano en el bucle" en requisito obligatorio</strong> para cualquier sistema que envíe correos, ejecute pagos o publique código en producción.</p>
+    <div class="pm-box">
+      <div class="pm-label">📋 Qué significa para tu PMO</div>
+      <p>Conecta directo con lo que hablamos la semana pasada. La revisión humana después de cada acción deja de ser viable cuando los agentes operan de forma continua, así que las decisiones importantes se toman antes de desplegar: qué puede leer, qué puede decidir, qué puede ejecutar, qué nunca, y cómo se detiene. Si tu organización opera en Japón, esto ya dejó de ser recomendación.</p>
+    </div>
+    <div class="fuentes">Fuentes: Pascal Bornet, <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.amazon.com/dp/B0GZDZ178G"><em>The Human-Agent Orchestrator</em></a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://timewell.jp/en/columns/ai-business-operator-guideline-v12-explained">Guía METI y MIC de Japón</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">España y Latinoamérica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Región</span>
+    <h3>Adoptamos por encima del promedio mundial y captamos el 1,1% de la inversión</h3>
+    <p>Latinoamérica adopta IA a un ritmo del <strong>47%</strong>, por encima del promedio global de 45%. Brasil y México lideran con 76% y 70% entre usuarios digitales. En Colombia, el 24,5% de la población en edad laboral la usó en el primer trimestre.</p>
+    <p>En empresas: 68% de las argentinas ya usan IA generativa y 62% de las brasileñas la implementaron. Pero la brecha por tamaño es brutal: <strong>54% de las compañías de más de 500 empleados frente a 12% de las pequeñas</strong>.</p>
+    <p>Y en España, Multiverse Computing presentó Quasar 438B como "el modelo más inteligente de Europa" sin mencionar que es una compresión del chino GLM-5.2. Lo confirmaron después en su blog.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Usamos mucho y construimos poco: adoptamos por encima del promedio mundial y captamos el 1,1% de la inversión global. Con lo que cuesta hoy la inferencia, esa brecha ya no se explica por dinero. Se explica por criterio y por formación, y eso sí está a nuestro alcance. Lo de Quasar me dejó pensando: comprimir un modelo es un logro real de ingeniería, pero omitir de dónde viene cuesta más caro que explicarlo.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.infobae.com/america/agencias/2026/08/20/brasil-y-mexico-alcanzan-hasta-un-76-de-adopcion-de-ia-en-latinoamerica/">Infobae</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.xataka.com/robotica-e-ia/espanola-multiverse-ha-lanzado-modelo-ia-avanzado-europa-todo-apunta-a-que-casi-clon-modelo-chino-glm-5-2">Xataka</a></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">6%</div>
+    <div class="stat-label">de las organizaciones califica como alto desempeño en IA, según McKinsey — mientras el costo de usarla cayó 43% en tres meses</div>
+    <p style="margin-top:14px;">La tecnología nunca fue tan accesible y la capacidad de sacarle valor nunca estuvo tan mal distribuida. Esa brecha no se cierra comprando más licencias.</p>
+  </div>
+
+  <div class="reflection">
+    <h3>Reflexión: barato no es lo mismo que rentable</h3>
+    <p>Junta las dos cifras de esta semana y sale una historia incómoda. El costo de usar IA cayó 43% en tres meses y una de cada tres empresas ya construye en vez de comprar. Al mismo tiempo, solo el 6% de las organizaciones califica como alto desempeño y el porcentaje que puede atribuirle impacto real no se movió en un año.</p>
+    <p>Nunca fue tan barato usar esta tecnología. Nunca fue tan difícil demostrar que sirve. Y esa brecha no se cierra con más herramientas ni con más consumo de tokens — la tabla de posiciones de Meta con 85.000 empleados es la prueba.</p>
+    <p><strong>Tu tarea de esta semana:</strong> toma una automatización que descartaste el año pasado porque no daba los números y vuelve a hacer el cálculo con los precios de hoy. Es probable que ahora sí dé. Y si te sobra tiempo, prueba estas tres preguntas para medir si tu equipo está mejorando de verdad: ¿reconoces dónde la IA es útil en tu trabajo?, ¿sabes instruirla lo bastante bien?, ¿puedes evaluar lo que te devuelve?</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana lo esencial de la IA con lectura estratégica, en español y sin hype.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Quieres aterrizar la IA en tu empresa o tu PMO? Conversemos 30 minutos, sin costo.</p>
+      <a target="_blank" rel="noopener" style="color:#ffffff;font-weight:700;text-decoration:none;" href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #32</div>
+    <p>
+      Por <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://ateneo-empresarial.com">Ateneo Empresarial</a><br>
+      Semana del 31 de agosto al 6 de septiembre de 2026<br>
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
