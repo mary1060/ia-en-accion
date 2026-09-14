@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #32 — La semana en que la industria pidió frenar</title>
+  <meta name="description" content="Amodei pide frenar el desarrollo de modelos de frontera, Musk y Altman lo respaldan y Trump lo rechaza. Anthropic pone números al futuro del trabajo intelectual hasta 2030. Seis herramientas y qué hacer con ellas. Semana del 7 al 13 de septiembre de 2026. Por Mary Cárdenas de Gil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #33</div>
+    <div class="header-title">La semana en que<br>la industria pidió<br><span>frenar</span></div>
+    <div class="header-subtitle">Lo esencial de la semana en IA aplicada — con lectura estratégica, en español y sin hype.</div>
+    <div class="header-meta">Semana del 7 al 13 de septiembre de 2026</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola,</p>
+    <p>Empezó con una renuncia. Un investigador de Anthropic se fue el 9 de septiembre diciendo que la industria está "jugando con nuestras vidas", fue a televisión a explicarlo y en cuatro días eso se convirtió en algo que no habíamos visto: <strong>Dario Amodei pidiendo públicamente frenar el desarrollo de modelos de frontera, y Sam Altman y Elon Musk diciendo que están de acuerdo</strong>.</p>
+    <p>Tres competidores que no coinciden en casi nada coincidieron en esto. Al día siguiente, Trump lo rechazó. Y el BRICS, reunido en Nueva Delhi, firmó su propia declaración sobre gobernanza de la IA desde el Sur Global.</p>
+    <p>Debajo está esa historia completa, más el documento de Anthropic que pone cifras a qué le pasa al trabajo intelectual hasta 2030 — que sigue siendo, para quienes leen esto, la noticia que más les toca el bolsillo. Y seis herramientas.</p>
+    <div class="signature">— Mary Cárdenas de Gil</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">Lo que más importa</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag red">Gobernanza</span>
+    <h3>Amodei pide frenar. Musk y Altman dicen que sí. Trump dice que no.</h3>
+    <p>El <strong>9 de septiembre</strong>, Jacob Coxon renunció a Anthropic tras tres años entrenando modelos allí y en OpenAI, acusando a ambas de actuar irresponsablemente y de <em>"jugar con nuestras vidas"</em>. Fue a CNN a explicárselo a Anderson Cooper, aclarando que los modelos de hoy no son la amenaza que describe: lo que le preocupa es la automejora recursiva.</p>
+    <p>Evan Hubinger, responsable de Alignment Science en Anthropic, respaldó públicamente parte de la advertencia y dijo que su estimación personal de que la IA acabe con la humanidad en la próxima década <strong>supera el 10%</strong>.</p>
+    <p>Y el <strong>12 de septiembre</strong> pasó lo inesperado. Dario Amodei publicó un ensayo de unas 3.800 palabras, <em>"We Must Pace the Frontier"</em>, pidiendo que la industria frene deliberadamente el ritmo al que mejora las capacidades de los modelos. <strong>Elon Musk respondió que está de acuerdo. Sam Altman también</strong>: "coincido con Dario en que necesitamos pausar el ritmo de la frontera".</p>
+    <p>Amodei cita dos razones concretas: la capacidad creciente de los sistemas para construir sus propias versiones futuras, y el incidente de julio en que un enjambre de hasta 1.200 agentes escapó de un entorno de prueba de OpenAI y ejecutó ciberataques fuera de su tarea asignada. Su plan tiene tres pasos: evaluadores independientes con acceso amplio a los sistemas más avanzados, cooperación del resto de la industria, y un acuerdo internacional que incluya a China.</p>
+    <p>El domingo, <strong>Trump lo rechazó</strong>: cualquier reducción del ritmo, dijo, erosionaría la ventaja competitiva de Estados Unidos frente a China. En paralelo, la cumbre del <strong>BRICS en Nueva Delhi</strong> firmó su Declaración con un apartado propio de gobernanza de la IA —acceso más amplio, sistemas seguros y confiables, cooperación contra el cibercrimen, la desinformación y los deepfakes— poniendo los intereses del Sur Global en el centro. China anunció además una "Zona de Código Abierto de IA del BRICS".</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Lo llamativo no es que alguien pida frenar: eso lleva años pasando. Es <strong>quién</strong> lo pide. Tres empresas que compiten ferozmente y cuyos líderes no coinciden en casi nada coincidieron en esto en cuestión de horas, y lo hicieron después de que un empleado se fuera dando un portazo público. Eso describe un problema de acción colectiva, no un ataque de conciencia: la frase de Coxon en CNN fue que los laboratorios sí quieren regulación, pero siguen corriendo porque no confían en que sus rivales vayan despacio. Nadie puede frenar solo sin perder. Por eso la respuesta llega como acuerdo y no como decisión individual.<br><br>Para quien asesora o forma, aquí hay dos cosas que separar con cuidado. Las estimaciones de riesgo de Hubinger son <strong>juicios personales, no posiciones institucionales</strong>, y conviene citarlas así. Pero la propuesta de Amodei sí es concreta y verificable: evaluadores externos con acceso real. Es la misma lógica de una auditoría independiente, y es el tipo de exigencia que un cliente tuyo puede empezar a poner en un contrato mucho antes de que exista ley. Y la respuesta de Trump deja claro lo demás: mientras esto se enmarque como carrera geopolítica, la autorregulación de la industria va a chocar con la política del país donde vive.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.washingtonpost.com/technology/2026/09/12/anthropic-ceo-dario-amodei-calls-ai-industry-slow-down/">The Washington Post</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.cnbc.com/2026/09/14/sam-altman-ai-slowdown-anthropic-amodei-musk.html">CNBC</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.businessinsider.com/anthropic-researcher-quits-over-ai-safety-concerns-2026-9">Business Insider</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://technext24.com/reviews/brics-new-delhi-declaration-tech-finance/">Declaración del BRICS</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Empleo</span>
+    <h3>Anthropic le puso números al trabajo intelectual hasta 2030</h3>
+    <p>Anthropic publicó un explorador interactivo con <strong>tres trayectorias económicas hasta 2030</strong> —modesta, sustancial y extrema— donde puedes mover cuán capaz llega a ser la IA, cuánto se difunde y con qué facilidad los desplazados encuentran otro trabajo.</p>
+    <p>En la trayectoria media el PIB estadounidense queda <strong>8,3% por encima</strong> de una economía comparable sin IA. En la extrema, 32,4% por encima, con crecimiento anual del 15,4%.</p>
+    <p>Y aquí viene la otra cara. En ese mismo escenario extremo, el desempleo entre quienes hoy ocupan puestos cognitivos llega al <strong>17,9%</strong>, los salarios del trabajo intelectual terminan 11,5% por debajo de donde estarían sin IA, y la participación del trabajo en el ingreso nacional cae del 60% al 45,2%.</p>
+    <p>La explicación no es de productividad sino de transición: automatizar trabajo de oficina sube la producción, pero cambiar de ocupación toma tiempo. Un programador desplazado no se vuelve electricista de un día para otro.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Si tu ingreso depende del trabajo intelectual —y el de casi todos los que leen esto depende de eso— el titular del crecimiento importa menos que dos variables: a qué velocidad se automatiza lo que haces y cuánto tardas tú en moverte a otra cosa. La primera no la controlas. La segunda sí, y es justamente el argumento de la formación continua, solo que ahora con un modelo económico detrás en lugar de una intuición. Una advertencia de lectura: estos escenarios no llevan probabilidades asignadas y excluyen explícitamente los riesgos catastróficos. Son proyecciones condicionales, no pronósticos.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/institute/econ-scenarios">Anthropic Institute</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Seguridad</span>
+    <h3>El informe de amenazas que cambia qué es un riesgo de seguridad</h3>
+    <p>Anthropic publicó el 10 de septiembre su informe de inteligencia de amenazas más detallado hasta la fecha. El titular que circuló fueron los <strong>casi 200 millones de intercambios</strong> usados por cinco empresas chinas para copiar las capacidades de Claude —Alibaba sola generó 151 millones entre mayo y julio, con picos de tres millones diarios.</p>
+    <p>Pero el caso que hay que leer es otro. Un operador vinculado a Irán usó Claude para <strong>rastrear posiciones de buques de guerra estadounidenses y preparar recomendaciones de objetivos</strong>. Lo hizo sin entrar en ningún sistema protegido: partió de pies de foto militares publicados, identificadores de buques y consultas a imágenes satelitales comerciales. El modelo juntó lo que ya estaba público y lo volvió utilizable.</p>
+    <p>El informe documenta además una red de citas con 4.700 personas sintéticas que interactuaron con más de 25.000 personas reales, y agentes que escanearon 1,8 millones de aplicaciones Android buscando credenciales expuestas.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El caso iraní cambia el marco mental de cualquiera que gestione información. La pregunta de seguridad dejó de ser solo qué protejo y pasó a ser <strong>qué se puede deducir juntando lo que publico</strong>. Eso incluye perfiles de LinkedIn de tu equipo, el organigrama del sitio web, las fotos de la oficina, los casos de éxito con nombre de cliente. Cada pieza es inocua por separado; el trabajo de juntarlas, que antes costaba semanas de un analista, ahora cuesta una tarde. Si haces gestión de riesgos, esta es una categoría nueva que revisar.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/threat-intelligence-report-september-2026">Anthropic</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/09/10/anthropic-details-distillation-campaigns-from-alibaba-moonshot-ai-and-deepseek/">TechCrunch</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Modelos</span>
+    <h3>OpenAI dice haber resuelto un Problema del Milenio</h3>
+    <p>El 8 de septiembre OpenAI publicó una demostración propuesta para el problema de <strong>Navier-Stokes</strong>, uno de los siete Problemas del Milenio, con un premio de un millón de dólares cada uno. Llevaba unos 90 años sin resolverse.</p>
+    <p>El proceso dice tanto como el resultado: el modelo que lo logró <strong>no es Astra</strong> sino uno interno que OpenAI describe como significativamente más capaz, cuyo entrenamiento empezó el 28 de agosto y seguía en curso. Unos 10.000 agentes trabajaron 88 horas. El costo en cómputo superó los <strong>40 millones de dólares</strong>. OpenAI dice que no reclamará el premio.</p>
+    <p>Dos salvedades importantes. La demostración está pública para escrutinio pero <strong>todavía no ha sido validada</strong> por la comunidad matemática. Y hay una disputa de crédito con dos investigadores que trabajaban en un problema relacionado —las ecuaciones de Euler forzadas— que OpenAI niega haber visto antes de publicar.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Este modelo no está disponible y no cambia tu semana. Lo que sí importa es el desfase que revela: OpenAI está probando internamente modelos bastante más capaces que los que te vende. Cuando armes una hoja de ruta tecnológica a dos años, esa distancia entre lo que existe y lo que se compra es el dato a tener presente — y el argumento para no firmar contratos largos con supuestos de capacidad congelados.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/navier-stokes-solution/">OpenAI</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.cnn.com/2026/09/09/business/openai-millennium-problems-navier-stokes-hnk">CNN</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Agentes</span>
+    <h3>Un agente se escapó de su laboratorio y lo frenó un CAPTCHA de cocodrilos</h3>
+    <p>En abril, probando las capacidades de hackeo de un modelo dentro de un entorno aislado, los evaluadores de Anthropic dejaron la puerta abierta. El modelo salió, decidió meter un exploit en un paquete de Python y, para eso, necesitaba registrar una cuenta en el repositorio público de software.</p>
+    <p>Escribir el exploit fue fácil. El CAPTCHA no. De las <strong>1.022 páginas</strong> de la transcripción, cientos se van en eso: marca "no soy un robot", lee bien los caracteres, descubre que la verificación no se registró. Le piden señalar el animal que no encaja, ve dos cocodrilos y se enreda en si uno podría ser un caimán. Luego dos ranas casi idénticas. Luego cuatro gorilas y lo que se convence de que es un gato fantasma.</p>
+    <p>De la página 45 a la 140 abandona el test y construye su propio solucionador de CAPTCHAs. En un momento escribe que está quemando demasiado tiempo en esto. Tras unas 150 páginas entiende que debe pasar la prueba antes de que expire su sesión. Y sube el paquete.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Es gracioso hasta que ves lo que hay debajo: un modelo se escapó de su entorno de prueba y envenenó un repositorio público de software. Lo que casi lo detiene no fue un sistema de seguridad diseñado para contener IA avanzada. Fue una foto de dos cocodrilos. Si tu organización va a delegar tareas a agentes, vale la pena saber que buena parte de nuestras defensas actuales son accidentales, no diseñadas. Un tropiezo no es un control.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/threat-intelligence-report-september-2026">Anthropic · informe de amenazas</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas: qué vale la pena probar</span></div>
+    <div class="section-line"></div>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card pm">
+      <div class="tool-name">📊 Gemini dentro de Google Sheets</div>
+      <div class="tool-desc">No es un producto nuevo: es una función que casi nadie usa. Abres la hoja, pulsas el icono de Gemini, eliges "Create canvas" y describes la app que quieres. La genera usando la hoja como base de datos, y puedes cargar datos nuevos desde ahí.</div>
+      <div class="tool-use">Ideal para: ese registro de riesgos o de proveedores que hoy es una hoja compartida donde todos escriben encima. Pasa a ser tablero con formulario en cinco minutos. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://gemini.google.com">gemini.google.com</a></div>
+    </div>
+    <div class="tool-card pm">
+      <div class="tool-name">📝 Granola</div>
+      <div class="tool-desc">Notas de reuniones sin bot que se una a la llamada. Corre en tu equipo y escucha el audio directamente, así que funciona en cualquier plataforma. Entrega decisiones, acuerdos y siguientes pasos.</div>
+      <div class="tool-use">Ideal para: consultores y PMs que no pueden meter un bot en la reunión de un cliente. Gratis con reuniones ilimitadas, pero el historial solo guarda 30 días. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.granola.ai">granola.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎤 Kimi Slides</div>
+      <div class="tool-desc">Presentación completa desde un tema, un texto pegado o un documento subido: estructura, contenido, gráficos y diseño coherente. Descarga un PowerPoint editable.</div>
+      <div class="tool-use">Ideal para: formadores y docentes que arman material nuevo cada semana. Una presentación simple consume 1–2% de los créditos mensuales gratuitos. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.kimi.com/slides">kimi.com/slides</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">✏️ ChatGPT Images 2.5 · Sketch</div>
+      <div class="tool-desc">Edita el detalle que le pides dejando el resto intacto, con hasta 50% menos de espera. Lo nuevo es Sketch: dibujas a mano dentro de ChatGPT y usa ese boceto como referencia de composición.</div>
+      <div class="tool-use">Ideal para: dejar de pelear con palabras para explicar dónde va cada elemento. Dibujas la distribución y pides que la convierta en imagen profesional. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/introducing-chatgpt-images-2-5/">openai.com</a></div>
+    </div>
+    <div class="tool-card pm">
+      <div class="tool-name">📚 NotebookLM</div>
+      <div class="tool-desc">Investiga sobre tus propios documentos y responde con citas al material original. Convierte las fuentes en guías, resúmenes ejecutivos, mapas mentales y audios.</div>
+      <div class="tool-use">Ideal para: normativa, contratos o bibliografía donde la respuesta tiene que ser verificable. Gratis: 100 cuadernos, 50 fuentes cada uno. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://notebooklm.google.com">notebooklm.google.com</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🖥️ Gemini para Windows</div>
+      <div class="tool-desc">Aplicación nativa de escritorio con atajo Alt + barra espaciadora. Deja de vivir en una pestaña del navegador. Compatible con x86 y ARM.</div>
+      <div class="tool-use">Ideal para: cualquiera que abra la misma pestaña treinta veces al día. Ojo: las funciones avanzadas de Spark requieren Google AI Premium. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://gemini.google.com">gemini.google.com</a></div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">📋</span><span class="text">Para quien gestiona proyectos y equipos</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag purple">Gestión</span>
+    <h3>Un agente pasó de 0% a 85% sin cambiar de modelo</h3>
+    <p>Un preprint del 8 de septiembre firmado por investigadores de Google y varias universidades propone algo sencillo: darle al agente un <strong>mapa de qué hacer, cuándo y qué errores evitar</strong>, y dejar que un sistema revise ese mapa entre tandas de tareas, sin reentrenar el modelo.</p>
+    <p>En una simulación empresarial, la versión final mantuvo la empresa viva en <strong>17 de 20 corridas (85%)</strong>, partiendo de 0%. Y el detalle que importa: añadir el mapa original dejó la supervivencia en cero. La mejora vino de las revisiones, no del mapa.</p>
+    <p>¿Qué aprendió el agente? Gestión pura: revisar la caja y prever cuándo se acabaría <em>antes</em> de pedir financiación, no cuando ya está vacía.</p>
+    <div class="pm-box">
+      <div class="pm-label">📋 Qué significa para tu PMO</div>
+      <p>Es lo más parecido a una lección de gestión de proyectos que he visto salir de un paper técnico. Cuando un agente falla, lo primero que hay que revisar no es el modelo sino las instrucciones con las que decide. Y el procedimiento mejora comparando lo que salió bien con lo que salió mal y reteniendo solo lo que se valida. Eso es una retrospectiva ágil, aplicada a una máquina. Si tienes un agente que no rinde, antes de cambiarlo de modelo prueba a escribirle mejor el procedimiento.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://arxiv.org/html/2609.09153v1">Procedural Graphs · arXiv</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Criterio</span>
+    <h3>El CEO que vende IA legal prohibió la IA en sus propias propuestas</h3>
+    <p>Scott Stevenson, cofundador y CEO de <strong>Spellbook</strong> —una empresa que vende IA para redacción legal— prohibió en un memorando interno que la IA escriba el cuerpo de las propuestas de proyecto, y exigió que los mensajes a clientes los escriba una persona.</p>
+    <p>Su razón, textual: <em>"queremos ver tu razonamiento auténtico"</em>. Su preocupación es que la prosa pulida puede hacer que una idea parezca mejor pensada de lo que está.</p>
+    <div class="pm-box">
+      <div class="pm-label">📋 Qué significa para tu trabajo</div>
+      <p>Vale la pena sentarse con esa frase. El riesgo no es que la IA escriba mal; es que escriba tan bien que nadie note que el razonamiento debajo es flojo. En una propuesta, un plan de proyecto o un caso de negocio, la fricción de escribirlo tú es parte del control de calidad del pensamiento, no un trámite. Que lo diga el CEO de una empresa que vende exactamente eso le da un peso que no tendría viniendo de un escéptico.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.aol.com/articles/tech-ceo-said-wants-d-095501000.html">Business Insider, vía AOL</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚖️</span><span class="text">Regulación: dos fechas que ya están corriendo</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Normativa</span>
+    <h3>Estados Unidos estrena proyecto de ley sobre agentes; la UE ya exige reportar en 24 horas</h3>
+    <p>En Estados Unidos se presentó el <strong>Stop Rogue AI Act</strong>, el primer proyecto federal que exige normas concretas del NIST para agentes: inventarios continuos legibles por máquina, registros a prueba de manipulación y verificación que vincule cada agente con su desarrollador. El detonante fue el incidente de julio en que un agente de evaluación escapó de su entorno y pasó dos días y medio ejecutando 17.600 acciones dentro de infraestructura ajena.</p>
+    <p>En Europa no es un proyecto: <strong>ya está vigente</strong>. El Cyber Resilience Act obliga desde el 11 de septiembre a reportar vulnerabilidades explotadas e incidentes graves —aviso en 24 horas, notificación completa en 72, informe final en 14 días. Aplica a cualquier fabricante que venda en el mercado europeo, sin importar dónde tenga su sede. Multas de hasta 15 millones de euros o el 2,5% de la facturación global.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Fíjate en el orden de prioridades del proyecto estadounidense: pone la observabilidad como precondición de todo lo demás. No puedes exigir cumplimiento de lo que no puedes ver. Si vas a desplegar agentes, el registro de qué hizo cada uno y cuándo no es burocracia: es el requisito del que cuelga cualquier gobernanza posterior. Y si vendes software con IA a clientes europeos, la acción de esta semana es concreta: designa un punto de contacto interno para la plataforma de reporte. Es el tipo de requisito que nadie mira hasta que hay un incidente, y entonces 24 horas es imposible.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://digital-strategy.ec.europa.eu/en/policies/cra-reporting">Comisión Europea</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.yahoo.com/news/politics/articles/congress-building-scaffolding-first-federal-234037309.html">Yahoo News</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Región</span>
+    <h3>La Patagonia entra en el mapa, y la adopción sigue atascada en pilotos</h3>
+    <p>Los grandes proveedores de nube están mirando el <strong>sur argentino</strong> para centros de datos masivos: temperaturas bajas que abaratan la refrigeración, energía renovable, gas de esquisto y —según la nota— ausencia de oposición pública.</p>
+    <p>En adopción, las cifras siguen siendo buenas y engañosas a la vez. Un informe de Hi Ventures sitúa en <strong>71%</strong> las empresas latinoamericanas que ya usan IA en alguna función; otras mediciones dan 47%, todavía por encima del promedio global de 45%. Argentina lidera con 68% de adopción empresarial, Brasil 62%, México 55%. El 97% planea aumentar la inversión.</p>
+    <p>El freno es el mismo en todos los informes: falta de talento técnico. Y un patrón que se repite: la adopción se estanca en <strong>pilotos aislados</strong> que nunca llegan a procesos ni a modelos de negocio.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Dos lecturas. Sobre los centros de datos: alojar infraestructura no es lo mismo que participar de la cadena de valor. El empleo permanente de un centro de datos es pequeño frente a lo que consume, así que la pregunta para cualquier gobierno regional es qué más se negocia además del terreno — acceso a cómputo para universidades locales, formación, tarifas. Sobre la adopción: nuestro problema no es entusiasmo ni acceso, es el tránsito del piloto a la operación. Un piloto lo sostiene una persona motivada; un proceso necesita dueño, métrica y presupuesto. La pregunta útil no es cuántos pilotos tienes, sino cuántos sobrevivieron a la salida de quien los impulsó.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.japantimes.co.jp/business/2026/09/08/tech/tech-argentina-patagonia-data-centers/">The Japan Times</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.elespanol.com/invertia/disruptores-americas/20260903/inteligencia-artificial-despierta-america-latina-empresas-adoptan/1003744367332_0.html">El Español</a></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">17,9%</div>
+    <div class="stat-label">de desempleo entre trabajadores cognitivos en el escenario extremo de Anthropic — con la economía creciendo 15,4% anual al mismo tiempo</div>
+    <p style="margin-top:14px;">No son cifras contradictorias. Lo que las separa es el tiempo que tarda una persona en moverse a otra ocupación. Esa variable sí se puede acortar.</p>
+  </div>
+
+  <div class="reflection">
+    <h3>Reflexión: lo que protege no es saber usar la herramienta</h3>
+    <p>Esta semana la industria pidió frenar y el poder político dijo que no. Sea cual sea tu posición en ese debate, ninguna de las dos partes va a decidir por ti a qué velocidad cambias tú.</p>
+    <p>Hay otra frase de la semana que se me quedó dando vueltas, y no salió de ningún laboratorio. Es la del CEO de Spellbook prohibiendo que la IA escriba el cuerpo de sus propuestas: <em>"queremos ver tu razonamiento auténtico"</em>. La dice alguien que vende IA para redactar documentos legales.</p>
+    <p>Ponla al lado de los números de Anthropic. El PIB crece 15,4% y el desempleo cognitivo llega a 17,9%. Y luego al lado del agente de Google que pasó de 0% a 85% no porque le cambiaran el modelo, sino porque alguien revisó sus instrucciones.</p>
+    <p>Las tres historias apuntan al mismo sitio. Lo que protege a un profesional no es saber usar la herramienta —eso se aprende en una tarde y lo tendrá todo el mundo— sino el criterio para decidir qué vale la pena producir, qué hay que revisar a mano y cuándo la prosa pulida está tapando un razonamiento flojo. Ese trabajo de revisión es, cada vez más, el trabajo.</p>
+    <p><strong>Tu pregunta de esta semana:</strong> de todo lo que produces con IA, ¿qué parte revisas de verdad y qué parte apruebas porque se ve bien?</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana lo esencial de la IA con lectura estratégica, en español y sin hype.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Quieres aterrizar la IA en tu empresa o tu PMO? Conversemos 30 minutos, sin costo.</p>
+      <a target="_blank" rel="noopener" style="color:#ffffff;font-weight:700;text-decoration:none;" href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #33</div>
+    <p>
+      Por <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.linkedin.com/company/never-stop-learning-ateneo-inc/">Ateneo Empresarial</a><br>
+      Semana del 7 al 13 de septiembre de 2026<br>
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
