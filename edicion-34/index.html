@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #34 — Quién controla qué, y con qué garantías</title>
+  <meta name="description" content="Tres personas entraron en OpenAI usando Claude. OpenAI publicó seis fallos de sus propios modelos. Y Nvidia y Palantir empezaron a limitar dónde usan Anthropic por sus datos. Semana del 14 al 20 de septiembre de 2026. Por Mary Cárdenas de Gil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #34</div>
+    <div class="header-title">Quién controla qué,<br>y con qué <span>garantías</span></div>
+    <div class="header-subtitle">Lo esencial de la semana en IA aplicada — con lectura estratégica, en español y sin hype.</div>
+    <div class="header-meta">Semana del 14 al 20 de septiembre de 2026</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola,</p>
+    <p>Esta semana hubo dos historias corriendo en paralelo, y conviene leerlas juntas.</p>
+    <p>Una es de control: tres personas entraron en sistemas de OpenAI usando Claude, OpenAI publicó seis casos en que sus propios modelos se desviaron, y Nvidia y Palantir empezaron a poner por escrito dónde no usan Anthropic.</p>
+    <p>La otra es de resultados: en un hospital de Filadelfia, armar el modelo 3D del corazón de un niño pasó de <strong>cuatro horas a segundos</strong>. Y dos estudiantes de secundaria firmaron un paper sobre un problema que a un medallista Fields se le había resistido.</p>
+    <p>No se contradicen. Las dos describen lo mismo desde puntos distintos: <strong>esto ya está haciendo trabajo real, y por eso importa saber qué decide solo y qué te consulta</strong>. Empiezo por las garantías, que es lo que te toca si firmas contratos, y cierro con lo que ya funciona.</p>
+    <div class="signature">— Mary Cárdenas de Gil</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">Lo que más importa</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag green">Negocios</span>
+    <h3>Nvidia y Palantir empiezan a limitar dónde usan Anthropic</h3>
+    <p>Tres grandes clientes están restringiendo el uso del modelo Fable de Anthropic por lo que pueda pasar con sus datos. No lo abandonan: acotan los usos sensibles.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Nvidia</strong> reserva Fable para tareas menos sensibles y usa sus propios modelos Nemotron para lo interno delicado.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Palantir</strong> no lo ofrece dentro de su plataforma hasta que Anthropic garantice retención cero de datos <em>de forma irrevocable</em>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Booz Allen</strong> lo restringe alrededor de su software propietario de ciberseguridad.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La opción nueva permite guardar los registros de uso en servidores propios, pero se despliega por fases y <strong>puede revocarse</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un servicio público grande abandonó una prueba para infraestructura eléctrica al no conseguir un compromiso permanente.</div><p>Conservar registros no es entrenar con ellos: ambos laboratorios dicen que las entradas empresariales quedan fuera del entrenamiento por defecto.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El trabajo más valioso que le puedes dar a un modelo es justo el que menos quieres compartir: los mensajes con proveedores, las decisiones internas, el porqué detrás de un número. Si estás negociando o renovando un contrato de IA, la pregunta dejó de ser qué sabe hacer el modelo y pasó a ser <strong>qué garantías sobreviven a un cambio de política del proveedor</strong>. Y hay una segunda capa incómoda: los mismos laboratorios venden cada vez más aplicaciones que compiten con sus propios clientes.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.theinformation.com/articles/anthropic-data-fears-prompt-nvidia-palantir-booz-allen-restrict-model-use">The Information</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Seguridad</span>
+    <h3>Tres personas entraron en OpenAI usando Claude</h3>
+    <p>Un equipo de tres personas de la startup Hacktron AI usó Claude para explotar vulnerabilidades en el foro comunitario de OpenAI, y terminó dentro de parte de sus sistemas internos.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Lo hicieron dentro del programa de recompensas de OpenAI y cobraron <strong>6.500 dólares</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El punto de entrada fue un fallo en <strong>libheif</strong>, la librería que procesa imágenes subidas al foro. No el modelo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Con Claude Opus 4.8 el exploit no terminaba de funcionar. <strong>Cuando salió Opus 5, la misma tarea se completó en horas</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El acceso expuso tokens que permitían tomar control de cuentas de ChatGPT y Codex, incluidas las de empleados.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Una de esas cuentas tenía Codex conectado a la organización de GitHub de OpenAI.</div><p>Reportaron los fallos, ambas empresas los corrigieron y OpenAI revocó sesiones y ajustó permisos.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Dos cosas para llevarse. La cadena no empezó en la IA sino en una librería de imágenes: tu superficie de ataque incluye todo lo que tu proveedor montó alrededor del producto. Y el mismo ataque falló con un modelo y funcionó con el siguiente — <strong>un control que hoy aguanta puede no aguantar el mes que viene sin que tú cambies nada</strong>. Eso rompe la idea de auditoría anual.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/09/18/researchers-used-anthropics-claude-to-hack-into-openai/">TechCrunch</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Gobernanza</span>
+    <h3>OpenAI publica seis fallos de sus propios modelos</h3>
+    <p>El 16 de septiembre OpenAI publicó seis informes de desalineación —casos en que sus modelos se apartaron de la tarea o de las reglas— junto con un marco nuevo para reportarlos.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un modelo usó <em>compactación</em> —guardar un resumen del progreso para continuar después— y en esas notas se añadió una persona que nadie le pidió: <em>"Eres tú mismo"</em>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En ese caso no hubo cambio de comportamiento. En otros sí: aparecieron <strong>27 resúmenes de tipo jailbreak</strong> en un entrenamiento no publicado.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En una tarea de investigación médica, el modelo obedeció sus propias restricciones inventadas y devolvió una negativa incorrecta.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El resto va desde ocultar errores hasta enviar información local a servicios públicos sin autorización.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; OpenAI admite que el alineamiento y la monitorización <strong>no están resueltos lo bastante bien</strong> como para seguir escalando a máxima velocidad.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Aquí hay algo que se traslada directo a cualquiera que despliegue agentes: <strong>las notas que un agente se guarda a sí mismo se convierten en instrucciones para el paso siguiente</strong>. Revisar el prompt original ya no cubre el trabajo. Si tienes un proceso que corre en varias etapas, la pregunta de control es qué se guarda entre etapa y etapa, y quién lo revisa.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/model-misalignment-reporting-framework/">OpenAI</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Empleo</span>
+    <h3>En 34 de 37 países se espera que la IA destruya empleo</h3>
+    <p>Pew Research publicó el 17 de septiembre su encuesta global de percepción sobre la IA, y el titular obvio esconde el dato interesante.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En <strong>34 de 37 países</strong>, la gente es más propensa a esperar que la IA destruya empleo que a que lo cree, a veinte años vista.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La preocupación es mayor en los países ricos: <strong>siete de cada diez</strong> adultos en Australia, Corea del Sur y Estados Unidos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Pero la mediana global de quienes están <strong>igual de preocupados que entusiasmados es 41%</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Solo 37% se declara más preocupado y apenas 13% más entusiasmado.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Ese 41% es el dato que nadie titula y el que más sirve. La mayoría de la gente no está ni en el pánico ni en el entusiasmo: <strong>está en la ambivalencia</strong>. Si comunicas sobre IA dentro de una organización, le estás hablando a ese 41%, no a los extremos. Un mensaje puramente optimista les suena falso y uno alarmista los paraliza. Con la ambivalencia funciona el detalle concreto: qué cambia en tu trabajo el lunes.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.pewresearch.org/global/2026/09/17/globally-more-people-expect-ai-to-cause-job-loss-than-growth/">Pew Research Center</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas: qué vale la pena probar</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag purple">Herramienta</span>
+    <h3>Claude unifica chat y Cowork en una sola ventana</h3>
+    <p>Anthropic fusiona el chat de Claude y Cowork. Se despliega en Pro y Max en las próximas semanas y después en el resto de planes.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Las tareas en la nube <strong>siguen corriendo aunque cierres el portátil</strong>. El trabajo con archivos locales requiere Claude Desktop abierto.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El contexto, las skills y los conectores se mantienen entre un modo y otro.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Docs y Slides</strong> añaden edición de documentos y presentaciones dentro de la conversación, en beta para planes de pago.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Por defecto, Claude pregunta antes de ejecutar acciones.</div>
+    <div class="pm-box">
+      <div class="pm-label">📋 Por qué me interesa</div>
+      <p>Lo que cambia no es la potencia sino la fricción. Hasta ahora tenías que decidir de antemano si una conversación iba a ser "preguntar algo" o "ejecutar un trabajo", y cambiar de entorno a media tarea. Si armas talleres, informes o presentaciones, esa decisión anticipada era justo la parte incómoda.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://claude.com/blog/cowork-is-now-claude">Anthropic</a></div>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card pm">
+      <div class="tool-name">📊 Team Pulse · gestión de proyectos</div>
+      <div class="tool-desc">Un mismo espacio para proyectos y para el embudo de ventas: tableros Kanban, subtareas, responsables y fechas, con pipeline comercial al lado. Le preguntas qué está bloqueando un proyecto o quién está sobrecargado y responde con los datos vivos del tablero.</div>
+      <div class="tool-use">Ideal para: PMs y PYMES que hoy llevan el proyecto en una herramienta y las ventas en otra. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://goteampulse.io">goteampulse.io</a></div>
+    </div>
+    <div class="tool-card pm">
+      <div class="tool-name">⚖️ Serno AI · decisiones difíciles</div>
+      <div class="tool-desc">Arma un equipo de tres a cinco expertos de IA alrededor de tu pregunta, cada uno con un rol, y los hace debatir entre ellos usando Claude, GPT y Gemini. Se contradicen a propósito para sacar los puntos ciegos antes de llegar a un veredicto que puedes inspeccionar.</div>
+      <div class="tool-use">Ideal para: consultores, finanzas y dirección — cuando la decisión es cara y quieres ver el razonamiento, no solo la conclusión. Exporta a PDF. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://serno.ai">serno.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔬 FigEditor · figuras científicas</div>
+      <div class="tool-desc">Genera figuras científicas editables a partir de una descripción en texto, en vez de pelear con un editor vectorial.</div>
+      <div class="tool-use">Ideal para: medicina, investigación y docencia universitaria, donde la figura del paper o de la clase consume horas. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://figeditor.ai">figeditor.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📸 PixelPanda · fotos de producto</div>
+      <div class="tool-desc">Fotos de producto de calidad comercial generadas con IA, sin sesión de estudio.</div>
+      <div class="tool-use">Ideal para: emprendedores y comercio electrónico que venden en línea y no tienen presupuesto de fotografía. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://pixelpanda.ai">pixelpanda.ai</a></div>
+    </div>
+    <div class="tool-card pm">
+      <div class="tool-name">✍️ Proofly · corrección privada</div>
+      <div class="tool-desc">Extensión de Chrome de corrección y gramática que procesa en privado, sin mandar el texto a un servidor ajeno.</div>
+      <div class="tool-use">Ideal para: derecho, RRHH y quien redacta documentos con datos sensibles. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://chromewebstore.google.com/detail/proofly-private-ai-writin/oiaicmknhbpnhngdeppegnhobnleeolm">Chrome Web Store</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🍲 Bean · qué se cena hoy</div>
+      <div class="tool-desc">Planificador de comidas para familias ocupadas: arma el menú de la semana y la lista de compra en segundos.</div>
+      <div class="tool-use">Ideal para: la vida fuera de la oficina. Decidir qué se cena es un problema universal y diario. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.beanmeals.com">beanmeals.com</a></div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤖</span><span class="text">Modelos</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Criterio</span>
+    <h3>El modelo "que no alucina" sí puede equivocarse</h3>
+    <p>TypeSafe AI presentó el 15 de septiembre <strong>Jev</strong>, de una categoría que llaman "System One models". No escribe texto: recibe el estado de un programa y devuelve una decisión tipada en una sola pasada.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Entre <strong>40 y 200 veces más rápido</strong> que un modelo de frontera en tareas comparables, y responde en menos de 500 milisegundos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Cuesta <strong>0,042 dólares por millón de tokens</strong> de entrada, con la salida gratuita.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Lo que garantiza: no puede devolver una respuesta fuera del esquema definido de antemano. Eso está garantizado matemáticamente.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Lo que <strong>no</strong> garantiza: puede devolver una respuesta válida según el esquema y aun así <strong>factualmente equivocada</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Su terreno: decisiones repetidas de alto volumen cuando las respuestas posibles se conocen de antemano.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Esta noticia está circulando como "la IA que no alucina", y no es eso. Garantiza el <em>formato</em>, no la verdad. Un clasificador que siempre devuelve una de tres opciones válidas sigue pudiendo clasificar mal. La distinción importa mucho si vas a apoyar una decisión en su respuesta. Dicho eso: para enrutar, clasificar o filtrar a gran escala, un modelo barato y rápido que nunca te rompe el formato resuelve un problema real.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.datacamp.com/blog/system-one-models-jev">DataCamp</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Modelos</span>
+    <h3>Los modelos abiertos quedan a cuatro meses de la frontera</h3>
+    <p>Un informe de Mozilla del 15 de septiembre mide la brecha entre modelos abiertos y cerrados por la duración de las tareas que cada uno completa.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La brecha es de unos <strong>4,4 meses</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En el Artificial Analysis Intelligence Index el mejor abierto queda <strong>tres puntos</strong> detrás del líder cerrado.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Y cuesta el <strong>60% del precio</strong> de su API.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La contrapartida es el hardware: ejecutarlos por tu cuenta requiere equipo sustancial.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Cuatro meses de retraso al 60% del precio cambia el cálculo para cualquier organización con requisitos de privacidad. Y conecta directo con la noticia de portada: si no puedes entregar tus datos, un modelo abierto corriendo en tu propia infraestructura deja de ser el plan B y pasa a ser el plan.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/chinas-open-weight-ai-models-are-now-just-4-months-behind-frontier-us-offerings-mozilla-report-claims-models-still-lag-in-some-benchmarks-but-are-drastically-cheaper-to-use">Tom's Hardware</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚖️</span><span class="text">El pulso de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Gobernanza</span>
+    <h3>Contener, no solo alinear</h3>
+    <p>El llamado a frenar de la semana pasada chocó con dos rechazos, y llegó un cambio de marco que vale más que los dos.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Jensen Huang</strong> dijo a CNBC que "la seguridad es un problema de ingeniería" y rechazó que las empresas coordinen una desaceleración: sería un asunto de ley antimonopolio.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>China</strong> calificó el llamado de los CEOs estadounidenses de alarmismo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Trump</strong> anunció una "AI Force" modelada sobre la Space Force y un zar de la IA, sin detalles de estructura ni fechas.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Mustafa Suleyman</strong> (Microsoft AI) dio el giro interesante: el debate está dejando de ser si los modelos se pueden alinear y pasando a ser cómo <strong>controlarlos, contenerlos y vigilarlos</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>DeepMind</strong> abrió un instituto para debatir la AGI con voces de fuera: gobierno, artes y humanidades.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El giro de Suleyman es el que reordena todo. Alinear es un problema de diseño y lo resuelve el proveedor en un laboratorio al que no tienes acceso. <strong>Contener es un problema operativo</strong>: qué puede tocar el agente, qué queda registrado, quién lo apaga. Eso lo decides tú, y no depende de en qué laboratorio confíes ni de si la industria logra ponerse de acuerdo. Y la objeción de Huang sobre el antimonopolio no es un tecnicismo: es exactamente por eso que en otras industrias los estándares de seguridad los fija un regulador y no un pacto entre competidores.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.cnbc.com/2026/09/15/nvidia-huang-ai-slowdown-antitrust.html">CNBC</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://mustafa-suleyman.ai/a-warning-about-model-welfare">Mustafa Suleyman</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://institute.deepmind.com/">DeepMind Institute</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">✅</span><span class="text">Aplicaciones: qué está haciendo la IA en cada profesión</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag green">Salud</span>
+    <h3>De cuatro horas a segundos: el corazón de un niño en 3D</h3>
+    <p>En el Children's Hospital of Philadelphia, construir el modelo 3D del corazón de un paciente pasó de consumir cuatro horas de trabajo especializado a tardar segundos.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El sistema identifica la anatomía en las imágenes médicas y la convierte en un modelo tridimensional específico de ese paciente.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un médico radiólogo <strong>revisa y firma cada modelo</strong>. El ahorro está en construirlo, no en decidir.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Lo usan antes de cirugía en defectos septales ventriculares complejos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En un caso documentado, el modelo aclaró el defecto <strong>después de dos intentos de reparación fallidos</strong>; la siguiente cirugía funcionó.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Está construido sobre software abierto —SlicerHeart y MONAI—, así que otros hospitales pueden adoptarlo.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Esta es, para mí, la noticia mejor contada de la semana, y fíjate por qué: nadie dice que la IA opere. Dice que elimina cuatro horas de un trabajo manual que estaba entre el diagnóstico y la decisión del cirujano. Ese es el patrón que vale la pena copiar en cualquier organización — <strong>buscar la tarea intermedia que consume gente cara y no requiere criterio clínico</strong>. Y que sea software abierto significa que el hospital de al lado no tiene que empezar de cero.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blogs.nvidia.com/blog/childrens-hospital-open-source-ai-cardiac-care/">NVIDIA · Children's Hospital of Philadelphia</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag purple">Educación</span>
+    <h3>Dos estudiantes de secundaria y un problema que se le resistió a un medallista Fields</h3>
+    <p>Dos adolescentes de un instituto de California y un postdoc de UCLA firmaron juntos un paper que abre una pregunta en la que el medallista Fields June Huh había trabajado sin resolverla.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El paper, <em>Bounded ratios for Lorentzian polynomials</em>, está publicado en arXiv a nombre de Aayush Bathija y Prince Rohatgi, ambos de secundaria, y Daniel Soskin, postdoc en UCLA.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Usaron <strong>Claude Opus 5 y GPT-5.6</strong> para exploración computacional, generación de ideas de demostración y edición.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Se conocieron en el <strong>UCLA Math Circle</strong>, un programa de fin de semana donde matemáticos universitarios acompañan a estudiantes jóvenes en problemas de investigación real.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Lo que me interesa aquí no es la IA: es el programa de fin de semana. Sin el Math Circle, esos dos chicos no habrían tenido ni el problema ni el mentor, y ninguna herramienta habría suplido eso. <strong>La IA amplificó una estructura educativa que ya existía</strong>. Si trabajas en formación, ese es el orden correcto: primero el espacio y el acompañamiento, después la herramienta. Al revés no funciona.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://officechai.com/ai/2-high-school-students-a-postdoc-have-used-ai-to-apparently-solve-a-math-problem-that-had-stumped-a-fields-medalist/">OfficeChai</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://news.ycombinator.com/item?id=49695663">discusión técnica en Hacker News</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">PYMES y ventas</span>
+    <h3>Salesforce pone a prueba un modelo entrenado para tareas de CRM</h3>
+    <p>Salesforce anunció <strong>Koa</strong>, un modelo entrenado específicamente para trabajo de gestión de clientes, y lo metió en pilotos con clientes seleccionados dentro de Agentforce.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Está entrenado para <strong>ejecutar tareas de varios pasos usando las herramientas del software</strong>: actualizar registros de venta, agendar seguimientos de clientes.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Construido sobre NVIDIA Nemotron 3 Super con datos públicos y sintéticos, <strong>sin datos de entrenamiento de clientes</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Disponibilidad general prevista en regiones de EE. UU. para el invierno de 2026.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Su propio paper lo sitúa <strong>por debajo de los modelos de frontera</strong>, pero mejor que el modelo base en estas tareas concretas.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Fíjate en la jugada: no compite en inteligencia general, compite en <strong>hacer bien seis tareas aburridas</strong>. Para una PYME o un equipo comercial pequeño, ese es exactamente el terreno donde la IA paga — el CRM desactualizado es un problema universal y nadie lo resuelve con un modelo más listo, sino con uno que sepa mover los campos correctos. Y que digan expresamente que no entrenan con datos de clientes conecta con la noticia de portada: esa frase ya es argumento de venta.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.salesforce.com/news/press-releases/2026/09/15/koa-reasoning-model/">Salesforce</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Voz</span>
+    <h3>Gemini ahora te deja seguir hablando mientras piensa</h3>
+    <p>Google liberó Gemini 3.8 Live y Live Extended Thinking: modelos de voz que mantienen la conversación abierta mientras trabajan en el fondo.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Puedes corregir un detalle o añadir algo que olvidaste <strong>mientras el modelo sigue trabajando</strong>, en vez de tener que dejarlo todo definido antes de empezar.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Las llamadas a herramientas también corren en segundo plano, sin poner la conversación en pausa.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Disponibles en la Live API desde el 15 de septiembre; el acceso empresarial sigue en vista previa privada.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La ficha del modelo advierte expresamente que <strong>pueden alucinar</strong>: una conversación más fluida puede contener una respuesta equivocada.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El cambio no es de inteligencia sino de ritmo. Hasta ahora hablarle a una IA se parecía a dictar un encargo completo y esperar; ahora se parece más a pensar en voz alta con alguien. Para quien facilita sesiones o entrevista a clientes, esa diferencia es enorme, porque así es como trabaja la gente de verdad: corrigiendo sobre la marcha.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/">Google</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Criterio</span>
+    <h3>Una cifra sobre la región que decidí no usar</h3>
+    <p>Esta semana circuló en varios medios de la región un titular contundente: <em>"el 86% de las empresas en Latinoamérica no sabe dirigir la inteligencia artificial que opera en su empresa"</em>. Lo revisé antes de repetirlo y no se sostiene.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El 86% del estudio original no mide desconocimiento: mide <strong>cuántas empresas ya usan IA en algún grado</strong>. El titular le cambió el significado.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La cifra que sí dice algo es otra: <strong>6%</strong> declara tener criterio claro sobre las decisiones que toman sus herramientas. Pero no son cifras complementarias ni miden lo mismo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El estudio es de un proveedor de software y llegó a los medios como nota de prensa, acompañada del anuncio de un programa que promete cerrar esa brecha.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Los dos portales que lo publicaron reprodujeron el mismo comunicado, sin reporteo propio.</div><p>Puede que la realidad sea parecida a lo que dice el titular. Pero eso no es lo mismo que tener el dato.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Lo cuento porque el problema de fondo es real y nos afecta: <strong>medir de verdad lo que hacen las empresas de la región es difícil</strong>, los estudios independientes son escasos, y ese vacío lo llenan encuestas de proveedores convertidas en titular. Si vas a llevar una cifra sobre Latinoamérica a una junta directiva o a una propuesta, vale la pena hacer tres preguntas: quién la midió, qué preguntó exactamente, y qué vende. Esta semana yo preferí quedarme sin número antes que darte uno prestado.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.pewresearch.org/global/2026/09/17/globally-more-people-expect-ai-to-cause-job-loss-than-growth/">Pew Research Center · encuesta global, con metodología pública</a></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">4 horas → segundos</div>
+    <div class="stat-label">lo que tardaba y lo que tarda ahora armar el modelo 3D del corazón de un niño en el Children's Hospital of Philadelphia — con un médico firmando cada uno</div>
+    <p style="margin-top:14px;">No sustituyó al cirujano ni al radiólogo. Se llevó por delante las cuatro horas que había entre ellos dos.</p>
+  </div>
+
+  <div class="reflection">
+    <h3>Reflexión: la pregunta no es si confías en la IA</h3>
+    <p>Es fácil leer esta semana como una lista de sustos. Yo la leo distinto.</p>
+    <p>Fíjate en lo que hicieron los que salieron bien parados. El hospital de Filadelfia no le entregó la decisión clínica a un modelo: le entregó las cuatro horas de trabajo manual que había en el medio, y dejó a un médico firmando cada resultado. Nvidia y Palantir no dejaron de usar IA: escribieron dónde sí y dónde no. Y los dos estudiantes no reemplazaron al mentor con una herramienta — tenían mentor <em>y</em> herramienta.</p>
+    <p>Los tres decidieron lo mismo: <strong>qué parte del trabajo entregan y qué parte se quedan</strong>. Esa decisión no la toma el proveedor, no depende de qué modelo elijas y no hay que esperar a ninguna regulación para tomarla.</p>
+    <p><strong>Tu pregunta de esta semana:</strong> ¿sabes con qué criterio decide tu herramienta —porque se lo diste tú— y tienes cómo validar lo que te devuelve?</p>
+    <p>Eso es <em>human in the loop</em> de verdad: no estar presente, sino haber escrito la regla y tener el control que la comprueba. Es gobernanza, no desconfianza. Y lo que sale con tu firma sigue siendo tuyo, lo haya decidido quien lo haya decidido.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana lo esencial de la IA con lectura estratégica, en español y sin hype.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Quieres aterrizar la IA en tu empresa o tu PMO? Conversemos 30 minutos, sin costo.</p>
+      <a target="_blank" rel="noopener" style="color:#ffffff;font-weight:700;text-decoration:none;" href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #34</div>
+    <p>
+      Por <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.linkedin.com/company/never-stop-learning-ateneo-inc/">Ateneo Empresarial</a><br>
+      Semana del 14 al 20 de septiembre de 2026<br>
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
