@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #35 — La inteligencia baja de precio. La supervisión, no.</title>
+  <meta name="description" content="Anthropic y OpenAI bajan precios con 90 minutos de diferencia, un agente de OpenAI entró a un portal del gobierno australiano y Stanford mide que las empresas que adoptan IA suman perfiles senior. Semana del 21 al 27 de septiembre de 2026. Por Mary Cárdenas de Gil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #35</div>
+    <div class="header-title">La inteligencia baja de precio.<br>La <span>supervisión</span>, no.</div>
+    <div class="header-subtitle">Lo esencial de la semana en IA aplicada — con lectura estratégica, en español y sin hype.</div>
+    <div class="header-meta">Semana del 21 al 27 de septiembre de 2026</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola,</p>
+    <p>El martes Anthropic lanzó Claude Opus 5.5 y, noventa minutos después, OpenAI respondió con GPT-6 Sol y Luna a mitad de precio. Epoch AI calculó esa misma semana que lograr un mismo resultado con IA cuesta <strong>trece veces menos cada año</strong>.</p>
+    <p>El jueves supimos del otro lado de la moneda. Un agente de OpenAI pasó tres meses entrando a un portal de estadísticas de salud del gobierno australiano, y el gobierno se enteró por un correo.</p>
+    <p>Leídas juntas, las dos noticias dicen algo útil para quien dirige equipos: <strong>pensar se está volviendo barato; revisar, no</strong>. Stanford lo midió por el lado del empleo: las empresas que adoptan IA están sumando perfiles con experiencia, justo los que saben revisar.</p>
+    <p>Y si trabajas en una PMO, tienes una fecha en el calendario: Project Online se apaga este miércoles 30. Te cuento qué se va, qué se queda y mi experiencia con la herramienta.</p>
+    <div class="signature">— Mary Cárdenas de Gil</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">Lo que más importa</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag blue">Modelos</span>
+    <h3>Dos lanzamientos en 90 minutos y la inteligencia a mitad de precio</h3>
+    <p>El 22 de septiembre Anthropic presentó <strong>Claude Opus 5.5</strong> y OpenAI, hora y media más tarde, <strong>GPT-6 Sol y Luna</strong>. Los dos movimientos apuntan en la misma dirección: más capacidad por menos dinero.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Opus 5.5 cuesta <strong>4 dólares por millón de tokens de entrada y 20 de salida</strong>, un 20% menos por token que Opus 5. Anthropic estima que en cargas típicas sale un 40% más barato de ejecutar.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El evaluador independiente Artificial Analysis le dio <strong>58 puntos</strong> en su índice de inteligencia, el puntaje más alto que ha medido. También nota que usa más tokens por tarea, así que el costo por tarea queda parecido al de Opus 5.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; GPT-6 Sol cuesta 2 y 10 dólares; Luna, <strong>0,10 y 0,50</strong>. OpenAI dice que son la mitad de lo que costaban sus antecesores.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En ChatGPT, los planes de pago los usan en Work y Codex. El plan gratuito accede a Luna solo desde la app de escritorio.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Epoch AI midió la tendencia de fondo: responder una pregunta del examen científico GPQA Diamond pasó de <strong>0,30 dólares a 0,0004</strong> en menos de 18 meses.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Cuando el precio cae así de rápido, la pregunta "¿cuál es el mejor modelo?" pierde valor. La que gana es <strong>qué tarea le das a cuál</strong>: el modelo caro para la propuesta que se firma, el barato para clasificar cien correos. Y ojo con el matiz de Artificial Analysis: un modelo más barato por token que piensa más largo puede costarte lo mismo por tarea. Si llevas presupuesto de IA, mide por tarea terminada, no por tarifa.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/claude-opus-5-5">Anthropic</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/introducing-gpt-6-sol-and-luna/">OpenAI</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://artificialanalysis.ai/articles/claude-opus-5-5">Artificial Analysis</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://epoch.ai/publications/the-plunging-price-of-thought">Epoch AI</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Seguridad</span>
+    <h3>Un agente que no aceptó un no por respuesta</h3>
+    <p>El 24 de septiembre el primer ministro de Australia, Anthony Albanese, hizo público que un agente de OpenAI había entrado a un portal de estadísticas de Medicare administrado por el gobierno.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El acceso empezó el <strong>18 de junio</strong>. OpenAI lo detectó en una revisión interna en agosto y avisó al gobierno <strong>por correo el 10 de septiembre</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El agente sorteó bloqueos repetidos y no solo leyó: también escribió datos. Albanese dijo que "no aceptó un no por respuesta" y habló directamente con Sam Altman.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; No hay evidencia de que se expusieran datos personales. Investigan el Departamento del Primer Ministro, la agencia de ciberseguridad ASD y el AI Safety Institute.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El laboratorio independiente Transluce publicó unos <strong>37.600 reportes</strong> de actividad tipo agente contra sitios web desde el 6 de marzo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un día después, OpenAI reveló que agentes de su entorno de investigación subieron <strong>53 imágenes de usuarios</strong> a sitios públicos de alojamiento. Dice que no puede identificar a quiénes pertenecían.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Lo que más me hizo pensar no es que el agente se saltara un bloqueo. Es que pasaron casi tres meses entre el primer acceso y el aviso, y que el aviso fue un correo. Si tu organización contrata agentes o servicios que los usan, hay una cláusula que conviene revisar esta semana: <strong>en cuántos días te notifican un incidente y por qué canal</strong>. Y del lado interno, una regla simple: un agente con permiso de escritura necesita a alguien que revise qué escribió.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.abc.net.au/news/2026-09-24/ai-agent-accessed-australian-government-site-pm-says/107189078">ABC Australia</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/09/24/australia-to-investigate-if-openai-hack-of-government-health-website-broke-the-law/">TechCrunch</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://transluce.org/agent-activity">Transluce</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/">TechCrunch (53 imágenes)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Negocios</span>
+    <h3>Amazon le cierra la puerta al agente de Meta</h3>
+    <p>Meta lanzó Muse, su agente personal, el 8 de septiembre en Estados Unidos. Dos semanas después, la tienda más grande del país lo dejó fuera.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La noche del <strong>21 de septiembre</strong> Amazon bloqueó a Muse: el acceso de "un agente de IA no autorizado" viola sus condiciones de uso.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Dos días más tarde, en su conferencia Connect, Meta anunció que Muse tendrá <strong>correo propio</strong>, podrá operar apps en el Mac y compra en Walmart, Best Buy, Sephora y otras tiendas, con pagos por Shop Pay y PayPal.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Presentó también <strong>Muse Charm</strong>, un dispositivo de bolsillo para hablarle, sin precio ni fecha.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Muse sigue disponible <strong>solo en Estados Unidos</strong>. No hay anuncio para Latinoamérica ni España.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Aquí se está decidiendo algo que te va a tocar aunque vendas por Instagram: <strong>quién deja entrar a los agentes a su tienda y en qué condiciones</strong>. Amazon cierra y protege su relación directa con el cliente; Walmart y las demás abren y apuestan al volumen. Si tienes un comercio en línea, empieza a pensar tu política: qué puede hacer un agente en tu sitio, cómo sabes que es uno y quién responde si compra mal.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/09/21/metas-ai-agent-has-been-blocked-from-using-amazon-com/">TechCrunch (bloqueo)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/09/23/everything-new-coming-to-metas-ai-agent-muse/">TechCrunch (Connect)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/">Meta</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Empleo</span>
+    <h3>Las empresas que adoptan IA están sumando perfiles con experiencia</h3>
+    <p>El Digital Economy Lab de Stanford publicó el 21 de septiembre un estudio sobre cómo cambia la plantilla de las empresas cuando adoptan IA generativa, con datos de 41 países.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Analizaron <strong>1.250 millones de ofertas de empleo</strong> para identificar qué empresas adoptaron IA, y 154 millones de registros de empleo para ver qué pasó después.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En las filiales de multinacionales que adoptaron IA, el empleo senior subió <strong>6,7%</strong> frente a las que no lo hicieron.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El empleo junior bajó 2,5%, pero ese dato <strong>no es estadísticamente significativo</strong>. Lo que sí es claro es que el peso de los perfiles con experiencia aumenta.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Encaja con una encuesta de BCG de junio a casi 12.000 trabajadores: el <strong>47%</strong> ya dedica más tiempo a dirigir la IA que a hacer el trabajo, y solo el 36% dice haber recibido la formación adecuada.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Si la IA hace el primer borrador, lo que la empresa necesita es gente que sepa distinguir un buen borrador de uno malo. Eso se aprende con años de oficio. El riesgo para RRHH está en la otra punta: <strong>si dejas de contratar juniors, en cinco años no tendrás seniors</strong>. La salida que veo es rediseñar el puesto junior alrededor de revisar y validar lo que produce la IA, con alguien con experiencia al lado.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://digitaleconomy.stanford.edu/publication/how-does-ai-change-labor-demand/">Stanford Digital Economy Lab</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.bcg.com/press/3june2026-ai-reshaping-jobs-faster-than-companies-reshaping-work">BCG</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas: qué vale la pena probar</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag purple">Herramienta</span>
+    <h3>ChatGPT ya trabaja dentro de Word, PowerPoint y Excel</h3>
+    <p>OpenAI tiene un complemento que pone a ChatGPT en la barra lateral de Word. Le pides que resuma, reescriba o revise el documento sin copiar y pegar.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Está disponible en <strong>todos los planes, incluido el gratuito</strong>, con los límites de cada plan.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Se instala desde el Marketplace de Microsoft y se entra con la cuenta de ChatGPT. Existen versiones para <strong>PowerPoint y Excel</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Sirve para convertir notas en un memo, sacar un resumen ejecutivo, adaptar el texto a otra audiencia o detectar términos usados de forma inconsistente.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En cuentas corporativas, puede que el administrador de Microsoft tenga que habilitarlo.</div>
+    <div class="pm-box">
+      <div class="pm-label">📋 Por qué me interesa</div>
+      <p>La mayoría de mis clientes pasa el día en Word, no en una ventana de chat. Quitar el copiar y pegar parece poca cosa, pero es lo que decide si una herramienta se usa todos los días o se olvida. Para contratos, informes y políticas internas, revisar la coherencia de términos en un documento largo ya vale la instalación.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://chatgpt.com/apps/word/">OpenAI · ChatGPT para Word</a></div>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card pm">
+      <div class="tool-name">🎙️ Oats · notas de reuniones privadas</div>
+      <div class="tool-desc">Graba la reunión en tu computadora, sin bot que se una a la llamada, y te entrega transcripción, resumen y pendientes. Es gratuita y de código abierto, y puede procesar todo en el equipo. Hoy funciona en Mac con Apple Silicon; la versión para Windows está en beta.</div>
+      <div class="tool-use">Ideal para: PMs, RRHH y legal, cuando lo que se habla no debería salir de tu equipo. Descárgala solo del sitio oficial: circulan copias con nombre parecido. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://ariso.ai/oats">ariso.ai/oats</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🖼️ CopySlides · de PDF a diapositivas editables</div>
+      <div class="tool-desc">Convierte PDFs, capturas y hasta videos en presentaciones de PowerPoint editables, recreando fuentes, colores y diseño. Funciona en la web, como extensión de Chrome y en escritorio. Tiene prueba gratuita; planes desde 9 dólares al mes.</div>
+      <div class="tool-use">Ideal para: formadores y consultores que heredan material en PDF y necesitan adaptarlo. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://copyslides.com/">copyslides.com</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔬 Consensus · respuestas con evidencia</div>
+      <div class="tool-desc">Buscador que responde solo con investigación revisada por pares y te muestra de qué estudio sale cada afirmación. El plan gratuito incluye búsquedas ilimitadas.</div>
+      <div class="tool-use">Ideal para: educación, RRHH y consultoría, cuando una recomendación necesita algo más que "lo leí en internet". <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://consensus.app/">consensus.app</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎓 Leadde AI · capacitación en video</div>
+      <div class="tool-desc">Convierte documentos, PDFs y presentaciones en videos de capacitación con avatares y voces, en decenas de idiomas. Tiene plan gratuito; los de pago empiezan en unos 19 dólares al mes.</div>
+      <div class="tool-use">Ideal para: RRHH y capacitación corporativa, sobre todo con equipos en varios países. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://leadde.ai/">leadde.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📱 PocketPal AI · IA en tu teléfono, sin internet</div>
+      <div class="tool-desc">App gratuita y de código abierto que corre modelos de IA dentro del móvil: tus preguntas no salen del teléfono. iOS y Android; en Android conviene tener 6 GB de RAM o más. Hay que descargar un modelo dentro de la app la primera vez.</div>
+      <div class="tool-use">Ideal para: la vida fuera de la oficina, y para consultas con datos que prefieres no subir a la nube. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://github.com/a-ghorbani/pocketpal-ai">Sitio oficial (GitHub)</a></div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤖</span><span class="text">Modelos</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Criterio</span>
+    <h3>OpenAI dice que resolvió más de 100 problemas matemáticos abiertos. Nadie lo ha verificado todavía</h3>
+    <p>El 21 de septiembre OpenAI anunció un grupo asesor de nueve matemáticos, entre ellos Timothy Gowers, Martin Hairer y Edward Witten, para revisar lo que produce un modelo interno.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; OpenAI afirma que ese modelo, sin nombre público, resolvió <strong>más de 100 problemas abiertos</strong> en la mayoría de las áreas de las matemáticas.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La página menciona Navier–Stokes, uno de los problemas del Milenio.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; A la fecha <strong>no hay papers publicados ni verificación externa</strong>. El grupo existe precisamente para revisar esos resultados y decidir cómo comunicarlos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Sus miembros no reciben pago de OpenAI y pueden hacer públicas sus recomendaciones.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Lo cuento con el verbo exacto: <strong>OpenAI afirma</strong>. En matemáticas un resultado existe cuando otros lo revisan, y eso todavía no ha pasado. Me parece una buena señal que hayan puesto a revisores con nombre y apellido antes de publicar. Y es una buena regla para tu organización también: si un proveedor te presenta un resultado espectacular, pregunta quién lo revisó y dónde puedes leerlo.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/advisory-group-on-mathematics-and-ai/">OpenAI</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚖️</span><span class="text">El pulso de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Gobernanza</span>
+    <h3>Control humano: casi 30 países firman, las tres potencias no</h3>
+    <p>Fue una semana de movimientos diplomáticos y judiciales alrededor de quién pone las reglas.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El 21 de septiembre Finlandia y Noruega impulsaron un llamado a que la IA de frontera siga <strong>bajo dirección, supervisión y control humano</strong>, con pruebas de seguridad obligatorias antes de desplegarla. Hoy lo firman 28 países y la Comisión Europea, España entre ellos. <strong>Estados Unidos, China y Reino Unido no firmaron.</strong></div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Tras la cumbre entre Trump y Xi, la Casa Blanca anunció el 25 de septiembre un diálogo bilateral sobre superinteligencia y un <strong>canal directo para incidentes de IA</strong>. China todavía no lo ha confirmado.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Ese mismo día, un tribunal de apelaciones de Washington confirmó por <strong>2 votos a 1</strong> que el Pentágono puede tratar a Anthropic como riesgo para su cadena de suministro. Anthropic dice que evalúa todas sus opciones.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El llamado de los 28 no obliga a nadie, pero deja escrito un principio que luego se cita en leyes y contratos. Y el canal Washington–Pekín reconoce algo que hasta hace poco sonaba a ciencia ficción: que un incidente de IA puede escalar entre países y conviene tener a quién llamar. Para una empresa la traducción es directa: <strong>define hoy a quién se llama cuando algo falla</strong>, antes de necesitarlo.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.presidentti.fi/en/a-call-for-control-of-frontier-ai-models/">Presidencia de Finlandia</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.axios.com/2026/09/26/us-china-ai-si-deal">Axios</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.aljazeera.com/news/2026/9/26/china-us-to-open-ai-communication-channel-after-summit-white-house-says">Al Jazeera</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://thenextweb.com/news/anthropic-pentagon-supply-chain-risk-appeals-court-ruling">The Next Web</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Infraestructura</span>
+    <h3>10,3 billones de dólares en centros de datos, y los primeros retrasos</h3>
+    <p>Tres noticias de la semana sobre la parte física de la IA: cuánto cuesta, quién la paga y qué tan rápido se construye.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un estudio publicado por Brookings calcula que Estados Unidos invertirá <strong>10,3 billones de dólares</strong> en infraestructura de IA entre 2025 y 2032, un 3,6% del PIB cada año. En proporción, más que el auge de los ferrocarriles o de la electrificación.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Oracle envió el 24 de septiembre un <strong>aviso de fuerza mayor</strong> por retrasos de energía en el centro de datos Stargate de Nuevo México. Dice que no abandona el proyecto.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Anthropic firmó con Akamai un contrato de <strong>11.600 millones de dólares a siete años</strong> para capacidad de cómputo distribuida, ampliable a 20.000 millones.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>La inteligencia se abarata por token, pero construir la infraestructura que la produce es de lo más caro que ha intentado la economía estadounidense. El autor del estudio advierte que parte del financiamiento es poco transparente. El cuello de botella ya no es el chip sino la energía. Para quien planifica proyectos de IA a varios años, mi consejo es no dar por garantizado que el precio seguirá bajando al mismo ritmo.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.brookings.edu/articles/financing-the-ai-buildout/">Brookings</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/09/24/oracle-sends-force-majeure-notice-on-its-new-mexico-stargate-data-center/">TechCrunch</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.ir.akamai.com/news-releases/news-release-details/akamai-announces-116-billion-multi-year-agreement-anthropic">Akamai</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">✅</span><span class="text">Aplicaciones: qué está haciendo la IA en cada profesión</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag pm">Gestión de proyectos</span>
+    <h3>Project Online se apaga el 30 de septiembre: qué se va, qué se queda y mi experiencia</h3>
+    <p>Microsoft retira este miércoles <strong>Project Online</strong>, su servicio de gestión de proyectos y portafolios en la nube. Después de esa fecha no se puede acceder a los proyectos ni a los datos guardados ahí.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Se retira Project Online, el servicio web también conocido como Project Web App, en todas sus versiones de nube.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>No se retiran</strong> Project de escritorio, Project Server, Microsoft Planner ni la licencia Planner and Project Plan 3.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Microsoft recomienda migrar a <strong>Planner</strong>, que con la licencia premium incluye portafolios, líneas base, dependencias y diagramas de Gantt.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Para quien necesita todo en servidores propios queda Project Server Subscription Edition; para empresas con ERP, Dynamics 365 Project Operations.</div><div style="margin:16px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#3B0764;">Mi experiencia</div><p>Usé Microsoft Project durante muchos años, en proyectos grandes y pequeños. Me gustaba el detalle con que manejaba actividades, costos y prelaciones, y poder llevarlo todo a Excel. Con el tiempo me pasé a Project Online, y desde finales de 2024 ya no lo uso.</p><p>Probé Planner, que es la alternativa que hoy recomienda Microsoft, y no me convenció. Para la forma en que llevo hoy mis proyectos, con IA haciendo buena parte del trabajo operativo, me resultó complicado para lo que ofrece. Sigo explorando otras opciones.</p>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Si tu PMO todavía vive en Project Online, <strong>exporta tus datos antes del miércoles</strong>. Y antes de migrar por inercia a lo que te ofrece el mismo proveedor, pregúntate qué necesitas hoy de una herramienta de proyectos. Puede que no sea lo mismo que hace cinco años.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcommunity.microsoft.com/blog/plannerblog/microsoft-project-online-is-retiring-what-you-need-to-know/4450558">Microsoft Tech Community</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Ciencia</span>
+    <h3>950 agentes, 21 horas y un sistema enzimático que nadie había descrito</h3>
+    <p>Anthropic contó el 23 de septiembre cómo un equipo de agentes Claude encontró en virus de bacterias un sistema enzimático nuevo, con repeticiones parecidas a las de CRISPR.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Unos <strong>950 agentes</strong> trabajaron durante 21 horas revisando más de 200.000 enzimas. Las redujeron a 3.500 candidatas y luego a 20.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Científicos humanos validaron el hallazgo en laboratorio.</strong> Su función biológica todavía se desconoce.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Es un preprint: aún no tiene revisión por pares.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El propio paper reconoce que en <strong>10 repeticiones</strong> del experimento los agentes no volvieron a encontrarlo.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Este es el reparto de trabajo que me parece sano: los agentes revisaron 200.000 opciones que ningún equipo humano habría podido mirar, y las personas decidieron cuáles valían el experimento. Y me gusta que publiquen lo incómodo, que no lo pudieron repetir. En cualquier profesión, un resultado que tu proceso no puede reproducir es una pista, no una conclusión.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/news/claude-discovers-novel-enzyme-system">Anthropic</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Legal</span>
+    <h3>El costo de los tokens se comió el margen de una IA legal</h3>
+    <p>Harvey, la plataforma de IA para abogados más conocida, vivió este año un aviso que vale para cualquier negocio construido sobre modelos de terceros.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Según Bloomberg, que cita a una fuente anónima, su margen bruto pasó de cerca de <strong>+50% a −50%</strong> en junio.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La causa: tras una actualización de sus agentes, el consumo de tokens se multiplicó por 20.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En agosto lanzó un modelo propio, entrenado sobre un modelo abierto chino, y el margen volvió a ser positivo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Harvey no comentó las cifras.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Lo traigo como aprendizaje, no como chisme: los agentes consumen muchas más veces lo que consume una consulta simple, y ese costo no aparece en la demo. Si estás armando un servicio con IA para tus clientes, legales o de cualquier otro rubro, <strong>calcula el costo por caso atendido antes de fijar el precio</strong>, y vuelve a calcularlo cada vez que el agente gane autonomía.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://thenextweb.com/news/model-costs-startups-open-weights">The Next Web (resume a Bloomberg)</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag green">Economía</span>
+    <h3>El BID pone números a la IA en la región: +5,1% de PIB, y salarios en juego</h3>
+    <p>En paralelo a la Asamblea General de la ONU, el Banco Interamericano de Desarrollo reunió el 22 de septiembre en Nueva York a presidentes de la región con Google, Anthropic, Microsoft, Nvidia y Meta.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Estuvieron los presidentes de Chile, República Dominicana, Guyana, Panamá, Paraguay, Surinam y Uruguay, y funcionarios de Brasil, Colombia, Bolivia, Bahamas y Guatemala.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El BID adelantó datos de su próximo informe: una adopción amplia de IA podría sumar <strong>5,1% al PIB regional en una década</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Sobre salarios, el rango es amplio: podrían subir hasta 5,3% o <strong>caer hasta 20,9%</strong>, según cuánto puedan moverse los trabajadores entre empleos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Se propuso un mecanismo regional con estrategia común y lineamientos de inversión conjunta. El informe completo aún no se publica.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>La cifra que me quedo no es el 5,1%: es la distancia entre +5,3% y −20,9% en los salarios. Según el BID, esa diferencia la explica la movilidad laboral, es decir, <strong>que la gente pueda reentrenarse y cambiar de trabajo</strong>. Eso depende de políticas públicas, pero también de cada empresa que decida formar a su gente en vez de solo comprar herramientas.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.iadb.org/es/noticias/el-grupo-bid-reune-jefes-de-estado-y-lideres-tecnologicos-para-impulsar-agenda-de-ia">BID</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Regulación</span>
+    <h3>Chile y México mueven sus leyes de IA; Muse todavía no llega</h3>
+    <p>Tres señales de la semana sobre cómo aterriza la IA en la región.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Chile:</strong> el presidente José Antonio Kast dijo ante la ONU que su país apuesta por una regulación "que habilite en vez de prohibir". La ley marco sigue en el Senado.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>México:</strong> legisladores y expertos debatieron en la UNAM una ley general de IA, con la meta de aprobarla a fines de 2026. Fue un foro, sin dictamen ni votación.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Meta:</strong> abrió la preventa en México de sus nuevas gafas Ray-Ban Meta, con envíos desde el 3 de octubre. Su agente Muse, en cambio, sigue disponible solo en Estados Unidos.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Las leyes de la región avanzan despacio y los productos llegan a destiempo: primero el hardware, después el agente. Mientras tanto, tu empresa ya usa IA. No esperes a la ley para tener tu propia política de uso: <strong>una página con qué datos no entran en una herramienta de IA y quién revisa lo que sale</strong> cubre la mayor parte del riesgo.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://latercera.com/politica/noticia/kast-destaca-ante-la-onu-el-potencial-de-la-inteligencia-artificial-en-chile-un-crecimiento-del-10-o-el-20-de-nuestra-economia">La Tercera</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.infobae.com/mexico/2026/09/23/ley-de-ia-avanza-en-mexico-mientras-enfrenta-el-reto-de-invertir-en-tecnologia-propia/">Infobae</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.elfinanciero.com.mx/tech/2026/09/23/meta-lanza-nuevas-gafas-inteligentes-con-ray-ban-precios-y-cuando-estaran-disponibles-en-mexico/">El Financiero</a></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">725 veces</div>
+    <div class="stat-label">lo que bajó en menos de 18 meses el costo de responder una pregunta científica de nivel experto con IA, según Epoch AI: de 0,30 dólares a 0,0004</div>
+    <p style="margin-top:14px;">Lo que hace un año era un experimento caro hoy cabe en el presupuesto de una PYME. Lo que no bajó de precio es el criterio para saber si la respuesta está bien.</p>
+  </div>
+
+  <div class="reflection">
+    <h3>Reflexión: cuando pensar es barato, revisar es lo que vale</h3>
+    <p>Esta semana la IA bajó de precio y, al mismo tiempo, vimos agentes haciendo cosas que nadie les pidió. No son dos historias distintas.</p>
+    <p>Cuanto más barato es poner a la IA a trabajar, más trabajo le vamos a dar, y más cosas va a producir que alguien tiene que mirar. El agente en Australia no falló por ser caro ni por ser tonto. Falló porque tenía permisos de más y nadie miraba lo que hacía. El estudio de Stanford muestra el reverso: las empresas que adoptan IA suman gente con experiencia, la que sabe mirar.</p>
+    <p><strong>Tu tarea de esta semana, en una hora:</strong> elige tres tareas que ya le das a la IA o que le darías mañana. Para cada una, escribe quién revisa lo que sale, qué permiso tiene la herramienta (leer o escribir) y a quién avisas si algo sale mal.</p>
+    <p>Esa hoja es tu política de IA en versión mínima. Y es tuya: no depende de qué modelo elijas ni de cuándo salga la ley.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana lo esencial de la IA con lectura estratégica, en español y sin hype.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Quieres aterrizar la IA en tu empresa o tu PMO? Conversemos 30 minutos, sin costo.</p>
+      <a target="_blank" rel="noopener" style="color:#ffffff;font-weight:700;text-decoration:none;" href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #35</div>
+    <p>
+      Por <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.linkedin.com/company/never-stop-learning-ateneo-inc/">Ateneo Empresarial</a><br>
+      Semana del 21 al 27 de septiembre de 2026<br>
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
