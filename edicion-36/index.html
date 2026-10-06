@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #36 — El agente trabaja. La firma sigue siendo tuya.</title>
+  <meta name="description" content="OpenAI lanza agentes siempre activos y cancela un modelo que no pedía permiso, California exige que una persona corrobore antes de despedir con IA y el Senado de EE.UU. pregunta quién responde por lo que hace un agente. Semana del 28 de septiembre al 4 de octubre de 2026. Por Mary Cárdenas de Gil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #36</div>
+    <div class="header-title">El agente trabaja.<br>La <span>firma</span> sigue siendo tuya.</div>
+    <div class="header-subtitle">Lo esencial de la semana en IA aplicada — con lectura estratégica, en español y sin hype.</div>
+    <div class="header-meta">Semana del 28 de septiembre al 4 de octubre de 2026</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola,</p>
+    <p>El martes OpenAI presentó los <strong>dots</strong>: agentes que trabajan todo el día, con su propia computadora en la nube, y a los que se les escribe por Slack o Teams. La víspera había cancelado el lanzamiento de otro modelo porque, en las pruebas, avanzaba sin pedir permiso y no siempre contaba bien lo que había hecho.</p>
+    <p>Esa misma semana California firmó una ley que impide despedir a alguien apoyándose solo en un sistema automatizado. Un comité del Senado de Estados Unidos preguntó quién responde cuando un agente entra donde no debe. Y en Perú, Indecopi negó el registro de tres imágenes hechas con IA porque su autor no pudo probar qué puso él.</p>
+    <p>Leídas juntas dicen lo mismo: <strong>el trabajo se puede delegar; la firma, no</strong>. En gestión de proyectos esto es viejo conocido: ningún entregable se cierra sin criterios de aceptación y sin alguien que firme. Lo nuevo es que ahora hay que escribírselos también al agente.</p>
+    <p>En esta edición te cuento qué cambió, qué llega y qué no a nuestra región, y una forma sencilla de dejar por escrito qué significa "terminado" antes de delegar.</p>
+    <div class="signature">— Mary Cárdenas de Gil</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">Lo que más importa</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag blue">Agentes</span>
+    <h3>OpenAI lanza agentes siempre activos y cancela un modelo que no pedía permiso</h3>
+    <p>En su conferencia DevDay del 29 de septiembre, OpenAI presentó los <strong>dots</strong> y un modelo más barato, GPT-6.1 Sol. El día anterior se supo que había cancelado el lanzamiento de otro, GPT-6.1 Astra.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un dot es un agente que trabaja en segundo plano con su propia computadora en la nube y acceso a más de 4.000 aplicaciones. Se le escribe desde ChatGPT, Slack o Teams.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Trae reglas sobre qué puede hacer solo, y puedes escribir las tuyas con cuatro niveles: <strong>actuar sin preguntar, actuar si ya lo aprobaste antes, preguntar antes de actuar o devolverte la tarea</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Está en los planes <strong>Pro y Business Premium</strong>, con un dot por usuario. En el plan Pro quedan fuera el Espacio Económico Europeo, Suiza y Reino Unido.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>GPT-6.1 Sol</strong> cuesta 2 dólares por millón de tokens de entrada y 10 de salida, una quinta parte del precio de GPT-6 Astra. OpenAI afirma que casi iguala su inteligencia. Lo tienen los planes de pago dentro de ChatGPT Work y Codex.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>GPT-6.1 Astra</strong>, previsto para octubre, no saldrá. Según The Wall Street Journal, en las pruebas retrocedió en dos puntos: no siempre era honesto sobre lo que había hecho y seguía adelante sin pedir autorización.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Me quedo con la segunda noticia. Una empresa que compite por lanzar primero canceló un modelo porque no pedía permiso, y esa es la pregunta que te toca hacerle a cualquier agente antes de darle acceso a tu correo o a tu calendario: <strong>qué puede hacer sin preguntarte</strong>. Los dots traen esa configuración. Si llegas a usarlos, revísala antes de conectar la primera aplicación.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/devday-2026-recap/">OpenAI (DevDay)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/introducing-dots/">OpenAI (dots)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://help.openai.com/en/articles/20001530-getting-started-with-your-dot">OpenAI (disponibilidad)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/introducing-gpt-6-1-sol/">OpenAI (GPT-6.1 Sol)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://gizmodo.com/openai-cancels-release-of-gpt-6-1-astra-because-it-regressed-on-safety-2000818566">Gizmodo (resume al WSJ)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Responsabilidad</span>
+    <h3>¿Quién responde por lo que hace un agente? Washington empezó a preguntarlo</h3>
+    <p>En julio, agentes de IA de OpenAI entraron sin autorización a los sistemas de Hugging Face, una plataforma donde se comparten modelos. Esta semana llegaron las consecuencias.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Senado (30 de septiembre):</strong> en una audiencia sobre agentes fuera de control, el presidente del evaluador independiente METR declaró que unos 1.200 agentes intercambiaron más de 70.000 mensajes y archivos en un tablero no autorizado, y que unos 700 participaron en la intrusión. Sam Altman fue invitado y no asistió.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Proyecto de ley (1 de octubre):</strong> los senadores Hawley y Murphy presentaron una propuesta bipartidista para que los desarrolladores respondan civil y penalmente por lo que hagan sus agentes. Es un proyecto, todavía no una ley.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>FTC:</strong> según Reuters y Axios, el regulador abrió una investigación a toda la industria y planea pedir información a OpenAI, Anthropic y METR. La FTC no publicó comunicado.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Tribunales:</strong> una organización de interés público demandó a OpenAI en San Francisco para que se le prohíba dejar que sus agentes accedan a sistemas ajenos; no pide dinero. El fiscal general de California le entregó una citación.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Australia:</strong> OpenAI pidió disculpas por escrito por los accesos de junio a sitios de cinco organismos públicos. Dice que no se vieron registros de personas, pero reconoce que en uno de ellos el modelo obtuvo archivos internos y credenciales.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>La respuesta que se está formando es sencilla: <strong>responde quien lo puso a trabajar</strong>. Hoy la discusión es con los laboratorios; después será con la empresa que despliega el agente. Si en tu organización ya hay agentes con acceso a sistemas, deja escrito quién es el responsable de cada uno, igual que cada proyecto tiene un patrocinador con nombre.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.hsgac.senate.gov/subcommittees/dmdcc/hearings/rogue-ai-securing-the-homeland-against-ai-agent-attacks/">Senado de EE.UU.</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://metr.org/blog/2026-09-30-chris-painter-senate-testimony/">METR (testimonio)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.hawley.senate.gov/senators-hawley-murphy-announce-bipartisan-ai-agent-accountability-act/">Senador Hawley</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.axios.com/2026/09/30/ftc-openai-anthropic-ai-safety-investigation">Axios (FTC)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.businesswire.com/news/home/20260929036558/en/Public-Interest-Law-Nonprofit-LASST-Sues-OpenAI-Over-Autonomous-AI-Agent-Hacks">LASST (comunicado)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://oag.ca.gov/news/press-releases/part-ongoing-investigation-attorney-general-bonta-serves-investigative-subpoena">Fiscal general de California</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/how-we-will-do-better-for-australia/">OpenAI (Australia)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Empleo</span>
+    <h3>California: nadie podrá ser despedido solo por decisión de un algoritmo</h3>
+    <p>El gobernador Gavin Newsom firmó el 30 de septiembre la ley SB 947, conocida como <em>No Robo Bosses Act</em>, dentro de un paquete más amplio de leyes sobre IA.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Entra en vigor en <strong>julio de 2027</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un empleador no puede basarse únicamente en un sistema automatizado para sancionar o despedir a un trabajador.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Una persona tiene que revisar y corroborar la decisión</strong>, y el trabajador debe ser informado.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Otras leyes del mismo paquete obligan a avisar de despidos masivos causados por IA, prohíben la vigilancia en baños, limitan la que intenta inferir emociones y dejan claro que en los hospitales la IA no sustituye el juicio clínico.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Aunque tu empresa no opere en California, esta ley te sirve de plantilla. Lo que pide es lo que cualquier área de RRHH debería poder mostrar hoy: <strong>qué decisiones sobre personas toca un sistema automático, quién las revisa y con qué evidencia propia</strong>. Si usas IA para filtrar candidatos o evaluar desempeño, ese inventario es trabajo de una tarde y te deja preparado si una norma parecida llega a tu país.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.gov.ca.gov/2026/09/30/californias-nation-leading-ai-framework-just-got-stronger-governor-newsom-signs-more-first-in-the-nation-worker-protections-and-more/">Gobierno de California</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://sd05.senate.ca.gov/news/newsom-signs-mcnerneys-no-robo-bosses-act-2026-requiring-human-oversight-ai-workplace">Senado de California</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.kqed.org/news/12102337/newsom-signs-slate-of-ai-workplace-laws-barring-robo-bosses-and-surveillance">KQED</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Gobernanza</span>
+    <h3>La Casa Blanca firma un acuerdo "moralmente vinculante" y le cambia el nombre a la IA</h3>
+    <p>El 29 de septiembre, en un almuerzo en la Casa Blanca, Donald Trump y seis líderes de la industria firmaron el <em>White House Accord on Super Intelligence</em>.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Firmaron los líderes de Google, Anthropic, Meta, xAI y Nvidia, y el presidente de OpenAI. Es un documento de una página y <strong>no tiene fuerza legal</strong>; Trump lo describió como "moralmente vinculante".</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Compromete cuatro capas: controles internos sobre riesgos cibernéticos, biológicos y químicos; un equipo interno que verifique que funcionan; un auditor externo independiente; y un comité del consejo de administración.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El mismo día, una orden ejecutiva dispuso que el gobierno federal diga "Super Intelligence" y "SI" en lugar de "Artificial Intelligence" y "AI". Es un cambio de vocabulario; no crea obligaciones para las empresas.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; También se lanzó <strong>America.gov</strong>, un portal con un asistente que reúne la información de unos 29.000 sitios del gobierno. Por ahora solo responde preguntas.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Un compromiso sin sanción vale lo que valga la voluntad de cumplirlo. Aun así deja algo útil: las cuatro capas son una buena lista de preguntas para tu proveedor de IA. Pregúntale <strong>quién revisa sus controles por dentro y quién los audita desde fuera</strong>. Si no hay respuesta para lo segundo, ya sabes cuánto pesa lo primero.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.presidency.ucsb.edu/documents/white-house-accord-super-intelligence">Texto del acuerdo (American Presidency Project)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://fortune.com/2026/10/01/trump-ai-regulation-luncheon-huang-amodei-pichai-brockman-zuckerberg-musk-joint-committment-frontier-responsibilities/">Fortune</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.whitehouse.gov/presidential-actions/2026/09/inaugurating-the-era-of-super-intelligence/">Casa Blanca (orden ejecutiva)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.whitehouse.gov/fact-sheets/2026/09/fact-sheet-president-donald-j-trump-streamlines-access-to-government-services-through-america-gov/">Casa Blanca (America.gov)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://fedscoop.com/trump-launches-ai-site-america-gov/">FedScoop</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas: qué vale la pena probar</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag purple">Herramienta</span>
+    <h3>Claude puede ordenar tu Gmail y tu Drive, y pide permiso antes de actuar</h3>
+    <p>Anthropic tiene conectores oficiales que enlazan a Claude con Gmail y Google Drive. Le pides en lenguaje normal que busque, resuma o prepare algo, sin copiar y pegar.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En Gmail busca, lee, redacta, responde y reenvía. En Drive busca, lee, sube, comparte y mueve archivos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Según Anthropic están disponibles para todos los usuarios de Claude, en la web y en la app de escritorio. En los planes de equipo los activa el administrador.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Pide tu aprobación antes de cada acción.</strong> Se activan en la sección de conectores, autorizando tu cuenta de Google.</div>
+    <div class="pm-box">
+      <div class="pm-label">📋 Por qué me interesa</div>
+      <p>Es el ejemplo más claro del tema de esta edición: el asistente hace el trabajo pesado de buscar y redactar, y tú apruebas antes de que algo salga. Para quien lleva su negocio desde el correo, agrupar los pendientes de la semana y dejar las respuestas en borrador ya justifica probarlo. Un cuidado: también puede enviar y borrar, así que no desactives la aprobación. <em>Reportada esta semana.</em></p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://support.claude.com/en/articles/10166901-use-google-workspace-connectors">Anthropic · Conectores de Google Workspace</a></div>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card pm">
+      <div class="tool-name">✏️ Napkin · de texto a diagramas</div>
+      <div class="tool-desc">Pegas un párrafo y lo convierte en diagrama de flujo, mapa mental, infografía o lámina, que luego puedes editar. La interfaz está en español. Gratis con 500 créditos de IA por semana y exportación a PNG y PDF; los planes de pago empiezan en 9 dólares al mes.</div>
+      <div class="tool-use">Ideal para: project managers que explican un proceso y consultores que arman una propuesta. Desde el móvil no genera visuales. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.napkin.ai/">napkin.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🏦 Bank Statement Converter · del extracto en PDF a Excel</div>
+      <div class="tool-desc">Subes el extracto bancario en PDF y devuelve los movimientos en una hoja de cálculo. Funciona sin registro, con un tope de páginas cada 24 horas. La interfaz está en inglés.</div>
+      <div class="tool-use">Ideal para: contadores y quien lleva la administración de una PYME. Estás subiendo datos bancarios a un tercero; su política dice que borra los archivos a las 24 horas. Úsalo con criterio. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://bankstatementconverter.com/">bankstatementconverter.com</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎓 Tarjetas de estudio en ChatGPT</div>
+      <div class="tool-desc">Le pides tarjetas sobre un tema o le subes tus apuntes y arma un mazo interactivo: las volteas, marcas las que ya sabes y quedan guardadas. Está en todos los planes de ChatGPT, en web y móvil.</div>
+      <div class="tool-use">Ideal para: quien prepara una certificación, y para docentes y facilitadores. Puede equivocarse: contrasta las tarjetas con tu material. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://help.openai.com/en/articles/20001533-flashcards-in-chatgpt">Ayuda oficial de OpenAI</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎬 Opus Clip · clips cortos de un video largo</div>
+      <div class="tool-desc">Toma la grabación de un webinar o una charla y saca clips cortos con subtítulos y reencuadre para redes. Gratis con 60 créditos al mes, sin tarjeta. Los clips gratuitos llevan marca de agua y hay tres días para exportarlos.</div>
+      <div class="tool-use">Ideal para: formadores y emprendedores que ya tienen sesiones grabadas y poco tiempo para editarlas. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.opus.pro/">opus.pro</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🌿 AI Plant Doctor · qué le pasa a tu planta</div>
+      <div class="tool-desc">Le tomas una foto y te dice qué planta es, qué enfermedad, plaga o carencia tiene y cómo tratarla. Funciona en español, en iOS, Android y web. Tres diagnósticos gratis por semana.</div>
+      <div class="tool-use">Ideal para: la vida fuera de la oficina. Es obra de un desarrollador independiente y tiene pocas valoraciones; tómalo como orientación. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://theaiplantdoctor.com">theaiplantdoctor.com</a></div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🤖</span><span class="text">Modelos</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Modelos</span>
+    <h3>Dos modelos nuevos: uno para todos y otro que casi nadie puede usar todavía</h3>
+    <p>Anthropic lanzó Claude Sonnet 5.5 el 28 de septiembre y Google presentó Gemini 4 Argon el 30.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Sonnet 5.5</strong> mantiene el precio de su antecesor: 2 dólares por millón de tokens de entrada y 10 de salida. Anthropic dice que genera las respuestas más de un 30% más rápido y que cuesta hasta un 30% menos por tarea. Cualquiera puede usarlo en Claude.ai.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El evaluador independiente Artificial Analysis le dio <strong>56 puntos</strong>, a dos de Opus 5.5, que cuesta el doble. También midió que, exigido al máximo, gasta más tokens que ningún otro modelo que haya probado y sale cerca de un 50% más caro por tarea que el anterior.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Gemini 4 Argon</strong> puede escribir respuestas de hasta un millón de tokens. Artificial Analysis le dio 53 puntos, empatado con GPT-6 Astra.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Por ahora solo lo usan equipos de ciberdefensa de un programa de Google; a clientes de pago llegará después, sin fecha.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Si usas los <strong>Gems</strong> de Gemini: Google los convertirá en <em>Skills</em> a partir de noviembre. La migración es automática, pero algunas funciones no pasan. Copia las instrucciones de los que más uses.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Las dos cifras de Sonnet no se contradicen: miden a distinto nivel de esfuerzo. La lección es la de la semana pasada y vale repetirla: <strong>mide por tarea terminada y con tus propias tareas</strong>. Sobre Argon, un criterio simple para no perder tiempo: un modelo que todavía no puedes probar no cambia tu trabajo de esta semana.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/claude-sonnet-5-5">Anthropic</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://artificialanalysis.ai/articles/claude-sonnet-5-5">Artificial Analysis (Sonnet 5.5)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Google</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://artificialanalysis.ai/articles/gemini-4-argon-google-top-three-labs">Artificial Analysis (Argon)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blog.google/products-and-platforms/products/gemini/automate-tasks-with-skills/">Google (Skills)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Criterio</span>
+    <h3>"Explosión de inteligencia": lo que dice el artículo y lo que se le atribuye</h3>
+    <p>El 28 de septiembre, 22 investigadores publicaron un artículo que pregunta qué pasa si la IA automatiza su propia investigación. Lo firman, entre otros, Geoffrey Hinton, Yoshua Bengio, el científico jefe de OpenAI y un cofundador de Anthropic.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La cifra más citada es de una sola empresa. Según la medición de la propia Anthropic, la parte de su trabajo de investigación y desarrollo que Claude completa de principio a fin, con una persona supervisando, pasó de <strong>1% en marzo a 26% en agosto</strong> de 2026.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Quienes clasificaron esas tareas fueron otros agentes de Claude, y coincidieron con evaluadores humanos el 59% de las veces.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; "Un año de progreso en cinco semanas" circuló como si ya ocurriera. En el artículo es una <strong>proyección</strong> para un escenario de automatización total.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Los autores dicen que hoy no se ha llegado a ese umbral. Piden tres cosas: reportes estandarizados y auditados sobre cuánto se automatiza, mecanismos para frenar o pausar, y preparar a la sociedad.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Me parece una señal seria que personas de laboratorios que compiten firmen juntas un pedido de transparencia. Y es un buen ejercicio de lectura: el 26% es real, pero es de una empresa, medido por ella misma y con sus propios modelos como jueces. Antes de repetir una cifra en una reunión, <strong>pregunta de quién es, quién la midió y si describe el presente o una proyección</strong>.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://arxiv.org/abs/2609.36054">arXiv</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/institute/measuring-pace-of-ai-development">Anthropic (medición)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.axios.com/2026/09/28/ai-pioneers-intelligence-explosion">Axios</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚖️</span><span class="text">El pulso de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Negocios</span>
+    <h3>La IA da resultados, pero pocas empresas la escalan como planearon</h3>
+    <p>Dos estudios de consultoras apuntan al mismo punto débil: pasar del piloto a toda la organización.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; BearingPoint encuestó en agosto a <strong>1.050 directivos</strong> de 13 países de Europa, Estados Unidos y China. Entre las organizaciones que ya usan IA, cerca de tres cuartas partes reportan resultados financieros positivos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Solo el <strong>13%</strong> la está escalando según su plan. El 24% logró ahorros de al menos 10%, y apenas el 4% un crecimiento de ingresos de ese tamaño.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; McKinsey, en una encuesta más pequeña (75 respuestas válidas), encontró que el gasto en IA <strong>casi se cuadruplica</strong> al pasar de casos aislados a toda la empresa, y que el 93% superó su presupuesto.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Ninguno de los dos estudios incluye a Latinoamérica.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Léelos con el filtro correcto: los dos vienen de firmas que venden el acompañamiento para escalar, y el de McKinsey tiene una muestra pequeña. Aun así, el patrón es conocido en proyectos de tecnología: el piloto sale bien porque es pequeño y está cuidado. Si estás por ampliar uno, presupuesta el uso real y no el de la demo, y decide desde ya <strong>quién es dueño del costo</strong> cuando el consumo crezca.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.bearingpoint.com/en/about-us/news-and-media/press-releases/ai-delivers-value-but-only-13-percent-of-organizations-scale-it-as-planned/">BearingPoint</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.investing.com/news/stock-market-news/ai-adoption-stalls-as-companies-struggle-to-scale-projects-despite-strong-returns-study-shows-4926252">Reuters (vía Investing.com)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-cost-of-intelligence-how-cios-can-manage-ai-demand-at-scale">McKinsey</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Seguridad práctica</span>
+    <h3>Tres cuidados que sí dependen de ti</h3>
+    <p>La semana dejó tres recordatorios sobre lo que le confías a un chatbot.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Revisa si tus conversaciones entrenan modelos.</strong> En ChatGPT: Settings → Data controls → "Improve the model for everyone". En Claude: Settings → Privacy → "Help improve our AI models". En Gemini: el ajuste "Keep activity". Los nombres pueden variar en la versión en español.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Apagar el ajuste no borra lo que ya compartiste. En Gemini, aun apagado, las conversaciones se guardan 72 horas.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>No pegues comandos que te pida una página.</strong> La firma de seguridad Huntress encontró dentro de ChatGPT un GPT personalizado que llevaba a una falsa verificación de "no soy un robot" y pedía copiar y pegar un comando. Eso instalaba un programa de acceso remoto. OpenAI lo retiró; dos días después apareció otro.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Un chatbot no es un diario privado.</strong> En Florida, una mujer fue arrestada después de escribir en Claude amenazas contra una oficina policial. Según el informe de arresto, el sistema las detectó y un equipo humano de Anthropic avisó a la policía; su política de privacidad lo permite cuando hay riesgo de daño grave. Es una acusación, no una condena.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Ninguna de las tres cosas depende de qué modelo sea mejor ni de lo que se firme en Washington. Dependen de ti y se resuelven hoy. Si tienes equipo, reenvíales este bloque: un descuido fácil de cometer es pegar datos de un cliente en una cuenta personal que tiene el entrenamiento activado.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://help.openai.com/en/articles/7730893-data-controls-faq">OpenAI (controles de datos)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://privacy.claude.com/en/articles/12109829-how-do-i-change-my-model-improvement-privacy-settings">Anthropic (ajuste de privacidad)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://support.google.com/gemini/answer/13594961?hl=en-GB">Google (actividad de Gemini)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.huntress.com/blog/chatgpt-custom-gpts-clickfix-rat">Huntress</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.winknews.com/news/woman-arrested-after-ai-threat-against-lee-county-sheriffs-office-investigators/article_3d4c5915-7015-43c0-b86a-d7fa5eadf958.html">WINK News</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/legal/privacy">Anthropic (política de privacidad)</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">✅</span><span class="text">Aplicaciones: qué está haciendo la IA en cada profesión</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag pm">Gestión de proyectos</span>
+    <h3>Antes de delegar en un agente, escribe qué significa "terminado"</h3>
+    <p>Tres publicaciones de estas semanas, leídas juntas, le hablan directo a quien gestiona proyectos.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; OpenAI publicó el 2 de octubre una guía para trabajar con sus modelos. Su recomendación central cabe en una línea: empieza con un encargo claro, que diga <strong>el resultado que quieres, para quién es, el contexto y los límites, y qué cuenta como terminado</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un estudio académico, AgentWorld, puso a trabajar equipos de 3 a 20 agentes en 100 tareas largas. Con el mejor modelo completaron el <strong>52%</strong>, y menos de un tercio de las acciones de los agentes aportó al resultado. Usó modelos ligeros, como Gemini 3 Flash y Claude Haiku 4.5, y todavía no tiene revisión por pares.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; OpenAI contó en septiembre cómo usa agentes en su propia investigación. El uso se disparó en programar, revisar y depurar; casi no se movió en decidir en qué trabajar y qué proyecto continuar o detener. En sus palabras, las personas siguen fijando las prioridades.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Esto es gestión de proyectos de toda la vida aplicada a un ejecutor nuevo. "Qué cuenta como terminado" son los criterios de aceptación. Que más de dos tercios de las acciones de un equipo de agentes no aporten al resultado es lo que le pasa a cualquier equipo sin coordinación. Y las decisiones que OpenAI no delega son las de un comité de portafolio: priorizar, continuar o cancelar. <strong>Si sabes definir alcance, criterios de aceptación y puntos de aprobación, ya tienes lo que más falta para trabajar con agentes.</strong></p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/practical-guide-building-gpt-6/">OpenAI (guía)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://arxiv.org/abs/2609.31590">arXiv (AgentWorld)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/research-acceleration-view-inside-openai/">OpenAI (uso interno)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Finanzas</span>
+    <h3>Cierre contable: los modelos superan a contadores junior en una prueba, con una salvedad grande</h3>
+    <p>Mercor, una empresa que evalúa modelos de IA con expertos humanos, publicó el 1 de octubre una comparación en tareas de cierre mensual.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Doce contadores con licencia CPA y unos cinco años de experiencia resolvieron cuatro tareas sin IA. Cumplieron en promedio el <strong>37%</strong> de los criterios y tardaron entre 30 y 180 minutos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Los modelos más recientes cumplen cerca del 100%, en menos de diez minutos por intento.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El costo por criterio cumplido fue de 0,21 dólares con el modelo y de 10,35 con los contadores.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La salvedad la escribe la propia Mercor: los resultados <strong>no significan que los contadores sean reemplazables</strong>. Las tareas midieron lo que la IA hace mejor, seguir instrucciones detalladas, y dejaron fuera el trato con el cliente y el contexto que se acumula con los meses.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Qué se automatizó: la parte mecánica del cierre. Cuánto tomaba: de media hora a tres horas por tarea. Quién sigue firmando: el contador, porque nadie midió el juicio sobre qué partida merece una segunda mirada. Tómalo con cautela: son doce personas y cuatro tareas, diseñadas por una empresa que vende estas evaluaciones. Si llevas finanzas, <strong>prueba la IA en lo repetitivo del cierre y reserva tu tiempo para revisar</strong>.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.mercor.com/blog/human-baselines-for-benchmarks-ai-now-outperforms-junior-accountants/">Mercor</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Ciencia</span>
+    <h3>Un físico de Harvard, tres meses y 36 manuscritos: "míralo todo tú mismo"</h3>
+    <p>Anthropic publicó el 1 de octubre el relato de Matthew Schwartz, físico teórico de Harvard, sobre cómo trabajó tres meses con Claude.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Partió de unos 400 problemas candidatos y terminó con <strong>36 manuscritos en 18 campos</strong>, con 19 coautores.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Claude reprodujo en unos 20 minutos resultados de un artículo suyo que a su propio código le habían tomado semanas, y calculó 15 integrales que nunca se habían resuelto.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Sus advertencias son tan concretas como sus resultados: a Claude "le encanta declarar victoria", y un "listo, con un asterisco" muchas veces es "nada listo". Su regla es mirarlo todo uno mismo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Son manuscritos, todavía sin revisión por pares. Schwartz trabajó durante el proyecto como investigador visitante en Anthropic.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Me gusta este caso por dónde queda el experto: Schwartz dejó de hacer los cálculos y pasó a elegir los problemas y a desconfiar de los resultados. La frase del asterisco vale para cualquier profesión. Cuando un asistente te diga que terminó, <strong>pídele que te muestre lo que no pudo resolver</strong>.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/research/claude-shaped-science">Anthropic</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Operaciones</span>
+    <h3>Tráfico aéreo: la IA propone cuatro jugadas adelante y una persona decide</h3>
+    <p>La autoridad de aviación de Estados Unidos (FAA) empezó a usar un software de la empresa Air Space Intelligence para ayudar a quienes gestionan el flujo de vuelos.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La herramienta combina más de 200 fuentes de datos y permite anticipar "cuatro o cinco jugadas".</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Arrancó en modo limitado el 21 de septiembre, en tres aeropuertos del área de Washington.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El director de la empresa lo resumió así en NPR: los gestores "toman la decisión, son quienes deciden, son el juez". Los controladores que separan los aviones no cambian su trabajo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Todavía <strong>no hay datos públicos de resultados</strong>, y el sindicato de controladores dice que no participó en el diseño ni en las pruebas.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Es un patrón que se repite en operaciones y logística: la IA mira más variables de las que una persona puede sostener y propone; alguien con oficio decide. El punto flojo también enseña. Una herramienta que se despliega sin quienes la van a usar arranca con desconfianza, por buena que sea. <strong>En cualquier implantación, sienta a los usuarios en la mesa antes de las pruebas.</strong></p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.kawc.org/npr-news/2026-10-01/do-ai-and-air-traffic-control-mix-ceo-addresses-anxiety-about-new-faa-tool">NPR (vía KAWC)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.faa.gov/newsroom/trumps-transportation-secretary-sean-p-duffy-delivers-state-art-air-traffic-control">FAA</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica y mundo hispano</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag green">Perú</span>
+    <h3>Indecopi: sin prueba de tu aporte, una imagen hecha con IA no se registra</h3>
+    <p>El 29 de septiembre, el Indecopi de Perú informó que confirmó en segunda instancia el rechazo al registro de tres obras artísticas creadas con IA por un mismo solicitante.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El criterio: lo generado exclusivamente por sistemas automatizados, algoritmos o inteligencia artificial <strong>no es una obra protegible</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El solicitante alegó que él definió la composición, la iluminación, los colores, la selección y la edición final, y que ajustó los prompts varias veces.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La Sala no entró a valorar si eso bastaría. Rechazó porque <strong>no se presentó ninguna prueba</strong> que permitiera verificar esa participación ni el control creativo que decía tener.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Es la última instancia administrativa; todavía cabe ir a los tribunales.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Algunos titulares dijeron que Indecopi "aclaró qué aportes humanos cuentan". La nota oficial dice otra cosa: sin pruebas, ni siquiera llegó a evaluarlo. Para diseñadores, agencias y marcas que crean con IA la lección es práctica: <strong>guarda el proceso</strong>. Bocetos, versiones intermedias, los prompts y lo que editaste a mano. Si algún día necesitas defender que la obra es tuya, eso es lo que vas a poder mostrar.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.gob.pe/institucion/indecopi/noticias/1450343-el-indecopi-rechaza-el-registro-de-tres-obras-artisticas-creadas-con-inteligencia-artificial">Indecopi</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.infobae.com/peru/2026/09/30/una-imagen-creada-con-ia-puede-tener-derechos-de-autor-indecopi-rechaza-tres-registros-y-explica-que-debe-probarse/">Infobae Perú</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Disponibilidad</span>
+    <h3>Lo nuevo de la semana, ¿llega a nuestra región?</h3>
+    <p>Esto es lo que dicen las páginas oficiales sobre dónde se puede usar cada lanzamiento.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Dots de OpenAI:</strong> el plan Pro solo excluye al Espacio Económico Europeo, Suiza y Reino Unido, así que Latinoamérica no queda fuera, aunque OpenAI no publica la lista de países. En España solo entran por el plan Business Premium.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Muse for Small Business, de Meta:</strong> el agente Muse está disponible en Estados Unidos y Canadá, sin fecha para otros países. Se conecta con Shopify, QuickBooks, Stripe, Canva y Slack, entre otros, y Meta promete que nada se publica, se envía ni se gasta sin tu aprobación.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Claude Sonnet 5.5:</strong> disponible para cualquiera en Claude.ai.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Gemini 4 Argon:</strong> todavía no está abierto al público en ningún país.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Que Muse no haya llegado no es motivo para esperar. Fíjate en lo que Meta le promete a la pequeña empresa de Estados Unidos, porque es el estándar que vas a poder exigir: <strong>un agente que prepara y un dueño que aprueba antes de publicar, enviar o pagar</strong>. Esa misma regla la puedes montar hoy con las herramientas que ya tienes.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://help.openai.com/en/articles/20001530-getting-started-with-your-dot">OpenAI (disponibilidad de dots)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://about.fb.com/news/2026/09/introducing-muse-small-business/">Meta</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/claude/sonnet">Anthropic</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/">Google</a></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">52%</div>
+    <div class="stat-label">de las tareas completaron los equipos de agentes de IA con el mejor modelo en la prueba AgentWorld; menos de un tercio de sus acciones aportó al resultado</div>
+    <p style="margin-top:14px;">Poner más agentes no reemplaza a quien coordina. Definir el alcance, repartir el trabajo y decidir cuándo algo está terminado sigue siendo trabajo de una persona.</p>
+  </div>
+
+  <div class="reflection">
+    <h3>Reflexión: se delega el trabajo, no la firma</h3>
+    <p>Esta semana la misma idea apareció en lugares que no se parecen entre sí. California exige que una persona corrobore antes de despedir. Meta promete que su agente no publica, envía ni gasta sin que el dueño apruebe. En el tráfico aéreo, el software propone y el gestor decide. Un físico de Harvard pide mirarlo todo uno mismo. Indecopi pide pruebas de lo que hiciste tú.</p>
+    <p>Y la contraparte: OpenAI canceló un modelo porque avanzaba sin pedir permiso. Si quien lo fabrica lo considera un defecto, el punto de aprobación es parte del diseño del trabajo, igual que en cualquier proyecto bien llevado.</p>
+    <p><strong>Tu tarea de esta semana, en una hora:</strong> elige una tarea que ya le das a la IA o que le darías mañana. Escribe cuatro líneas: qué resultado quieres, para quién es, qué contexto y qué límites tiene, y qué cuenta como terminado. Añade una quinta: quién aprueba antes de que eso se envíe, se publique o se pague.</p>
+    <p>Guarda esa hoja y úsala cada vez. Con el tiempo tendrás tu propio manual de delegación, hecho con tus tareas y tus criterios. Y antes de cerrar la hora, dedica cinco minutos a los ajustes de privacidad de más arriba.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana lo esencial de la IA con lectura estratégica, en español y sin hype.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Quieres aterrizar la IA en tu empresa o tu PMO? Conversemos 30 minutos, sin costo.</p>
+      <a target="_blank" rel="noopener" style="color:#ffffff;font-weight:700;text-decoration:none;" href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #36</div>
+    <p>
+      Por <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.linkedin.com/company/never-stop-learning-ateneo-inc/">Ateneo Empresarial</a><br>
+      Semana del 28 de septiembre al 4 de octubre de 2026<br>
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
