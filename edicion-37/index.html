@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #37 — Barata por token. ¿Y por tarea?</title>
+  <meta name="description" content="Anthropic lanza un modelo 90% más barato por token que gasta tres veces más tokens por tarea, Claude, Gemini y ChatGPT se mudan a tus documentos y el Banco Mundial dice que en América Latina falta capacidad, no acceso. Semana del 5 al 11 de octubre de 2026. Por Mary Cárdenas de Gil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #37</div>
+    <div class="header-title">Barata por token.<br>¿Y por <span>tarea</span>?</div>
+    <div class="header-subtitle">Lo esencial de la semana en IA aplicada — con lectura estratégica, en español y sin hype.</div>
+    <div class="header-meta">Semana del 5 al 11 de octubre de 2026</div>
+  </div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola,</p>
+    <p>El miércoles Anthropic lanzó Claude Haiku 5.5, su modelo más pequeño, con un precio por token hasta 90% menor que el de su versión anterior. Un evaluador independiente midió que, a esfuerzo máximo, consume unas tres veces más tokens por tarea que su rival de OpenAI, que cuesta lo mismo. Misma tarifa, factura distinta.</p>
+    <p>El lunes, The Wall Street Journal había reunido dos datos en la misma dirección: solo 11% de casi 400 empresas logra pronosticar su gasto en IA con un margen de ±10%, y en un experimento académico el modelo más barato en lista terminó costando más en una de cada tres comparaciones. Y a quienes trabajamos en español nos toca un recargo que pocos miran: un mismo texto ocupa más tokens que en inglés.</p>
+    <p>Leídas juntas, estas noticias dicen algo que en gestión de proyectos sabemos de memoria: <strong>el precio unitario no es el costo del entregable</strong>. El costo real incluye la revisión, el retrabajo y la aprobación. El PMI lo recordó esta semana: ese trabajo alrededor de la IA va en la EDT, con responsable y estimación.</p>
+    <p>En esta edición te cuento qué cambió, qué llega a la región, dónde la IA ya hace trabajo real con una persona firmando, y una forma de calcular en una hora cuánto te cuesta de verdad una tarea hecha con IA.</p>
+    <div class="signature">— Mary Cárdenas de Gil</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">Lo que más importa</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag orange">Costos</span>
+    <h3>Un modelo hasta 90% más barato por token no siempre es más barato por tarea</h3>
+    <p>Anthropic lanzó el 7 de octubre Claude Haiku 5.5, su modelo más pequeño y rápido. Dos días antes, The Wall Street Journal había explicado por qué a las empresas les cuesta tanto presupuestar la IA.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Haiku 5.5 cuesta <strong>0,10 dólares por millón de tokens de entrada y 0,50 de salida</strong> en peticiones de hasta 100.000 tokens: 90% menos que Haiku 4.5 en ese tramo y 50% menos por encima. Anthropic calcula que operarlo cuesta, en promedio, alrededor de 75% menos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Tiene el mismo precio de lista que GPT-6 Luna, el modelo pequeño de OpenAI, y lo supera en todas las pruebas que Anthropic publica para ambos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Artificial Analysis</strong>, evaluador independiente, midió que a esfuerzo máximo Haiku 5.5 usa unos 162.000 tokens de salida por tarea frente a unos 50.000 de Luna: alrededor de <strong>0,21 contra 0,07 dólares por tarea</strong>. Con el esfuerzo en "alto", Haiku iguala la puntuación de Luna con un consumo parecido.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Según un informe de Mavvrik, empresa que vende software de control de costos de IA, solo <strong>11% de 396 organizaciones</strong> pronostica su gasto en IA con un margen de ±10%.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un estudio de investigadores de Stanford, Microsoft Research y otras instituciones comparó ocho modelos de razonamiento en doce tareas: en <strong>32% de las comparaciones</strong>, el de menor precio de lista terminó costando más, porque usaba más tokens para "pensar".</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>La pregunta útil ya no es cuánto cuesta el millón de tokens, sino <strong>cuánto cuesta una tarea terminada y revisada</strong>. Antes de cambiar de modelo para ahorrar, ejecuta la misma tarea en los dos y compara el costo final y el tiempo que te toma corregirla. Y prueba con menos esfuerzo: muchas tareas de oficina no necesitan el máximo.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/claude-haiku-5-5">Anthropic (Haiku 5.5)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://artificialanalysis.ai/models/comparisons/claude-haiku-5-5-vs-gpt-6-luna">Artificial Analysis</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://arxiv.org/abs/2603.23971">arXiv (preprint sobre precios)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.wboc.com/online_features/press_releases/ai-bill-shock-hits-the-boardroom-40-of-companies-escalated-surprise-ai-costs-1-in/article_96bcba22-8751-5f95-8070-c438f3f66945.html">Mavvrik (nota de prensa, julio)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.pymnts.com/?p=4275238">PYMNTS (resume al WSJ)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Productividad</span>
+    <h3>La IA se muda a tus documentos: Claude, Gemini y ChatGPT, en la misma semana</h3>
+    <p>Entre el 6 y el 9 de octubre, los tres grandes acercaron su IA al lugar donde ya trabajas.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Anthropic (6 oct):</strong> Claude ya edita dentro de Google Docs, Sheets y Slides con un complemento, en beta para los planes de pago. Te lo detallo en Herramientas.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Google (8 oct):</strong> presentó el Gemini agent para empresas. Se le dan objetivos, no instrucciones, y recibe su propia cuenta de Workspace —correo, calendario y Drive— con permisos como los de un empleado. Puede usar modelos Gemini y también modelos Claude de Anthropic. Según medios especializados, está en vista previa privada para clientes seleccionados.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>OpenAI (7 y 8 oct):</strong> GPT-6 llegó a todos los planes de ChatGPT; el gratuito y Go reciben GPT-6 Luna, la versión pequeña. Estrena Intelligent UI: respuestas que mezclan texto con gráficos, botones, formularios o calculadoras.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>El otro lado:</strong> desde el 9 de octubre, quienes usan Gemini sin pagar quedan con un modo automático que responde sobre todo con Flash-Lite, el modelo más ligero de Google.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>La competencia pasa de quién tiene el mejor modelo a quién vive dentro de tus documentos. Para un PM, la decisión importante es de gobierno: qué cuenta ve qué carpetas, quién aprueba los cambios y qué queda registrado. Que Google le dé a cada agente una identidad propia lo deja claro: <strong>a un agente se le da de alta, se le asignan permisos y se le da de baja</strong>, como a cualquier persona del equipo.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://claude.com/resources/articles/claude-now-works-in-google-docs-sheets-and-slides">Claude (Docs, Sheets y Slides)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026">Google Cloud (Gemini agent)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://letsdatascience.com/news/google-introduces-gemini-agent-for-enterprise-work-53007f2c">Let's Data Science (resume a VentureBeat)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/gpt-6-for-everyone/">OpenAI (GPT-6)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://support.google.com/gemini/answer/17004136">Ayuda de Google (planes de Gemini)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://9to5google.com/2026/10/09/gemini-auto-free-users/">9to5Google (modo Auto)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Seguridad</span>
+    <h3>¿Quién revisa un modelo antes de lanzarlo? Washington y la propia industria lo discuten</h3>
+    <p>Fue una semana de cartas, respuestas y propuestas sobre quién vigila a los modelos.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>OpenAI:</strong> tres investigadores de seguridad despedidos a inicios de mes publicaron el 8 de octubre una carta titulada <em>"OpenAI cannot make AI safe on its own"</em>. La empresa dice que los despidió por mal manejo de información sensible, no por plantear preocupaciones. A fines de septiembre había renunciado David Robinson, responsable de transparencia de seguridad, que el 3 de octubre publicó un ensayo crítico en The Atlantic.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Sam Altman, a Politico:</strong> "el mundo debería aceptar que pasen algunas cosas malas a cambio de los beneficios de esta tecnología". En la misma entrevista aclaró que no acepta los riesgos catastróficos, como una pérdida seria de control.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Senado (7 oct):</strong> la senadora Maria Cantwell propuso que los modelos más potentes no se lancen sin una auditoría independiente previa, con estándares del NIST. Es un marco de seis principios, todavía no un proyecto de ley.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Opinión pública:</strong> en una encuesta de Quinnipiac (30 sep), <strong>86% de los estadounidenses</strong> apoya exigir estándares de seguridad independientes, aunque eso frene el desarrollo.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Lo que se discute en Washington es lo que una PMO hace con cualquier proveedor crítico: <strong>prueba antes de la puesta en marcha, registro de incidentes y alguien con autoridad para decir "esto no sale"</strong>. Si tu organización ya usa agentes, puedes pedirles hoy a tus proveedores tres respuestas por escrito: qué pruebas hicieron, cómo te avisan de un incidente y cómo se detiene el agente.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/?p=3175894">TechCrunch (carta)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://abcnews.com/Technology/wireStory/openai-fires-3-safety-researchers-dispute-ai-risks-137123277">AP (respuesta de OpenAI)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/?p=3173499">TechCrunch (Robinson)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.techrepublic.com/article/news-sam-altman-ai-risk-benefits/">TechRepublic (Altman)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.commerce.senate.gov/?p=57704">Senado de EE.UU. (Cantwell)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://poll.qu.edu/poll-release?releaseid=3969">Quinnipiac</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas: qué vale la pena probar</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag purple">Herramienta</span>
+    <h3>Claude trabaja dentro de Docs, Sheets y Slides, y pide permiso antes de cambiar algo</h3>
+    <p>Desde el 6 de octubre, Claude se instala como complemento de Google Workspace y trabaja dentro del archivo que tienes abierto, sin copiar y pegar.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>En Sheets</strong> escribe fórmulas, arma tablas dinámicas y gráficos, agrega pestañas y puede limpiar o unir un rango de datos. <strong>En Docs</strong> edita el texto en su lugar y propone reescrituras en tarjetas. <strong>En Slides</strong> crea láminas con el diseño de tu presentación y revisa el texto que se sale o se lee mal.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Por defecto <strong>pide tu aprobación antes de cada cambio</strong>. Se puede pasar a "aceptar todo", pero no te lo recomiendo al empezar.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Está en beta para los planes de pago (Pro, Max, Team y Enterprise); el plan gratuito queda fuera. Se instala desde Google Workspace Marketplace y funciona en Chrome, Edge y Safari, no en Firefox.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Límites a tener en cuenta: en Docs no lee ni resuelve comentarios, y sus cambios entran directos, no como sugerencias. Anthropic no especifica idiomas: pruébalo con un documento en español antes de confiarle uno importante.</div>
+    <div class="pm-box">
+      <div class="pm-label">📋 Por qué me interesa</div>
+      <p>Es la herramienta de la semana para quien gestiona proyectos o lleva las finanzas en Google: pedirle que revise las fórmulas de un presupuesto, que te explique de dónde sale un total o que arme el gráfico del informe de estado, y aprobar cada cambio. Ahí está el tema de esta edición: el trabajo lo hace la IA, la revisión sigue siendo tuya y debe estar en el plan. <em>Reportada esta semana.</em></p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://claude.com/resources/articles/claude-now-works-in-google-docs-sheets-and-slides">Claude (anuncio)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://support.claude.com/en/articles/16951679-use-claude-in-google-docs-sheets-and-slides">Ayuda de Claude</a></div>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card pm">
+      <div class="tool-name">🛍️ FastBots · un asistente para tu sitio y tu WhatsApp</div>
+      <div class="tool-desc">Entrenas un chatbot con tu sitio web, tus documentos y tus videos, y responde a clientes en la web, WhatsApp, Instagram o Messenger. Atiende en unos 95 idiomas. Prueba de 14 días sin tarjeta con un bot y 200 mensajes; después, desde 33 dólares al mes en plan anual.</div>
+      <div class="tool-use">Ideal para: PYMES de servicios y comercio electrónico que responden las mismas preguntas todo el día. Al terminar la prueba el bot se desconecta si no pagas; revisa sus respuestas antes de publicarlo. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://fastbots.ai/">fastbots.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">📄 Reactive Resume · tu CV, gratis y de código abierto</div>
+      <div class="tool-desc">Constructor de CV y cartas de presentación: 17 plantillas, revisión de compatibilidad con sistemas de selección (ATS), comparación de tu CV contra una oferta y seguimiento de postulaciones. Todo es gratis y sin anuncios. Pide crear una cuenta; la IA es opcional y usa tu propia clave.</div>
+      <div class="tool-use">Ideal para: quien busca empleo, orientadores laborales y reclutadores que asesoran candidatos. La interfaz está traducida por voluntarios a más de 50 idiomas; el sitio no lista cuáles, así que confirma el español al entrar. Es un proyecto comunitario: piensa qué datos pones en el CV. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://rxresu.me">rxresu.me</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🔍 SynthID Detector · ¿lo hizo una IA de Google?</div>
+      <div class="tool-desc">Subes una imagen, un video o un audio y te dice si lleva la marca de agua invisible de Google o de sus socios OpenAI, NVIDIA y Kakao. Abierto a cualquier persona desde el 7 de octubre, en inglés. Pide iniciar sesión y, según la prensa, permite unas 10 verificaciones al día.</div>
+      <div class="tool-use">Ideal para: docentes que revisan trabajos, equipos de comunicación y RRHH. Ojo: un "no detectado" no prueba que el archivo sea real; solo dice que no trae esa marca. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://synthid.com">synthid.com</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎓 Leadde · de un manual a un video con presentador</div>
+      <div class="tool-desc">Convierte un guion, un PDF o una presentación en un video con un presentador generado por IA. El plan gratuito permite un video a la vez de hasta 10 minutos, en más de 80 idiomas y probablemente con marca de agua; el sitio no nombra el español. Los planes de pago empiezan en 228 dólares al año.</div>
+      <div class="tool-use">Ideal para: formadores, áreas de aprendizaje y RRHH que preparan inducciones. Avisa a tu audiencia que el presentador es sintético. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://leadde.ai">leadde.ai</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎬 Google Flow · video e imagen con créditos diarios</div>
+      <div class="tool-desc">El estudio creativo de Google para generar clips de video e imágenes. Con una cuenta de Google recibes 50 créditos gratis al día, tengas o no suscripción; no se acumulan y alcanzan para pocos clips.</div>
+      <div class="tool-use">Ideal para: emprendedores y equipos de marketing que necesitan piezas cortas para redes. Google remite a otra página para la disponibilidad por país y no confirma la interfaz en español: verifica ambas al entrar. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://flow.google.com">flow.google.com</a></div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚖️</span><span class="text">El pulso de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Criterio</span>
+    <h3>Las reglas de uso de Claude cambian el 12 de noviembre: qué es nuevo y qué ya regía</h3>
+    <p>Anthropic publicó el 8 de octubre su nueva política de uso. Varios newsletters dijeron que endurece las reglas para salud y finanzas. No es así.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Nuevo:</strong> prohíbe el trato abusivo o cruel, sostenido y sin propósito, hacia sus modelos. No cubre la frustración, el desacuerdo ni los temas creativos oscuros.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Nuevo:</strong> si Claude controla equipos físicos que actúan por su cuenta, debe haber una persona calificada que pueda observarlos y detenerlos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Más explícito:</strong> no se puede usar Claude para decidir o sugerir a quién investigar, acusar o detener, ni para rastrear personas sin su consentimiento. Y hay una sección nueva contra campañas engañosas, como cuentas falsas o sitios de noticias fabricados.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Lo que ya regía y no cambia:</strong> cuando el uso afecta la salud, los derechos legales, las finanzas, el empleo o el acceso a servicios esenciales de una persona, <strong>alguien calificado debe revisar la recomendación antes de que llegue a esa persona, con autoridad para cambiarla, y hay que decirle que se usó IA</strong>.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Si trabajas en RRHH, finanzas, educación o salud y usas Claude para algo que toca a una persona concreta —filtrar candidatos, evaluar un crédito, calificar— esa regla te aplica y, según Anthropic, no es nueva. Vale la pena comprobar hoy dos cosas: que alguien revisa antes de comunicar y que la persona sabe que hubo IA. Es la misma lógica de la ley de California de la edición pasada.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/news/2026-usage-policy-update">Anthropic (anuncio)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/legal/aup">Anthropic (política de uso)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag orange">Empleo</span>
+    <h3>Lo que piden las empresas ya no es saber escribir prompts</h3>
+    <p>Workday publicó el 5 de octubre su informe global de fuerza laboral, con datos de su plataforma y encuestas propias.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En las ofertas de empleo de unos 550 empleadores, la demanda de <strong>habilidades básicas de IA</strong>, como escribir prompts simples, <strong>cayó 25%</strong> este año.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La de <strong>habilidades prácticas para construir y automatizar con IA subió 51%</strong> entre septiembre de 2025 y julio de 2026.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En 57% de los empleadores con 250 empleados o más bajaron los movimientos internos de personal.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En su encuesta, 62% de quienes usan IA para casi todo su trabajo cree que sus habilidades actuales valdrán menos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Ojo con el origen: Workday vende software de RRHH y los datos son de sus clientes.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El prompt dejó de ser diferencial. Lo que se valora es saber <strong>convertir un proceso en un flujo que la IA ejecuta y otra persona puede revisar</strong>. Si lideras un equipo, en tu próxima conversación de desarrollo pregunta qué tarea repetitiva podría automatizar cada persona este trimestre, y quién la revisaría.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://newsroom.workday.com/2026-10-05-Workday-Global-Workforce-Report-AI-Is-Rewriting-Jobs-More-Than-Its-Cutting-Them">Workday (informe)</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">✅</span><span class="text">Aplicaciones: qué está haciendo la IA en cada profesión</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag pm">Gestión de proyectos</span>
+    <h3>El trabajo oculto de la IA también va en tu EDT</h3>
+    <p>El PMI volvió a circular esta semana, en su newsletter de LinkedIn, una guía de su blog sobre cómo construir la estructura de desglose del trabajo (EDT o WBS) cuando parte del trabajo lo hacen agentes.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Cuando un entregable se construye con agentes, la EDT conserva todo lo habitual y suma el trabajo que hace posible la autonomía: <strong>límites de cada tarea, diseño del agente, controles y puntos de aprobación humana, escalamiento y respaldo, y monitoreo y evaluación</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La recomendación del PMI: "dale a ese trabajo su propia línea y estímalo, en vez de enterrarlo como gasto general".</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Su diagnóstico de los equipos híbridos: muchas fallas no son omisiones de la EDT, son <strong>traspasos entre persona y agente que nadie nombró</strong>.</div>
+    <div class="pm-box">
+      <div class="pm-label">📋 Cómo aplicarlo</div>
+      <p>Antes, la revisión de lo que hace la IA se escondía en gastos generales; después, es un paquete con responsable y horas que el PM aprueba en la línea base. En tu próximo proyecto con IA, agrega tres: revisión humana, retrabajo esperado y aprobaciones. Si no aparecen en el plan, aparecerán en el presupuesto como sobrecosto. Es la mitad de la respuesta a la pregunta de esta edición.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.pmi.org/blog/work-breakdown-structure">PMI (blog)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Medicina</span>
+    <h3>Salud: la IA prepara la consulta y propone la receta; el médico firma</h3>
+    <p>Dos casos de esta semana, con supervisión médica en cada paso.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Google AMIE, en The Lancet (8 oct):</strong> antes de una cita urgente de atención primaria en un hospital de Boston, el paciente conversó con la IA, que preparó la transcripción y un resumen para el médico: en lugar de empezar la consulta desde cero, el médico llegaba con la historia ya tomada. De 114 inscritos, 98 completaron todo. <strong>75% de los médicos</strong> (33 de 44) dijo que esa entrevista previa le sirvió para preparar la visita, y la lista de posibles diagnósticos incluyó el diagnóstico final en <strong>90% de los casos</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Quién decide:</strong> un médico supervisó cada conversación en tiempo real y el médico tratante tomó todas las decisiones. Es un estudio de viabilidad financiado por Alphabet: no midió resultados de salud.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Utah y Nolla Health (5 oct):</strong> el estado autorizó, con un acuerdo regulatorio de 12 meses, que la IA de Nolla emita recetas iniciales de tratamientos tópicos para acné leve o moderado en adultos. Al inicio, los médicos aprueban cada receta antes de enviarla; la supervisión baja por etapas. La suscripción cuesta 4,99 dólares al mes durante el piloto; los medicamentos se pagan aparte.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>El formato que funciona se repite: <strong>la IA hace el trabajo previo, una persona con licencia firma</strong>, y la supervisión baja solo cuando hay datos. Si diriges un área regulada, no empieces por "¿la IA puede decidir?", sino por "¿qué parte del trabajo previo puede preparar y quién la firma?".</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blog.google/innovation-and-ai/technology/health/amie-clinical-study-lancet/">Google (AMIE)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://arxiv.org/pdf/2603.08448v3">arXiv (estudio)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://commerce.utah.gov/ai/ai-faq">Utah Commerce</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.medicaleconomics.com/view/from-skin-scan-to-prescription-ai-acne-prescribing-launches-in-utah">Medical Economics</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Operaciones</span>
+    <h3>Migración a la nube: de tres meses a dos semanas por servicio, con ingenieros autorizando</h3>
+    <p>La marca de ropa deportiva On anunció el 8 de octubre, con Google Cloud, cómo migró sus sistemas con agentes.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Un sistema de varios agentes analizó el código, generó la configuración de infraestructura y validó las pruebas para mover <strong>24 servicios centrales</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El tiempo de migración bajó de <strong>tres meses a dos semanas por servicio</strong>, según las empresas.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Los ingenieros revisaron el código generado, ejecutaron los cambios y <strong>autorizaron cada paso a producción</strong>. Su CTO lo resume: las personas siguen respondiendo por las decisiones que importan.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Es una nota de prensa conjunta de On y Google Cloud: las cifras son de las propias empresas.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Es el ejemplo de manual del tema de hoy. El ahorro estuvo en la ejecución; la revisión y la autorización se mantuvieron y se planificaron. Si lideras TI u operaciones, pide que cualquier piloto con agentes reporte las dos cosas: tiempo ahorrado y horas de revisión.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.googlecloudpresscorner.com/2026-10-08-On-Establishes-Google-Cloud-as-Enterprise-AI-Backbone,-Beginning-with-Agent-Led-Cloud-Migration">Google Cloud (nota de prensa)</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica y mundo hispano</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Región</span>
+    <h3>Banco Mundial: en América Latina la IA ya llegó a las empresas; falta saber usarla</h3>
+    <p>El 6 de octubre, días antes de sus Reuniones Anuales, el Banco Mundial publicó su informe económico de otoño para América Latina y el Caribe, con un capítulo dedicado a la IA.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Proyecta un crecimiento regional de <strong>2,2% en 2026</strong>.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Su diagnóstico: la restricción <strong>no es el acceso a los modelos sino la capacidad de las empresas para absorberlos</strong>. La adopción es amplia pero superficial, y la barrera principal es el conocimiento gerencial y técnico.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Según las agencias que resumieron el informe, entre 40% y 60% de las empresas de la región ya usa IA.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En Chile, <strong>41% de las empresas</strong> adopta IA, sobre todo chatbots y asistentes; las barreras más citadas son costos (42%) y falta de habilidades del personal (36%).</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Recomienda servicios de extensión para empresas: asistencia técnica con subsidios de contrapartida.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Para quienes formamos y acompañamos equipos, es la frase más importante de la semana: el cuello de botella está en la capacidad, no en la tecnología. <strong>Y la capacidad se construye</strong>: con formación aplicada, con procesos rediseñados y con alguien que mida si funcionó.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://static.poder360.com.br/uploads/2026/10/LACER-Fall-2026-English.pdf">Banco Mundial (informe, PDF en Poder360)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://forbes.pe/economia-y-finanzas/2026-10-06/banco-mundial-proyecta-un-crecimiento-de-22-para-latinoamerica-en-2026-con-avances-dispares/">Forbes Perú</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://elperuano.pe/noticia/306319-america-latina-y-el-caribe-creceran-22">El Peruano (AFP)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.emol.com/noticias/Economia/2026/10/06/1213392/banco-mundial-proyeccion-crecimiento-chile.html">Emol</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">En español</span>
+    <h3>Trabajar en español: más tokens por el mismo texto, y una marca de agua que lo detecta mejor</h3>
+    <p>Dos datos de la semana tocan directamente a quien usa la IA en nuestro idioma.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Tokens:</strong> con el tokenizador de GPT-3.5 y GPT-4, un mismo texto en español ocupaba <strong>55% más tokens</strong> que en inglés (Universidad de Oxford, 2023). Una medición independiente de julio de 2026 con ese tokenizador da 54%. Para los tokenizadores más recientes no encontré una cifra independiente para el español: la diferencia puede ser menor, pero conviene medirla con tus propios textos.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Marca de agua:</strong> OpenAI anunció el 5 de octubre que, en las próximas semanas, el texto de ChatGPT y Codex en la Unión Europea llevará una señal estadística invisible, textGrain, para cumplir la Ley de IA europea. En la API es opcional en todo el mundo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En una prueba con los 24 idiomas oficiales de la UE, <strong>el español fue el que mejor se detectó (69%)</strong> y el rumano el que peor (42%). Es una prueba distinta de la de inglés del punto siguiente, así que las cifras no se comparan.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Los límites que reconoce OpenAI: si se cambia 10% de las palabras, la detección en inglés baja de 92% a 66%; que un texto no tenga la marca no prueba que lo escribiera una persona, y el detector solo está disponible para investigadores aprobados.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Dos consejos prácticos. Si pagas por uso, mide cuántos tokens consumen tus documentos típicos en español: es tu tarifa real. Y si eres docente, no tomes la marca de agua como detector de plagio: sirve como indicio, no como prueba, y fuera de la UE el texto de ChatGPT no la lleva por defecto.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://arxiv.org/abs/2305.15425v1">arXiv (Oxford)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://arxiv.org/pdf/2609.00378">arXiv (medición 2026)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/eu-text-provenance/">OpenAI (textGrain)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://help.openai.com/en/articles/8912793-provenance-signals-in-openai-generated-content">Ayuda de OpenAI (idiomas)</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag red">Alerta</span>
+    <h3>Una operación rusa usó ChatGPT para montar un falso centro de estudios en la región</h3>
+    <p>El 8 de octubre, OpenAI publicó cómo desarticuló dos operaciones de influencia. Una apuntaba a América Latina.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La operación, que OpenAI llama "Dark Clark", creó un falso centro de investigación, el <strong>Social Research Center</strong>, que decía estudiar la diáspora india en América Latina. Reclutó personal local que, al parecer, no sabía quién estaba detrás.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Con ChatGPT fabricó documentos y guiones de audio falsos: correos que suplantaban a una dirección regional de educación en <strong>Perú</strong>, un audio falso del cónsul de Ucrania en <strong>Ecuador</strong>, una carta falsa en <strong>Panamá</strong> y un audio sobre cortes de agua en La Paz, <strong>Bolivia</strong>. También buscó influir en la política de <strong>Argentina</strong> y Bolivia.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Su objetivo principal era dañar la imagen de Ucrania en la región. OpenAI cerró las cuentas.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
+      <p>Si te ofrecen una colaboración remunerada con un centro de estudios que no conoces, verifica quién lo financia antes de firmar. Y si trabajas en comunicación o educación, este caso sirve para enseñar cómo luce hoy una operación de desinformación: personas reales, documentos verosímiles, audios creíbles.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://openai.com/index/disrupting-ai-enabled-false-front-operations/">OpenAI (informe)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://therecord.media/openai-disrupts-russian-iranian-operations-chatgpt">The Record</a></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">11%</div>
+    <div class="stat-label">de 396 organizaciones logra pronosticar su gasto en IA con un margen de ±10% (informe de Mavvrik, que vende control de costos de IA; la cifra la recogió The Wall Street Journal)</div>
+    <p style="margin-top:14px;">No hace falta comprar software para salir del 89% restante: basta empezar a medir el costo por tarea terminada, con la revisión incluida.</p>
+  </div>
+
+  <div class="reflection">
+    <h3>Reflexión: el precio está en la tarea, no en el token</h3>
+    <p>Esta semana la misma idea apareció por varios lados. Un modelo más barato por token que, a esfuerzo máximo, gasta tres veces más tokens. Empresas que no logran presupuestar su IA. Un idioma, el nuestro, que ocupa más tokens por el mismo texto. Y el PMI recordando que la supervisión y el retrabajo son trabajo planificado, no un imprevisto.</p>
+    <p>La buena noticia viene del Banco Mundial: en nuestra región lo que falta es capacidad, no acceso. Medir bien lo que cuesta y lo que rinde la IA es justamente una de esas capacidades, y se aprende.</p>
+    <p><strong>Tu tarea de esta semana, en una hora:</strong> elige una tarea que ya le das a la IA cada semana. Anota cuántas veces la haces al mes, cuánto pagas por la herramienta (si es una suscripción, divídela entre los usos), cuántos minutos te toma revisar y corregir el resultado, y cuántas veces tuviste que rehacerla. Suma el costo de la herramienta por uso y tu tiempo de revisión y de rehacer, valorado a tu tarifa por hora: ese es tu costo por tarea terminada.</p>
+    <p>Compáralo con hacerla sin IA o con otra herramienta, y decide: la mantienes, bajas el nivel de esfuerzo, cambias de modelo o la dejas. Guarda la cuenta como una línea de tu plan: la próxima vez que alguien te pregunte cuánto cuesta la IA, tendrás un número tuyo.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana lo esencial de la IA con lectura estratégica, en español y sin hype.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Quieres aterrizar la IA en tu empresa o tu PMO? Conversemos 30 minutos, sin costo.</p>
+      <a target="_blank" rel="noopener" style="color:#ffffff;font-weight:700;text-decoration:none;" href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #37</div>
+    <p>
+      Por <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.linkedin.com/company/never-stop-learning-ateneo-inc/">Ateneo Empresarial</a><br>
+      Semana del 5 al 11 de octubre de 2026<br>
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
