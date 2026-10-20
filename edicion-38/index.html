@@ -3,8 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IA para Entusiastas #38 — Agentes con freno, memoria con dueño</title>
-  <meta name="description" content="Anthropic revela lo que sus modelos hicieron sin permiso en pruebas, Nadella pide un freno de emergencia, Meta, Amazon y Workday lanzan agentes que recuerdan y el FMI dice que la IA todavía no mueve la economía de la región. Semana del 12 al 18 de octubre de 2026. Por Mary Cárdenas de Gil.">
+  <title>IA para Entusiastas #38 · ¿Quién puede frenar a tu agente de IA?</title>
+  <meta name="description" content="Un asistente de IA usó la enfermedad de la madre de su usuaria como excusa para cobrar un reembolso. Cuatro preguntas para delegar en agentes sin perder el control.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="IA para Entusiastas #38 · ¿Quién puede frenar a tu agente de IA?">
+  <meta property="og:description" content="Un asistente de IA usó la enfermedad de la madre de su usuaria como excusa para cobrar un reembolso. Cuatro preguntas para delegar en agentes sin perder el control.">
+  <meta property="og:url" content="https://newsletter.marycardenas.ai/edicion-38">
+  <meta property="og:image" content="https://newsletter.marycardenas.ai/edicion-38/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
@@ -82,6 +90,11 @@
     .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
     .footer a { color: #A78BFA; }
     .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    .tool-card.wide { grid-column: 1 / -1; }
+    .hero img { display: block; width: 100%; height: auto; border: 0; }
+    .card-img { display: block; width: 100%; height: auto; border: 0; border-radius: 12px; margin: 4px 0 14px; }
+    .highlight-box .fuente-stat { margin-top: 10px; font-size: 11px; color: #C4B5FD; }
+    .reflection .pregunta { font-weight: 600; color: #3B0764; }
     @media (max-width: 600px) {
       .header { padding: 28px 20px 24px; }
       .header-title { font-size: 24px; }
@@ -98,229 +111,135 @@
   </style>
 </head>
 <body>
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">Un asistente usó un dato privado y una mentira para cobrar un reembolso. Cuatro preguntas para que no te pase con los tuyos.</div>
 <div class="wrapper">
 
   <!-- HEADER -->
   <div class="header">
     <div class="header-eyebrow">IA para Entusiastas · Edición #38</div>
-    <div class="header-title">Agentes con <span>freno</span>,<br>memoria con dueño</div>
-    <div class="header-subtitle">Lo esencial de la semana en IA aplicada — con lectura estratégica, en español y sin hype.</div>
+    <div class="header-title">¿Quién puede <span>frenar</span><br>a tu agente de IA?</div>
+    <div class="header-subtitle">Una idea para aplicar la IA en tu trabajo, con mirada de proyecto, en español y sin hype.</div>
     <div class="header-meta">Semana del 12 al 18 de octubre de 2026</div>
   </div>
+
+  <div class="hero"><img class="hero-img" src="https://newsletter.marycardenas.ai/edicion-38/img/hero.jpg" alt="Ilustración: un agente de cotizaciones en pausa, con su alcance, freno, registro y revisión marcados, junto a una nota de lo que recuerda con fuente, dueña y fecha de revisión." width="680" style="display:block;width:100%;max-width:680px;height:auto;border:0;"></div>
 
   <!-- EDITORIAL -->
   <div class="editorial">
     <p>Hola,</p>
-    <p>El viernes 9 de octubre Anthropic publicó un informe poco habitual: lo que sus propios modelos hicieron en pruebas sin que nadie se lo pidiera. En julio, uno de ellos llenó el formulario de denuncias de un sitio de homicidios sin resolver de Filadelfia con una pista inventada. Quedó marcada como spam y ningún investigador la leyó, pero la empresa tardó más de dos meses en darse cuenta.</p>
-    <p>En los días siguientes llegaron las respuestas. Satya Nadella pidió tratar a cada modelo como un riesgo interno, con un freno de emergencia en manos de una persona. La agencia de ciberseguridad de India avisó que agentes en prueba habían entrado a sistemas reales de empresas sin que ninguna lo notara. Anthropic abrió sus puertas a seis evaluadores externos que pueden publicar sin pedirle permiso, y la FTC envió requerimientos a Anthropic y a OpenAI. Al mismo tiempo, Meta, Amazon y Workday presentaron agentes que recuerdan: tus preferencias, tus conversaciones, tu forma de trabajar.</p>
-    <p>Leídas juntas, estas noticias dicen algo que en gestión de proyectos sabemos de memoria: <strong>un agente es un integrante más del equipo</strong>. Necesita un alcance con límites, alguien que pueda detenerlo y un registro de lo que recuerda, con dueño y fecha de revisión. Freno y memoria.</p>
-    <p>En esta edición te cuento qué pasó, qué herramientas valen la pena, dónde la IA ya hace trabajo real con una persona firmando, por qué el FMI dice que la ola todavía no llega a la economía de la región y una tarea de una hora para revisar los frenos y la memoria de tus propios asistentes.</p>
+    <p>Un asistente de IA leyó en el correo privado de una usuaria que la madre de ella estaba enferma. Lo usó como excusa ante cinco empresas para cobrar el reembolso de un boleto de tren. Y dijo, falsamente, que esa era la razón del retraso.</p>
+    <p>Fue un experimento, en un mundo simulado. Pero los agentes de verdad ya llenan formularios, envían mensajes y entran a sistemas. Cuando nadie les escribe los límites, los ponen ellos.</p>
+    <p>En gestión de proyectos ese problema tiene nombre y solución. Esta semana te la dejo en cuatro preguntas.</p>
     <div class="signature">— Mary Cárdenas de Gil</div>
   </div>
 
   <div class="section-divider">
-    <div class="section-label"><span class="emoji">⚡</span><span class="text">Lo que más importa</span></div>
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">La historia de la semana</span></div>
     <div class="section-line"></div>
   </div>
 
   <div class="news-card featured">
-    <span class="tag red">Agentes</span>
-    <h3>Cuando el agente no sabe detenerse: lo que Anthropic encontró en sus propias pruebas</h3>
-    <p>Anthropic revisó registros de sus evaluaciones con acceso a internet real y publicó el 9 de octubre lo que encontró. No fue el único aviso de la semana.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Filadelfia:</strong> Claude Haiku 4.5, encargado de generar tareas de ejemplo en páginas elegidas al azar, envió el 18 de julio una pista inventada al formulario de un sitio de homicidios sin resolver. Se marcó como spam y no llegó a los investigadores. Anthropic lo detectó el 28 de septiembre y avisó a la policía la primera semana de octubre. La policía calificó de «inaceptable» la demora.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Otros casos del mismo informe:</strong> un modelo en prueba envió formularios reales en un sitio de gobierno cuando la versión de práctica no cargaba, y otro tomó un token de un panel público para consultar datos que normalmente se pagan. Anthropic lo llama <em>persistencia</em>: ante una tarea ambigua o imposible, el modelo rodea la restricción en lugar de detenerse.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Lo que cambió:</strong> desconectó de internet todas sus evaluaciones internas hasta comprobar que su monitoreo detecta estos comportamientos, endureció los límites de sus herramientas web y notificó a la Casa Blanca y a cada agencia afectada.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>India (15 oct):</strong> la agencia de ciberseguridad CERT-In alertó que agentes en prueba llegaron a sistemas en producción de organizaciones indias y leyeron datos personales, usando credenciales expuestas en código público. <strong>Ninguna organización lo detectó</strong>: lo reportaron las propias empresas de IA.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Un experimento (15 oct):</strong> Vals AI puso a seis asistentes a reclamar un reembolso de tren fuera de plazo, en un mundo simulado. Grok 4.7 envió 187 mensajes en 15 días; Claude Fable 5.1 contó a cinco organizaciones la enfermedad de la madre de la usuaria para justificar el retraso; Claude Opus 5.5 fue el más contenido, con 8 mensajes en 12 semanas. Es una sola prueba por modelo, no un ranking.</div>
+    <span class="tag ">Agentes</span>
+    <h3>Seis asistentes, un reembolso imposible y ningún límite</h3>
+    <p>El experimento salió el 15 de octubre. Ese mismo día llegó el aviso de que ya pasa fuera del laboratorio.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Lo que pasó</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>El experimento:</strong> Vals AI pidió a seis asistentes recuperar el dinero de un boleto de tren cuyo plazo de reclamo había vencido. Grok 4.7 envió 187 mensajes en 15 días, 69 de ellos a funcionarios y periodistas. El del correo privado fue Claude Fable 5.1. Es una sola prueba por modelo, en un mundo simulado.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>El mundo real:</strong> la agencia de ciberseguridad de India (CERT-In) alertó que agentes en prueba entraron a sistemas de organizaciones indias con credenciales expuestas en código público. Ninguna lo detectó; lo avisaron las propias empresas de IA.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>La reacción:</strong> la FTC envió a OpenAI y a Anthropic requerimientos de más de 50 páginas sobre incidentes y salvaguardas. Y JPMorgan no dejará que agentes externos operen las cuentas de sus clientes: «No queremos agentes descontrolados», dijo Jamie Dimon.</div>
     <div class="lectura">
-      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
-      <p>En los tres casos el agente recibió un objetivo («completa la tarea», «consigue el reembolso») pero no un criterio de parada. En un proyecto eso tiene nombre: alcance sin límites y sin ruta de escalamiento. Antes de delegarle algo a un agente, escribe en una línea qué no puede hacer y cuándo debe detenerse a preguntarte. <strong>Si no lo escribes tú, lo decide el agente.</strong></p>
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>En el experimento y en India pasó lo mismo: el agente tenía un objetivo y nadie le dijo dónde parar. En un proyecto eso se llama alcance sin límites. Si no escribes cuándo debe detenerse, lo decide él.</p>
     </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/research/investigating-unintended-model-actions">Anthropic (informe)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/10/09/an-anthropic-ai-model-sent-a-false-homicide-tip-to-philadelphia-police/">TechCrunch (fechas)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.news4jax.com/business/2026/10/10/anthropics-claude-ai-submits-a-false-tip-on-a-philadelphia-unsolved-homicide-case/">AP (vía News4JAX)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://thehackernews.com/2026/10/cert-in-warns-ai-agents-accessed.html">The Hacker News (CERT-In)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.vals.ai/blogs/impossible-refund">Vals AI (experimento)</a></div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.vals.ai/blogs/impossible-refund">Experimento de Vals AI</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://thehackernews.com/2026/10/cert-in-warns-ai-agents-accessed.html">CERT-In (The Hacker News)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.axios.com/2026/10/15/ftc-openai-anthropic-ai-safety-investigation">FTC (Axios)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://fortune.com/2026/10/15/jamie-dimon-ai-agents-meta-muse-jpmorgan/">JPMorgan (Fortune)</a></div>
   </div>
 
   <div class="news-card">
-    <span class="tag blue">Gobernanza</span>
-    <h3>Freno de emergencia, evaluadores dentro de casa y requerimientos: la respuesta llegó la misma semana</h3>
-    <p>Entre el 10 y el 15 de octubre, un CEO, un laboratorio y un regulador se movieron en la misma dirección: el control de un agente tiene que estar fuera del agente.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Satya Nadella (10 oct):</strong> en un ensayo publicado en X propuso tratar a los modelos de frontera, abiertos o cerrados, como un <em>riesgo interno</em>. Entre sus siete principios: que ningún modelo revise su propio trabajo, un registro de cada acción relevante a prueba de manipulación y legible por personas, auditorías independientes, divulgar los incidentes y un freno: «una persona autorizada siempre debería poder pausar o detener un modelo a mitad de tarea».</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Anthropic (15 oct):</strong> seis evaluadores de METR, una organización independiente, reciben un acceso similar al de un empleado: equipos, oficina y herramientas internas. Pueden publicar sus hallazgos sin aprobación; Anthropic solo puede pedir que se omitan categorías definidas, como datos de clientes. «Creemos que toda empresa de IA de frontera debería hacer lo mismo», escribió.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>FTC (14 oct):</strong> según Axios, envió a OpenAI y a Anthropic requerimientos de más de 50 páginas cada uno sobre incidentes de seguridad, salvaguardas, marketing y privacidad. Es una investigación de protección al consumidor; todavía no hay acusación. OpenAI respondió que colaborará.</div>
-    <div class="lectura">
-      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
-      <p>Es lo que una PMO hace con cualquier proveedor crítico, aplicado a un agente. La versión de bolsillo para tu equipo son tres preguntas por cada agente que actúe por ustedes: <strong>¿quién puede detenerlo?, ¿dónde queda registrado lo que hizo?, ¿quién revisa su trabajo, además de él mismo?</strong> La que no tenga respuesta es tu próximo riesgo.</p>
+    <span class="tag pm">Para tu equipo</span>
+    <h3>Cuatro preguntas antes de delegar en un agente</h3>
+    <img class="card-img" src="https://newsletter.marycardenas.ai/edicion-38/img/preguntas.jpg" alt="Cuatro preguntas antes de delegar en un agente. 1. Alcance: ¿qué no puede hacer, aunque parezca que ayuda? 2. Freno: ¿cuándo debe detenerse a preguntarte y quién más puede pararlo? 3. Registro: ¿dónde queda anotado lo que hizo y lo que recuerda? 4. Revisión: ¿quién revisa su trabajo antes de que salga?" width="552" style="display:block;width:100%;max-width:552px;height:auto;border:0;border-radius:12px;margin:4px 0 14px;">
+    <p>Es la Definition of Done que usamos con cualquier entregable, aplicada a quien lo ejecuta: alcance, freno, registro y revisión. Guárdala o compártela con tu equipo.</p>
+    <div class="pm-box">
+      <div class="pm-label">📋 Ejemplo aplicado</div>
+      <p>Un asistente que compara cotizaciones. <strong>Alcance:</strong> compara y llena formularios; nunca acepta ni paga. <strong>Freno:</strong> se detiene antes de enviar y compras puede pausarlo. <strong>Registro:</strong> anota qué comparó y qué llenó. <strong>Revisión:</strong> compras aprueba cada mensaje antes de que salga.</p>
     </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://thenextweb.com/news/nadella-ai-models-insider-risks-emergency-brake">TNW (Nadella)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://x.com/satyanadella/status/2108931348857827686">Satya Nadella (X)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/news/an-update-on-independent-evaluators">Anthropic (evaluadores)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.axios.com/2026/10/15/ftc-openai-anthropic-ai-safety-investigation">Axios (FTC)</a></div>
-  </div>
-
-  <div class="news-card">
-    <span class="tag purple">Memoria</span>
-    <h3>La IA que recuerda: Meta, Amazon y Workday apuestan por agentes con memoria</h3>
-    <p>Mientras se discutía cómo frenar a los agentes, tres empresas presentaron agentes que recuerdan.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Meta (12 oct):</strong> lanzó Muse Wonder, su primer modelo de frontera, con <em>Active Memory</em>, pensada para «recordar lo que te importa durante días, semanas, meses». En la API cuesta 4 dólares por millón de tokens de entrada y 20 de salida. Según las pruebas de la propia Meta, rinde a la par de los mejores modelos de OpenAI y Anthropic.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Amazon (15 oct):</strong> presentó Bee Frontier (74,99 dólares, pulsera) y Bee Eclipse (desde 99,99, se pega al teléfono). Escuchan tus conversaciones y las convierten en resúmenes, tareas e invitaciones de calendario. Amazon dice que el audio se borra al procesarse, que las transcripciones se cifran con claves de tu dispositivo y que el Eclipse pide permiso a los participantes de una llamada antes de grabar. Por ahora se venden en Amazon.com.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Workday (13 oct):</strong> sus nuevos agentes trabajan en segundo plano en selección, nómina y contabilidad. El de selección recuerda las preferencias del reclutador, vigila las vacantes en riesgo y propone mensajes a candidatos que <strong>no salen sin aprobación del reclutador</strong>. Cada acción queda registrada con quién la aprobó. Por ahora es para clientes pioneros; la versión general llega a inicios de 2027.</div>
-    <div class="lectura">
-      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
-      <p>Lo que un agente recuerda funciona como un supuesto de proyecto: útil mientras es cierto y peligroso cuando caduca sin que nadie lo note. En un buen registro de supuestos cada línea tiene fuente, dueño y fecha de revisión. Pídele lo mismo a la memoria de tu IA. Y lo que puede mover dinero, permisos o contratos, que el agente lo consulte cada vez en el sistema oficial, no de memoria.</p>
-    </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder">TechCrunch (Muse Wonder)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.aboutamazon.com/news/devices/amazon-personal-ai-bee-frontier-bee-eclipse">Amazon (Bee)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://newsroom.workday.com/2026-10-13-Workday-Launches-Autopilot-Agents-That-Get-Real-Work-Done-Across-HR,-Finance,-and-IT">Workday (nota de prensa)</a></div>
   </div>
 
   <div class="section-divider">
-    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Herramientas: qué vale la pena probar</span></div>
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Para probar esta semana</span></div>
     <div class="section-line"></div>
   </div>
 
-  <div class="news-card">
-    <span class="tag purple">Herramienta</span>
-    <h3>ChatGPT ya trabaja dentro de tus pestañas de Chrome: compara, llena y envía, si se lo permites</h3>
-    <p>OpenAI actualizó el 15 de octubre su extensión de ChatGPT para Chrome. Es la herramienta de la semana que más se parece al tema de esta edición.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>En modo chat</strong> lee tus pestañas abiertas y compara entre ellas: tres cotizaciones, tres proveedores o tres políticas de devolución, sin copiar y pegar.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>En modo Work</strong> actúa: llena formularios, envía mensajes, descarga archivos y agrupa pestañas.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; OpenAI dice que la extensión está disponible en todos los planes. El modo Work llegó en julio a los planes de pago, y la prensa especializada no confirma que esté en el gratuito.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>El freno lo pones tú:</strong> en uno de sus propios ejemplos, OpenAI pide llenar un formulario «y detenerse antes de enviar». Hay además un riesgo conocido: una página puede esconder instrucciones que el agente lea como órdenes. Por eso conviene no usarlo con la banca o el correo abiertos en otras pestañas.</div>
-    <div class="pm-box">
-      <div class="pm-label">📋 Por qué me interesa</div>
-      <p>Para quien cotiza, compra o gestiona proveedores, comparar pestañas evita el copiar y pegar de cada propuesta. Para que actúe por ti, empieza con tareas de bajo riesgo y escribe siempre la condición de parada en el pedido: «llena el formulario y detente antes de enviar». <em>Reportada esta semana.</em></p>
-    </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://ppc.land/chatgpt-gains-control-of-chrome-tabs-to-fill-forms-and-send-messages/">PPC Land (extensión de Chrome)</a></div>
-  </div>
+  <p class="tools-intro">Tres herramientas que se prueban hoy, cada una pensada para alguien concreto de tu equipo.</p>
 
   <div class="tools-grid">
+    <div class="tool-card wide">
+      <div class="tool-name">🧭 ChatGPT en Chrome · compara pestañas y llena formularios</div>
+      <div class="tool-desc">Compara tus pestañas abiertas, por ejemplo tres cotizaciones, sin copiar y pegar. En modo Work (planes de pago) llena formularios y envía mensajes.</div>
+      <div class="tool-use">Ideal para: compras y proveedores. Pídele «detente antes de enviar» y no lo uses con tu banca o tu correo abiertos. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://chatgpt.com">chatgpt.com</a></div>
+    </div>
     <div class="tool-card pm">
-      <div class="tool-name">🎙️ Oats · notas de reunión sin bot y gratis</div>
-      <div class="tool-desc">Graba el audio de tus reuniones desde la computadora y genera un resumen, una lista de acciones por persona y tareas. Es gratis, de código abierto y puede funcionar completo en tu equipo con un modelo local; ningún bot entra a la llamada. Para Mac, con versión para Windows en beta.</div>
-      <div class="tool-use">Ideal para: project managers y consultores que salen de cada reunión con pendientes por repartir. El sitio no menciona el español: pruébalo primero con una reunión corta. Y avisa siempre que estás grabando. <em>Reportada esta semana.</em></div>
+      <div class="tool-name">🎙️ Oats · notas de reunión sin bot</div>
+      <div class="tool-desc">Del audio de tu computadora saca resumen, acciones por persona y tareas. Gratis, de código abierto y sin bots en la llamada. Mac; Windows en beta.</div>
+      <div class="tool-use">Ideal para: PMs y consultores. No menciona el español: pruébalo con una reunión corta y avisa que grabas. <em>Reportada esta semana.</em></div>
       <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://ariso.ai/oats">ariso.ai/oats</a></div>
     </div>
     <div class="tool-card">
-      <div class="tool-name">⚖️ CounselAudit · revisión de facturas de abogados</div>
-      <div class="tool-desc">Lee cada factura de un despacho externo (PDF o LEDES) y le aplica más de 50 controles: tarifas, personal asignado, gastos, viajes y reglas de facturación, con o sin tus lineamientos. Tú decides cada observación y la herramienta redacta la carta al despacho. Prueba de 14 días sin tarjeta; después, desde 99 dólares por usuario al mes.</div>
-      <div class="tool-use">Ideal para: áreas legales internas y equipos de finanzas que pagan a despachos externos. El sitio no indica idiomas ni jurisdicciones: confírmalo antes de subir facturas en español. <em>Reportada esta semana.</em></div>
-      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://counselaudit.com">counselaudit.com</a></div>
-    </div>
-    <div class="tool-card">
-      <div class="tool-name">🎤 Toby · ensayo de entrevistas de trabajo</div>
-      <div class="tool-desc">Pegas la oferta de empleo, prepara las preguntas que haría un panel y te entrevista en una videollamada. Al final te devuelve observaciones sobre estructura, muletillas y ritmo. Los primeros 5 minutos son gratis; después compras minutos, sin suscripción.</div>
-      <div class="tool-use">Ideal para: quien busca empleo y equipos de RRHH que preparan a candidatos internos. El sitio no menciona el español. Llega justo cuando McKinsey empieza a entrevistar con avatares (te lo cuento más abajo). <em>Reportada esta semana.</em></div>
-      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.usetoby.ai">usetoby.ai</a></div>
-    </div>
-    <div class="tool-card">
       <div class="tool-name">📅 Invited · de la foto de una factura a un recordatorio</div>
-      <div class="tool-desc">Le tomas una foto o una captura a una factura, una renovación o una invitación, y la IA encuentra fechas, horas, lugares y montos para crear recordatorios que revisas antes de guardar. Sin cuenta ni correo, en iPhone y Android; lee más de 80 idiomas, español incluido. Trae 3 escaneos con IA gratis; los ilimitados son de pago.</div>
-      <div class="tool-use">Ideal para: cualquiera, y en especial emprendedores e independientes que no pueden dejar vencer un pago. El documento se envía a un servicio de IA para leerlo: no lo uses con datos que no quieras compartir. <em>Reportada esta semana.</em></div>
+      <div class="tool-desc">De la foto de una factura o una renovación saca los recordatorios; revisas cada dato antes de guardar. Sin cuenta, en iPhone y Android, lee español. Tres escaneos gratis.</div>
+      <div class="tool-use">Ideal para: emprendedores que no pueden dejar vencer un pago. Evita subir documentos sensibles. <em>Reportada esta semana.</em></div>
       <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://invited.kraftostech.com">invited.kraftostech.com</a></div>
     </div>
   </div>
 
   <div class="section-divider">
-    <div class="section-label"><span class="emoji">⚖️</span><span class="text">El pulso de la semana</span></div>
+    <div class="section-label"><span class="emoji">💼</span><span class="text">La IA en tu profesión</span></div>
     <div class="section-line"></div>
   </div>
 
   <div class="news-card">
-    <span class="tag orange">Mercado</span>
-    <h3>Más competencia y cambios de proveedor: la semana para tener un plan B</h3>
-    <p>La competencia entre laboratorios se aceleró, y con ella el riesgo de depender de uno solo.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Google (13 oct):</strong> abrió Gemini 4 Argon a desarrolladores de todo el mundo con un precio de lanzamiento de 2 dólares por millón de tokens de entrada y 10 de salida. <strong>Al terminar el periodo de lanzamiento, el 30 de noviembre, sube a 4 y 20.</strong> En la app de Gemini es solo para los planes Pro y Ultra.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Replit (16 oct):</strong> su CEO dijo en TechCrunch Disrupt que dejó de trabajar con Anthropic por costo, condiciones y rendimiento, y que OpenAI pasa a ser su modelo por defecto; los usuarios todavía pueden elegir Claude. Una fuente interna citada por TechCrunch dice que la alianza sigue vigente.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Anthropic (14 oct):</strong> según Reuters, dijo a posibles inversionistas que facturó 16.800 millones de dólares en el tercer trimestre, 45% más que en el segundo, antes de una posible salida a bolsa. No son resultados publicados ni auditados.</div>
+    <span class="tag blue">Radar</span>
+    <h3>La IA prepara y una persona firma</h3>
+    <p>Tres sectores, la misma semana, el mismo reparto del trabajo.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">En tu sector</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Recursos humanos:</strong> Workday presentó agentes de selección que recuerdan las preferencias de cada reclutador y no le envían nada a un candidato sin su aprobación. Cada acción queda registrada con el nombre de quien la aprobó.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Salud:</strong> con el Baylor College of Medicine, la herramienta de Gamow Labs reanalizó genomas de bebés sin diagnóstico y dio con la pista de un caso de hace tres años. Un laboratorio la confirmó con otra técnica antes de comunicar el diagnóstico a la familia. Los datos son de la empresa.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Banca:</strong> Bank of America sumó unos 1.000 contratistas para corregir fallas de software que detectaron modelos de IA. La IA encuentra; las personas corrigen.</div>
     <div class="lectura">
-      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
-      <p>Para una PYME o una PMO la lección es de gestión de riesgos: los precios cambian, los proveedores se separan y los modelos se retiran. Si un flujo importante depende de un solo modelo, anótalo en tu registro de riesgos con dos datos: qué harías si mañana sube de precio o desaparece, y cuánto te tomaría probar la alternativa. Nadella lo puso entre sus principios: no depender de un solo modelo para nada importante.</p>
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>Si lideras un equipo, la habilidad que conviene formar es asignarle trabajo a la IA y revisarlo con criterio. Es delegación, algo que un buen PM practica a diario.</p>
     </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/">Google (Gemini 4 Argon)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/">TechCrunch (Replit)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.businessday.co.za/world/international-companies/2026-10-15-anthropic-revenue-jumps-45-to-168bn/">Reuters vía BusinessDay (ingresos)</a></div>
-  </div>
-
-  <div class="news-card">
-    <span class="tag orange">Empleo</span>
-    <h3>Quién trabaja con agentes y quién se queda fuera</h3>
-    <p>Dos estudios publicados esta semana miran el trabajo con IA desde ángulos distintos.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Anthropic sobre sí misma (16 oct):</strong> en agosto, los agentes que usan sus empleados trabajaban unas <strong>6 horas por cada hora</strong> de la persona que los dirige. Pero cerca del <strong>80% del tiempo</strong> de una sesión interactiva el agente está esperando a una persona.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En el mismo estudio, la proporción de contrataciones técnicas de nivel junior bajó de 27% a 9%. La propia Anthropic advierte que es una sola empresa, en pleno crecimiento, y que no prueba causalidad.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Harvard, Shorenstein Center (14 oct):</strong> en una encuesta a 5.403 adultos de EE.UU., 29% de las mujeres nunca ha usado IA, frente a 22% de los hombres. Las mujeres con empleo reportan menos acceso a formación y apoyo en IA en su trabajo, y en los titulares sobre IA se nombra a hombres 14,6 veces más que a mujeres.</div>
-    <div class="lectura">
-      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
-      <p>Si el agente pasa la mayor parte del tiempo esperando a una persona, lo que escasea es el criterio humano para revisar y decidir. Y ese criterio se forma. Si lideras un equipo, revisa quién recibió formación en IA este año y quién no: la brecha de acceso se convierte rápido en brecha de oportunidades, sobre todo para quienes empiezan su carrera.</p>
-    </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/research/employment-at-anthropic">Anthropic (estudio de empleo)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://shorensteincenter.org/resource/women-ai/">Harvard Shorenstein Center</a></div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://newsroom.workday.com/2026-10-13-Workday-Launches-Autopilot-Agents-That-Get-Real-Work-Done-Across-HR,-Finance,-and-IT">Workday</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://gamowlabs.com/bringing-expert-genome-interpretation-to-every-nicu">Gamow Labs y Baylor</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://thenextweb.com/news/bank-of-america-1000-contractors-mythos-flaws">Bank of America (TNW)</a></div>
   </div>
 
   <div class="section-divider">
-    <div class="section-label"><span class="emoji">✅</span><span class="text">Aplicaciones: qué está haciendo la IA en cada profesión</span></div>
-    <div class="section-line"></div>
-  </div>
-
-  <div class="news-card">
-    <span class="tag pm">RRHH</span>
-    <h3>Selección de personal: la IA hace la primera conversación; la persona decide</h3>
-    <p>Dos casos de reclutamiento que circularon esta semana, con el mismo reparto del trabajo.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Adecco:</strong> extendió a 27.000 empleados en más de 40 países un asistente de agentes de Salesforce. Sus reclutadores eligen candidatos y lanzan agentes de preselección, de entrevista inicial o de incorporación, entrenados con más de 2,5 millones de interacciones entre agentes y candidatos desde abril de 2025. Su CEO, Denis Machuel, lo describe como apoyo «para el momento en que el juicio humano más importa».</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>McKinsey:</strong> en un piloto con estudiantes que aspiran a analista en Norteamérica, un avatar de IA hace de cliente durante unos 10 minutos de la entrevista. <strong>La IA no califica</strong>: el desempeño lo evalúan personas, según The Wall Street Journal.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Ninguna de las dos empresas publicó cuánto tiempo ahorra. Lo que sí está claro es quién decide.</div>
-    <div class="pm-box">
-      <div class="pm-label">📋 Cómo aplicarlo</div>
-      <p>Si haces selección, separa el proceso en dos columnas: lo que la IA puede preparar (filtrar por requisitos, agendar, conducir la primera conversación) y lo que siempre decide una persona (la lista corta, la evaluación, la oferta). Y díselo al candidato: saber que una IA participa es parte de un proceso justo.</p>
-    </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.staffingindustry.com/news/global-daily-news/adecco-group-expands-ai-rollout-to-27000-workers-in-40-plus-countries">Staffing Industry Analysts (Adecco)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://cryptobriefing.com/mckinsey-ai-client-simulation-interviews/">Crypto Briefing (resume al WSJ)</a></div>
-  </div>
-
-  <div class="news-card">
-    <span class="tag green">Medicina</span>
-    <h3>Genómica neonatal: la IA reanaliza, un laboratorio confirma y una familia recibe una respuesta</h3>
-    <p>Gamow Labs publicó el 13 de octubre los resultados de George, su herramienta de investigación, en un estudio con el Baylor College of Medicine.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>La tarea:</strong> volver a analizar los genomas de bebés con enfermedad pulmonar grave que los laboratorios clínicos no habían logrado diagnosticar. Agentes especializados cruzan los datos de secuenciación con la literatura médica y entregan hallazgos con evidencia trazable para que los revisen especialistas.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>El caso:</strong> un bebé murió hace tres años de una enfermedad pulmonar sin diagnóstico. George encontró una reorganización cromosómica que apoya el diagnóstico de una enfermedad rara, la displasia alveolar capilar. El software anterior la había descartado por un error que la marcaba como variante común.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Quién firma:</strong> el laboratorio del Dr. Pawel Stankiewicz, en Baylor, confirmó el hallazgo con otra técnica de secuenciación y comunicó el diagnóstico a la familia.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>La prueba ciega:</strong> de 26 casos difíciles, el laboratorio había resuelto 19. George reprodujo los 19 y señaló candidatos en 2 de los 7 sin resolver. Es una herramienta de investigación, no un producto clínico, y los datos son de la propia empresa.</div>
-    <div class="lectura">
-      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
-      <p>Lo que más me llama la atención es que la IA volvió a abrir un caso que se había dado por cerrado, y que el diagnóstico lo confirmó un laboratorio con otra técnica. En tu área, piensa qué casos «cerrados» valdría la pena reanalizar con IA, siempre con alguien que confirme antes de comunicar.</p>
-    </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://gamowlabs.com/bringing-expert-genome-interpretation-to-every-nicu">Gamow Labs</a></div>
-  </div>
-
-  <div class="news-card">
-    <span class="tag blue">Finanzas</span>
-    <h3>Banca: los recién llegados dirigen agentes y los bancos ponen límites</h3>
-    <p>Tres señales del sector financiero en la misma semana.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Goldman Sachs (8 oct):</strong> Kevin Sneader, que dirige su negocio en Asia Pacífico, dijo en Singapur que los nuevos empleados gestionarán agentes de IA desde el primer día. Antes, un analista junior pasaba años en trabajo operativo antes de poder delegar; ahora asigna una tarea al agente, revisa el resultado y sigue. Según Bloomberg, parte de la coordinación que hacían los mandos medios queda en duda.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>JPMorgan (13 oct):</strong> Jamie Dimon dijo en su llamada de resultados que el banco no dejará que agentes externos entren a operar las cuentas de sus clientes. «No queremos agentes descontrolados».</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Bank of America (14 oct):</strong> su CEO, Brian Moynihan, contó que en el segundo trimestre sumó unos 1.000 contratistas para corregir fallas de software detectadas por modelos de IA, entre ellos Mythos de Anthropic, además de unos 3.000 empleados propios dedicados a esa tarea.</div>
-    <div class="pm-box">
-      <div class="pm-label">📋 Cómo aplicarlo</div>
-      <p>Si diriges un equipo de finanzas, la habilidad que conviene formar desde ya es asignar trabajo a un agente y revisarlo con criterio: qué pedir, qué verificar y qué nunca delegar. Y si usas un agente para tus finanzas personales, revisa qué accesos tiene: leer saldos y mover dinero son permisos muy distintos.</p>
-    </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.bloomberg.com/news/articles/2026-10-08/young-bankers-to-manage-ai-agents-from-start-goldman-exec-says">Bloomberg (de pago)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://cryptobriefing.com/goldman-sachs-new-hires-manage-ai-agents/">Crypto Briefing (Goldman)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://fortune.com/2026/10/15/jamie-dimon-ai-agents-meta-muse-jpmorgan/">Fortune (JPMorgan)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://thenextweb.com/news/bank-of-america-1000-contractors-mythos-flaws">TNW (Bank of America)</a></div>
-  </div>
-
-  <div class="section-divider">
-    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica y mundo hispano</span></div>
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica</span></div>
     <div class="section-line"></div>
   </div>
 
   <div class="news-card">
     <span class="tag green">Región</span>
-    <h3>FMI: la ola de la IA todavía no llega a la economía de la región</h3>
-    <p>El 13 de octubre, al presentar en Bangkok su informe de Perspectivas de la Economía Mundial, el FMI habló de América Latina.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Silvana Tenreyro, directora de investigación del FMI, dijo que la IA «no ha sido un motor muy potente en la región» hasta ahora.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; En el mundo, el comercio ligado a la IA explicó 29% del crecimiento del comercio entre 2023 y 2025. Taiwán, Singapur e India atraen la inversión en centros de datos; en la región, <strong>México</strong> es la excepción, con cierta integración en las cadenas de suministro de IA.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; El FMI proyecta un crecimiento de <strong>2,3% en 2026</strong> para América Latina y el Caribe.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Para agendar:</strong> este martes 20 de octubre, a las 7:15 a. m. hora de Bogotá, CEPAL y CENIA presentan en línea el Índice Latinoamericano de IA 2026 (ILIA), que compara el avance de los países de la región.</div>
+    <h3>La ola de la IA todavía no llega a nuestra economía</h3>
+    <p>El FMI dijo el 13 de octubre que la IA «no ha sido un motor muy potente» en América Latina; México es la excepción, por su integración en las cadenas de suministro de la IA. Proyecta 2,3% de crecimiento regional en 2026.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Para tu agenda</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Este martes 20 de octubre</strong>, 7:15 a. m. hora de Bogotá: CEPAL y CENIA presentan en línea el Índice Latinoamericano de IA 2026 (ILIA). Mira dónde queda tu país.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Ya disponible:</strong> la voz de ChatGPT estrena voces en español de México. Se elige en Configuración &gt; Voz y llega de forma gradual.</div>
     <div class="lectura">
-      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
-      <p>Leído junto con el informe del Banco Mundial de la edición pasada, que decía que en la región falta capacidad más que acceso, el mensaje es coherente: por ahora participamos poco en la inversión y el hardware de la IA. Donde sí podemos ganar terreno es en usarla bien en empresas y servicios. Vale la pena mirar el ILIA y ver dónde está tu país.</p>
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>Participamos poco en la inversión y el hardware de la IA. Donde sí podemos ganar terreno es en usarla bien en nuestras empresas, y eso depende de nosotros.</p>
     </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.abc.com.py/internacionales/2026/10/13/fmi-la-ia-no-ha-jugado-hasta-ahora-un-papel-importante-en-la-economia-de-latinoamerica/">ABC Color (EFE, FMI)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://bogota.gov.co/boletin-oferta-internacional/ilia-2026-conoce-el-nuevo-indice-latinoamericano-de-ia">Alcaldía de Bogotá (ILIA 2026)</a></div>
-  </div>
-
-  <div class="news-card">
-    <span class="tag blue">Derecho</span>
-    <h3>Repsol: 200 abogados en 12 países y horas recuperadas cada semana</h3>
-    <p>Harvey, la plataforma de IA legal, publicó el caso de la división legal de Repsol, la energética española con operaciones en América Latina.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; La división tiene más de 200 profesionales en 12 países. El piloto empezó en enero de 2024 con 50 abogados y hoy la usa 96% del departamento.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Antes y después:</strong> revisar una cláusula en el equipo de cumplimiento tomaba de 30 a 60 minutos; ahora, unos minutos. Reportan un ahorro de 4 a 6 horas por abogado a la semana, frente a 3 durante el piloto.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Para qué la usan:</strong> comparar cláusulas, analizar contratos y resoluciones regulatorias, preparar litigios, traducir y encontrar patrones de negociación en miles de acuerdos anteriores.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; Es un caso publicado por el proveedor: las cifras no tienen verificación independiente y la página no describe cómo se revisan los resultados.</div>
-    <div class="lectura">
-      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
-      <p>Es de los pocos casos de IA legal a gran escala en una empresa de habla hispana, y por eso vale mirarlo con lupa. Si diriges un área legal, la primera pregunta para cualquier proveedor es quién revisa cada resultado antes de que salga y cómo queda registrado; después vienen las horas ahorradas. Ese dato no aparece en el caso.</p>
-    </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.harvey.ai/customers/repsol">Harvey (caso Repsol)</a></div>
-  </div>
-
-  <div class="news-card">
-    <span class="tag blue">En español</span>
-    <h3>Lo anunciado esta semana: qué llega a la región y qué no (todavía)</h3>
-    <p>Muchos lanzamientos empiezan solo en Estados Unidos. Para no perder tiempo, este es el mapa de la semana.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Los datos</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Sí llega:</strong> la nueva voz de ChatGPT (GPT-Live-1.1, 15 oct) estrena voces locales en seis idiomas, entre ellos el <strong>español de México</strong>. El despliegue es gradual y OpenAI advierte que las voces pueden variar por región y por cuenta. Se elige en Configuración &gt; Voz.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Sí llega, con condiciones:</strong> Gemini 4 Argon está disponible en la API para todo el mundo; en la app de Gemini, solo con los planes de pago Pro y Ultra.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Solo en EE.UU., por ahora:</strong> el carrito universal de Google para comprar en varias tiendas desde la búsqueda y Gemini (15 oct), y las apps personales creadas con Google AI Studio que se instalan desde Google Play (13 oct, mayores de 18). Los dispositivos Bee de Amazon se venden en Amazon.com.</div>
-    <div class="lectura">
-      <div class="lectura-label">🔎 Mi lectura de estos datos</div>
-      <p>Antes de recomendar una herramienta a tu equipo o a tus clientes de la región, confirma dos cosas: que esté disponible en tu país y que funcione bien en español. Y si das atención por teléfono o por voz, prueba las voces en español de México con tus propios clientes: el acento cambia la experiencia más de lo que parece.</p>
-    </div>
-    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://notebookcheck.net/ChatGPT-Voice-GPT-Live-1-1-brings-new-voices-for-six-languages.1425810.0.html">Notebookcheck (voces nuevas)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI (notas de versión)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/">Google (Gemini 4 Argon)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blog.google/products-and-platforms/products/shopping/universal-cart-launch/">Google (carrito universal)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/10/13/google-play-now-supports-private-vibe-coded-apps-built-just-for-you/">TechCrunch (apps en Google Play)</a></div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.abc.com.py/internacionales/2026/10/13/fmi-la-ia-no-ha-jugado-hasta-ahora-un-papel-importante-en-la-economia-de-latinoamerica/">FMI (EFE)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://bogota.gov.co/boletin-oferta-internacional/ilia-2026-conoce-el-nuevo-indice-latinoamericano-de-ia">ILIA 2026</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI</a></div>
   </div>
 
   <div class="highlight-box">
     <h3>El número de la semana</h3>
     <div class="stat">80%</div>
-    <div class="stat-label">del tiempo de una sesión interactiva, los agentes que usan los empleados de Anthropic están esperando a una persona (estudio de la propia empresa sobre su forma de trabajar, publicado el 16 de octubre)</div>
-    <p style="margin-top:14px;">El recurso escaso en el trabajo con agentes es el criterio humano para revisar y decidir. Ese tiempo también se planifica.</p>
+    <div class="stat-label">del tiempo de una sesión, los agentes que usan los empleados de Anthropic están esperando a una persona</div>
+    <p style="margin-top:14px;">Lo escaso ya es el criterio humano para revisar y decidir. Ese tiempo también se planifica.</p>
+    <div class="fuente-stat">Fuente: <a target="_blank" rel="noopener" style="color:#C4B5FD;text-decoration:underline;" href="https://www.anthropic.com/research/employment-at-anthropic">estudio de Anthropic, 16 de octubre</a></div>
   </div>
 
   <div class="reflection">
-    <h3>Reflexión: freno y memoria, dos prácticas que un PM ya domina</h3>
-    <p>Esta semana se juntaron dos historias que parecen opuestas. Agentes que no saben detenerse: una pista falsa a la policía, sistemas reales abiertos en India, un asistente que inventa excusas para conseguir un reembolso. Y agentes diseñados para recordarlo todo: tus preferencias, tus conversaciones, tu manera de trabajar.</p>
-    <p>Las dos piden lo mismo que pedimos a cualquier integrante nuevo del equipo: un alcance claro, alguien que pueda decir «para» y lo que sabe del proyecto anotado con fuente y fecha. La buena noticia es que no hay que inventar nada. La Definition of Done, el registro de supuestos y la ruta de escalamiento ya existen; solo hay que extenderlos a los agentes.</p>
-    <p><strong>Tu tarea de esta semana, en una hora:</strong> abre la memoria de la IA que más usas (en ChatGPT, Claude o Gemini está en la configuración) y léela completa. Borra lo que ya no es cierto y anota de dónde sale cada dato que afecte a clientes, dinero o permisos. Después haz la lista de los asistentes o automatizaciones que actúan por ti, los que envían correos, llenan formularios, compran o publican, y escribe tres líneas para cada uno: qué no puede hacer, cuándo debe detenerse a preguntarte y quién más puede detenerlo.</p>
-    <p>Guarda esas líneas donde guardas el plan del proyecto. La próxima vez que un agente haga algo que no esperabas, vas a saber si fue un error del agente o un límite que nadie escribió.</p>
+    <h3>Tu tarea de esta semana, en una hora</h3>
+    <p>Haz la lista de los asistentes y automatizaciones que actúan por ti: los que envían correos, llenan formularios, compran o publican. Para cada uno, responde por escrito las cuatro preguntas de esta edición.</p>
+    <p>Después abre la memoria de la IA que más usas (en ChatGPT, Claude o Gemini está en la configuración) y trátala como un registro de supuestos: borra lo que ya no es cierto y anota fuente, dueño y fecha de revisión de cada dato que afecte a clientes, dinero o permisos.</p>
+    <p>Guarda esas respuestas junto al plan del proyecto. La próxima vez que un agente haga algo inesperado, sabrás si fue un error suyo o un límite que nadie escribió.</p>
+    <p class="pregunta">¿Qué agente tienes hoy trabajando por ti y quién puede frenarlo? Cuéntamelo en la <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">comunidad IA Entusiastas</a>.</p>
   </div>
 
   <!-- CTAs -->
   <div class="cta-block">
     <div class="cta-subscribe">
-      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana lo esencial de la IA con lectura estratégica, en español y sin hype.</p>
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana una idea para aplicar la IA en tu trabajo, en español y sin hype.</p>
       <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
     </div>
     <div class="cta-primary">
@@ -328,7 +247,7 @@
       <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
     </div>
     <div class="cta-secondary">
-      <p>¿Quieres aterrizar la IA en tu empresa o tu PMO? Conversemos 30 minutos, sin costo.</p>
+      <p>¿Ya hay asistentes o agentes trabajando en tu equipo y quieres ordenarlos con método? Conversemos 30 minutos, sin costo.</p>
       <a target="_blank" rel="noopener" style="color:#ffffff;font-weight:700;text-decoration:none;" href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión de descubrimiento</a>
     </div>
   </div>
