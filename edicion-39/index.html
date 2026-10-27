@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #39 · ¿Cómo sabes si tu IA vale lo que cuesta?</title>
+  <meta name="description" content="La IA encontró en una semana fallas que llevaban una década escondidas. Pero el 44% de los CEO no logra demostrar que le devuelve dinero. Una ficha de cuatro casillas para medir el valor de cada piloto.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="IA para Entusiastas #39 · ¿Cómo sabes si tu IA vale lo que cuesta?">
+  <meta property="og:description" content="La IA encontró en una semana fallas que llevaban una década escondidas. Pero el 44% de los CEO no logra demostrar que le devuelve dinero. Una ficha de cuatro casillas para medir el valor de cada piloto.">
+  <meta property="og:url" content="https://newsletter.marycardenas.ai/edicion-39">
+  <meta property="og:image" content="https://newsletter.marycardenas.ai/edicion-39/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.purple { background: #EDE9FE; color: #6D28D9; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    .tool-card.wide { grid-column: 1 / -1; }
+    .hero img { display: block; width: 100%; height: auto; border: 0; }
+    .card-img { display: block; width: 100%; height: auto; border: 0; border-radius: 12px; margin: 4px 0 14px; }
+    .highlight-box .fuente-stat { margin-top: 10px; font-size: 11px; color: #C4B5FD; }
+    .reflection .pregunta { font-weight: 600; color: #3B0764; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">La IA ya corre. La pregunta es si tus resultados también. Una ficha de cuatro casillas antes de tu próximo piloto.</div>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #39</div>
+    <div class="header-title">¿Cómo sabes si tu IA<br><span>vale</span> lo que cuesta?</div>
+    <div class="header-subtitle">Una idea para aplicar la IA en tu trabajo, con mirada de proyecto, en español y sin hype.</div>
+    <div class="header-meta">Semana del 19 al 25 de octubre de 2026</div>
+  </div>
+
+  <div class="hero"><img class="hero-img" src="https://newsletter.marycardenas.ai/edicion-39/img/hero.jpg" alt="Ilustración: un panel de uso de IA con 312 consultas y 41 horas registradas pregunta «¿Y el resultado?», unido a una ficha de valor de un asistente de cobranza con su problema, su métrica, su meta y su criterio para parar." width="680" style="display:block;width:100%;max-width:680px;height:auto;border:0;"></div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola,</p>
+    <p>Esta semana salió la corrección de dos fallas que llevaban una década escondidas en PHP, el lenguaje detrás de unos siete de cada diez sitios web. Las encontró un investigador con ayuda de IA, en una semana. Antes, según la firma que lo publicó, eso le habría tomado meses a un equipo de primer nivel.</p>
+    <p>Nadie duda ya de la velocidad de la IA. La duda es otra: esa misma semana, Gartner contó que el 44% de los CEO no logra demostrar que la IA le devuelve dinero.</p>
+    <p>En gestión de proyectos tenemos una regla para esto: el trabajo termina cuando llega el beneficio que lo justificó. Con la IA casi nadie la aplica. Hoy te dejo una ficha de cuatro casillas para empezar.</p>
+    <div class="signature">— Mary Cárdenas de Gil</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">La historia de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag ">Valor</span>
+    <h3>Más IA no es más resultado</h3>
+    <p>Tres sillas distintas, la misma semana, el mismo hallazgo.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Lo que pasó</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Los CEO:</strong> el 44% de los 203 CEO y altos ejecutivos encuestados por Gartner no logra demostrar retornos financieros de la IA. David Furlonger, de Gartner, lo resumió así: el problema «no se resolverá simplemente agregando más IA a las formas de trabajo existentes».</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Los gerentes:</strong> más de la mitad de 1.700 directores y gerentes encuestados por Nielsen para Monday.com dice que, desde que adoptó la IA, le cuesta más evaluar el trabajo de su equipo. Casi la mitad dedica más tiempo a revisar.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Los profesionales de proyectos:</strong> en su Global Summit, el PMI citó a Prosci: dos de cada tres trabajadores usan IA con regularidad, pero la proporción de organizaciones con los mejores resultados no crece desde 2024.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>La IA acelera tareas, pero el resultado depende del flujo completo. Si nadie definió qué tenía que cambiar, el tiempo ahorrado se pierde en el camino, a menudo en la bandeja de quien revisa. En proyectos eso se llama gestión de beneficios, y empieza antes de comprar.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.gartner.com/en/newsroom/press-releases/2026-10-20-gartner-says-44-percent-of-ceos-struggle-to-demonstrate-ai-financial-returns-as-technology-becomes-central-to-growth">Gartner (CEO)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://techcrunch.com/2026/10/21/ai-promises-productivity-but-for-managers-its-mostly-a-headache-for-now-says-new-survey/">Monday.com y Nielsen (TechCrunch)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.pmi.org/about/press-media/2026/project-management-institute-helps-a-growing-profession-deliver-greater-value">PMI</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag pm">Para tu equipo</span>
+    <h3>La ficha de valor: cuatro casillas antes de tu próximo piloto</h3>
+    <img class="card-img" src="https://newsletter.marycardenas.ai/edicion-39/img/ficha.jpg" alt="La ficha de valor, cuatro casillas antes de tu próximo piloto de IA. 1. Problema: ¿qué duele hoy y cuánto nos cuesta? 2. Métrica: ¿qué resultado tiene que cambiar? No vale «cuántos la usan». 3. Meta: ¿de dónde partimos, adónde llegamos, cuándo y quién responde? 4. Parada: ¿qué tendría que pasar para detener el piloto? Si no puedes llenarla, todavía no tienes un caso de IA: tienes una suscripción." width="552" style="display:block;width:100%;max-width:552px;height:auto;border:0;border-radius:12px;margin:4px 0 14px;">
+    <p>Es el caso de negocio de cualquier proyecto, reducido a lo esencial. Llénala antes de pagar y revísala en la fecha que pusiste.</p>
+    <div class="pm-box">
+      <div class="pm-label">📋 Ejemplo aplicado</div>
+      <p>Una PYME quiere un asistente que redacte los recordatorios de cobro. <strong>Problema:</strong> 18 facturas vencidas al mes y unas 6 horas de seguimiento. <strong>Métrica:</strong> días promedio de cobro. <strong>Meta:</strong> de 52 a 40 días en 90 días; responde administración. <strong>Parada:</strong> si a los 60 días no baja de 48, o si un cliente se queja del tono, se pausa.</p>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Para probar esta semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <p class="tools-intro">Una para medir, una para cuidarte y una para quien lleva las cuentas.</p>
+
+  <div class="tools-grid">
+    <div class="tool-card pm wide">
+      <div class="tool-name">📊 TrackImpact · el registro de lo que te da la IA</div>
+      <div class="tool-desc">Anotas qué herramienta usaste, en qué tarea y cuánto tiempo ahorraste, con evidencias, y arma un informe para tu revisión de desempeño o la dirección. Gratis para empezar.</div>
+      <div class="tool-use">Ideal para: líderes y PMO que deben mostrar el impacto de la IA. Mide lo que cada persona registra; súmale la métrica de resultado de tu ficha. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.trackimpact.io/">trackimpact.io</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🛡️ Scamio · ¿este mensaje es una estafa?</div>
+      <div class="tool-desc">Le pegas un mensaje, un enlace o un código QR sospechoso y te dice si es seguro. Gratis, en la web y en WhatsApp. Pide crear una cuenta de Bitdefender.</div>
+      <div class="tool-use">Ideal para: cualquier persona y PYMES que atienden por WhatsApp. No indica idiomas: pruébalo con un mensaje que sepas falso. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.bitdefender.com/en-us/consumer/scamio">bitdefender.com/scamio</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🧾 Finstatly · del extracto en PDF a la hoja de cálculo</div>
+      <div class="tool-desc">Convierte extractos bancarios en PDF a Excel, CSV o archivos para QuickBooks y Xero. Cinco páginas gratis, sin tarjeta, y borra los archivos al terminar.</div>
+      <div class="tool-use">Ideal para: contadores, finanzas de PYMES e independientes. No menciona bancos de la región: prueba con un extracto antes de pagar. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://finstatly.com">finstatly.com</a></div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💼</span><span class="text">La IA en tu profesión</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Radar</span>
+    <h3>Tres sectores que se movieron esta semana</h3>
+    <p>En los tres, la pregunta es qué decide la IA y qué decide una persona.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">En tu sector</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Gestión de proyectos:</strong> el PMI presentó la certificación Advanced Project Leader y un curso de IA agéntica con un laboratorio para construir un agente sin programar.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Salud:</strong> MAI-DxO, de Microsoft, acertó el 83% de 304 casos complejos de una revista médica; los médicos generalistas con material de consulta, el 36%. Son casos escritos: falta probarlo con pacientes reales.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Banca:</strong> grandes bancos de EE.UU. limitan a los agentes de IA a mirar las cuentas, no a mover dinero. «Debe haber una persona que autorice cualquier salida de dinero», dijo Brian Moynihan, de Bank of America.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>Si lideras un equipo, distingue entre agentes que leen y agentes que actúan. Es la primera decisión de riesgo en un hospital, un banco o tu PMO.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.pmi.org/about/press-media/2026/project-management-institute-helps-a-growing-profession-deliver-greater-value">PMI</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://microsoft.ai/news/building-medical-superintelligence/">Microsoft AI</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://finance.yahoo.com/news/us-banks-limit-ai-agents-113229223.html">Bancos (FT, vía Retail Banker)</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Región</span>
+    <h3>La brecha está en las pequeñas empresas</h3>
+    <p>CENIA y CEPAL presentaron el 20 de octubre el Índice Latinoamericano de IA 2026. Chile, Brasil y Uruguay encabezan; Colombia es cuarta, Argentina sexta y México octavo.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Lo que hay que mirar</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Adopción por tamaño:</strong> usan IA el 27,6% de las grandes empresas de la región, el 12,8% de las medianas y el 6,8% de las pequeñas. En los países de comparación del índice, entre ellos España y Portugal, son 66%, 41% y 24%.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Alerta para la banca:</strong> la firma de seguridad Straiker reportó que un grupo criminal usó agentes de IA contra más de 400 bancos y empresas de pagos de la región. Anthropic bloqueó su acceso a Claude. No se han confirmado pérdidas.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>La mayor distancia no está entre países, sino entre la gran empresa y la pequeña. Ahí está nuestra oportunidad, y ahí un método sencillo rinde más rápido.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://indicelatam.cl">ILIA 2026</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.bloomberglinea.com/tecnologia/los-paises-de-america-latina-mas-preparados-para-la-inteligencia-artificial-segun-ranking-de-cepal/">Bloomberg Línea</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.pymnts.com/?p=4328775">Straiker (PYMNTS)</a></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">13%</div>
+    <div class="stat-label">de los CIO dice que su empresa ya obtuvo un valor significativo de la IA</div>
+    <p style="margin-top:14px;">Según Gartner, los que más avanzan suelen fijar criterios explícitos para detener un piloto. Es la casilla 4 de la ficha.</p>
+    <div class="fuente-stat">Fuente: <a target="_blank" rel="noopener" style="color:#C4B5FD;text-decoration:underline;" href="https://www.gartner.com/en/newsroom/press-releases/2026-10-19-gartner-it-symposium-xpo-2026-orlando-day-1-highlights">Gartner, 19 de octubre</a></div>
+  </div>
+
+  <div class="reflection">
+    <h3>Tu tarea de esta semana, en una hora</h3>
+    <p>Elige una herramienta de IA que pagas o que tu equipo usa cada semana y llena la ficha de valor para ella, aunque sea con números aproximados.</p>
+    <p>Si no encuentras la métrica, pregunta a quien la usa qué cambió: menos errores, respuestas más rápidas a clientes, más propuestas enviadas. Esa es tu primera línea base.</p>
+    <p>Y otra de cinco minutos: si tu web usa WordPress u otro sistema con PHP, pide a quien la mantiene que confirme que instaló la actualización del 21 de octubre.</p>
+    <p class="pregunta">¿Qué métrica usas tú para saber si una herramienta de IA vale lo que cuesta? Cuéntamelo en la <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">comunidad IA Entusiastas</a>.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana una idea para aplicar la IA en tu trabajo, en español y sin hype.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Ya usas IA en tu equipo y no sabes si da resultados? Conversemos 30 minutos, sin costo, y llenamos juntos tu primera ficha de valor.</p>
+      <a target="_blank" rel="noopener" style="color:#ffffff;font-weight:700;text-decoration:none;" href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #39</div>
+    <p>
+      Por <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.linkedin.com/company/never-stop-learning-ateneo-inc/">Ateneo Empresarial</a><br>
+      Semana del 19 al 25 de octubre de 2026<br>
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
