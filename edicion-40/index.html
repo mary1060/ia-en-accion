@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA para Entusiastas #40 · ¿Quién tomó esa decisión: tú o tu IA?</title>
+  <meta name="description" content="Un agente con una opinión sorteada con una moneda convenció a 50 analistas el 86% de las veces. Cuatro preguntas para que las decisiones de juicio sigan siendo tuyas.">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="IA para Entusiastas #40 · ¿Quién tomó esa decisión: tú o tu IA?">
+  <meta property="og:description" content="Un agente con una opinión sorteada con una moneda convenció a 50 analistas el 86% de las veces. Cuatro preguntas para que las decisiones de juicio sigan siendo tuyas.">
+  <meta property="og:url" content="https://newsletter.marycardenas.ai/edicion-40">
+  <meta property="og:image" content="https://newsletter.marycardenas.ai/edicion-40/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #f3f0f8; font-family: 'Inter', sans-serif; color: #1f1535; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    a { color: #7C3AED; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrapper { max-width: 680px; margin: 0 auto; background: #ffffff; }
+    .header { background: linear-gradient(135deg, #3B0764 0%, #5B21B6 60%, #7C3AED 100%); padding: 40px 40px 32px; text-align: center; }
+    .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: #C4B5FD; margin-bottom: 10px; }
+    .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 800; color: #ffffff; line-height: 1.2; margin-bottom: 8px; }
+    .header-title span { color: #DDD6FE; }
+    .header-subtitle { font-size: 14px; color: #DDD6FE; margin-bottom: 20px; }
+    .header-meta { display: inline-block; background: rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 18px; font-size: 12px; color: #EDE9FE; border: 1px solid rgba(255,255,255,0.18); }
+    .editorial { background: #faf9ff; border-left: 4px solid #7C3AED; margin: 0; padding: 28px 40px; }
+    .editorial p { font-size: 15px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .editorial .signature { margin-top: 14px; font-size: 13px; color: #7C3AED; font-weight: 600; }
+    .section-divider { padding: 0 40px; margin: 32px 0 0; }
+    .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+    .section-label .emoji { font-size: 18px; }
+    .section-label .text { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7C3AED; }
+    .section-line { height: 2px; background: linear-gradient(to right, #7C3AED, #EDE9FE); border-radius: 2px; margin-bottom: 20px; }
+    .news-card { margin: 0 40px 24px; padding: 22px 24px; border: 1px solid #EDE9FE; border-radius: 12px; background: #fdfcff; }
+    .news-card.featured { border: 2px solid #7C3AED; background: #FAF5FF; }
+    .news-card .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7C3AED; background: #EDE9FE; border-radius: 4px; padding: 3px 8px; margin-bottom: 10px; }
+    .news-card .tag.red { background: #FEE2E2; color: #DC2626; }
+    .news-card .tag.green { background: #D1FAE5; color: #059669; }
+    .news-card .tag.blue { background: #DBEAFE; color: #2563EB; }
+    .news-card .tag.orange { background: #FEF3C7; color: #D97706; }
+    .news-card .tag.purple { background: #EDE9FE; color: #6D28D9; }
+    .news-card .tag.pm { background: #3B0764; color: #ffffff; }
+    .news-card h3 { font-size: 18px; font-weight: 700; color: #1f1535; line-height: 1.35; margin-bottom: 10px; }
+    .news-card p { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 12px; }
+    .news-card ul { margin: 0 0 12px 18px; }
+    .news-card li { font-size: 14px; color: #4B5563; line-height: 1.7; margin-bottom: 6px; }
+    .lectura { background: #F5F3FF; border-left: 3px solid #7C3AED; border-radius: 0 8px 8px 0; padding: 12px 14px; margin-top: 8px; }
+    .lectura-label { font-size: 11px; font-weight: 700; color: #7C3AED; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .lectura p { font-size: 13px; color: #5B21B6; margin-bottom: 0; font-style: italic; }
+    .pm-box { background: #EDE9FE; border-radius: 0 8px 8px 0; border-left: 3px solid #3B0764; padding: 12px 14px; margin-top: 8px; }
+    .pm-label { font-size: 11px; font-weight: 700; color: #3B0764; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+    .pm-box p { font-size: 13px; color: #3B0764; margin-bottom: 0; }
+    .fuentes { margin-top: 10px; font-size: 11px; color: #6B7280; }
+    .fuentes a { color: #7C3AED; font-weight: 600; }
+    .highlight-box { margin: 0 40px 28px; background: linear-gradient(135deg, #3B0764 0%, #5B21B6 100%); border-radius: 16px; padding: 28px 28px; color: #EDE9FE; text-align: center; }
+    .highlight-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #ffffff; margin-bottom: 12px; }
+    .highlight-box p { font-size: 14px; line-height: 1.7; color: #DDD6FE; }
+    .highlight-box .stat { display: inline-block; font-size: 36px; font-weight: 800; color: #ffffff; line-height: 1; margin: 12px 0 4px; }
+    .highlight-box .stat-label { font-size: 12px; color: #C4B5FD; font-weight: 500; }
+    .tools-intro { margin: 0 40px 16px; font-size: 14px; color: #4B5563; }
+    .tools-grid { margin: 0 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tool-card { border: 1px solid #EDE9FE; border-radius: 10px; padding: 16px; background: #fdfcff; }
+    .tool-card.pm { border: 1px solid #3B0764; background: #FAF5FF; }
+    .tool-card .tool-name { font-size: 14px; font-weight: 700; color: #3B0764; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #6B7280; line-height: 1.5; }
+    .tool-card .tool-use { font-size: 12px; color: #7C3AED; line-height: 1.5; margin-top: 6px; font-style: italic; }
+    .tool-card .tool-link { margin-top: 8px; font-size: 12px; font-weight: 600; }
+    .tool-card .tool-link a { color: #7C3AED; word-break: break-all; }
+    .reflection { margin: 0 40px 28px; background: #faf9ff; border: 1px solid #EDE9FE; border-radius: 12px; padding: 24px; }
+    .reflection h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: #3B0764; margin-bottom: 12px; }
+    .reflection p { font-size: 14px; color: #374151; line-height: 1.75; margin-bottom: 10px; }
+    .cta-block { margin: 0 40px 24px; }
+    .cta-subscribe { background: linear-gradient(135deg, #14B8A6, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-subscribe p { color: #F0FDFA; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-subscribe a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-subscribe a:hover { background: #EDE9FE; }
+    .cta-primary { background: linear-gradient(135deg, #3B0764, #7C3AED); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 14px; }
+    .cta-primary p { color: #DDD6FE; font-size: 13px; margin-bottom: 14px; line-height: 1.6; }
+    .cta-primary a { display: inline-block; background: #ffffff; color: #3B0764; font-weight: 700; font-size: 14px; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-primary a:hover { background: #EDE9FE; }
+    .cta-secondary { border: 2px solid #7C3AED; border-radius: 12px; padding: 20px 24px; text-align: center; }
+    .cta-secondary p { color: #4B5563; font-size: 13px; margin-bottom: 12px; }
+    .cta-secondary a { display: inline-block; background: #7C3AED; color: #ffffff; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 8px; }
+    .footer { background: #1f1535; padding: 32px 40px; text-align: center; }
+    .footer p { font-size: 12px; color: #9CA3AF; line-height: 1.8; }
+    .footer a { color: #A78BFA; }
+    .footer .brand { font-size: 14px; font-weight: 600; color: #DDD6FE; margin-bottom: 8px; }
+    .tool-card.wide { grid-column: 1 / -1; }
+    .hero img { display: block; width: 100%; height: auto; border: 0; }
+    .card-img { display: block; width: 100%; height: auto; border: 0; border-radius: 12px; margin: 4px 0 14px; }
+    .highlight-box .fuente-stat { margin-top: 10px; font-size: 11px; color: #C4B5FD; }
+    .reflection .pregunta { font-weight: 600; color: #3B0764; }
+    @media (max-width: 600px) {
+      .header { padding: 28px 20px 24px; }
+      .header-title { font-size: 24px; }
+      .editorial { padding: 20px 20px; }
+      .section-divider { padding: 0 20px; }
+      .news-card { margin: 0 20px 20px; }
+      .highlight-box { margin: 0 20px 24px; }
+      .tools-intro { margin: 0 20px 16px; }
+      .tools-grid { margin: 0 20px 20px; grid-template-columns: 1fr; }
+      .reflection { margin: 0 20px 24px; }
+      .cta-block { margin: 0 20px 20px; }
+      .footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">La IA ya mejora tu trabajo. Cuatro preguntas para que la decisión siga siendo tuya.</div>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-eyebrow">IA para Entusiastas · Edición #40</div>
+    <div class="header-title">¿Quién tomó esa decisión:<br><span>tú</span> o tu IA?</div>
+    <div class="header-subtitle">Una idea para aplicar la IA en tu trabajo, con mirada de proyecto, en español y sin hype.</div>
+    <div class="header-meta">Semana del 26 de octubre al 1 de noviembre de 2026</div>
+  </div>
+
+  <div class="hero"><img class="hero-img" src="https://newsletter.marycardenas.ai/edicion-40/img/hero.jpg" alt="Ilustración: un agente de IA recomienda «Opción B» con una moneda al aire a su lado, y la ficha de decisión de una analista muestra que eligió la opción B en las cuatro decisiones, con la pregunta «¿Fue mi criterio o el del agente?»." width="680" style="display:block;width:100%;max-width:680px;height:auto;border:0;"></div>
+
+  <!-- EDITORIAL -->
+  <div class="editorial">
+    <p>Hola,</p>
+    <p>Anthropic le dio a 50 analistas profesionales un agente de IA con una opinión secreta en cada decisión del análisis. Esa opinión la decidía una moneda. Los analistas eligieron lo mismo que el agente el 86% de las veces, y solo el 15% reconoció su influencia.</p>
+    <p>Lo curioso es que con el agente hubo menos errores graves. La IA mejoró el trabajo, pero las decisiones de juicio dejaron de ser del todo suyas, y casi nadie lo notó.</p>
+    <p>En gestión de proyectos esto tiene nombre: derechos de decisión. Quién decide qué y con qué información. Con agentes en el equipo toca escribirlos de nuevo, y hoy te dejo cuatro preguntas para empezar.</p>
+    <div class="signature">— Mary Cárdenas de Gil</div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">⚡</span><span class="text">La historia de la semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card featured">
+    <span class="tag ">Criterio</span>
+    <h3>Una persona al final no basta si el juicio no es suyo</h3>
+    <p>Dos noticias del 27 de octubre que se leen juntas.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Lo que pasó</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>El estudio:</strong> los analistas evaluaban un programa agrícola ficticio con Claude Code. Defendieron sus decisiones con los argumentos del agente, a veces palabra por palabra, y estaban igual de seguros que quienes no lo siguieron. Con el agente, 3 de 50 cometieron errores graves; sin él, 6 de 11, aunque los grupos no son del todo comparables.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Los límites:</strong> Anthropic reforzó a propósito la opinión del agente y probó una sola tarea. Su recomendación: decidir qué decisiones necesitan el juicio propio de una persona y darle tiempo para formarlo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Amazon:</strong> publicó un memo que llama «profundamente defectuosas» las métricas de consumo de IA. Su frase: «Un ingeniero que puede explicar dónde la IA todavía no ayuda está mostrando el criterio que pedimos».</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>Las dos apuntan a lo mismo: el criterio es ahora el trabajo escaso. Pedir «humano en el circuito» no alcanza si esa persona llega sin postura propia. En proyectos lo resolvemos con derechos de decisión, un registro de decisiones y una ruta de escalamiento.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/research/agents-judgment-calls">Anthropic</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www-cdn.anthropic.com/519c17a5d23a794e8b6d50a854048d0b61e0d73a.pdf">Estudio completo</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://thenextweb.com/news/amazon-tokenmaxxing-memo-engineers-ai-metrics">Amazon (The Next Web)</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.theregister.com/a/5306090">The Register</a></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag pm">Para tu equipo</span>
+    <h3>Cuatro preguntas antes de aceptar lo que te recomienda tu IA</h3>
+    <img class="card-img" src="https://newsletter.marycardenas.ai/edicion-40/img/preguntas.jpg" alt="Cuatro preguntas antes de aceptar lo que te recomienda tu IA. 1. ¿Es cálculo o juicio? Si hay más de una respuesta razonable, es juicio y lo decides tú. 2. ¿Qué pensaba yo antes? Escribe tu postura en una línea antes de preguntar. 3. ¿Cuál es el mejor argumento contrario? Pide que defienda la opción que no te recomendó. 4. ¿Quién firma y por qué? Registra la decisión y qué te hizo cambiar. La IA hace la primera pasada; la decisión de juicio lleva tu nombre." width="552" style="display:block;width:100%;max-width:552px;height:auto;border:0;border-radius:12px;margin:4px 0 14px;">
+    <p>Anotar tu postura no te blinda: en el estudio, quienes ya tenían una opinión cambiaron 6 de cada 10 veces cuando el agente opinaba distinto. Pero te deja ver cuándo cambiaste y por qué.</p>
+    <div class="pm-box">
+      <div class="pm-label">📋 Ejemplo aplicado</div>
+      <p>Una PMO prioriza el portafolio del trimestre con IA. <strong>Cálculo:</strong> sumar costos y fechas, y eso lo hace la IA. <strong>Juicio:</strong> si pesa más el riesgo regulatorio o el ingreso. La líder anota antes «riesgo primero, por la auditoría de marzo». La IA propone ingresos primero; ella pide el mejor argumento contrario, decide y lo deja firmado en el registro de decisiones.</p>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🛠️</span><span class="text">Para probar esta semana</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <p class="tools-intro">Una para ver el otro lado antes de decidir y dos novedades de herramientas que ya usas cada día.</p>
+
+  <div class="tools-grid">
+    <div class="tool-card pm wide">
+      <div class="tool-name">🔀 Cuey · la misma pregunta a varias IA</div>
+      <div class="tool-desc">Extensión de Chrome que manda tu pregunta a ChatGPT, Claude, Gemini, Grok y DeepSeek y te muestra lado a lado dónde coinciden y dónde no. Gratis para empezar, con límite diario.</div>
+      <div class="tool-use">Ideal para: consultores, analistas y formadores antes de una decisión de juicio. Es pequeña y lee la página que comparas: no la uses con información confidencial. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://chromewebstore.google.com/detail/compare-chatgpt-claude-ge/gdbiinmclpikjlmfnekmggbddgmlglia">Chrome Web Store</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">✏️ Gemini · edita en el chat lo que crea</div>
+      <div class="tool-desc">Genera y ahora también edita documentos, hojas, presentaciones y PDF dentro del chat: seleccionas un párrafo y pides el cambio. Gratis.</div>
+      <div class="tool-use">Ideal para: PYMES, PMs y docentes que arman informes o actas. En el celular solo edita PDF. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://blog.google/innovation-and-ai/products/gemini-app/edit-files-directly/">blog.google</a></div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">🎙️ Gemini Notebook · graba la reunión y pregúntale</div>
+      <div class="tool-desc">El antiguo NotebookLM ya graba hasta una hora de audio desde la app del celular, aunque cambies de app, y la grabación queda como fuente del cuaderno. Después le preguntas qué se decidió y quién quedó a cargo.</div>
+      <div class="tool-use">Ideal para: PMs, docentes y estudiantes que documentan reuniones o clases. Avisa antes de grabar. Llega de forma gradual: si no ves el micrófono, actualiza la app. <em>Reportada esta semana.</em></div>
+      <div class="tool-link"><a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://notebook.google/">notebook.google</a></div>
+    </div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">💼</span><span class="text">La IA en tu profesión</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag blue">Radar</span>
+    <h3>Dos sectores donde la IA hace la primera pasada</h3>
+    <p>En los dos, la IA prepara y una persona decide.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">En tu sector</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Gestión de proyectos:</strong> el agilista Stefan Wolpers propuso un agente que revisa el backlog antes del refinamiento con una regla: marcar, sugerir y nunca resolver. No escribe criterios de aceptación ni estima, y el Product Owner revisa cada hallazgo.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Farmacéutica:</strong> en Enveda, Claude revisó 1.061 páginas de registros de manufactura. Encontró los 11 problemas que habían visto los revisores y 7 más, y la revisión humana bajó de más de 25 horas a menos de 3.</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>Escribe lo que tu agente no hace antes de decidir lo que hace. Esa lista también es parte de tu Definition of Done.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.linkedin.com/pulse/product-backlog-refinement-agent-stefan-wolpers-7jude">Stefan Wolpers</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.anthropic.com/research/early-progress-drug-development">Anthropic (caso Enveda)</a></div>
+  </div>
+
+  <div class="section-divider">
+    <div class="section-label"><span class="emoji">🌎</span><span class="text">Latinoamérica</span></div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="news-card">
+    <span class="tag green">Región</span>
+    <h3>Colombia: un agente por WhatsApp para 16.000 agricultores</h3>
+    <p>En una entrevista del 29 de octubre, el CEO de la ONG Rare contó que su asesor agrícola Agent Tierra pasó de unos 200 pequeños agricultores, elegidos a mano, a unos 16.000 en Colombia.</p><div style="margin:14px 0 4px 0;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7C3AED;">Lo que hay que mirar</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Cómo responde:</strong> con el perfil de cada finca, el clima local y casos de fincas parecidas, usando solo contenido revisado por expertos. Las cifras de resultados las reporta la propia organización.</div><div style="margin:0 0 9px 0;padding-left:16px;text-indent:-16px;font-size:15px;line-height:1.55;color:#374151;"><span style="color:#7C3AED;font-weight:700;">&bull;</span>&nbsp; <strong>Para agendar:</strong> el 21 de noviembre, el PMI Capítulo Bogotá hace su XIII Congreso Internacional, con una hackathon de IA llamada «El reto es decidir».</div>
+    <div class="lectura">
+      <div class="lectura-label">🔎 Mi lectura</div>
+      <p>Rare dice que los agricultores no necesitaban más información, sino confianza para decidir. Es el mejor encargo que le podemos hacer a un agente.</p>
+    </div>
+    <div class="fuentes">Fuentes: <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://youtu.be/lWXhaemT1wQ">Entrevista a Rare</a> · <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://www.salesforce.com/customer-stories/rare/agentic-farmer-coaching/">Caso Agent Tierra (Salesforce)</a></div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>El número de la semana</h3>
+    <div class="stat">5%</div>
+    <div class="stat-label">de los adultos en EE.UU. aceptaría que la IA decida un reclamo de seguro médico sin revisión humana</div>
+    <p style="margin-top:14px;">La gente ya pide una persona en la decisión final. Ahora hay que cuidar que esa persona decida con criterio propio.</p>
+    <div class="fuente-stat">Fuente: <a target="_blank" rel="noopener" style="color:#C4B5FD;text-decoration:underline;" href="https://www.pewresearch.org/science/2026/10/29/americans-are-open-to-ai-in-healthcare-but-want-humans-making-final-calls/">Pew Research Center, 29 de octubre</a></div>
+  </div>
+
+  <div class="reflection">
+    <h3>Tu tarea de esta semana, en una hora</h3>
+    <p>Elige una decisión que tu equipo tomará esta semana con ayuda de IA: un proveedor, una prioridad, un informe para la dirección.</p>
+    <p>Antes de abrir el chat, escribe en una línea qué harías y por qué. Después usa la IA, pídele el mejor argumento contrario y compara. Si cambiaste de opinión, anota qué te convenció.</p>
+    <p>Y una de cinco minutos: agrega a tu registro de decisiones la columna «¿Qué propuso la IA?».</p>
+    <p class="pregunta">¿En qué decisión de tu trabajo nunca dejarías la última palabra a la IA? Cuéntamelo en la <a target="_blank" rel="noopener" style="color:#7C3AED;font-weight:600;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">comunidad IA Entusiastas</a>.</p>
+  </div>
+
+  <!-- CTAs -->
+  <div class="cta-block">
+    <div class="cta-subscribe">
+      <p><strong style="color: #ffffff; font-size: 16px;">¿Te reenviaron esta edición?</strong><br>Recibe cada semana una idea para aplicar la IA en tu trabajo, en español y sin hype.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://www.marycardenas.ai/newsletter">📬 Suscribirme al newsletter</a>
+    </div>
+    <div class="cta-primary">
+      <p><strong style="color: #ffffff; font-size: 16px;">Comunidad IA Entusiastas</strong><br>Casos de uso, sesiones prácticas y una red de profesionales que aprende junta.</p>
+      <a target="_blank" rel="noopener" style="color:#3B0764;font-weight:700;text-decoration:none;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">🚀 Unirme a la comunidad</a>
+    </div>
+    <div class="cta-secondary">
+      <p>¿Tu equipo ya trabaja con agentes y quieres definir qué decide la IA y qué decide una persona? Conversemos 30 minutos, sin costo.</p>
+      <a target="_blank" rel="noopener" style="color:#ffffff;font-weight:700;text-decoration:none;" href="https://cal.com/marycardenas/reunion-estrategica">📅 Agendar sesión de descubrimiento</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">IA para Entusiastas · Edición #40</div>
+    <p>
+      Por <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://marycardenas.ai">Mary Cárdenas de Gil</a> · <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.linkedin.com/company/never-stop-learning-ateneo-inc/">Ateneo Empresarial</a><br>
+      Semana del 26 de octubre al 1 de noviembre de 2026<br>
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://www.marycardenas.ai/newsletter">Suscribirme</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://app.marycardenas.ai/i/comunidad-ia-entusiastas?v=2">Comunidad IA Entusiastas</a> ·
+      <a target="_blank" rel="noopener" style="color:#A78BFA;text-decoration:underline;" href="https://cal.com/marycardenas/reunion-estrategica">Sesión gratuita</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
